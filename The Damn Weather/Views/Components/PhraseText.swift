@@ -1,0 +1,34 @@
+import SwiftUI
+
+/// Animated phrase display with tap-to-refresh.
+/// The core personality of the app.
+struct PhraseText: View {
+    let phrase: String
+    var size: CGFloat = DesignTokens.phraseSize
+    let onTap: () -> Void
+
+    @State private var isVisible = true
+
+    var body: some View {
+        Text(phrase)
+            .font(.system(size: size, weight: .semibold, design: .default))
+            .multilineTextAlignment(.center)
+            .lineSpacing(4)
+            .opacity(isVisible ? 1 : 0)
+            .animation(.easeInOut(duration: 0.3), value: isVisible)
+            .contentTransition(.opacity)
+            .onTapGesture {
+                HapticsService.lightTap()
+                withAnimation(.easeInOut(duration: 0.15)) {
+                    isVisible = false
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                    onTap()
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        isVisible = true
+                    }
+                }
+            }
+            .padding(.horizontal, DesignTokens.spaceMD)
+    }
+}
