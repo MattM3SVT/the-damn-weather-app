@@ -7,6 +7,7 @@ struct MainView: View {
     @Environment(AppState.self) private var appState
     @Environment(\.modelContext) private var modelContext
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.scenePhase) private var scenePhase
     @Query(sort: \SavedLocation.sortOrder) private var savedLocations: [SavedLocation]
 
     @State private var weatherVM: WeatherViewModel
@@ -46,6 +47,13 @@ struct MainView: View {
             let status = locationService.authorizationStatus
             if status == .authorizedWhenInUse || status == .authorizedAlways {
                 await weatherVM.loadWeatherForCurrentLocation()
+            }
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                Task {
+                    await weatherVM.refreshIfStale()
+                }
             }
         }
         .preferredColorScheme(.dark)

@@ -24,6 +24,9 @@ final class WeatherViewModel {
     // MARK: - Cached saved location state (avoids re-fetching/re-phrasing on tap)
     private var savedLocationCache: [String: (weather: WeatherSnapshot, phrase: String)] = [:]
 
+    // MARK: - Location tracking
+    private(set) var isShowingDeviceLocation = false
+
     // MARK: - Dependencies
     private let weatherService = WeatherService()
     private let locationService: LocationService
@@ -39,6 +42,8 @@ final class WeatherViewModel {
     // MARK: - Public API
 
     func loadWeatherForCurrentLocation() async {
+        isShowingDeviceLocation = true
+
         // Don't show loading state while waiting for permission — let the permission dialog appear cleanly
         let needsPermission = locationService.authorizationStatus == .notDetermined
         if !needsPermission {
@@ -118,6 +123,7 @@ final class WeatherViewModel {
 
     /// Switch back to showing the device's current location without re-fetching.
     func showCurrentLocation() {
+        isShowingDeviceLocation = true
         guard let currentLocationWeather else { return }
         weather = currentLocationWeather
         locationName = currentLocationName
@@ -127,6 +133,7 @@ final class WeatherViewModel {
     }
 
     func loadWeather(for savedLocation: SavedLocation) async {
+        isShowingDeviceLocation = false
         let key = "\(savedLocation.name)\(savedLocation.latitude)"
 
         // If we already fetched this location and it's fresh, just show cached data
@@ -172,6 +179,22 @@ final class WeatherViewModel {
         }
         await weatherService.clearCache()
         await loadWeather(for: weather.location)
+    }
+
+    /// Auto-refresh when app returns from background with stale data.
+    /// Only fetches if weather is older than 15 minutes — avoids unnecessary network calls.
+    func refreshIfStale() async {
+        guard let weather, weather.isStale else { return }
+
+        // Clear all caches so everything is fresh
+        await weatherService.clearCache()
+        savedLocationCache.removeAll()
+
+        if isShowingDeviceLocation {
+            await loadWeatherForCurrentLocation()
+        } else {
+            await loadWeather(for: weather.location)
+        }
     }
 
     // MARK: - Computed Properties
