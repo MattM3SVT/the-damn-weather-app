@@ -14,8 +14,6 @@ final class WeatherViewModel {
     var isLoading = false
     var error: String?
     var currentTime: String = ""
-    var usingSampleData = false
-    var weatherKitError: String?
 
     // MARK: - Dependencies
     private let weatherService = WeatherService()
@@ -65,8 +63,6 @@ final class WeatherViewModel {
 
             // WeatherKit succeeded — use real data
             weather = snapshot
-            usingSampleData = false
-            weatherKitError = nil
 
             let geocode = await geocodeTask
             locationName = geocode.name
@@ -86,34 +82,15 @@ final class WeatherViewModel {
 
             isLoading = false
         } catch {
-            // Only WeatherKit can throw now — log the actual error
             let errorDesc = String(describing: error)
             print("🌦️ WeatherKit Error: \(errorDesc)")
 
             let geocode = await geocodeTask
-            let isAuthError = Self.isWeatherKitAuthError(error)
-
-            // Fall back to sample data so the user can preview the full UI
-            weather = WeatherSnapshot.sampleData(location: location)
             locationName = geocode.name.isEmpty ? "Unknown" : geocode.name
             locationState = geocode.state
-            usingSampleData = true
-            weatherKitError = isAuthError
-                ? "WeatherKit auth pending — verify App ID in developer portal."
-                : "WeatherKit error: \(errorDesc)"
-
-            await refreshPhrase()
-            startTimeUpdates(timezone: .current)
+            self.error = "Couldn't load weather data. Pull down to retry."
             isLoading = false
         }
-    }
-
-    /// Detects WeatherKit JWT/auth errors from the error chain.
-    private static func isWeatherKitAuthError(_ error: Error) -> Bool {
-        let desc = String(describing: error)
-        return desc.contains("jwt") || desc.contains("authservice")
-            || desc.contains("Code=2") || desc.contains("unauthorized")
-            || desc.contains("WeatherDaemon")
     }
 
     func loadWeather(for savedLocation: SavedLocation) async {

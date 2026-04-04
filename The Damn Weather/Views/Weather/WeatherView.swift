@@ -8,30 +8,6 @@ struct WeatherView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: DesignTokens.spaceLG) {
-                // Sample data banner
-                if viewModel.usingSampleData {
-                    VStack(spacing: 4) {
-                        HStack(spacing: 6) {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .font(.caption)
-                            Text("Preview Mode — Showing sample data")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                        }
-                        if let errorDetail = viewModel.weatherKitError {
-                            Text(errorDetail)
-                                .font(.caption2)
-                                .opacity(0.85)
-                        }
-                    }
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.orange.opacity(0.85))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                }
-
                 // Severe weather alert banner
                 if let weather = viewModel.weather, !weather.alerts.isEmpty {
                     SevereAlertBanner(alerts: weather.alerts)
