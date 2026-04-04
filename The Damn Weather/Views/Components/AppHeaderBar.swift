@@ -103,7 +103,7 @@ struct AppHeaderBar: View {
             }
         }
         .padding(.horizontal, DesignTokens.spaceMD)
-        .padding(.vertical, 10)
+        .padding(.vertical, 6)
         .background {
             if showBackground {
                 Rectangle()

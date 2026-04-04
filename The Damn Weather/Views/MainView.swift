@@ -16,6 +16,7 @@ struct MainView: View {
     @State private var showSidebar = false
     @State private var sidebarSearchActive = false
     @State private var selectedPage = 0
+    @State private var heroCollapseProgress: CGFloat = 0
 
     private let locationService: LocationService
 
@@ -164,14 +165,45 @@ struct MainView: View {
 
     // MARK: - iPhone Layout (paging between cities)
 
+    /// Height of the floating header overlay so scroll content starts below it.
+    private let headerOverlayHeight: CGFloat = 48
+
     private var iPhoneLayout: some View {
         ZStack {
-            // Background matches whichever page is active
+            // Layer 1: Background (full screen)
             DynamicBackground(
                 condition: weatherVM.weather?.current.conditionTag ?? .clear,
                 isDay: weatherVM.weather?.current.isDay ?? true
             )
 
+            // Layer 2: Scrollable content — starts at the very top, scrolls behind header
+            TabView(selection: $selectedPage) {
+                // Page 0: Current location
+                weatherContent
+                    .tag(0)
+
+                // Pages 1+: Saved locations
+                ForEach(Array(savedLocations.enumerated()), id: \.element.id) { index, _ in
+                    weatherContent
+                        .tag(index + 1)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .onChange(of: selectedPage) { _, newPage in
+                heroCollapseProgress = 0
+                Task {
+                    if newPage == 0 {
+                        await weatherVM.loadWeatherForCurrentLocation()
+                    } else {
+                        let locationIndex = newPage - 1
+                        if locationIndex < savedLocations.count {
+                            await weatherVM.loadWeather(for: savedLocations[locationIndex])
+                        }
+                    }
+                }
+            }
+
+            // Layer 3: Floating header overlay — content scrolls behind this
             VStack(spacing: 0) {
                 AppHeaderBar(
                     appState: appState,
@@ -182,37 +214,15 @@ struct MainView: View {
                     onPhraseModeChanged: {
                         Task { await weatherVM.refreshPhrase() }
                     },
+                    showBackground: heroCollapseProgress > 0.3,
                     showSearchBar: false
                 )
+                .animation(.easeInOut(duration: 0.25), value: heroCollapseProgress > 0.3)
 
-                // Paging TabView
-                TabView(selection: $selectedPage) {
-                    // Page 0: Current location
-                    weatherContent
-                        .tag(0)
-
-                    // Pages 1+: Saved locations
-                    ForEach(Array(savedLocations.enumerated()), id: \.element.id) { index, _ in
-                        weatherContent
-                            .tag(index + 1)
-                    }
-                }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .onChange(of: selectedPage) { _, newPage in
-                    Task {
-                        if newPage == 0 {
-                            await weatherVM.loadWeatherForCurrentLocation()
-                        } else {
-                            let locationIndex = newPage - 1
-                            if locationIndex < savedLocations.count {
-                                await weatherVM.loadWeather(for: savedLocations[locationIndex])
-                            }
-                        }
-                    }
-                }
+                Spacer()
             }
 
-            // Bottom bar with page dots and list button
+            // Layer 4: Bottom bar with page dots and list button
             VStack {
                 Spacer()
                 FloatingBottomBar(
@@ -264,7 +274,15 @@ struct MainView: View {
                 .padding()
                 .frame(maxHeight: .infinity, alignment: .top)
         } else if weatherVM.weather != nil {
-            WeatherView(viewModel: weatherVM, appState: appState, sidebarOpen: showSidebar)
+            WeatherView(
+                viewModel: weatherVM,
+                appState: appState,
+                sidebarOpen: showSidebar,
+                onCollapseProgressChanged: isRegular ? nil : { progress in
+                    heroCollapseProgress = progress
+                },
+                topInset: isRegular ? 0 : headerOverlayHeight
+            )
         } else if weatherVM.error != nil,
                   locationService.authorizationStatus != .denied,
                   locationService.authorizationStatus != .restricted,
