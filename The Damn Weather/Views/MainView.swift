@@ -58,19 +58,25 @@ struct MainView: View {
             if showSidebar {
                 LocationSidebar(
                     locationService: locationService,
-                    currentLocationName: weatherVM.displayName,
-                    currentTemperature: weatherVM.weather.map { appState.temperatureUnit.format($0.current.temperature) } ?? "--°",
-                    currentHigh: weatherVM.weather?.daily.first.map { appState.temperatureUnit.format($0.high) } ?? "--°",
-                    currentLow: weatherVM.weather?.daily.first.map { appState.temperatureUnit.format($0.low) } ?? "--°",
-                    currentConditionTag: weatherVM.weather?.current.conditionTag ?? .clear,
-                    currentConditionLabel: weatherVM.weather?.current.conditionLabel ?? "",
-                    currentIsDay: weatherVM.weather?.current.isDay ?? true,
-                    currentPhrase: weatherVM.currentPhrase,
+                    currentLocationName: weatherVM.currentLocationDisplayName,
+                    currentTemperature: weatherVM.currentLocationWeather.map { appState.temperatureUnit.format($0.current.temperature) } ?? "--°",
+                    currentHigh: weatherVM.currentLocationWeather?.daily.first.map { appState.temperatureUnit.format($0.high) } ?? "--°",
+                    currentLow: weatherVM.currentLocationWeather?.daily.first.map { appState.temperatureUnit.format($0.low) } ?? "--°",
+                    currentConditionTag: weatherVM.currentLocationWeather?.current.conditionTag ?? .clear,
+                    currentConditionLabel: weatherVM.currentLocationWeather?.current.conditionLabel ?? "",
+                    currentIsDay: weatherVM.currentLocationWeather?.current.isDay ?? true,
+                    currentPhrase: weatherVM.currentLocationPhrase,
                     onSelect: { location in
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            showSidebar = false
+                        }
                         Task { await weatherVM.loadWeather(for: location) }
                     },
                     onSelectCurrent: {
-                        Task { await weatherVM.loadWeatherForCurrentLocation() }
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            showSidebar = false
+                        }
+                        weatherVM.showCurrentLocation()
                     },
                     onAddedLocation: { location in
                         Task { await weatherVM.loadWeather(for: location) }
@@ -192,7 +198,7 @@ struct MainView: View {
                 }
             }
 
-            // Floating bottom bar with page dots
+            // Bottom bar with page dots and list button
             VStack {
                 Spacer()
                 FloatingBottomBar(
@@ -205,14 +211,14 @@ struct MainView: View {
         .fullScreenCover(isPresented: $showSavedLocations) {
             SavedLocationsView(
                 locationService: locationService,
-                currentLocationName: weatherVM.displayName,
-                currentTemperature: weatherVM.weather.map { appState.temperatureUnit.format($0.current.temperature) } ?? "--°",
-                currentHigh: weatherVM.weather?.daily.first.map { appState.temperatureUnit.format($0.high) } ?? "--°",
-                currentLow: weatherVM.weather?.daily.first.map { appState.temperatureUnit.format($0.low) } ?? "--°",
-                currentConditionTag: weatherVM.weather?.current.conditionTag ?? .clear,
-                currentConditionLabel: weatherVM.weather?.current.conditionLabel ?? "",
-                currentIsDay: weatherVM.weather?.current.isDay ?? true,
-                currentPhrase: weatherVM.currentPhrase,
+                currentLocationName: weatherVM.currentLocationDisplayName,
+                currentTemperature: weatherVM.currentLocationWeather.map { appState.temperatureUnit.format($0.current.temperature) } ?? "--°",
+                currentHigh: weatherVM.currentLocationWeather?.daily.first.map { appState.temperatureUnit.format($0.high) } ?? "--°",
+                currentLow: weatherVM.currentLocationWeather?.daily.first.map { appState.temperatureUnit.format($0.low) } ?? "--°",
+                currentConditionTag: weatherVM.currentLocationWeather?.current.conditionTag ?? .clear,
+                currentConditionLabel: weatherVM.currentLocationWeather?.current.conditionLabel ?? "",
+                currentIsDay: weatherVM.currentLocationWeather?.current.isDay ?? true,
+                currentPhrase: weatherVM.currentLocationPhrase,
                 onSelect: { location in
                     // Find the index of the selected location and navigate to it
                     if let index = savedLocations.firstIndex(where: { $0.id == location.id }) {
@@ -244,7 +250,7 @@ struct MainView: View {
                 .padding()
                 .frame(maxHeight: .infinity, alignment: .top)
         } else if weatherVM.weather != nil {
-            WeatherView(viewModel: weatherVM, appState: appState)
+            WeatherView(viewModel: weatherVM, appState: appState, sidebarOpen: showSidebar)
         } else if weatherVM.error != nil,
                   locationService.authorizationStatus != .denied,
                   locationService.authorizationStatus != .restricted,

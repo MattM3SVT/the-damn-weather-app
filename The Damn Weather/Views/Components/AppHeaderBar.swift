@@ -2,7 +2,7 @@ import SwiftUI
 import WeatherShared
 
 /// App header bar matching the website layout:
-/// Logo (left) | Search bar (center) | 18+ toggle (right)
+/// Logo (left) | Search bar (center) | 18+ toggle + Settings gear (right)
 struct AppHeaderBar: View {
     let appState: AppState
     let settingsVM: SettingsViewModel
@@ -14,6 +14,7 @@ struct AppHeaderBar: View {
     var showSearchBar: Bool = true
 
     @State private var showAgeVerification = false
+    @State private var showSettings = false
 
     var body: some View {
         HStack(spacing: 10) {
@@ -91,6 +92,15 @@ struct AppHeaderBar: View {
             .toggleStyle(.switch)
             .tint(Color.accentRed)
             .fixedSize()
+
+            // Settings gear
+            Button {
+                showSettings = true
+            } label: {
+                Image(systemName: "gearshape.fill")
+                    .font(.system(size: 18))
+                    .foregroundStyle(.white.opacity(0.7))
+            }
         }
         .padding(.horizontal, DesignTokens.spaceMD)
         .padding(.vertical, 10)
@@ -103,6 +113,9 @@ struct AppHeaderBar: View {
         }
         .sheet(isPresented: $showAgeVerification) {
             AgeVerificationSheet(viewModel: settingsVM, onConfirmed: onPhraseModeChanged)
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView(viewModel: settingsVM, onPhraseModeChanged: onPhraseModeChanged)
         }
     }
 }

@@ -6,7 +6,7 @@ import WeatherShared
 
 @Observable
 final class WeatherViewModel {
-    // MARK: - State
+    // MARK: - State (currently displayed)
     var weather: WeatherSnapshot?
     var locationName: String = ""
     var locationState: String = ""
@@ -14,6 +14,15 @@ final class WeatherViewModel {
     var isLoading = false
     var error: String?
     var currentTime: String = ""
+
+    // MARK: - Device current location state (for sidebar "My Location" card)
+    var currentLocationWeather: WeatherSnapshot?
+    var currentLocationName: String = ""
+    var currentLocationState: String = ""
+    var currentLocationPhrase: String = ""
+
+    // MARK: - Cached saved location state (avoids re-fetching/re-phrasing on tap)
+    private var savedLocationCache: [String: (weather: WeatherSnapshot, phrase: String)] = [:]
 
     // MARK: - Dependencies
     private let weatherService = WeatherService()
@@ -40,7 +49,7 @@ final class WeatherViewModel {
         do {
             let location = try await locationService.requestLocation()
             isLoading = true
-            await loadWeather(for: location)
+            await loadWeather(for: location, isDeviceLocation: true)
         } catch {
             if locationService.authorizationStatus == .denied || locationService.authorizationStatus == .restricted {
                 self.error = "Location access denied. Enable it in Settings → Privacy → Location Services."
@@ -51,7 +60,7 @@ final class WeatherViewModel {
         }
     }
 
-    func loadWeather(for location: CLLocation) async {
+    func loadWeather(for location: CLLocation, isDeviceLocation: Bool = false) async {
         isLoading = true
         error = nil
 
@@ -68,6 +77,13 @@ final class WeatherViewModel {
             locationName = geocode.name
             locationState = geocode.state
 
+            // If this is the device's current location, save it separately for the sidebar
+            if isDeviceLocation {
+                currentLocationWeather = snapshot
+                currentLocationName = geocode.name
+                currentLocationState = geocode.state
+            }
+
             // Save location to shared defaults for widgets
             let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
             defaults.set(location.coordinate.latitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
@@ -76,6 +92,11 @@ final class WeatherViewModel {
 
             // Generate phrase
             await refreshPhrase()
+
+            // If this is the device location, also save the phrase for the sidebar
+            if isDeviceLocation {
+                currentLocationPhrase = currentPhrase
+            }
 
             // Start time updates
             startTimeUpdates(timezone: snapshot.timezone)
@@ -93,10 +114,37 @@ final class WeatherViewModel {
         }
     }
 
+    /// Switch back to showing the device's current location without re-fetching.
+    func showCurrentLocation() {
+        guard let currentLocationWeather else { return }
+        weather = currentLocationWeather
+        locationName = currentLocationName
+        locationState = currentLocationState
+        currentPhrase = currentLocationPhrase
+        startTimeUpdates(timezone: currentLocationWeather.timezone)
+    }
+
     func loadWeather(for savedLocation: SavedLocation) async {
+        let key = "\(savedLocation.name)\(savedLocation.latitude)"
+
+        // If we already fetched this location and it's fresh, just show cached data
+        if let cached = savedLocationCache[key], !cached.weather.isStale {
+            weather = cached.weather
+            locationName = savedLocation.name
+            locationState = savedLocation.state
+            currentPhrase = cached.phrase
+            startTimeUpdates(timezone: cached.weather.timezone)
+            return
+        }
+
         locationName = savedLocation.name
         locationState = savedLocation.state
         await loadWeather(for: savedLocation.clLocation)
+
+        // Cache the result for next tap
+        if let weather {
+            savedLocationCache[key] = (weather: weather, phrase: currentPhrase)
+        }
     }
 
     func refreshPhrase() async {
@@ -131,6 +179,13 @@ final class WeatherViewModel {
             return "\(locationName), \(locationState)"
         }
         return locationName
+    }
+
+    var currentLocationDisplayName: String {
+        if !currentLocationState.isEmpty {
+            return "\(currentLocationName), \(currentLocationState)"
+        }
+        return currentLocationName
     }
 
     var hasAlerts: Bool {

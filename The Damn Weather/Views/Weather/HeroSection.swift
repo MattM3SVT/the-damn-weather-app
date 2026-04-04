@@ -10,8 +10,10 @@ struct HeroSection: View {
     let currentTime: String
     let unit: TemperatureUnit
     let onRefreshPhrase: () -> Void
+    var phraseTapEnabled: Bool = true
 
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(AppState.self) private var appState
 
     private var isRegular: Bool { sizeClass == .regular }
     private var iconSize: CGFloat { isRegular ? 140 : DesignTokens.heroIconSize }
@@ -30,7 +32,7 @@ struct HeroSection: View {
                 .contentTransition(.numericText())
 
             // Sarcastic phrase — the star of the show
-            PhraseText(phrase: phrase, size: phraseSize, onTap: onRefreshPhrase)
+            PhraseText(phrase: phrase, size: phraseSize, isEnabled: phraseTapEnabled, onTap: onRefreshPhrase)
 
             // Location name + time
             if !locationName.isEmpty {
@@ -50,7 +52,7 @@ struct HeroSection: View {
             HStack(spacing: DesignTokens.spaceLG) {
                 StatItem(label: "Feels Like", value: unit.format(weather.feelsLike))
                 StatItem(label: "Condition", value: weather.conditionTag.label)
-                StatItem(label: "Wind", value: weather.windSpeed.windSpeedString)
+                StatItem(label: "Wind", value: appState.windSpeedUnit.format(weather.windSpeed))
                 StatItem(label: "UV Index", value: "\(weather.uvIndex)")
             }
             .frame(maxWidth: 500)

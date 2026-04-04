@@ -31,6 +31,30 @@ struct HumidityDetailView: View {
             accentColor: .teal
         ) {
             Chart {
+                // Comfortable zone annotation
+                RectangleMark(
+                    yStart: .value("Low", 30),
+                    yEnd: .value("High", 60)
+                )
+                .foregroundStyle(.green.opacity(0.08))
+
+                // Area fill under humidity line
+                ForEach(weather.hourly) { hour in
+                    AreaMark(
+                        x: .value("Time", hour.time),
+                        y: .value("Humidity", hour.humidity)
+                    )
+                    .foregroundStyle(
+                        .linearGradient(
+                            colors: [.teal.opacity(0.3), .teal.opacity(0.02)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .interpolationMethod(.catmullRom)
+                }
+
+                // Humidity line
                 ForEach(weather.hourly) { hour in
                     LineMark(
                         x: .value("Time", hour.time),
@@ -41,12 +65,13 @@ struct HumidityDetailView: View {
                     .interpolationMethod(.catmullRom)
                 }
 
-                // Comfortable zone annotation
-                RectangleMark(
-                    yStart: .value("Low", 30),
-                    yEnd: .value("High", 60)
-                )
-                .foregroundStyle(.green.opacity(0.08))
+                // Now indicator
+                nowIndicator(hourlyTimes: weather.hourly.map(\.time))
+
+                // Current value dot
+                if let current = interpolatedCurrentValue(hourly: weather.hourly, keyPath: \.humidity) {
+                    currentValuePoint(time: current.time, value: current.value, yLabel: "Humidity", color: .teal)
+                }
             }
             .chartXAxis {
                 AxisMarks(values: .stride(by: .hour, count: 4)) { _ in

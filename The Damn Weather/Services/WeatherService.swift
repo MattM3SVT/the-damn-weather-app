@@ -89,6 +89,8 @@ actor WeatherService {
         let dailyData = daily.prefix(10).map { (day: DayWeather) -> DailyForecastPoint in
             let dayWindMph = day.wind.speed.converted(to: .milesPerHour).value
             let precipInches = day.precipitationAmountByType.precipitation.converted(to: .inches).value
+            let dayMoonPhase = mapMoonPhase(day.moon.phase)
+            let dayMoonIllum = estimateIllumination(for: day.moon.phase)
             return DailyForecastPoint(
                 date: day.date,
                 high: day.highTemperature.converted(to: .fahrenheit).value,
@@ -103,7 +105,9 @@ actor WeatherService {
                 precipitationSum: precipInches,
                 precipitationProbability: day.precipitationChance * 100,
                 windMax: dayWindMph,
-                uvIndexMax: day.uvIndex.value
+                uvIndexMax: day.uvIndex.value,
+                moonPhase: dayMoonPhase,
+                moonIllumination: dayMoonIllum
             )
         }
 
@@ -129,9 +133,7 @@ actor WeatherService {
         let moonPhase: MoonPhaseData? = daily.first.map { day in
             MoonPhaseData(
                 phase: mapMoonPhase(day.moon.phase),
-                illumination: day.moon.phase == .full ? 1.0
-                    : day.moon.phase == .new ? 0.0
-                    : 0.5
+                illumination: estimateIllumination(for: day.moon.phase)
             )
         }
 
@@ -162,6 +164,20 @@ actor WeatherService {
         case .moderate: return .moderate
         case .minor: return .minor
         default: return .unknown
+        }
+    }
+
+    private nonisolated func estimateIllumination(for phase: MoonPhase) -> Double {
+        switch phase {
+        case .new: return 0.0
+        case .waxingCrescent: return 0.25
+        case .firstQuarter: return 0.5
+        case .waxingGibbous: return 0.75
+        case .full: return 1.0
+        case .waningGibbous: return 0.75
+        case .lastQuarter: return 0.5
+        case .waningCrescent: return 0.25
+        @unknown default: return 0.0
         }
     }
 

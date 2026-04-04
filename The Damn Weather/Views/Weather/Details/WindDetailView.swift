@@ -5,6 +5,9 @@ import WeatherShared
 /// Apple Weather-style wind detail page with compass, 24-hour chart, and gust info.
 struct WindDetailView: View {
     let weather: WeatherSnapshot
+    @Environment(AppState.self) private var appState
+
+    private var windUnit: WindSpeedUnit { appState.windSpeedUnit }
 
     private var description: String {
         let speed = weather.current.windSpeed
@@ -14,11 +17,11 @@ struct WindDetailView: View {
         } else if speed < 15 {
             return "A light breeze from the \(weather.current.windDirection.compassDirection). Nothing that'll ruin your day, probably."
         } else if speed < 25 {
-            return "Moderate winds at \(speed.windSpeedString) from the \(weather.current.windDirection.compassDirection). Hold onto your hat — literally."
+            return "Moderate winds at \(windUnit.format(speed)) from the \(weather.current.windDirection.compassDirection). Hold onto your hat — literally."
         } else if gusts > 40 {
-            return "Strong winds with gusts up to \(gusts.windSpeedString). Maybe don't open that umbrella unless you want to fly."
+            return "Strong winds with gusts up to \(windUnit.format(gusts)). Maybe don't open that umbrella unless you want to fly."
         } else {
-            return "It's pretty damn windy at \(speed.windSpeedString) with gusts to \(gusts.windSpeedString). Outdoor dining is cancelled."
+            return "It's pretty damn windy at \(windUnit.format(speed)) with gusts to \(windUnit.format(gusts)). Outdoor dining is cancelled."
         }
     }
 
@@ -26,8 +29,9 @@ struct WindDetailView: View {
         let speeds = weather.hourly.map(\.windSpeed)
         let gusts = weather.hourly.map(\.windGusts)
         let allVals = speeds + gusts
-        let lo = max(0, (allVals.min() ?? 0) - 3)
-        let hi = (allVals.max() ?? 20) + 3
+        let padding = max(3, (allVals.max() ?? 20) * 0.1)
+        let lo = max(0, (allVals.min() ?? 0) - padding)
+        let hi = (allVals.max() ?? 20) + padding
         return lo...hi
     }
 
@@ -35,52 +39,85 @@ struct WindDetailView: View {
         WeatherDetailPage(
             icon: "wind",
             title: "Wind",
-            currentValue: weather.current.windSpeed.windSpeedString,
-            subtitle: "\(weather.current.windDirection.compassDirection) · Gusts \(weather.current.windGusts.windSpeedString)",
+            currentValue: windUnit.format(weather.current.windSpeed),
+            subtitle: "\(weather.current.windDirection.compassDirection) · Gusts \(windUnit.format(weather.current.windGusts))",
             description: description,
             accentColor: .cyan
         ) {
-            Chart {
-                // Wind speed
-                ForEach(weather.hourly) { hour in
-                    LineMark(
-                        x: .value("Time", hour.time),
-                        y: .value("Speed", hour.windSpeed)
-                    )
-                    .foregroundStyle(.cyan)
-                    .lineStyle(StrokeStyle(lineWidth: 2.5))
-                    .interpolationMethod(.catmullRom)
+            VStack(spacing: 8) {
+                Chart {
+                    // Area fill under wind speed
+                    ForEach(weather.hourly) { hour in
+                        AreaMark(
+                            x: .value("Time", hour.time),
+                            y: .value("Speed", hour.windSpeed)
+                        )
+                        .foregroundStyle(
+                            .linearGradient(
+                                colors: [.cyan.opacity(0.3), .cyan.opacity(0.02)],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                        .interpolationMethod(.catmullRom)
+                    }
+
+                    // Wind speed line
+                    ForEach(weather.hourly) { hour in
+                        LineMark(
+                            x: .value("Time", hour.time),
+                            y: .value("Speed", hour.windSpeed),
+                            series: .value("Series", "Wind Speed")
+                        )
+                        .foregroundStyle(.cyan)
+                        .lineStyle(StrokeStyle(lineWidth: 2.5))
+                        .interpolationMethod(.catmullRom)
+                    }
+
+                    // Gusts line
+                    ForEach(weather.hourly) { hour in
+                        LineMark(
+                            x: .value("Time", hour.time),
+                            y: .value("Speed", hour.windGusts),
+                            series: .value("Series", "Gusts")
+                        )
+                        .foregroundStyle(.mint.opacity(0.6))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [5, 3]))
+                        .interpolationMethod(.catmullRom)
+                    }
+
+                    // Now indicator
+                    nowIndicator(hourlyTimes: weather.hourly.map(\.time))
+
+                    // Current value dot
+                    if let current = interpolatedCurrentValue(hourly: weather.hourly, keyPath: \.windSpeed) {
+                        currentValuePoint(time: current.time, value: current.value, yLabel: "Speed", color: .cyan)
+                    }
+                }
+                .chartYScale(domain: windRange)
+                .chartXAxis {
+                    AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
+                        AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
+                            .foregroundStyle(.secondary)
+                        AxisGridLine().foregroundStyle(.white.opacity(0.1))
+                    }
+                }
+                .chartYAxis {
+                    AxisMarks { value in
+                        AxisValueLabel {
+                            if let v = value.as(Double.self) {
+                                Text(windUnit.format(v))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        AxisGridLine().foregroundStyle(.white.opacity(0.1))
+                    }
                 }
 
-                // Gusts
-                ForEach(weather.hourly) { hour in
-                    LineMark(
-                        x: .value("Time", hour.time),
-                        y: .value("Gusts", hour.windGusts)
-                    )
-                    .foregroundStyle(.cyan.opacity(0.35))
-                    .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [5, 3]))
-                    .interpolationMethod(.catmullRom)
-                }
-            }
-            .chartYScale(domain: windRange)
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                        .foregroundStyle(.secondary)
-                    AxisGridLine().foregroundStyle(.white.opacity(0.1))
-                }
-            }
-            .chartYAxis {
-                AxisMarks { value in
-                    AxisValueLabel {
-                        if let v = value.as(Double.self) {
-                            Text("\(Int(v)) mph")
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    AxisGridLine().foregroundStyle(.white.opacity(0.1))
-                }
+                ChartLegend(items: [
+                    (color: .cyan, label: "Wind Speed", dashed: false),
+                    (color: .mint.opacity(0.6), label: "Gusts", dashed: true)
+                ])
             }
         } dailyStrip: {
             VStack(spacing: 0) {
@@ -112,7 +149,7 @@ struct WindDetailView: View {
                 ForEach(Array(weather.daily.enumerated()), id: \.element.id) { index, day in
                     DailyStripRow(
                         dayLabel: day.date.dayLabel(index: index),
-                        value: day.windMax.windSpeedString,
+                        value: windUnit.format(day.windMax),
                         icon: "wind",
                         iconColor: .cyan
                     )

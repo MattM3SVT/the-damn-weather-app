@@ -43,40 +43,8 @@ struct LocationSidebar: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Top bar — options menu + sidebar toggle hint
+            // Top bar spacer
             HStack {
-                Menu {
-                    Section {
-                        Button {
-                            appState.saveTemperatureUnit(.celsius)
-                        } label: {
-                            Label {
-                                Text("Celsius")
-                            } icon: {
-                                if appState.temperatureUnit == .celsius {
-                                    Image(systemName: "checkmark")
-                                }
-                            }
-                        }
-                        Button {
-                            appState.saveTemperatureUnit(.fahrenheit)
-                        } label: {
-                            Label {
-                                Text("Fahrenheit")
-                            } icon: {
-                                if appState.temperatureUnit == .fahrenheit {
-                                    Image(systemName: "checkmark")
-                                }
-                            }
-                        }
-                    }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundStyle(.white.opacity(0.7))
-                        .frame(width: 36, height: 36)
-                }
-
                 Spacer()
             }
             .padding(.horizontal, 12)

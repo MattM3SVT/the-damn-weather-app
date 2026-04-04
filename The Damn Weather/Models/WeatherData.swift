@@ -56,6 +56,8 @@ struct DailyForecastPoint: Identifiable, Sendable {
     let precipitationProbability: Double  // 0-100
     let windMax: Double            // mph
     let uvIndexMax: Int
+    let moonPhase: MoonPhaseData.MoonPhaseType?
+    let moonIllumination: Double   // 0-1
 }
 
 /// Normalized minute-by-minute precipitation
@@ -97,14 +99,14 @@ struct MoonPhaseData: Sendable {
 
         nonisolated var sfSymbol: String {
             switch self {
-            case .newMoon: return "moon.fill"
-            case .waxingCrescent: return "moon.haze.fill"
-            case .firstQuarter: return "moon.circle.fill"
-            case .waxingGibbous: return "moon.circle.fill"
-            case .fullMoon: return "moon.stars.fill"
-            case .waningGibbous: return "moon.circle.fill"
-            case .lastQuarter: return "moon.circle.fill"
-            case .waningCrescent: return "moon.haze.fill"
+            case .newMoon: return "moonphase.new.moon"
+            case .waxingCrescent: return "moonphase.waxing.crescent"
+            case .firstQuarter: return "moonphase.first.quarter"
+            case .waxingGibbous: return "moonphase.waxing.gibbous"
+            case .fullMoon: return "moonphase.full.moon"
+            case .waningGibbous: return "moonphase.waning.gibbous"
+            case .lastQuarter: return "moonphase.last.quarter"
+            case .waningCrescent: return "moonphase.waning.crescent"
             }
         }
     }

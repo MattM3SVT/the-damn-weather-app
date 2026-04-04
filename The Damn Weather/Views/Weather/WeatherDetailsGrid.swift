@@ -16,6 +16,7 @@ struct WeatherDetailsGrid: View {
     let unit: TemperatureUnit
 
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(AppState.self) private var appState
     @State private var selectedDetail: WeatherDetailType?
 
     private var columns: [GridItem] {
@@ -43,8 +44,8 @@ struct WeatherDetailsGrid: View {
                 DetailCard(
                     icon: "wind",
                     label: "Wind",
-                    value: weather.current.windSpeed.windSpeedString,
-                    extra: "\(weather.current.windDirection.compassDirection) · Gusts \(weather.current.windGusts.windSpeedString)",
+                    value: appState.windSpeedUnit.format(weather.current.windSpeed),
+                    extra: "\(weather.current.windDirection.compassDirection) · Gusts \(appState.windSpeedUnit.format(weather.current.windGusts))",
                     tappable: true
                 )
                 .onTapGesture { selectedDetail = .wind }
@@ -63,7 +64,7 @@ struct WeatherDetailsGrid: View {
                 DetailCard(
                     icon: "gauge.medium",
                     label: "Pressure",
-                    value: weather.current.pressure.pressureString,
+                    value: appState.pressureUnit.format(weather.current.pressure),
                     extra: nil,
                     tappable: true
                 )
@@ -86,7 +87,7 @@ struct WeatherDetailsGrid: View {
                     DetailCard(
                         icon: "drop.fill",
                         label: "Precipitation",
-                        value: String(format: "%.2f in", today.precipitationSum),
+                        value: appState.precipitationUnit.format(today.precipitationSum),
                         extra: "\(today.precipitationProbability.percentString) chance",
                         tappable: true
                     )
@@ -97,25 +98,31 @@ struct WeatherDetailsGrid: View {
                 DetailCard(
                     icon: "eye.fill",
                     label: "Visibility",
-                    value: weather.current.visibility.milesString,
-                    extra: weather.current.visibility.visibilityDescription
+                    value: appState.distanceUnit.format(weather.current.visibility),
+                    extra: weather.current.visibility.visibilityDescription,
+                    tappable: true
                 )
+                .onTapGesture { selectedDetail = .visibility }
 
                 // Dew Point
                 DetailCard(
                     icon: "drop.deferred.fill",
                     label: "Dew Point",
                     value: unit.format(weather.current.dewPoint),
-                    extra: nil
+                    extra: nil,
+                    tappable: true
                 )
+                .onTapGesture { selectedDetail = .dewPoint }
 
                 // Cloud Cover
                 DetailCard(
                     icon: "cloud.fill",
                     label: "Cloud Cover",
                     value: weather.current.cloudCover.percentString,
-                    extra: nil
+                    extra: nil,
+                    tappable: true
                 )
+                .onTapGesture { selectedDetail = .cloudCover }
 
                 // Temperature (feels like)
                 DetailCard(
@@ -133,8 +140,10 @@ struct WeatherDetailsGrid: View {
                         icon: moon.phase.sfSymbol,
                         label: "Moon",
                         value: moon.phase.rawValue,
-                        extra: nil
+                        extra: "\(Int(moon.illumination * 100))% illuminated",
+                        tappable: true
                     )
+                    .onTapGesture { selectedDetail = .moon }
                 }
             }
         }
@@ -160,8 +169,14 @@ struct WeatherDetailsGrid: View {
             PrecipitationDetailView(weather: weather, unit: unit)
         case .humidity:
             HumidityDetailView(weather: weather, unit: unit)
-        default:
-            EmptyView()
+        case .visibility:
+            VisibilityDetailView(weather: weather)
+        case .dewPoint:
+            DewPointDetailView(weather: weather, unit: unit)
+        case .cloudCover:
+            CloudCoverDetailView(weather: weather)
+        case .moon:
+            MoonDetailView(weather: weather)
         }
     }
 }

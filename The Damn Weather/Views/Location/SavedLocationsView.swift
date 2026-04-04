@@ -142,39 +142,7 @@ struct SavedLocationsView: View {
             .navigationTitle("Weather")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                if !isSearching {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Menu {
-                            Section {
-                                Button {
-                                    appState.saveTemperatureUnit(.celsius)
-                                } label: {
-                                    Label {
-                                        Text("Celsius")
-                                    } icon: {
-                                        if appState.temperatureUnit == .celsius {
-                                            Image(systemName: "checkmark")
-                                        }
-                                    }
-                                }
-                                Button {
-                                    appState.saveTemperatureUnit(.fahrenheit)
-                                } label: {
-                                    Label {
-                                        Text("Fahrenheit")
-                                    } icon: {
-                                        if appState.temperatureUnit == .fahrenheit {
-                                            Image(systemName: "checkmark")
-                                        }
-                                    }
-                                }
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
-                                .font(.system(size: 18))
-                        }
-                    }
-                }
+                // Intentionally empty — settings moved to main header gear icon
             }
             .toolbarColorScheme(.dark, for: .navigationBar)
         }

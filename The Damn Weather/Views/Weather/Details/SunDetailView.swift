@@ -136,6 +136,35 @@ struct SunArcView: View {
                     style: StrokeStyle(lineWidth: 2, dash: [6, 4])
                 )
 
+                // Daylight glow fill under lit arc
+                if progress > 0 && progress < 1 {
+                    Path { path in
+                        let steps = Int(progress * 50)
+                        for i in 0...steps {
+                            let t = Double(i) / 50.0
+                            let x = t * width
+                            let y = Self.arcY(baseY: baseY, controlOffset: controlOffset, t: t)
+                            if i == 0 {
+                                path.move(to: CGPoint(x: x, y: y))
+                            } else {
+                                path.addLine(to: CGPoint(x: x, y: y))
+                            }
+                        }
+                        // Close path down to horizon
+                        let endX = progress * width
+                        path.addLine(to: CGPoint(x: endX, y: baseY))
+                        path.addLine(to: CGPoint(x: 0, y: baseY))
+                        path.closeSubpath()
+                    }
+                    .fill(
+                        LinearGradient(
+                            colors: [.yellow.opacity(0.15), .yellow.opacity(0.02)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                }
+
                 // Lit portion of the arc (matches Bezier exactly)
                 if progress > 0 && progress < 1 {
                     Path { path in

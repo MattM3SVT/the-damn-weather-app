@@ -47,7 +47,7 @@ struct WeatherDetailPage<ChartContent: View, DailyContent: View>: View {
                                     .foregroundStyle(.secondary)
 
                                 chart()
-                                    .frame(height: 180)
+                                    .frame(minHeight: 180)
                             }
                         }
 

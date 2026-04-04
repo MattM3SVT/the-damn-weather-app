@@ -53,14 +53,22 @@ struct PrecipitationChart: View {
                             .lineStyle(StrokeStyle(lineWidth: 2))
                         }
                         .chartXAxis {
-                            AxisMarks(values: .stride(by: .minute, count: 15)) { value in
+                            AxisMarks(values: .stride(by: .minute, count: 15)) { _ in
                                 AxisValueLabel(format: .dateTime.minute())
-                                AxisGridLine()
+                                    .foregroundStyle(.secondary)
+                                AxisGridLine().foregroundStyle(.white.opacity(0.1))
                             }
                         }
                         .chartYAxis {
-                            AxisMarks { _ in
-                                AxisGridLine()
+                            AxisMarks(values: [0, 0.1, 0.3, 0.5]) { value in
+                                AxisValueLabel {
+                                    if let v = value.as(Double.self) {
+                                        Text(intensityLabel(for: v))
+                                            .font(.system(size: 9))
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                                AxisGridLine().foregroundStyle(.white.opacity(0.1))
                             }
                         }
                         .frame(height: 120)
@@ -76,6 +84,15 @@ struct PrecipitationChart: View {
                     }
                 }
             }
+        }
+    }
+
+    private func intensityLabel(for value: Double) -> String {
+        switch value {
+        case 0: return "None"
+        case ...0.1: return "Light"
+        case ...0.3: return "Moderate"
+        default: return "Heavy"
         }
     }
 }

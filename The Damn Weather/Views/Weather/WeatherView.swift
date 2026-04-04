@@ -4,6 +4,7 @@ import SwiftUI
 struct WeatherView: View {
     let viewModel: WeatherViewModel
     let appState: AppState
+    var sidebarOpen: Bool = false
 
     var body: some View {
         ScrollView {
@@ -24,12 +25,13 @@ struct WeatherView: View {
                         unit: viewModel.temperatureUnit,
                         onRefreshPhrase: {
                             Task { await viewModel.refreshPhrase() }
-                        }
+                        },
+                        phraseTapEnabled: !sidebarOpen
                     )
                 }
 
                 // Minute-by-minute precipitation chart
-                if let weather = viewModel.weather, !weather.minutePrecipitation.isEmpty {
+                if let weather = viewModel.weather, weather.minutePrecipitation.contains(where: { $0.intensity > 0 }) {
                     PrecipitationChart(data: weather.minutePrecipitation)
                 }
 

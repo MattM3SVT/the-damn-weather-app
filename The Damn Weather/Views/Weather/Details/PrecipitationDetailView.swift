@@ -6,18 +6,17 @@ import WeatherShared
 struct PrecipitationDetailView: View {
     let weather: WeatherSnapshot
     let unit: TemperatureUnit
+    @Environment(AppState.self) private var appState
 
     private var currentPrecip: String {
-        let inches = weather.current.precipitation
-        if inches < 0.01 { return "0 in/hr" }
-        return String(format: "%.2f in/hr", inches)
+        appState.precipitationUnit.formatRate(weather.current.precipitation)
     }
 
     private var todayTotal: String {
         if let today = weather.daily.first {
-            return String(format: "%.2f in", today.precipitationSum)
+            return appState.precipitationUnit.format(today.precipitationSum)
         }
-        return "0 in"
+        return appState.precipitationUnit.format(0)
     }
 
     private var description: String {
@@ -37,6 +36,16 @@ struct PrecipitationDetailView: View {
         }
     }
 
+    private func precipBarGradient(for probability: Double) -> LinearGradient {
+        let topOpacity = 0.3 + probability / 100 * 0.7
+        let bottomOpacity = 0.05 + probability / 100 * 0.35
+        return LinearGradient(
+            colors: [.blue.opacity(topOpacity), .blue.opacity(bottomOpacity)],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
     var body: some View {
         WeatherDetailPage(
             icon: "drop.fill",
@@ -53,14 +62,11 @@ struct PrecipitationDetailView: View {
                         x: .value("Time", hour.time),
                         y: .value("Chance", hour.precipitationProbability)
                     )
-                    .foregroundStyle(
-                        .linearGradient(
-                            colors: [.blue.opacity(0.7), .blue.opacity(0.3)],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
+                    .foregroundStyle(precipBarGradient(for: hour.precipitationProbability))
                 }
+
+                // Now indicator
+                nowIndicator(hourlyTimes: weather.hourly.map(\.time))
             }
             .chartXAxis {
                 AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
@@ -111,7 +117,7 @@ struct PrecipitationDetailView: View {
                         .interpolationMethod(.catmullRom)
                         .lineStyle(StrokeStyle(lineWidth: 2))
                     }
-                    .frame(height: 80)
+                    .frame(height: 120)
                     .chartXAxis {
                         AxisMarks(values: .stride(by: .minute, count: 15)) { _ in
                             AxisValueLabel(format: .dateTime.minute())
@@ -142,7 +148,7 @@ struct PrecipitationDetailView: View {
 
                     Spacer()
 
-                    Text(String(format: "%.2f in", day.precipitationSum))
+                    Text(appState.precipitationUnit.format(day.precipitationSum))
                         .font(.system(size: DesignTokens.smallSize, weight: .semibold))
                 }
                 .padding(.vertical, 4)

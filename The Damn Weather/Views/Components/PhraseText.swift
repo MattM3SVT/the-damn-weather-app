@@ -5,6 +5,7 @@ import SwiftUI
 struct PhraseText: View {
     let phrase: String
     var size: CGFloat = DesignTokens.phraseSize
+    var isEnabled: Bool = true
     let onTap: () -> Void
 
     @State private var isVisible = true
@@ -18,6 +19,7 @@ struct PhraseText: View {
             .animation(.easeInOut(duration: 0.3), value: isVisible)
             .contentTransition(.opacity)
             .onTapGesture {
+                guard isEnabled else { return }
                 HapticsService.lightTap()
                 withAnimation(.easeInOut(duration: 0.15)) {
                     isVisible = false

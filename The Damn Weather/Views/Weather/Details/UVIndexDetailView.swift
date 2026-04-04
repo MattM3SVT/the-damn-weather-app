@@ -51,6 +51,9 @@ struct UVIndexDetailView: View {
                     )
                     .foregroundStyle(uvBarColor(for: hour.uvIndex))
                 }
+
+                // Now indicator
+                nowIndicator(hourlyTimes: weather.hourly.map(\.time))
             }
             .chartXAxis {
                 AxisMarks(values: .stride(by: .hour, count: 4)) { _ in

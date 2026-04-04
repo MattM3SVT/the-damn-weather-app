@@ -5,6 +5,7 @@ import WeatherShared
 /// Apple Weather-style pressure detail page with 24-hour trend.
 struct PressureDetailView: View {
     let weather: WeatherSnapshot
+    @Environment(AppState.self) private var appState
 
     private var trend: String {
         guard weather.hourly.count >= 3 else { return "Steady" }
@@ -32,7 +33,7 @@ struct PressureDetailView: View {
         case "Falling":
             return "Pressure is dropping, which often signals incoming weather changes. Clouds, rain, or general atmospheric drama could be headed your way."
         default:
-            return "Pressure is holding steady at \(weather.current.pressure.pressureString). Stable conditions — the atmosphere is taking a day off."
+            return "Pressure is holding steady at \(appState.pressureUnit.format(weather.current.pressure)). Stable conditions — the atmosphere is taking a day off."
         }
     }
 
@@ -47,12 +48,39 @@ struct PressureDetailView: View {
         WeatherDetailPage(
             icon: "gauge.medium",
             title: "Pressure",
-            currentValue: weather.current.pressure.pressureString,
+            currentValue: appState.pressureUnit.format(weather.current.pressure),
             subtitle: "\(trend) \(trendArrow)",
             description: description,
             accentColor: .indigo
         ) {
             Chart {
+                // Standard pressure reference line
+                RuleMark(y: .value("Standard", 1013.25))
+                    .foregroundStyle(.white.opacity(0.2))
+                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 3]))
+                    .annotation(position: .top, alignment: .leading) {
+                        Text("Standard (1013 hPa)")
+                            .font(.system(size: 9))
+                            .foregroundStyle(.white.opacity(0.3))
+                    }
+
+                // Area fill under pressure line
+                ForEach(weather.hourly) { hour in
+                    AreaMark(
+                        x: .value("Time", hour.time),
+                        y: .value("Pressure", hour.pressure)
+                    )
+                    .foregroundStyle(
+                        .linearGradient(
+                            colors: [.indigo.opacity(0.3), .indigo.opacity(0.02)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .interpolationMethod(.catmullRom)
+                }
+
+                // Pressure line
                 ForEach(weather.hourly) { hour in
                     LineMark(
                         x: .value("Time", hour.time),
@@ -63,15 +91,13 @@ struct PressureDetailView: View {
                     .interpolationMethod(.catmullRom)
                 }
 
-                // Standard pressure reference line
-                RuleMark(y: .value("Standard", 1013.25))
-                    .foregroundStyle(.white.opacity(0.2))
-                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 3]))
-                    .annotation(position: .top, alignment: .leading) {
-                        Text("Standard (1013 hPa)")
-                            .font(.system(size: 9))
-                            .foregroundStyle(.white.opacity(0.3))
-                    }
+                // Now indicator
+                nowIndicator(hourlyTimes: weather.hourly.map(\.time))
+
+                // Current value dot
+                if let current = interpolatedCurrentValue(hourly: weather.hourly, keyPath: \.pressure) {
+                    currentValuePoint(time: current.time, value: current.value, yLabel: "Pressure", color: .indigo)
+                }
             }
             .chartYScale(domain: pressureRange)
             .chartXAxis {
