@@ -10,11 +10,19 @@ struct WeatherView: View {
             VStack(spacing: DesignTokens.spaceLG) {
                 // Sample data banner
                 if viewModel.usingSampleData {
-                    HStack(spacing: 6) {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .font(.caption)
-                        Text("Preview Mode — WeatherKit is still activating. Showing sample data.")
-                            .font(.caption)
+                    VStack(spacing: 4) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.caption)
+                            Text("Preview Mode — Showing sample data")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                        }
+                        if let errorDetail = viewModel.weatherKitError {
+                            Text(errorDetail)
+                                .font(.caption2)
+                                .opacity(0.85)
+                        }
                     }
                     .foregroundStyle(.white)
                     .padding(.horizontal, 12)

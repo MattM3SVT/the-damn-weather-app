@@ -57,14 +57,18 @@ final class WeatherViewModel {
         isLoading = true
         error = nil
 
+        // Geocode runs independently — it never throws, so it can never kill weather data
+        async let geocodeTask = locationService.reverseGeocode(location)
+
         do {
-            // Fetch weather and reverse geocode in parallel
-            async let weatherTask = weatherService.fetchWeather(for: location)
-            async let geocodeTask = locationService.reverseGeocode(location)
+            let snapshot = try await weatherService.fetchWeather(for: location)
 
-            let (snapshot, geocode) = try await (weatherTask, geocodeTask)
-
+            // WeatherKit succeeded — use real data
             weather = snapshot
+            usingSampleData = false
+            weatherKitError = nil
+
+            let geocode = await geocodeTask
             locationName = geocode.name
             locationState = geocode.state
 
@@ -82,17 +86,22 @@ final class WeatherViewModel {
 
             isLoading = false
         } catch {
-            // Log the actual error for diagnostics
+            // Only WeatherKit can throw now — log the actual error
             let errorDesc = String(describing: error)
             print("🌦️ WeatherKit Error: \(errorDesc)")
 
+            let geocode = await geocodeTask
+            let isAuthError = Self.isWeatherKitAuthError(error)
+
             // Fall back to sample data so the user can preview the full UI
-            let geocode = try? await locationService.reverseGeocode(location)
             weather = WeatherSnapshot.sampleData(location: location)
-            locationName = geocode?.name ?? "Seattle"
-            locationState = geocode?.state ?? "WA"
+            locationName = geocode.name.isEmpty ? "Unknown" : geocode.name
+            locationState = geocode.state
             usingSampleData = true
-            weatherKitError = errorDesc
+            weatherKitError = isAuthError
+                ? "WeatherKit auth pending — verify App ID in developer portal."
+                : "WeatherKit error: \(errorDesc)"
+
             await refreshPhrase()
             startTimeUpdates(timezone: .current)
             isLoading = false

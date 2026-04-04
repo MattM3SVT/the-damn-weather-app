@@ -67,29 +67,38 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func reverseGeocode(_ location: CLLocation) async throws -> (name: String, state: String, country: String) {
+    func reverseGeocode(_ location: CLLocation) async -> (name: String, state: String, country: String) {
+        // Try iOS 26 MKReverseGeocodingRequest first
         if #available(iOS 26, *) {
-            guard let request = MKReverseGeocodingRequest(location: location) else {
-                return ("Unknown", "", "")
+            do {
+                guard let request = MKReverseGeocodingRequest(location: location) else {
+                    return ("Unknown", "", "")
+                }
+                let mapItems = try await request.mapItems
+                guard let item = mapItems.first else {
+                    return ("Unknown", "", "")
+                }
+                return Self.extractAddress(from: item)
+            } catch {
+                print("📍 MKReverseGeocodingRequest failed: \(error). Falling back to CLGeocoder.")
             }
-            let mapItems = try await request.mapItems
-            guard let item = mapItems.first else {
-                return ("Unknown", "", "")
-            }
-            return Self.extractAddress(from: item)
-        } else {
+        }
+
+        // Fallback to CLGeocoder (stable, works on all versions)
+        do {
             let geocoder = CLGeocoder()
             let placemarks = try await geocoder.reverseGeocodeLocation(location)
-
             guard let place = placemarks.first else {
                 return ("Unknown", "", "")
             }
-
             return (
                 name: place.locality ?? place.name ?? "Unknown",
                 state: place.administrativeArea ?? "",
                 country: place.country ?? ""
             )
+        } catch {
+            print("📍 CLGeocoder also failed: \(error). Returning defaults.")
+            return ("Unknown", "", "")
         }
     }
 
