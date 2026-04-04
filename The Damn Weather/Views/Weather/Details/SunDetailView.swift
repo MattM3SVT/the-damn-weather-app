@@ -18,10 +18,12 @@ struct SunDetailView: View {
 
     private var sunProgress: Double {
         guard let rise = todaySunrise, let set = todaySunset else { return 0 }
+        let totalInterval = set.timeIntervalSince(rise)
+        guard totalInterval > 0 else { return 0 }  // Prevent division by zero (polar edge case)
         let now = Date()
         if now < rise { return 0 }
         if now > set { return 1 }
-        return now.timeIntervalSince(rise) / set.timeIntervalSince(rise)
+        return now.timeIntervalSince(rise) / totalInterval
     }
 
     private var description: String {

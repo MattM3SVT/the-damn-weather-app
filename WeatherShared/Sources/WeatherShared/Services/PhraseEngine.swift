@@ -24,14 +24,34 @@ public actor PhraseEngine {
     public func loadIfNeeded() {
         guard !isLoaded else { return }
 
-        if let cleanURL = Bundle.module.url(forResource: "phrases-clean", withExtension: "json"),
-           let cleanData = try? Data(contentsOf: cleanURL) {
-            cleanPhrases = (try? JSONDecoder().decode([Phrase].self, from: cleanData)) ?? []
+        if let cleanURL = Bundle.module.url(forResource: "phrases-clean", withExtension: "json") {
+            do {
+                let cleanData = try Data(contentsOf: cleanURL)
+                cleanPhrases = try JSONDecoder().decode([Phrase].self, from: cleanData)
+            } catch {
+                #if DEBUG
+                print("⚠️ PhraseEngine: Failed to load phrases-clean.json: \(error)")
+                #endif
+            }
+        } else {
+            #if DEBUG
+            print("⚠️ PhraseEngine: phrases-clean.json not found in bundle")
+            #endif
         }
 
-        if let explicitURL = Bundle.module.url(forResource: "phrases-explicit", withExtension: "json"),
-           let explicitData = try? Data(contentsOf: explicitURL) {
-            explicitPhrases = (try? JSONDecoder().decode([Phrase].self, from: explicitData)) ?? []
+        if let explicitURL = Bundle.module.url(forResource: "phrases-explicit", withExtension: "json") {
+            do {
+                let explicitData = try Data(contentsOf: explicitURL)
+                explicitPhrases = try JSONDecoder().decode([Phrase].self, from: explicitData)
+            } catch {
+                #if DEBUG
+                print("⚠️ PhraseEngine: Failed to load phrases-explicit.json: \(error)")
+                #endif
+            }
+        } else {
+            #if DEBUG
+            print("⚠️ PhraseEngine: phrases-explicit.json not found in bundle")
+            #endif
         }
 
         isLoaded = true
@@ -112,7 +132,8 @@ public actor PhraseEngine {
 
         // Guard against empty pool
         guard !weighted.isEmpty else {
-            return "It's \(Int(tempF.rounded()))° outside. That's the weather."
+            let safeTempF = tempF.isFinite ? Int(tempF.rounded()) : 0
+            return "It's \(safeTempF)° outside. That's the weather."
         }
 
         // True random selection

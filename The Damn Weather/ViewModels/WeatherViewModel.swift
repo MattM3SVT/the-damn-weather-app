@@ -26,6 +26,7 @@ final class WeatherViewModel {
 
     // MARK: - Location tracking
     private(set) var isShowingDeviceLocation = false
+    private var isRefreshing = false
 
     // MARK: - Dependencies
     private let weatherService = WeatherService()
@@ -42,6 +43,7 @@ final class WeatherViewModel {
     // MARK: - Public API
 
     func loadWeatherForCurrentLocation() async {
+        guard !isLoading else { return }  // Prevent concurrent location requests
         isShowingDeviceLocation = true
 
         // Don't show loading state while waiting for permission — let the permission dialog appear cleanly
@@ -183,8 +185,11 @@ final class WeatherViewModel {
 
     /// Auto-refresh when app returns from background with stale data.
     /// Only fetches if weather is older than 15 minutes — avoids unnecessary network calls.
+    /// Guarded against concurrent calls from rapid foreground transitions.
     func refreshIfStale() async {
-        guard let weather, weather.isStale else { return }
+        guard !isRefreshing, let weather, weather.isStale else { return }
+        isRefreshing = true
+        defer { isRefreshing = false }
 
         // Clear all caches so everything is fresh
         await weatherService.clearCache()

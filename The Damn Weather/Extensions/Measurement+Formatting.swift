@@ -6,8 +6,8 @@ extension Double {
     var compassDirection: String {
         let dirs = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
                     "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
-        let index = Int((self / 22.5).rounded()) % 16
-        return dirs[max(0, index)]
+        let index = ((Int((self / 22.5).rounded()) % 16) + 16) % 16
+        return dirs[index]
     }
 
     /// UV index severity label

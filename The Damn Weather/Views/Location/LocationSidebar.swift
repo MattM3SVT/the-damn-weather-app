@@ -145,12 +145,20 @@ struct LocationSidebar: View {
                     Button {
                         Task {
                             if let selected = await activeSearchVM.selectResult(result) {
+                                // Prevent duplicate locations
+                                let isDuplicate = locations.contains { existing in
+                                    abs(existing.latitude - selected.location.coordinate.latitude) < 0.01 &&
+                                    abs(existing.longitude - selected.location.coordinate.longitude) < 0.01
+                                }
+                                guard !isDuplicate else { return }
+
                                 let saved = SavedLocation(
                                     name: selected.name,
                                     state: selected.state,
                                     country: selected.country,
                                     latitude: selected.location.coordinate.latitude,
-                                    longitude: selected.location.coordinate.longitude
+                                    longitude: selected.location.coordinate.longitude,
+                                    sortOrder: locations.count
                                 )
                                 modelContext.insert(saved)
                                 onAddedLocation(selected.location)

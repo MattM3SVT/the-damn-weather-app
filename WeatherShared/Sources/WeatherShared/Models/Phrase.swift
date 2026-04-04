@@ -31,7 +31,8 @@ public struct Phrase: Codable, Identifiable, Sendable {
 
     /// Render the phrase with the actual temperature substituted
     nonisolated public func rendered(tempF: Double) -> String {
-        text.replacingOccurrences(of: "[temp]", with: "\(Int(tempF.rounded()))")
+        let safeTempF = tempF.isFinite ? Int(tempF.rounded()) : 0
+        return text.replacingOccurrences(of: "[temp]", with: "\(safeTempF)")
     }
 }
 

@@ -56,6 +56,12 @@ struct MainView: View {
                 }
             }
         }
+        .onChange(of: savedLocations.count) { _, _ in
+            // Clamp selectedPage when a location is deleted to prevent out-of-bounds
+            if selectedPage >= pageCount {
+                selectedPage = max(0, pageCount - 1)
+            }
+        }
         .preferredColorScheme(.dark)
     }
 

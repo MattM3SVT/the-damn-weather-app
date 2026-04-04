@@ -8,6 +8,13 @@ struct HourlyForecastView: View {
     let timezone: TimeZone
     let unit: TemperatureUnit
 
+    /// Determines if an hourly point represents the current hour by checking
+    /// if the current time falls within that hour's window.
+    private func isCurrentHour(_ hour: HourlyForecastPoint) -> Bool {
+        let now = Date()
+        return now >= hour.time && now < hour.time.addingTimeInterval(3600)
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: DesignTokens.spaceMD) {
             Text("Today, Hour by Hour")
@@ -16,7 +23,7 @@ struct HourlyForecastView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: DesignTokens.spaceSM) {
                     ForEach(Array(hours.enumerated()), id: \.element.id) { index, hour in
-                        HourlyCard(hour: hour, timezone: timezone, unit: unit, isNow: index == 0)
+                        HourlyCard(hour: hour, timezone: timezone, unit: unit, isNow: isCurrentHour(hour))
                             .transition(.opacity.combined(with: .scale(scale: 0.95)))
                             .animation(
                                 .easeOut(duration: 0.3).delay(Double(index) * 0.03),

@@ -137,6 +137,9 @@ actor WeatherService {
             )
         }
 
+        // Derive timezone from location coordinates (±15° per hour offset)
+        let locationTimezone = Self.timezone(for: location) ?? .current
+
         let snapshot = WeatherSnapshot(
             current: currentData,
             hourly: hourlyData,
@@ -144,7 +147,7 @@ actor WeatherService {
             minutePrecipitation: minuteData,
             alerts: alertData,
             moonPhase: moonPhase,
-            timezone: .current,
+            timezone: locationTimezone,
             fetchedAt: Date(),
             location: location
         )
@@ -155,6 +158,13 @@ actor WeatherService {
 
     func clearCache() {
         cache.removeAll()
+    }
+
+    /// Approximate timezone from longitude. Each 15° of longitude ≈ 1 hour offset.
+    /// This is sufficient for weather display (sunrise/sunset, hourly labels).
+    private nonisolated static func timezone(for location: CLLocation) -> TimeZone? {
+        let offsetSeconds = Int((location.coordinate.longitude / 15).rounded()) * 3600
+        return TimeZone(secondsFromGMT: offsetSeconds)
     }
 
     private nonisolated func mapSeverity(_ severity: WeatherSeverity) -> WeatherAlertData.AlertSeverity {
