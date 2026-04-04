@@ -11072,5 +11072,6234 @@
     "priority": 1,
     "dayOnly": false,
     "nightOnly": false
+  },
+  {
+    "text": "Fog at night. The streetlights look like UFOs hovering over your neighborhood.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night. You can't see the end of your driveway. Honestly, that's fine.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog so thick you could scoop it with a spoon.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy evening. The headlights just light up a wall of gray. Very useful.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog rolled in after dark. Your neighborhood looks like a movie set for something ominous.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime fog advisory. Translation: don't go anywhere unless you absolutely have to.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dense fog tonight. Your porch light illuminates approximately three feet of nothing.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog and darkness. The two worst driving companions are both here tonight.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night at [temp] degrees. The world has been replaced by a gray void.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog. Every set of headlights coming toward you looks like a ghost.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The fog tonight is giving 'silent horror movie' vibes. Your walk to the car was unsettling.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog at night. Can't see the moon, can't see the stars, can barely see your own feet.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dense fog after dark. The sound of your footsteps echoes weird and you don't like it.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy and [temp] degrees tonight. The world ends at your property line apparently.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog. The cat came in looking like it materialized from another dimension.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night. Perfect weather for wondering what that noise was outside.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog so thick at night the GPS is probably confused too.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The fog is hugging the ground tonight like it's trying to hide something.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime. Fog. Zero visibility. The trifecta of 'stay on the couch.'",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy evening. The dog doesn't even want to go out. When the dog opts out, it's bad.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog at [temp] degrees. Your windshield is fogged inside AND outside. Helpful.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      28,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog tonight. The streetlights have halos. Very angelic. Very hard to navigate.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dense fog after sunset. Your high beams just make it worse. You're welcome.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy and dark. The trash cans at the curb just appeared out of nowhere. Nearly hit them.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog. The only thing you can see clearly is your own breath.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      25,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog rolled in thick tonight. Somewhere out there, a ship horn is sounding. Probably.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night. Walking the dog feels like exploring the upside down.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog so dense the motion-sensor lights can't even sense you.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog and [temp] degrees at night. Your headlights are just two cones of false hope.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thick fog tonight. The neighborhood watch can't watch anything. Irony is alive and well.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain after dark. The sidewalk is an ice rink you didn't ask for.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy night. Every step outside is a trust exercise with the pavement.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain tonight. Your car is now a giant ice sculpture. Congratulations.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice storm at night. The trees are coated and cracking. It sounds beautiful and terrifying.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet hitting the windows at [temp] degrees. The world's worst lullaby.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain after sunset. Tomorrow morning's commute is going to be a circus.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice forming on everything tonight. Your front steps just became an Olympic luge track.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime freezing rain. The power lines are glazed like donuts. That's not a good thing.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy night at [temp] degrees. The branches are clicking together like nature's wind chimes of death.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing drizzle after dark. The kind of night where you check the salt supply.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet at night. The sound on the roof is oddly rhythmic. The ice on the stairs is oddly lethal.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain overnight. Tomorrow the world will be covered in a beautiful, treacherous glaze.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice storm tonight. The forecast for tomorrow morning: chaos.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain at [temp] degrees. Your driveway is setting up to ruin your morning.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      26,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime ice. Every surface is a betrayal waiting to happen.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet pelting the windows. The kind of night where you're grateful to be inside. Very grateful.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain after dark. The dog needs to go out and you need to not fall.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice accumulating overnight. School closures incoming. Your kid already knows.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime sleet and [temp] degrees. The roads are a suggestion at best.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain tonight. The car doors will be frozen shut by morning. Set your alarm early.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice storm after dark. The world outside looks magical. The world outside is also a death trap.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet and darkness. Two things that individually are fine. Together, they're a problem.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain at night. Your windshield wipers are frozen to the glass. Surprise.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy conditions after sunset. The salt truck hasn't been here yet. It may never come.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing drizzle at [temp] degrees tonight. Tomorrow's black ice is tonight's freezing rain.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      28,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind howling outside tonight. Every branch tap on the window is a small heart attack.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night. Your trash cans are going on an unsupervised adventure.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night gusts at [temp] degrees. Sleep with earplugs or don't sleep at all.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      30,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind so loud tonight you can't tell if it's weather or your neighbor's subwoofer.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night. Something just blew off the porch. You're not going to check what.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "High winds after dark. The house is making noises you've never heard before. Fun.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night wind at [temp] degrees. The windchill is not your friend.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      15,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Gusts rattling the windows at night. Very atmospheric. Very annoying.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy evening. Every outdoor decoration you own is now in the yard. Or someone else's yard.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind advisory tonight. Perfect weather for lying in bed listening to chaos.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night gusts. That thud on the roof is probably a branch. Probably.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Howling wind at [temp] degrees. The kind of night where the house creaks and you pretend it's cozy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      20,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy and dark. The gate keeps banging. You keep not getting up to fix it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind whipping around at night. Your sleep quality just dropped to zero.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night wind. The flag on the neighbor's house sounds like a machine gun.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Gusty at [temp] degrees tonight. The wind chill makes it feel like the Arctic owes you money.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      10,
+      35
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night. The loose shutter you've been meaning to fix is making its presence known.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind gusts after dark. Your poorly secured patio umbrella is now a projectile.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime wind. The trees are doing a dramatic performance nobody asked for.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night at [temp] degrees. It sounds like someone is trying to get in through the chimney.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      25,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "High winds tonight. Every loose thing in the neighborhood is relocating.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night gusts. Can't sleep. The wind sounds like it has a personal grudge against your house.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Not exciting enough to talk about, but you'll bring it up at least three times today.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The weather is giving 'I didn't try today' energy.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Perfect for walking to the fridge and calling it exercise.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Your wardrobe is making an impossible decision right now.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Everyone in the office will have a different opinion about whether the AC should be on.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and your phone battery is dying faster than your enthusiasm.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kind of weather where you send 'nice day!' to someone you haven't texted in months.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      65,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A balmy [temp] degrees. Perfect for pretending you have outdoor hobbies.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      70,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your internal thermostat disagrees with the actual thermostat. As always.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. That's the same temperature as a cup of coffee that's been sitting there too long.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The weather is aggressively average. Like a C+ student of meteorology.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] degrees. That number will mean nothing to you in two hours because it'll change.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your jacket is in the car. Your car is far. Decisions were made.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      42,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the weather is the most stable thing in your life right now.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Somewhere someone is calling this 'perfect weather' and they need to calm down.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      70,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. That's a fact. How you feel about it is your problem.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Nature is phoning it in today and honestly, relatable.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Your car said [temp] too but your car lies sometimes.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and your allergies have entered the chat uninvited.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] out. The weather isn't the problem today. You are. But also the weather.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Time to argue with a coworker about whether that's cold.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A solid [temp] degrees. The temperature equivalent of a firm handshake. Unremarkable but functional.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and the pollen count is higher than your credit score.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the weather app says 'partly cloudy' which means it has no idea.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      45,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. You'll survive. Probably. The weather isn't the thing trying to stop you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees tonight. The temperature is dropping and so are your eyelids.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night at [temp] degrees. Your bed is calling and it won't accept a voicemail.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees after dark. The fridge light is the only light you need right now.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] degrees and way too late to be awake. Your alarm clock is judging you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees tonight. The moon is up, you're up, neither of you should be.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime. [temp] degrees. The neighbors are asleep. You're eating cereal over the sink.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees at night. The world is quiet. Your brain is not.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Late night. [temp] degrees. You could go to bed or you could scroll for another hour. We both know which.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees tonight. The stars are out and you're arguing with strangers online.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] and dark. Tomorrow's a problem for tomorrow's version of you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear skies and [temp] degrees. Your sunglasses are clean for the first time in months. Enjoy the clarity.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny at [temp]. The park is calling. Your couch is countercalling. The couch has a stronger argument.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Not a cloud in sight at [temp] degrees. Your vitamin D deficiency is sobbing with relief.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Blue sky, bright sun, [temp] degrees. Instagram is about to be insufferable.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      68,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear and [temp] degrees. Every dog owner is at the same park pretending their dog is trained.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny and gorgeous at [temp]. Your plants on the windowsill are thriving. You are not.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear sky. [temp] degrees. The kind of day that makes you forget about your problems for eleven minutes.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      68,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunshine and [temp] degrees. Your neighbor started mowing at 7 AM again. Bold move.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear at [temp]. A beautiful day to be stuck on a conference call staring out the window.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny. [temp] degrees. The ice cream truck is coming and you are an adult with a wallet.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      75,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Perfect day at [temp] degrees. Someone at a restaurant just asked for a patio table. There's a wait.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      68,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear sky at [temp] degrees. The birds are extremely loud and unaware of your hangover.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny and [temp]. The playground is packed with kids and the energy is... a lot.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Blue skies. [temp] degrees. Every brunch spot has a 45-minute wait. You should have planned ahead.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear at [temp] degrees. A perfect day ruined only by the existence of responsibilities.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunshine at [temp] degrees. Someone just said 'we should eat outside' and now there are bees.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      70,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear and warm at [temp]. Your car's dashboard is hot enough to bake cookies. Don't test it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      80,
+      95
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny day at [temp]. The UV index is plotting against your forehead specifically.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      75,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear sky, [temp] degrees. Joggers everywhere. They look happy. They're lying.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Beautiful clear day at [temp] degrees and you're reading a weather app. Go outside.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear night at [temp] degrees. The stars are putting on a show and tickets were free.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Starry night. [temp] degrees. The kind of night that makes you briefly consider astronomy. Briefly.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear night sky. You can see Orion. That's the only constellation you know. It's fine.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Moonlit night at [temp] degrees. The world looks silver and you look tired.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear and calm tonight. The only sound is a distant siren and the hum of your refrigerator.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night sky is crystal clear. Someone just pointed out the Big Dipper like they discovered it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear night. [temp] degrees. The crickets are louder than your thoughts. Impressive.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Perfectly clear night. You stepped outside, looked up, felt small, went back inside.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear at [temp] tonight. Your backyard looks peaceful. Deceptively so.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Starry night at [temp] degrees. Romantic if you had someone. You have a phone.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy at [temp] degrees. The sun keeps playing hide and seek. It's winning.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun and clouds at [temp]. Nature can't decide. Neither can you about lunch.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. [temp] degrees. The weather is giving mixed signals, like your last relationship.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with partial cloud cover. Some shade, some sun. Very noncommittal of the sky.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The sun is on a flexible schedule today.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Clouds and sun at [temp] degrees. The weather equivalent of 'it's complicated.'",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Partly cloudy. The forecast is as decisive as you at a restaurant menu.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp]. Good enough for outside. Not good enough for a picnic blanket commitment.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and partly cloudy. The clouds are decorative today. Not threatening. Just vibes.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. One half of the sky looks great. The other half is suspicious.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun peeking through clouds at [temp] degrees. Like a celebrity avoiding paparazzi.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with some clouds. Your shadow appears and disappears like a glitch.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp]. The sunglasses are on, off, on, off. Exhausting.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Half sunny, half cloudy at [temp]. The sky is literally doing the bare minimum.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Clouds are rolling through like they have somewhere to be.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Not bad enough to cancel plans. Not nice enough to make them.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Some sun, some clouds at [temp]. Make a decision, atmosphere.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with clouds coming and going. Very casual. Very 'whatever' of the weather.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Your tan will be uneven today. You've been warned.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      70,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and partly cloudy. The clouds add character. Like wrinkles, but for the sky.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp] degrees. Some would say 'partly sunny.' Those people are optimists.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The clouds are doing that thing where they look like animals if you're five.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp]. The kind of sky that can't commit to being good or bad.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with partial clouds. Your mood: also partially cloudy.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      45,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Clouds and sun alternating at [temp] degrees. The strobe effect on your desk is delightful.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Perfect weather for having no strong feelings about the weather.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and the clouds are providing intermittent shade service.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      72,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. [temp] degrees. The weather's personality test came back: ambivert.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and clouds drifting by. Like thoughts, but puffier and less stressful.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The weather report is as ambiguous as your five-year plan.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp] degrees tonight. The moon plays peekaboo through the gaps.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clouds and stars at [temp] degrees. The night sky is a half-finished puzzle.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy night. [temp] degrees. The moon keeps disappearing like your motivation.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night sky at [temp] degrees with scattered clouds. You can see some stars. That's something.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy night at [temp]. The moonlight comes and goes. Very moody. Very nighttime.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Overcast at [temp] degrees. The sky is wearing a gray turtleneck.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and [temp]. No shadows today. You and the sun have that in common — invisible.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gray skies at [temp] degrees. The lighting outside is like a bad office — fluorescent and depressing.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy. [temp] degrees. The world looks like it was rendered in low resolution.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees under a blanket of clouds. Not the cozy kind of blanket.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast at [temp]. The sun hasn't been seen in hours. Missing persons report pending.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and [temp] degrees. Perfect weather for being productive indoors. You won't, but it's perfect for it.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gray on gray at [temp] degrees. Even the birds look bored.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and overcast. The sky looks like the inside of a dryer lint trap.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp]. The weather is as exciting as the third hour of a board meeting.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast night at [temp] degrees. The sky is a solid wall of nothing.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy night. [temp] degrees. Not a single star. The sky is fully booked with clouds.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dark and cloudy at [temp] degrees tonight. The streetlights are doing all the work.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy night at [temp]. No moon, no stars, just vibes. Bad vibes, but vibes.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Overcast tonight at [temp] degrees. The darkness has texture. It's gray.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy at [temp] degrees. Perfect weather for a nap you'll pretend is productive.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast and [temp]. The sky looks like it's thinking about raining but hasn't committed.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Wall-to-wall clouds. The sun sent a sick note.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy day at [temp]. Your mood ring would be gray too.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast at [temp] degrees. The sky is doing a convincing impression of nothing.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp] degrees. Not enough rain to justify an umbrella. Enough to ruin your hair.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Light drizzle and [temp]. Your jacket says water-resistant. It's lying.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling at [temp] degrees. The kind of rain that's too proud to commit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with a light drizzle. Your windshield wipers have one speed for this: annoying.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Misting at [temp] degrees. Not rain. Not not rain. A quantum weather event.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. Every surface is slightly damp. Including your mood.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Light drizzle and [temp] degrees. The puddles are forming passive-aggressively.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Drizzle. The weather is whispering rain without saying it.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. Your dog will still want to walk and will still hate every wet second.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A gentle drizzle at [temp] degrees. 'Gentle' is generous. It's still getting you wet.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. [temp] degrees. The kind of moisture that makes everything slightly worse.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and drizzle. Not dramatic enough for sympathy, not dry enough for comfort.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Light rain at [temp] degrees. Your glasses are covered in tiny droplets. Very impressionist. Very blurry.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The sidewalk is that perfect level of wet where your shoes make embarrassing squeaks.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Just enough drizzle to make everyone walk faster and look miserable.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night drizzle at [temp] degrees. The streetlights have halos. Very film noir.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzling after dark. [temp] degrees. The windshield is a mess of tiny reflections.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Light rain tonight at [temp]. Perfect for falling asleep. Terrible for remembering to close the windows.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night drizzle. [temp] degrees. The sound on the roof is either relaxing or maddening. No middle ground.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle and [temp] degrees after dark. The late-night dog walk is a damp regret.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Misting tonight at [temp] degrees. Everything outside glistens. Very pretty. Very slippery.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night drizzle. [temp] degrees. The rain is barely trying but your wipers don't care about effort levels.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees and drizzle. The mist is collecting on your car overnight like uninvited condensation.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle at [temp]. Walking through it is like walking through a cloud that got lost.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and a persistent drizzle. Persistent is a compliment in most contexts. Not this one.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. [temp] degrees. Your plans aren't ruined. They're just... damp.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Light drizzle at [temp]. The garden is happy. You are not the garden.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Misting outside. The weather is spraying you with indifference.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle and [temp] degrees. The world is wrapped in a thin wet blanket of mediocrity.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and drizzle. Not enough for boots, too much for sandals. The shoe conundrum.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at [temp] degrees. Your car windows are down somewhere. You can feel it in your bones.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and rain. The commute home will take twice as long because everyone forgot how to drive.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. Your umbrella is at home. You are not at home. This is a pattern.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. [temp] degrees. The sound on the roof is nice. The puddle forming in your shoe is not.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and raining. Perfect weather for canceling plans and blaming the weather.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp] degrees. Every driver on the road has suddenly forgotten what turn signals are.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at [temp]. The phrase 'it's just water' is being said by someone who's dry.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Steady rain. Your outdoor furniture is becoming a water feature.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp] degrees. The kids are inside. The noise level indoors now exceeds the storm.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's raining and [temp] degrees. Someone just said 'we need the rain.' We didn't ask.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at [temp]. Coffee shops are packed with people who suddenly need to 'work remotely.'",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees in the rain. The romantic version of this involves a kiss. Your version involves wet socks.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The forecast said 20% chance. The forecast lied.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and raining. Your delivery driver is having a worse day than you. Tip well.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      40,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Steady rain at [temp] degrees. The world outside looks like it's behind a waterfall screensaver.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rainy night at [temp] degrees. The sound on the roof should help you sleep. Should.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain at [temp]. The streets are reflective and empty. Very cinematic. Very wet.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Raining after dark. [temp] degrees. The windshield is a Jackson Pollock of water and light.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Rain at night. Every car that passes sounds like a zipper on wet pavement.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain. [temp] degrees. The gutters are working overtime. You can hear it from bed.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rainy night at [temp]. Perfect excuse to cancel plans you didn't want to keep anyway.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Pouring at [temp] degrees. The sky opened up like it had a personal grudge.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain and [temp] degrees. The parking lot is a lake. Your car is an island.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Torrential rain at [temp]. The phrase 'raining cats and dogs' doesn't cover this. This is raining furniture.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp] degrees. Three seconds outside and you're fully baptized.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Rain so heavy the wipers are on max and still losing.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp]. Flash flood warnings on your phone, anxiety in your soul.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. [temp] degrees. The traffic is a parking lot and the parking lot is a pool.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night downpour at [temp] degrees. The rain on the roof went from soothing to alarming.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Pouring rain after dark. [temp] degrees. Visibility is 'good luck out there.'",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain at night. [temp] degrees. The storm drain outside sounds like a river.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime downpour at [temp]. The thunder of rain on the roof just woke the dog. Great.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Torrential rain tonight at [temp] degrees. Your leaky window is choosing NOW to reveal itself.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain at [temp] degrees. Every surface is a conspiracy against your balance.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice and sleet at [temp]. Your car door handle requires a degree in physics to operate.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Freezing rain. The world is wearing a glass coat and it's not fashion.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      26,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet at [temp] degrees. The sound on the window is nature typing a strongly worded letter.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing drizzle at [temp]. Your driveway just became a lawsuit waiting to happen.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      28,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm at [temp] degrees. Walking to the mailbox is now an extreme sport.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and freezing rain. The trees are beautiful. The roads are treacherous. Nature is complicated.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. [temp] degrees. Your de-icer spray is in the car. The car is encased in ice. Irony.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet and [temp] degrees. The salt truck just passed and it was glorious.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Freezing rain glazing everything like a sadistic pastry chef.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      26,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice accumulating at [temp] degrees. Your morning scrape-the-windshield time just tripled.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. School is canceled. The kids are thrilled. The parents are trapped.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Sleet. The weather is pelting you with tiny ice bullets and calling it precipitation.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      28,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp] degrees. Your wiper fluid froze. On the windshield. While wiping.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      15,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice at [temp] degrees. The penguin walk is not a suggestion, it's a survival technique.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Your front steps are an ice luge and you're not dressed for the Olympics.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing at [temp] degrees. Beautiful until you have to shovel it.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and snow. The world looks like a postcard. Your driveway looks like a problem.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. Your car is now a snow-covered mystery shape in the parking lot.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      18,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. [temp] degrees. The kids want to play in it. You want to pretend it's not happening.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Light snow. Just enough to make driving interesting and by interesting I mean terrible.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling at [temp] degrees. Your neighbor is already out with the leaf blower. Bold strategy.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and snowing. The forecast says 3 inches. The forecast is either lying or being optimistic.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp] degrees. Your boots are somewhere in the closet. Under everything else.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing and [temp]. The quiet is beautiful until the snowplow destroys it.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Snow accumulating. Your neighbor with the snowblower is insufferably prepared.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowy night at [temp] degrees. The world is muffled and white and eerily quiet.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow falling at night. [temp] degrees. The streetlights make it look magical. The alarm clock will ruin it.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night snow at [temp] degrees. Tomorrow's commute is loading. Please wait.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Snow coming down after dark. The plows will wake you at 4 AM.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowy night at [temp]. It's accumulating on the porch. By morning, the shovel will be buried too.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow at [temp] degrees tonight. Peaceful. Until you check the morning forecast.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Blizzard conditions at [temp] degrees. Nature said 'nobody leaves.'",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow at [temp]. Visibility: bad. Road conditions: worse. Your attitude: worst.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Snow is dumping. The distinction between your yard and the sidewalk no longer exists.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowstorm at [temp] degrees. The schools didn't even have to announce it. Everyone knew.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow. [temp] degrees. Your snow shovel is already tired and you haven't started.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and snowing hard. The mailman is a hero today and should be treated as such.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Major snowfall at [temp] degrees. Time to find out if you actually have enough bread and milk.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Blizzard at [temp] degrees at night. The world outside doesn't exist anymore.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy snow falling all night at [temp]. By morning the car will be a snowdrift.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night blizzard at [temp] degrees. The wind is screaming. The snow is piling. You're in bed. Smart.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunderstorm at [temp] degrees. The sky picked a fight and it's winning.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder and lightning at [temp]. Nature's anger management session is not going well.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm at [temp] degrees. The thunder is so loud the car alarms formed a choir.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm. [temp] degrees. You can feel the bass in the thunder through the floor.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning at [temp] degrees. The flash count is higher than your productivity today.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm rolling through at [temp]. The power flickered once. Twice. Three times. Cool cool cool.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm at [temp] degrees. The lightning is spectacular. The anxiety is also spectacular.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night thunderstorm at [temp] degrees. The lightning turns your bedroom into a strobe light.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Storm after dark at [temp] degrees. Every thunder crack makes the whole house flinch.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night storm. [temp] degrees. The rain on the window plus the thunder equals zero sleep.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Lightning at [temp] degrees tonight. Your phone just sent a weather alert. Thanks, phone. Heard the thunder.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunderstorm at [temp] degrees at night. The dog is in the bathtub. The cat is under the bed. Everyone coping.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night storm at [temp] degrees. The power went out. Time to find out where you put the candles.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunderstorm tonight at [temp]. The tree in the yard is doing a concerning dance in the wind.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime lightning at [temp] degrees. Beautiful from inside. Terrifying if you're not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind gusts at [temp] degrees. Your recycling just introduced itself to the neighbors.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and windy. Your hairstyle lasted from the front door to the car. Record time.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty at [temp]. Everything not bolted down is now community property.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp] degrees. The trees are bending like they owe the wind money.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and howling wind. Your outdoor dining experience is now a napkin-chasing experience.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. [temp] degrees. The flag next door is going to need therapy after today.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with sustained wind. The dust and debris are providing free exfoliation.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind gusts at [temp]. Your car door just tried to take out the car next to you.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp] degrees. Your patio umbrella just achieved liftoff.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and breezy. 'Breezy' is underselling it. Your trash cans disagree with 'breezy.'",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp] degrees. The branches are stress-testing your roof.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and gusts. Your yard is collecting things that aren't yours.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Outdoor dining was a choice. A bad choice. The napkins are gone.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty conditions at [temp] degrees. Power lines are swinging. That's fine. Everything's fine.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The wind is rearranging your yard free of charge.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The weather is auditioning for 'most forgettable day of the year.' Strong performance.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the forecast keeps changing. The weather has commitment issues.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your body can't decide if it's cold or if you're dramatic.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      48,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The temperature your grandma would call 'brisk' regardless of the actual number.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your weather app checked in. You checked your weather app. Circle of life.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Dress in layers. Regret at least one layer by noon.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Room temperature if your room is a parking lot.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      65,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and your watch told you the weather. Your watch needs to mind its business.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Not cold enough for sympathy. Not warm enough for gratitude.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Tomorrow will be different. You will complain either way.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The forecast for the next hour is 'more of the same.' Thrilling stuff.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kind of weather where everyone at the office is fine and nobody is happy.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and everyone has an uncle who could've predicted this.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Not cold enough for cocoa, not warm enough for lemonade. The beverage dead zone.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A tepid [temp] degrees. Tepid. A word reserved for bathwater and days like this.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night. [temp] degrees. Tomorrow's weather will be different. Tomorrow's you will still be tired.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees in the dark. Late-night weather checking is a cry for help. Here's your forecast.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] tonight. The raccoons are out and they're more productive than you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Midnight snack weather. The fridge hum is your soundtrack.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dark and [temp] degrees. You should be asleep. You're not. The weather isn't why.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain at [temp] degrees tonight. The world is washing itself. Could use a personality wash too.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain and [temp] degrees. The gutter is doing spoken word poetry.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Raining at [temp] after dark. Your window is a live stream of water and blur.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Rain tonight. Every puddle is a mirror reflecting the street lights and your choices.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy at [temp] degrees. Visibility: your hand. Maybe.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Dense fog at [temp]. Your morning just got ten minutes longer and zero percent more fun.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at [temp] degrees. The world loaded at 20%. Buffering.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and foggy. The trees across the street are suggestions now, not trees.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog advisory at [temp] degrees. Advisory means 'we're advising you that this sucks.'",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy. [temp] degrees. Everything beyond 50 feet is a rumor.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees in the fog. Your commute is a slow-motion trust exercise.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Dense fog at [temp]. Car headlights are just decorative at this point.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy and [temp]. The spiders built webs covered in tiny water drops. Show-offs.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at [temp] degrees. Everything looks like it's behind frosted glass.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and fog. Somewhere a lighthouse is earning its keep. You can barely see the road.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy morning at [temp] degrees. Your coffee is hot. Your visibility is not.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at [temp]. Step outside and the world ends at the property line.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Torrential rain at [temp] degrees. Your basement is auditioning to be a pool.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. The windshield wipers are set to 'desperate.'",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Heavy rain. The streets have streams and the streams have opinions about your route.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp]. People with good umbrellas are walking normally. People without are sprinting.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp] degrees. The roof is doing its best. It doesn't get paid enough for this.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and snowing. Your car's defrost setting is optimistic at best.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp] degrees. Every school kid is pressing their face against the window.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing and [temp]. The shovel is cold. The snow is cold. You are cold. Everything is cold.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      10,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Snow falling like nature's confetti for a party nobody wanted.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Snowpocalypse. The grocery store has been raided. The bread is gone.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow at [temp] degrees. The car is a snowdrift with side mirrors.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Blizzard at [temp]. The wind-driven snow is horizontal. Walking forward is optional.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Major snow at [temp] degrees. The neighbor with the snowblower is the most popular person on the block.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Freezing rain turning everything into a glazed obstacle course.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet at [temp]. The sound on the window is nature's passive-aggressive knock.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp] degrees. Even the salt is struggling.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and ice. The parking lot is a slip-and-slide for adults. No fun version.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm at [temp] degrees. Every branch is a glass chandelier. Every step is a gamble.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and gusting. Your umbrella inverted in under three seconds. New record.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp] degrees. Conversations outside require shouting. Shouting requires caring.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp]. The trampoline next door is in a different yard now.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Gusts strong enough to restyle your hair without consent.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. [temp] degrees. The sound is like the house is being slowly unwrapped.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm at [temp] degrees. The power went out. The WiFi went out. Your patience went out.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Thunderstorm. Every pet in the house found its panic room.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning and [temp] degrees. The flash was bright enough to read by. For one second.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Total overcast. The sun clocked out early and didn't tell anyone.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp] degrees. The sky is wearing sweatpants.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast and [temp]. Every photo taken today will need a filter. Or three.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and gray. Not depressing. Just... muted. Like the volume knob on joy is at two.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp] degrees. The sun sent a text. It said 'maybe later.'",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Partly cloudy. The forecast equivalent of 'it's fine, everything's fine.'",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Your shadow has commitment issues today.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and some clouds. The sun is being rationed today.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp] degrees. Look up and make shapes. Look down and make decisions.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Clouds rolling by. Each one blocking the sun just long enough to be annoying.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The thermostat wars have begun. Nobody wins. Everybody suffers.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      76
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Three people will tell you the temperature today like you don't have a phone.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Perfect for that walk you keep saying you'll take.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      62,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A reasonable [temp] degrees. Reasonable. The last reasonable thing about today.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The barista asked 'hot or iced?' and you froze. Ironic at this temperature.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and every group chat has at least one weather update nobody requested.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The weather is doing that thing where it's fine but somehow still disappointing.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A solid [temp] degrees. 'Solid' like the foundation of your plans that just crumbled.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your morning routine doesn't change, your complaints about it do.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      35,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and your weather personality is 'opens the app, sighs, closes the app.'",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny at [temp] degrees. The squirrels are more active than you and they live in a tree.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear morning at [temp]. Your coffee is doing more for you than the sunshine right now.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Bright skies at [temp] degrees. Your screen is impossible to read outside. Thanks, sun.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear and [temp] degrees. Every dog walker is judging every other dog walker.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny afternoon at [temp]. Your lunch break felt like ten seconds. The sun mocked every one of them.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      70,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast morning at [temp] degrees. The sky isn't even trying today. Neither are you.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gray day at [temp]. Coffee consumption will be 300% above normal.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      38,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy morning. [temp] degrees. Your drive to work was a faith-based initiative.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Morning drizzle at [temp] degrees. Your shoes made that choice to be open-toed and they regret it.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rainy morning at [temp]. Everyone at the office smells like wet jacket.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear night at [temp] degrees. The quiet is so deep you can hear the stoplight change.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy night. [temp] degrees. The darkness tonight is extra dark. Maximum dark.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rainy night at [temp] degrees. The pillow is calling. The rain agrees.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Stormy night at [temp]. Lightning provides free temporary lighting for the bathroom trip.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowy night at [temp] degrees. The flakes in the streetlight look like TV static in slow motion.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzly night at [temp]. The windshield is crying. You might be too. No judgment.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog at [temp] degrees. The headlights don't help. They just illuminate your poor decisions.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night at [temp]. The house is creaking its own nighttime soundtrack.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      30,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy night at [temp] degrees. The world outside is beautiful and hostile simultaneously.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain turning to drizzle at [temp]. It's giving up but won't fully commit to stopping.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Light snow mixed with existential dread.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast at [temp] with zero plot development. The sky wrote a boring chapter today.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog lifting at [temp] degrees. The world is slowly revealing itself. Not impressed so far.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The wind is warm but persistent. Like advice from your mother.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The clouds look like they're just passing through. Just visiting.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder rumbling at [temp] degrees. The storm is warming up. Stretching. Getting into character.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Heavy snow. The plows are out and they don't care about your parked car.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing drizzle at [temp]. The thin ice on everything is nature's practical joke.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      28,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp] degrees. Your umbrella picked today to develop a leak. Character.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Patio season is either starting or ending and everyone has an opinion.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The gardeners are gardening. You're watching them from the window.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every runner out there looks like they're having a bad time on purpose.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      75,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. The pool is either too cold or too crowded. Pick your suffering.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      78,
+      92
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Iced coffee weather has officially begun. The baristas are bracing.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      72,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and grilling season is in full swing. Your neighbor's smoke alarm disagrees.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      70,
+      88
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Hot chocolate weather or iced coffee weather? You'll have both. Respect.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      48,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the firepit crowd is assembling. The marshmallows are doomed.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Windows-open weather. The neighbor's music is now your music.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      62,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Perfect temperature for your in-laws to suggest an outdoor activity.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] degrees. Your weather app just told you what you could've figured out by walking outside.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The sky is blue, the grass is green, and someone just mowed at 7 AM on a Saturday.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 2,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and raining. The only dry thing about today is your sense of humor.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and snowing. Somewhere a child is overjoyed. Somewhere an adult is shoveling.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Cloudy. Your vitamin D supplement is pulling overtime.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kind of morning where your breath is visible and your patience isn't.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      25,
+      38
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The transition from car heat to outside air is a personal betrayal.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      30,
+      42
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Warm enough to forget your jacket. Cold enough to regret it by evening.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A brisk [temp] degrees. 'Brisk' is weather-speak for 'your ears are going to hurt.'",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      28,
+      42
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. So hot the road is shimmering. The mirage is more interesting than your day.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Even the shade is hot. There is no escape. Only acceptance.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your car's AC has been running for ten minutes and it's still losing.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A crisp [temp] degrees. 'Crisp' is code for 'bring a jacket and maybe a blanket.'",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      35,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Warm enough for shorts if you're brave. Brave or delusional.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      52,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the ice on your windshield laughed at the scraper.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The sun is warm but the wind keeps stealing it. Weather mugging.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      48,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and the only thing sweating harder than you is your water bottle.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Too warm for soup. Too cold for salad. The lunch limbo.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The perfect temperature exists. This isn't it. But it's close enough.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      74
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your weather app notification arrived ten minutes after you got rained on. Helpful.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and someone is grilling. You can smell it. You weren't invited.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      70,
+      88
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Perfect temperature for an existential crisis in the parking lot.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and every store's AC is set to 'arctic.' Bring a sweater for indoors. Welcome to summer.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your water bottle is the wrong temperature regardless of what you put in it.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      78,
+      95
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the only thing you're sure of is that you dressed wrong.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Shorts weather for the brave. Jeans weather for the wise.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      52,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the WiFi is being affected by nothing. It's just slow. Blame the weather anyway.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your FitBit is counting steps you haven't taken. Aspirational technology.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] out. Somebody just said 'at least it's not raining.' Don't jinx it.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Morning fog at [temp] degrees. Your commute just unlocked hard mode.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The snow day hopefuls are refreshing the school website every three seconds.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Drizzle that can't decide if it's rain. Like a participation trophy from the sky.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and [temp]. The weather equivalent of 'read' with no reply.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. [temp] degrees. The forecast app used the word 'intermittent.' Very fancy for confusion.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and windy. Your eyes are watering. You're not crying. The wind is crying for you.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear evening at [temp] degrees. The sunset is gorgeous. Your phone storage is not ready.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and freezing rain. The world is a snow globe that someone shook and abandoned.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder at [temp] degrees. The pet hiding under the bed has the right idea.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Heavy rain sounds like applause. Nobody is clapping for you though.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] tonight and the heating blanket is the MVP of your entire house.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      20,
+      38
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Night. Quiet. Your stomach just growled loud enough to wake the neighbor.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear at [temp] tonight. The Milky Way is visible if you drive far enough from civilization.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      30,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain at [temp]. The windshield wipers on the parked car next to yours are going. Weird.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy night at [temp] degrees. The ceiling of the world is 200 feet up. Claustrophobic sky.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees and heavy snow at night. The silence between snowflakes is louder than you'd expect.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night drizzle at [temp]. The world sounds like it's wrapped in tissue paper.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
   }
 ]

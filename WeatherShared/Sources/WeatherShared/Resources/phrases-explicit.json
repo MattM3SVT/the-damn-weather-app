@@ -65,7 +65,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] goddamn degrees. I don't know what the hell you expected.",
+    "text": "It's [temp] fucking degrees. I don't know what the hell you expected, dipshit.",
     "conditions": [
       "any"
     ],
@@ -88,7 +88,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Perfect weather for not a goddamn thing.",
+    "text": "[temp] degrees. Perfect weather for not a fucking thing.",
     "conditions": [
       "any"
     ],
@@ -114,7 +114,7 @@
     "nightOnly": false
   },
   {
-    "text": "The thermometer says [temp]. The thermometer can kiss my ass.",
+    "text": "The thermometer says [temp]. The thermometer can kiss my whole ass. Piece of shit.",
     "conditions": [
       "any"
     ],
@@ -241,7 +241,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees and not a damn thing you can do about it. Suck it up, buttercup.",
+    "text": "[temp] degrees and not a fucking thing you can do about it. Suck it up, you miserable bastard.",
     "conditions": [
       "any"
     ],
@@ -388,7 +388,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees and I already need a goddamn nap.",
+    "text": "It's [temp] degrees and I already need a fucking nap. This weather is exhausting.",
     "conditions": [
       "any"
     ],
@@ -427,7 +427,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Working from home was the only goddamn smart decision you've ever made.",
+    "text": "[temp] degrees. Working from home was the only smart decision you've ever made, you lazy shit.",
     "conditions": [
       "any"
     ],
@@ -505,7 +505,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Time to argue with your spouse about the goddamn thermostat again.",
+    "text": "[temp] degrees. Time to argue with your spouse about the fucking thermostat again.",
     "conditions": [
       "any"
     ],
@@ -518,7 +518,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] outside and the parking lot is a goddamn oven. Your chocolate bar? Soup now.",
+    "text": "It's [temp] outside and the parking lot is a fucking oven. Your chocolate bar? Melted shit now.",
     "conditions": [
       "any"
     ],
@@ -557,7 +557,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees and the bus is late. Standing here freezing your ass off. Classic.",
+    "text": "[temp] degrees and the bus is late. Standing here freezing your ass off. Classic bullshit.",
     "conditions": [
       "any"
     ],
@@ -570,7 +570,7 @@
     "nightOnly": false
   },
   {
-    "text": "The high today is [temp]. The low is your goddamn morale.",
+    "text": "The high today is [temp]. The low is your fucking morale.",
     "conditions": [
       "any"
     ],
@@ -632,7 +632,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. The only thing colder than this is your ex's heart.",
+    "text": "[temp] degrees. The only thing colder than this is your ex's heart — and that bitch set the thermostat.",
     "conditions": [
       "any"
     ],
@@ -671,7 +671,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] out and the walk to the mailbox feels like a goddamn expedition.",
+    "text": "It's [temp] out and the walk to the mailbox feels like a fucking polar expedition.",
     "conditions": [
       "any"
     ],
@@ -684,7 +684,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Your seatbelt buckle is either freezing or branding your ass. No in-between.",
+    "text": "[temp] degrees. Your seatbelt buckle is either freezing or branding your ass. No fucking in-between.",
     "conditions": [
       "any"
     ],
@@ -779,7 +779,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Hot enough to make you rethink every life decision that led to this goddamn moment.",
+    "text": "[temp] degrees. Hot enough to make you rethink every shitty life decision that led to this moment.",
     "conditions": [
       "any"
     ],
@@ -818,7 +818,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees and your motivation just evaporated like a goddamn puddle.",
+    "text": "It's [temp] degrees and your motivation just evaporated like a bullshit puddle.",
     "conditions": [
       "any"
     ],
@@ -857,7 +857,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees and the humidity is making everything feel like a goddamn swamp.",
+    "text": "[temp] degrees and the humidity is making everything feel like a fucking swamp monster's armpit.",
     "conditions": [
       "any"
     ],
@@ -962,7 +962,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's clear and perfect outside. Get off your ass and go touch some grass, you gremlin.",
+    "text": "It's clear and perfect outside. Get off your ass and go touch some grass, you useless shit.",
     "conditions": [
       "clear"
     ],
@@ -1064,7 +1064,7 @@
     "nightOnly": false
   },
   {
-    "text": "The sun is out. Your sunglasses are in the other goddamn bag. Of course.",
+    "text": "The sun is out. Your sunglasses are in the other fucking bag. Of course they are.",
     "conditions": [
       "clear"
     ],
@@ -1097,7 +1097,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's so goddamn clear and pretty outside it feels like a setup.",
+    "text": "It's so fucking clear and pretty outside it feels like a setup. The universe is plotting something.",
     "conditions": [
       "clear"
     ],
@@ -1117,7 +1117,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear skies, warm sun. Enjoy it before the existential dread kicks your ass.",
+    "text": "Clear skies, warm sun. Enjoy it before the existential dread kicks you in the dick.",
     "conditions": [
       "clear"
     ],
@@ -1186,7 +1186,7 @@
     "nightOnly": false
   },
   {
-    "text": "Bright sunny day. Every goddamn neighbor is mowing their lawn at the same time.",
+    "text": "Bright sunny day. Every fucking neighbor is mowing their lawn at the same time. The noise is hell.",
     "conditions": [
       "clear"
     ],
@@ -1294,7 +1294,7 @@
     "nightOnly": false
   },
   {
-    "text": "Sunny. Time to find out which parts of your body you forgot to put sunscreen on, you fool.",
+    "text": "Sunny as shit. Time to find out which parts of your body you forgot to put sunscreen on, dumbass.",
     "conditions": [
       "clear"
     ],
@@ -1330,7 +1330,7 @@
     "nightOnly": false
   },
   {
-    "text": "Sunny and beautiful. Social media is about to be flooded with the same goddamn sunset photo.",
+    "text": "Sunny and beautiful. Social media is about to be flooded with the same bullshit sunset photo.",
     "conditions": [
       "clear"
     ],
@@ -1452,7 +1452,7 @@
     "nightOnly": false
   },
   {
-    "text": "Sunny and [temp]. Your leather seats are about to give you third-degree burns on your thighs.",
+    "text": "Sunny and [temp]. Your leather seats are about to brand your ass. Third-degree burns on your thighs, no fucking mercy.",
     "conditions": [
       "clear"
     ],
@@ -1475,7 +1475,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear skies. Every jogger in the neighborhood is out reminding you how lazy your ass is.",
+    "text": "Clear skies. Every jogger in the neighborhood is out reminding you how lazy your ass is. Fuck them.",
     "conditions": [
       "clear"
     ],
@@ -1534,7 +1534,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear skies and not a goddamn thing stopping you from having a great day. Except yourself.",
+    "text": "Clear skies and not a fucking thing stopping you from having a great day. Except your shitty attitude.",
     "conditions": [
       "clear"
     ],
@@ -1745,7 +1745,7 @@
     "nightOnly": false
   },
   {
-    "text": "Rain all goddamn day. The puddle in the parking lot could drown a small child.",
+    "text": "Rain all fucking day. The puddle in the parking lot has its own ecosystem now.",
     "conditions": [
       "rain",
       "heavy-rain"
@@ -1842,7 +1842,7 @@
     "nightOnly": false
   },
   {
-    "text": "Rain. The grocery store parking lot is a goddamn demolition derby right now.",
+    "text": "Rain. The grocery store parking lot is a fucking demolition derby right now.",
     "conditions": [
       "rain",
       "heavy-rain"
@@ -1890,7 +1890,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's raining and the roof is making that sound again. Goddamn it.",
+    "text": "It's raining and the roof is making that sound again. Son of a bitch.",
     "conditions": [
       "rain",
       "heavy-rain"
@@ -1947,7 +1947,7 @@
     "nightOnly": false
   },
   {
-    "text": "Rain all morning. The office smells like wet dog and shattered goddamn dreams.",
+    "text": "Rain all morning. The office smells like wet dog and shattered fucking dreams.",
     "conditions": [
       "rain",
       "heavy-rain",
@@ -2006,7 +2006,7 @@
     "nightOnly": false
   },
   {
-    "text": "Heavy rain. You left the goddamn sunroof cracked open, didn't you? Didn't you?",
+    "text": "Heavy rain. You left the fucking sunroof cracked open, didn't you? Didn't you, dipshit?",
     "conditions": [
       "rain",
       "heavy-rain"
@@ -2051,7 +2051,7 @@
     "nightOnly": false
   },
   {
-    "text": "Drizzle turning to rain. Make up your goddamn mind, sky.",
+    "text": "Drizzle turning to rain. Make up your fucking mind, sky. This indecisive bullshit is exhausting.",
     "conditions": [
       "rain",
       "drizzle"
@@ -2097,7 +2097,7 @@
     "nightOnly": false
   },
   {
-    "text": "Pouring rain and the wipers need replacing. Everything sounds like a goddamn cat fight.",
+    "text": "Pouring rain and the wipers need replacing. Everything sounds like a fucking cat fight on your windshield.",
     "conditions": [
       "rain",
       "heavy-rain"
@@ -2275,7 +2275,7 @@
     "nightOnly": false
   },
   {
-    "text": "Blanket of snow outside. Too bad it's on your goddamn car and not your bed.",
+    "text": "Blanket of snow outside. Too bad it's on your fucking car and not your bed.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -2308,7 +2308,7 @@
     "nightOnly": false
   },
   {
-    "text": "Snow is falling gently, which is nature whispering 'you're fucked tomorrow morning.'",
+    "text": "Snow coming down hard. Your boss still expects you at work. Fuck your boss.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -2344,7 +2344,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's snowing and the salt truck hasn't shown up. Your street is a goddamn ice rink.",
+    "text": "Snowing. Time to shovel the driveway and contemplate the shitty choices that led you to a cold climate.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -2410,7 +2410,7 @@
     "nightOnly": false
   },
   {
-    "text": "Snow piling up. Your roof is making creaking sounds and so is your goddamn sanity.",
+    "text": "Snow and ice everywhere. Your four-wheel drive doesn't mean shit on black ice, genius.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -2490,7 +2490,7 @@
     "nightOnly": false
   },
   {
-    "text": "Snow again. Your snow brush has three bristles left. Shit's useless.",
+    "text": "Heavy snow. Schools are closed. Your little shits are home all day. God help you.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -2650,7 +2650,7 @@
     "nightOnly": false
   },
   {
-    "text": "Holy shit, that thunder just rattled my goddamn fillings.",
+    "text": "Thunderstorm rolling in. The sky is about to lose its fucking mind.",
     "conditions": [
       "thunderstorm"
     ],
@@ -2700,7 +2700,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's thundering like the sky ate Taco Bell. Shit's about to get real.",
+    "text": "Thunder so loud the car alarms went off. Every dog in the neighborhood is shitting itself.",
     "conditions": [
       "thunderstorm"
     ],
@@ -2773,7 +2773,7 @@
     "nightOnly": false
   },
   {
-    "text": "Lightning just lit up the whole sky. Your Wi-Fi is about to eat shit.",
+    "text": "Lightning storm. Mother Nature is throwing a fucking tantrum again.",
     "conditions": [
       "thunderstorm"
     ],
@@ -2883,7 +2883,7 @@
     "nightOnly": false
   },
   {
-    "text": "Thunderstorm. Your roommate is pretending they're not scared. They're fucking scared.",
+    "text": "Thunderstorm. The power just flickered. All your shit is about to reset.",
     "conditions": [
       "thunderstorm"
     ],
@@ -2963,7 +2963,7 @@
     "nightOnly": false
   },
   {
-    "text": "Storm's here and the sump pump is working overtime. If that thing dies, you're fucked.",
+    "text": "Cloudy and depressing. Perfect weather to question your whole fucking existence.",
     "conditions": [
       "thunderstorm"
     ],
@@ -3023,7 +3023,7 @@
     "nightOnly": false
   },
   {
-    "text": "Nothing but clouds. Like the sky is buffering. Piece of shit sky.",
+    "text": "Overcast. The sun took the day off and honestly? Same energy. Fuck this.",
     "conditions": [
       "cloudy"
     ],
@@ -3093,7 +3093,7 @@
     "nightOnly": false
   },
   {
-    "text": "Gray and gloomy. Perfect weather for doom-scrolling and making shit decisions.",
+    "text": "Gray skies all day. The weather matches your bullshit mood perfectly.",
     "conditions": [
       "cloudy"
     ],
@@ -3153,7 +3153,7 @@
     "nightOnly": false
   },
   {
-    "text": "Cloudy and [temp] degrees. The sky matches your goddamn soul today.",
+    "text": "Cloudy. Your seasonal depression just punched in for its fucking shift.",
     "conditions": [
       "cloudy"
     ],
@@ -3236,7 +3236,7 @@
     "nightOnly": false
   },
   {
-    "text": "Cloudy at [temp] degrees. The kind of day where everything feels like bullshit but nothing's actually wrong.",
+    "text": "Fog rolled in thick. Can't see shit. Driving is a goddamn death wish right now.",
     "conditions": [
       "cloudy"
     ],
@@ -3289,7 +3289,7 @@
     "nightOnly": false
   },
   {
-    "text": "Overcast again. This is day five. I'm starting to think the sun is fucking dead.",
+    "text": "Foggy. The world looks like it's loading and the render distance is shit.",
     "conditions": [
       "cloudy"
     ],
@@ -3362,7 +3362,7 @@
     "nightOnly": false
   },
   {
-    "text": "Cloudy. Your motivation called in sick. Can't say you fucking blame it.",
+    "text": "Dense fog. Visibility is about as good as your fucking life plan.",
     "conditions": [
       "cloudy"
     ],
@@ -3425,9 +3425,9 @@
     "nightOnly": false
   },
   {
-    "text": "It's foggy as fuck. You're driving on blind faith and sheer stupidity.",
+    "text": "Wind gusts are no joke today. Hold onto your shit, literally and figuratively.",
     "conditions": [
-      "fog"
+      "wind"
     ],
     "tempRange": null,
     "priority": 1,
@@ -3495,9 +3495,9 @@
     "nightOnly": false
   },
   {
-    "text": "Visibility is absolute dogshit. Turn your fucking headlights on, you walnut.",
+    "text": "Windy enough to blow a small dog into the next fucking zip code.",
     "conditions": [
-      "fog"
+      "wind"
     ],
     "tempRange": null,
     "priority": 1,
@@ -3568,7 +3568,7 @@
     "nightOnly": false
   },
   {
-    "text": "Fog. The bridge you cross every day now feels like a fucking trust exercise.",
+    "text": "High winds. Your recycling bin is three streets over. Not your problem anymore. Fuck it.",
     "conditions": [
       "fog"
     ],
@@ -3661,9 +3661,9 @@
     "nightOnly": false
   },
   {
-    "text": "Foggy morning and your bus stop looks like a scene from a goddamn horror film.",
+    "text": "Freezing rain. Every surface is a shit-covered ice rink. Walk like a penguin or eat pavement.",
     "conditions": [
-      "fog"
+      "freezing-rain"
     ],
     "tempRange": null,
     "priority": 1,
@@ -3721,9 +3721,9 @@
     "nightOnly": false
   },
   {
-    "text": "Foggy. Walking the dog is like navigating through soup. Shitty, cold soup.",
+    "text": "Ice storm warning. If you go outside, you're a fucking idiot. Stay inside.",
     "conditions": [
-      "fog"
+      "freezing-rain"
     ],
     "tempRange": null,
     "priority": 1,
@@ -3791,9 +3791,9 @@
     "nightOnly": false
   },
   {
-    "text": "Wind so strong it turned your umbrella inside out, you sad son of a bitch.",
+    "text": "Sleet and freezing rain. Your morning commute is about to be a shit show of epic proportions.",
     "conditions": [
-      "wind"
+      "freezing-rain"
     ],
     "tempRange": null,
     "priority": 1,
@@ -3874,7 +3874,7 @@
     "nightOnly": false
   },
   {
-    "text": "Windy as hell. Your recycling bin just distributed your mail to the whole goddamn neighborhood.",
+    "text": "Partly cloudy and boring as fuck. The weather couldn't even commit to being bad.",
     "conditions": [
       "wind"
     ],
@@ -3914,7 +3914,7 @@
     "nightOnly": false
   },
   {
-    "text": "Wind so strong it blew the 'For Sale' sign into your yard. Take a hint, shithead.",
+    "text": "Sun and clouds fighting for control. Pick a side, you wishy-washy piece of shit sky.",
     "conditions": [
       "wind"
     ],
@@ -3987,9 +3987,9 @@
     "nightOnly": false
   },
   {
-    "text": "Windy enough that your eyes are watering. People think you're crying. Shit, maybe you are.",
+    "text": "Drizzle outside. Not quite rain, not quite not rain. Make up your fucking mind, atmosphere.",
     "conditions": [
-      "wind"
+      "drizzle"
     ],
     "tempRange": null,
     "priority": 1,
@@ -4047,9 +4047,9 @@
     "nightOnly": false
   },
   {
-    "text": "Gusts so strong your front door nearly broke your fucking wrist when it slammed.",
+    "text": "Light drizzle. Just enough to fuck up your hair but not enough to justify an umbrella.",
     "conditions": [
-      "wind"
+      "drizzle"
     ],
     "tempRange": null,
     "priority": 1,
@@ -4107,7 +4107,7 @@
     "nightOnly": false
   },
   {
-    "text": "Freezing rain. Every step outside is a trust fall with the ground and the ground doesn't give a shit.",
+    "text": "Drizzle. The windshield wipers are on that annoying-ass intermittent setting.",
     "conditions": [
       "freezing-rain"
     ],
@@ -4190,7 +4190,7 @@
     "nightOnly": false
   },
   {
-    "text": "Freezing rain. The dog needs to pee but the yard is a goddamn ice palace.",
+    "text": "Heavy rain and flooding. Your basement is about to become a shit swimming pool.",
     "conditions": [
       "freezing-rain"
     ],
@@ -4250,7 +4250,7 @@
     "nightOnly": false
   },
   {
-    "text": "Freezing rain. That thin layer of ice on everything is nature's way of saying 'fuck your schedule.'",
+    "text": "Torrential rain. The streets are rivers and your car is a shitty boat now.",
     "conditions": [
       "freezing-rain"
     ],
@@ -4336,7 +4336,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. This isn't weather, it's a goddamn punishment from above.",
+    "text": "It's raining sideways. Your umbrella is useless, you fool. Fucking useless.",
     "conditions": [
       "clear"
     ],
@@ -4440,7 +4440,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. If you're outside voluntarily, you're a fucking idiot and you deserve the swamp ass.",
+    "text": "Blizzard conditions. You're not going anywhere. Netflix and suffer, asshole.",
     "conditions": [
       "clear"
     ],
@@ -4518,7 +4518,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees and your makeup melted off before you got to work, you sweaty bastard.",
+    "text": "Heavy snow and high winds. White-out conditions. Can't see shit. Stay the fuck inside.",
     "conditions": [
       "clear"
     ],
@@ -4583,7 +4583,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Kids are out of school and melting on the couch. You're melting at work. Life is fair.",
+    "text": "[temp] degrees. Kids are out of school melting on the couch. You're melting at work. Life's a bitch.",
     "conditions": [
       "clear"
     ],
@@ -4622,7 +4622,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees. Walking to the mailbox gave you pit stains. Goddamn disgusting.",
+    "text": "Clear at [temp] degrees. Your allergies are about to fuck your entire week up.",
     "conditions": [
       "clear"
     ],
@@ -4726,7 +4726,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Your car may or may not start. Probably fucking not.",
+    "text": "Sunny day. Your sunburn from last weekend hasn't even healed yet, you dumb shit.",
     "conditions": [
       "any"
     ],
@@ -4830,7 +4830,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. The inside of your windshield has frost. The INSIDE. What the shit.",
+    "text": "Beautiful weather outside and you're stuck in a goddamn cubicle. Life is a cruel bitch.",
     "conditions": [
       "any"
     ],
@@ -4921,7 +4921,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees and the school bus was late. Your kid waited outside like a frozen little dipshit.",
+    "text": "Clear and [temp] degrees. The mosquitoes are having a fucking field day on your ankles.",
     "conditions": [
       "any"
     ],
@@ -5013,7 +5013,7 @@
     "nightOnly": false
   },
   {
-    "text": "Partly cloudy. Sunglasses or umbrella? Fuck if I know.",
+    "text": "Rain at [temp] degrees. Your shoes are fucked. Your socks are fucked. Everything below the knee is fucked.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -5086,7 +5086,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clouds and sun fighting for dominance. Just like you and your goddamn alarm clock.",
+    "text": "Pouring. The umbrella you bought was five dollars and it shows. Cheap piece of shit inverted immediately.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -5169,7 +5169,7 @@
     "nightOnly": false
   },
   {
-    "text": "Some clouds rolling through. Nothing dramatic, just low-key shitty ambiance.",
+    "text": "Snow at [temp] degrees. Your snowblower won't start because you didn't fucking winterize it.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -5189,7 +5189,7 @@
     "nightOnly": false
   },
   {
-    "text": "Sun and clouds all day. Pick a side, you bipolar sky bitch.",
+    "text": "Sun and clouds all day. Pick a fucking side, you indecisive piece of shit sky.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -5253,7 +5253,7 @@
     "nightOnly": false
   },
   {
-    "text": "Windy and [temp] degrees. The wind chill is making it feel like Satan's fucking freezer.",
+    "text": "Snowing hard. The plows haven't come yet. They won't come. They don't give a shit about your street.",
     "conditions": [
       "wind"
     ],
@@ -5266,7 +5266,7 @@
     "nightOnly": false
   },
   {
-    "text": "Thunderstorms at [temp] degrees. Warm, angry, and dangerous. Like your bitch of a mother-in-law.",
+    "text": "Thunderstorms at [temp] degrees. Warm, angry, and unpredictable. Like your last relationship but louder. Shit.",
     "conditions": [
       "thunderstorm"
     ],
@@ -5359,9 +5359,9 @@
     "nightOnly": false
   },
   {
-    "text": "Windy and [temp] degrees. It's officially 'hold your shit with two hands' weather.",
+    "text": "Thunderstorm at [temp] degrees. The humidity alone could drown you. Add the rain and you're fucked.",
     "conditions": [
-      "wind"
+      "thunderstorm"
     ],
     "tempRange": [
       40.0,
@@ -5452,7 +5452,7 @@
     "nightOnly": false
   },
   {
-    "text": "Drizzle at [temp] degrees. The most depressing combo since your last fucking relationship.",
+    "text": "Lightning close enough to feel it. Your hair stood up. Your asshole puckered. Same energy.",
     "conditions": [
       "rain",
       "drizzle"
@@ -5562,7 +5562,7 @@
     "nightOnly": false
   },
   {
-    "text": "Rainy and windy at [temp] degrees. Your umbrella is a goddamn joke in this mess.",
+    "text": "Cloudy at [temp]. The kind of day where you just stare out the window like a depressed piece of shit.",
     "conditions": [
       "rain",
       "wind"
@@ -5576,7 +5576,7 @@
     "nightOnly": false
   },
   {
-    "text": "Partly cloudy and a humid [temp] degrees. Sweaty and indecisive. Like the weather, like you.",
+    "text": "Partly cloudy and a humid [temp] degrees. Sweaty and indecisive. Just like your whole fucking life.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -5671,7 +5671,7 @@
     "nightOnly": false
   },
   {
-    "text": "Rainy and [temp] degrees. Your socks are wet, your mood is shit, and the day just started.",
+    "text": "Overcast and drizzly. You look miserable. The weather looks miserable. You're a fucking match.",
     "conditions": [
       "rain",
       "drizzle"
@@ -5767,7 +5767,7 @@
     "nightOnly": true
   },
   {
-    "text": "Beautiful starry night. Perfect for contemplating how fucked your life choices have been.",
+    "text": "Fog and [temp] degrees. Silent Hill vibes. Something is definitely going to kill you out there. Fuck that.",
     "conditions": [
       "clear"
     ],
@@ -5830,7 +5830,7 @@
     "nightOnly": true
   },
   {
-    "text": "The night sky is absolutely stunning. Too bad you're awake because of your shitty sleep schedule.",
+    "text": "Wind chill making it feel like shit outside. The actual temp is a lie. A cold-ass lie.",
     "conditions": [
       "clear"
     ],
@@ -5850,7 +5850,7 @@
     "nightOnly": true
   },
   {
-    "text": "Clear night and [temp] degrees. Perfect for sitting on the porch questioning your damn existence.",
+    "text": "Clear night and [temp] degrees. Perfect for sitting on the porch questioning every shitty decision you've ever made.",
     "conditions": [
       "clear"
     ],
@@ -5896,7 +5896,7 @@
     "nightOnly": true
   },
   {
-    "text": "Moonlight so bright you could read by it. If you still read, you beautiful literate bastard.",
+    "text": "Clear night. So quiet you can hear your own thoughts. Unfortunately, your thoughts are shit.",
     "conditions": [
       "clear"
     ],
@@ -5916,7 +5916,7 @@
     "nightOnly": true
   },
   {
-    "text": "Clear night. Your neighbor's motion-sensor light keeps going off because of a damn cat.",
+    "text": "Clear night. Your neighbor's motion-sensor light keeps going off because of a fucking cat. Every. Goddamn. Night.",
     "conditions": [
       "clear"
     ],
@@ -5956,7 +5956,7 @@
     "nightOnly": true
   },
   {
-    "text": "Stars are ridiculous tonight. Like the sky is showing off while you take the trash out.",
+    "text": "Stars are fucking ridiculous tonight. Like the sky is showing off while you take the trash out at midnight.",
     "conditions": [
       "clear"
     ],
@@ -5979,7 +5979,7 @@
     "nightOnly": true
   },
   {
-    "text": "Moonlit night. Your yard looks almost nice when you can't see all the shit you need to fix.",
+    "text": "Cloudy night at [temp]. Can't see the moon, can't see the stars, can't see a fucking point to going outside.",
     "conditions": [
       "clear"
     ],
@@ -6009,7 +6009,7 @@
     "nightOnly": true
   },
   {
-    "text": "Stars out, moon bright, air crisp. Everything is perfect and you're still up doom-scrolling. Idiot.",
+    "text": "Stars out, moon bright, air crisp. Everything is perfect and you're still up doom-scrolling like an asshole.",
     "conditions": [
       "clear"
     ],
@@ -6042,7 +6042,7 @@
     "nightOnly": true
   },
   {
-    "text": "Cloudy night. Can't see shit in the sky. Just darkness and your goddamn thoughts.",
+    "text": "Rainy night. The sound should be relaxing but your anxiety doesn't give a shit about ambiance.",
     "conditions": [
       "cloudy"
     ],
@@ -6105,7 +6105,7 @@
     "nightOnly": true
   },
   {
-    "text": "Dark clouds blotting out the sky. Tonight feels like the opening of a shitty horror movie.",
+    "text": "Stormy night. The wind is howling like it's auditioning for a shit horror movie. You hate it.",
     "conditions": [
       "cloudy"
     ],
@@ -6125,7 +6125,7 @@
     "nightOnly": true
   },
   {
-    "text": "Overcast and gloomy tonight. Your porch light is the only damn thing holding back the void.",
+    "text": "Overcast and gloomy tonight. Your shitty porch light is the only thing holding back the fucking void.",
     "conditions": [
       "cloudy"
     ],
@@ -6165,7 +6165,7 @@
     "nightOnly": true
   },
   {
-    "text": "Cloudy night and [temp] degrees. The kind of night that feels endless and shitty.",
+    "text": "Snowy night. Peaceful and quiet. Until the goddamn snowplow comes through at 3 AM. Fuck that truck.",
     "conditions": [
       "cloudy"
     ],
@@ -6228,7 +6228,7 @@
     "nightOnly": true
   },
   {
-    "text": "Clouds drifting across the moon. Spooky as shit if you're easily spooked. Which you are.",
+    "text": "Cold night at [temp] degrees. Your blanket isn't cutting it. Your feet are fucking ice blocks.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -6261,7 +6261,7 @@
     "nightOnly": true
   },
   {
-    "text": "Moon comes and goes through the clouds. Make up your damn mind, you indecisive space rock.",
+    "text": "Moon comes and goes through the clouds. Make up your fucking mind, you indecisive space rock.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -6291,7 +6291,7 @@
     "nightOnly": true
   },
   {
-    "text": "Partly cloudy night. Just enough moonlight to see you tripped over the garden hose, you dumbass.",
+    "text": "Night wind howling like a bitch. Every tree branch tapping the window sounds like someone breaking in.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -6325,7 +6325,7 @@
     "nightOnly": true
   },
   {
-    "text": "Nighttime downpour. Every sound outside is either rain or a burglar. Probably rain. Probably.",
+    "text": "Nighttime downpour. Every sound outside is either rain or a goddamn burglar. You're too tired to give a shit either way.",
     "conditions": [
       "rain",
       "heavy-rain",
@@ -6361,7 +6361,7 @@
     "nightOnly": true
   },
   {
-    "text": "Raining all night. Your gutter is doing that dripping thing that makes sleep fucking impossible.",
+    "text": "Rainy night at [temp]. Your gutters are overflowing because you're too lazy to clean them out. Shit's flooding.",
     "conditions": [
       "rain",
       "heavy-rain",
@@ -6436,7 +6436,7 @@
     "nightOnly": true
   },
   {
-    "text": "Late-night drizzle. The world is quiet except for rain and your bullshit anxiety.",
+    "text": "Thunderstorm at night. The flash from lightning is pissing off your sleep-mask game. Fuck nature's strobe light.",
     "conditions": [
       "rain",
       "heavy-rain",
@@ -6509,7 +6509,7 @@
     "nightOnly": true
   },
   {
-    "text": "Nighttime snow. Everything is quiet except your furnace running its ass off.",
+    "text": "Drizzly night. Perfect sleeping weather if your neighbors would shut the fuck up.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -6578,7 +6578,7 @@
     "nightOnly": true
   },
   {
-    "text": "Midnight snow at [temp] degrees. Set your alarm thirty minutes early, you poor bastard.",
+    "text": "Clear and cold tonight. The stars don't give a shit about your heating bill.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -6643,7 +6643,7 @@
     "nightOnly": true
   },
   {
-    "text": "Lightning cracking across the night sky. Beautiful and terrifying as fuck.",
+    "text": "Overcast night. Dark as fuck. Stepped in a puddle you couldn't see. Night is bullshit.",
     "conditions": [
       "thunderstorm"
     ],
@@ -6683,7 +6683,7 @@
     "nightOnly": true
   },
   {
-    "text": "Thunder so loud at 1 AM that the baby woke up. Nobody is sleeping tonight. Nobody.",
+    "text": "Thunder so fucking loud at 1 AM that the baby woke up. Nobody is sleeping tonight. Absolutely fucking nobody.",
     "conditions": [
       "thunderstorm"
     ],
@@ -6713,7 +6713,7 @@
     "nightOnly": true
   },
   {
-    "text": "Nighttime and [temp] degrees. Your heating bill is writing its own horror story.",
+    "text": "Nighttime and [temp] degrees. Your heating bill is writing its own shit horror story and you can't afford the ending.",
     "conditions": [
       "any"
     ],
@@ -6769,7 +6769,7 @@
     "nightOnly": true
   },
   {
-    "text": "It's dark, it's quiet, it's [temp] degrees. And you're wide fucking awake. Of course.",
+    "text": "[temp] degrees at night. Your AC is running so hard the power bill is about to fuck you raw.",
     "conditions": [
       "any"
     ],
@@ -6838,7 +6838,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Every person you pass has a different opinion on whether this is nice. Shut the fuck up.",
+    "text": "Night and [temp] degrees. Hot enough to sleep naked. Your ceiling fan is doing the absolute bare shit minimum.",
     "conditions": [
       "any"
     ],
@@ -6874,7 +6874,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees. The weather is fine. YOU'RE the problem today.",
+    "text": "It's [temp] degrees. The weather is fucking fine. YOU'RE the problem today, asshole.",
     "conditions": [
       "any"
     ],
@@ -6910,7 +6910,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Your comfort zone is a narrow ten-degree window and the world doesn't give a fuck.",
+    "text": "Cold night. The toilet seat in the bathroom is a freezing shit throne of misery.",
     "conditions": [
       "any"
     ],
@@ -6976,7 +6976,7 @@
     "nightOnly": false
   },
   {
-    "text": "A refreshing [temp] degrees. Just kidding, nothing about today is refreshing, it's all garbage.",
+    "text": "A refreshing [temp] degrees. Just kidding, nothing about today is refreshing, it's all absolute dogshit.",
     "conditions": [
       "any"
     ],
@@ -6999,7 +6999,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. This is the temperature equivalent of beige. Boring as shit.",
+    "text": "Night at [temp]. Your car windows are fogged up and some asshole drew a dick on them.",
     "conditions": [
       "any"
     ],
@@ -7071,7 +7071,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Even your weather app is bored. Just a number and a shrug.",
+    "text": "[temp] degrees. Even your weather app is bored as shit. Just a number and a shrug.",
     "conditions": [
       "any"
     ],
@@ -7097,7 +7097,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Your car takes ten minutes to decide if it needs the AC or heat. Useless shit.",
+    "text": "[temp] degrees. This is the kind of weather where everyone has an opinion and they're all fucking wrong.",
     "conditions": [
       "any"
     ],
@@ -7120,7 +7120,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Shorts people and pants people are both out there looking equally dumb.",
+    "text": "[temp] degrees. Shorts people and pants people are both out there looking equally fucking dumb.",
     "conditions": [
       "any"
     ],
@@ -7153,7 +7153,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees and your energy level is somehow lower than the barometric pressure.",
+    "text": "It's [temp] degrees and your energy level is somehow lower than the goddamn barometric pressure. Pathetic shit.",
     "conditions": [
       "any"
     ],
@@ -7173,7 +7173,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] outside. Feel free to have an opinion about it that nobody asked for.",
+    "text": "It's [temp] outside. Feel free to have an opinion about it that nobody fucking asked for.",
     "conditions": [
       "any"
     ],
@@ -7183,7 +7183,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Your coworker already said 'hot enough for ya?' Throat-punch energy activated.",
+    "text": "[temp] degrees. Your coworker already said 'hot enough for ya?' Shit like that is why nobody likes Kevin.",
     "conditions": [
       "any"
     ],
@@ -7209,7 +7209,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees and your allergies don't care what the temperature is. They're fucking eternal.",
+    "text": "Currently [temp] degrees and the weather forecast changes every goddamn hour. Pick a lane, you fickle bitch.",
     "conditions": [
       "any"
     ],
@@ -7268,7 +7268,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees. Enjoy it for the three seconds before the weather changes again.",
+    "text": "It's [temp] degrees. Enjoy it for the three goddamn seconds before the weather fucks off and changes again.",
     "conditions": [
       "any"
     ],
@@ -7304,7 +7304,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. You checked the forecast three times hoping it would change. It didn't, dumbass.",
+    "text": "[temp] degrees. Not hot, not cold, just existing. The weather equivalent of a fucking participation trophy.",
     "conditions": [
       "any"
     ],
@@ -7334,7 +7334,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] outside. That number means nothing to your immune system. You're getting sick anyway.",
+    "text": "It's [temp] outside. That number means shit to your immune system. You're getting sick anyway, asshole.",
     "conditions": [
       "any"
     ],
@@ -7347,7 +7347,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. The temperature is fine. Everything else is on fire. Figuratively. Maybe literally.",
+    "text": "[temp] degrees. The temperature is fine. Everything else is on fucking fire. Figuratively. Maybe literally. Who gives a shit.",
     "conditions": [
       "any"
     ],
@@ -7393,7 +7393,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear out there. The weather is mocking your shitty indoor plans.",
+    "text": "A nice [temp] degrees that means absolutely jack shit because it'll change in twenty minutes.",
     "conditions": [
       "clear"
     ],
@@ -7476,7 +7476,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear out. Every cyclist in the city is blocking the road like they own the goddamn thing.",
+    "text": "[temp] outside. Perfect temperature for doing shit you hate with people you barely tolerate.",
     "conditions": [
       "clear"
     ],
@@ -7594,7 +7594,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear day at [temp] degrees. The park is packed with people pretending they exercise regularly.",
+    "text": "Clear day at [temp] degrees. The park is packed with assholes pretending they exercise regularly.",
     "conditions": [
       "clear"
     ],
@@ -7673,7 +7673,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear and calm. The perfect weather for absolutely nothing going wrong. So something definitely will.",
+    "text": "Clear and calm. The perfect weather for absolutely nothing going wrong. So something will definitely fuck up.",
     "conditions": [
       "clear"
     ],
@@ -7726,7 +7726,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear conditions at [temp] degrees. Go outside. Or don't. The sky doesn't give a damn.",
+    "text": "Clear conditions at [temp] degrees. Go outside. Or don't. The sky doesn't give a flying fuck.",
     "conditions": [
       "clear"
     ],
@@ -7782,7 +7782,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear at [temp]. Your walk is going to be nice. Your thoughts during the walk will be garbage.",
+    "text": "Clear at [temp]. Your walk is going to be nice. Your thoughts during the walk will be absolute shit.",
     "conditions": [
       "clear"
     ],
@@ -7805,7 +7805,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear skies and [temp]. The dog is losing its mind to go outside. You're losing your mind in general.",
+    "text": "Clear skies and [temp]. The dog is losing its shit to go outside. You're losing your shit in general.",
     "conditions": [
       "clear"
     ],
@@ -7851,7 +7851,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clear and [temp]. Pack a lunch, go somewhere nice, and pretend the world isn't on fire for a damn minute.",
+    "text": "Clear and [temp]. Pack a lunch, go somewhere nice, and pretend the world isn't a fucking dumpster fire for five minutes.",
     "conditions": [
       "clear"
     ],
@@ -7864,7 +7864,7 @@
     "nightOnly": false
   },
   {
-    "text": "No weather events. The only disaster today is you trying to parallel park.",
+    "text": "No weather events. The only disaster today is your dumb ass trying to parallel park. Shit's embarrassing.",
     "conditions": [
       "clear"
     ],
@@ -7989,7 +7989,7 @@
     "nightOnly": false
   },
   {
-    "text": "Heavy rain at [temp] degrees. This is 'cancel everything and eat cereal for dinner' weather.",
+    "text": "Heavy rain at [temp] degrees. This is 'cancel every fucking thing and eat cereal for dinner' weather.",
     "conditions": [
       "rain",
       "heavy-rain"
@@ -8025,7 +8025,7 @@
     "nightOnly": false
   },
   {
-    "text": "Rain and [temp] degrees. Your umbrella is in the car. You are not in the car. Genius.",
+    "text": "Rain and [temp] degrees. Your umbrella is in the car. You are not in the car. Fucking genius move.",
     "conditions": [
       "rain",
       "heavy-rain",
@@ -8161,7 +8161,7 @@
     "nightOnly": false
   },
   {
-    "text": "Drizzle turning to downpour. The weather is escalating faster than your blood pressure.",
+    "text": "Drizzle turning to downpour. The weather is escalating faster than your bullshit blood pressure.",
     "conditions": [
       "rain",
       "drizzle"
@@ -8184,7 +8184,7 @@
     "nightOnly": false
   },
   {
-    "text": "Heavy rain. The worms are coming out of the ground like tiny disgusting refugees.",
+    "text": "Heavy rain. The worms are coming out of the ground like tiny disgusting fucking refugees.",
     "conditions": [
       "rain",
       "heavy-rain"
@@ -8222,7 +8222,7 @@
     "nightOnly": false
   },
   {
-    "text": "Raining. Your outdoor dinner plans are indoor sadness plans now. Adjust accordingly.",
+    "text": "Raining. Your outdoor dinner plans are indoor sadness plans now. Adjust your shit accordingly.",
     "conditions": [
       "rain",
       "heavy-rain",
@@ -8306,7 +8306,7 @@
     "nightOnly": false
   },
   {
-    "text": "Raining at [temp] degrees. This weather is personally victimizing you and it knows it.",
+    "text": "Raining at [temp] degrees. This weather is personally fucking you over and it knows it.",
     "conditions": [
       "rain",
       "heavy-rain",
@@ -8548,7 +8548,7 @@
     "nightOnly": false
   },
   {
-    "text": "Heavy snowfall. Your smart thermostat is panicking and so is your wallet.",
+    "text": "Heavy snowfall. Your smart thermostat is shitting itself and so is your goddamn wallet.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -8653,7 +8653,7 @@
     "nightOnly": false
   },
   {
-    "text": "Snowing. Your hot cocoa burned your tongue. Now the inside of your mouth matches the outside: damaged.",
+    "text": "Snowing. Your hot cocoa burned your tongue. Now the inside of your mouth is as fucked as the outside.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -8686,7 +8686,7 @@
     "nightOnly": false
   },
   {
-    "text": "Snow. Your car's heated seats are the only relationship providing warmth right now.",
+    "text": "Snow. Your car's heated seats are the only fucking relationship providing warmth right now.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -8747,7 +8747,7 @@
     "nightOnly": false
   },
   {
-    "text": "Snowing. The romantic comedy version of this involves a fireplace. Your version involves a space heater and regret.",
+    "text": "Snowing. The romantic comedy version of this involves a fireplace. Your version involves a shit space heater and regret.",
     "conditions": [
       "snow",
       "heavy-snow"
@@ -8864,7 +8864,7 @@
     "nightOnly": false
   },
   {
-    "text": "Thunder and [temp] degrees. The air smells like ozone and poor life decisions.",
+    "text": "Thunder and [temp] degrees. The air smells like ozone and poor fucking life decisions.",
     "conditions": [
       "thunderstorm"
     ],
@@ -9106,7 +9106,7 @@
     "nightOnly": false
   },
   {
-    "text": "Thunderstorm. The rain is horizontal. The wind is psychotic. Today chose violence.",
+    "text": "Thunderstorm. The rain is horizontal. The wind is unhinged as fuck. Today chose violence.",
     "conditions": [
       "thunderstorm"
     ],
@@ -9116,7 +9116,7 @@
     "nightOnly": false
   },
   {
-    "text": "Lightning just lit up the parking lot. Everyone sprinted to their cars looking equally ridiculous.",
+    "text": "Lightning just lit up the parking lot. Everyone sprinted to their cars looking like panicked fucking idiots.",
     "conditions": [
       "thunderstorm"
     ],
@@ -9149,7 +9149,7 @@
     "nightOnly": false
   },
   {
-    "text": "Thunderstorm. The camping trip people are finding out what 'weather permitting' means the hard way.",
+    "text": "Thunderstorm. The camping trip assholes are finding out what 'weather permitting' means the hard way.",
     "conditions": [
       "thunderstorm"
     ],
@@ -9169,7 +9169,7 @@
     "nightOnly": false
   },
   {
-    "text": "Overcast at [temp] degrees. The weather has all the personality of wet cardboard.",
+    "text": "Overcast at [temp] degrees. The weather has all the personality of a shit-stained piece of wet cardboard.",
     "conditions": [
       "cloudy"
     ],
@@ -9245,7 +9245,7 @@
     "nightOnly": false
   },
   {
-    "text": "Cloudy at [temp] degrees. The weather equivalent of lukewarm water. Disappointing but expected.",
+    "text": "Cloudy at [temp] degrees. The weather equivalent of lukewarm bullshit. Disappointing but fucking expected.",
     "conditions": [
       "cloudy"
     ],
@@ -9268,7 +9268,7 @@
     "nightOnly": false
   },
   {
-    "text": "Overcast. The only thing grayer is the outlook for the rest of this godforsaken week.",
+    "text": "Overcast. The only thing grayer is the outlook for the rest of this godforsaken shitshow of a week.",
     "conditions": [
       "cloudy"
     ],
@@ -9278,7 +9278,7 @@
     "nightOnly": false
   },
   {
-    "text": "Cloudy. Every drone photo today is going to look like trash. Give it up.",
+    "text": "Cloudy. Every drone photo today is going to look like absolute shit. Give it up, asshole.",
     "conditions": [
       "cloudy"
     ],
@@ -9542,7 +9542,7 @@
     "nightOnly": false
   },
   {
-    "text": "Fog thicker than your skull. Turn the headlights on, genius.",
+    "text": "Fog thicker than your fucking skull. Turn the headlights on, genius.",
     "conditions": [
       "fog"
     ],
@@ -9585,7 +9585,7 @@
     "nightOnly": false
   },
   {
-    "text": "Foggy at [temp] degrees. Can't see where you're going. Story of your life, honestly.",
+    "text": "Foggy at [temp] degrees. Can't see where you're going. Story of your shit life, honestly.",
     "conditions": [
       "fog"
     ],
@@ -9641,7 +9641,7 @@
     "nightOnly": false
   },
   {
-    "text": "Dense fog advisory. Drive slow, leave early, and accept that today is going to be garbage.",
+    "text": "Dense fog advisory. Drive slow, leave early, and accept that today is going to be complete shit.",
     "conditions": [
       "fog"
     ],
@@ -9661,7 +9661,7 @@
     "nightOnly": false
   },
   {
-    "text": "Fog. Your side mirrors are useless. Your rearview is useless. You're basically useless out there.",
+    "text": "Fog. Your side mirrors are useless. Your rearview is useless. You're basically fucking useless out there.",
     "conditions": [
       "fog"
     ],
@@ -9704,7 +9704,7 @@
     "nightOnly": false
   },
   {
-    "text": "Foggy morning at [temp]. Your outdoor plans just got upgraded to indoor disappointment.",
+    "text": "Foggy morning at [temp]. Your outdoor plans just got fucked. Welcome to indoor disappointment.",
     "conditions": [
       "fog"
     ],
@@ -9849,7 +9849,7 @@
     "nightOnly": false
   },
   {
-    "text": "High winds at [temp] degrees. Your outdoor setup for the party is now the neighbor's problem.",
+    "text": "High winds at [temp] degrees. Your outdoor setup for the party is now the neighbor's fucking problem.",
     "conditions": [
       "wind"
     ],
@@ -9925,7 +9925,7 @@
     "nightOnly": false
   },
   {
-    "text": "Gusts at [temp] degrees. Your hat lasted four seconds outside. New personal worst.",
+    "text": "Gusts at [temp] degrees. Your hat lasted four fucking seconds outside. New personal worst, dipshit.",
     "conditions": [
       "wind"
     ],
@@ -9971,7 +9971,7 @@
     "nightOnly": false
   },
   {
-    "text": "High winds. All the unsecured crap in your neighborhood is going on an adventure.",
+    "text": "High winds. All the unsecured shit in your neighborhood is going on a goddamn adventure.",
     "conditions": [
       "wind"
     ],
@@ -10014,7 +10014,7 @@
     "nightOnly": false
   },
   {
-    "text": "Wind advisory in effect. Translated: everything lightweight you own is now community property.",
+    "text": "Wind advisory in effect. Translated: every lightweight piece of shit you own is now community property.",
     "conditions": [
       "wind"
     ],
@@ -10057,7 +10057,7 @@
     "nightOnly": false
   },
   {
-    "text": "Gusts and [temp] degrees. Perfect conditions for regretting every outdoor plan you made.",
+    "text": "Gusts and [temp] degrees. Perfect fucking conditions for regretting every outdoor plan you made.",
     "conditions": [
       "wind"
     ],
@@ -10116,7 +10116,7 @@
     "nightOnly": false
   },
   {
-    "text": "Ice accumulating on everything. Your mailbox looks pretty. Your driveway looks deadly.",
+    "text": "Ice accumulating on every fucking surface. Your mailbox looks pretty. Your driveway looks like a death trap.",
     "conditions": [
       "freezing-rain"
     ],
@@ -10159,7 +10159,7 @@
     "nightOnly": false
   },
   {
-    "text": "Ice storm. The branches are hanging low and your anxiety is hanging lower.",
+    "text": "Ice storm. The branches are hanging low and your anxiety is higher than a motherfucker.",
     "conditions": [
       "freezing-rain"
     ],
@@ -10192,7 +10192,7 @@
     "nightOnly": false
   },
   {
-    "text": "Sleet and ice at [temp] degrees. Your hip is about to find out what happens when you trust a smooth sidewalk.",
+    "text": "Sleet and ice at [temp] degrees. Your ass is about to eat shit on a smooth sidewalk. Trust nothing.",
     "conditions": [
       "freezing-rain"
     ],
@@ -10215,7 +10215,7 @@
     "nightOnly": false
   },
   {
-    "text": "Ice on the road, ice on the car, ice on your front steps. The whole world is a damn hockey rink.",
+    "text": "Ice on the road, ice on the car, ice on your front steps. The whole world is a fucking hockey rink.",
     "conditions": [
       "freezing-rain"
     ],
@@ -10418,7 +10418,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Your power grid is sweating harder than you are. Rolling blackouts incoming, probably.",
+    "text": "[temp] degrees. Your power grid is sweating harder than you are. Rolling blackouts incoming. Fuck.",
     "conditions": [
       "clear"
     ],
@@ -10509,7 +10509,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees. Your water bottle went from cold to warm in the time it took to walk to the car.",
+    "text": "It's [temp] degrees. Your water bottle went from cold to piss-warm in the time it took to walk to the goddamn car.",
     "conditions": [
       "clear"
     ],
@@ -10535,7 +10535,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] outside. Your brain is functioning at about thirty percent capacity. The heat stole the rest.",
+    "text": "It's [temp] outside. Your brain is functioning at about thirty percent. The heat stole the rest, you useless bastard.",
     "conditions": [
       "clear"
     ],
@@ -10587,7 +10587,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] outside. Your car sounds like a dying animal when you try to start it.",
+    "text": "It's [temp] outside. Your car sounds like a dying fucking animal when you try to start it.",
     "conditions": [
       "any"
     ],
@@ -10769,7 +10769,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees. Every metal surface is a contact-freeze hazard. Don't lick the pole, you idiot.",
+    "text": "It's [temp] degrees. Every metal surface is a contact-freeze hazard. Don't lick the pole, you fucking idiot.",
     "conditions": [
       "any"
     ],
@@ -10821,7 +10821,7 @@
     "nightOnly": false
   },
   {
-    "text": "It's [temp] degrees. Even your insulated water bottle froze. Technology has failed us.",
+    "text": "It's [temp] degrees. Even your insulated water bottle froze. Technology has failed us. Fuck everything.",
     "conditions": [
       "any"
     ],
@@ -10920,7 +10920,7 @@
     "nightOnly": false
   },
   {
-    "text": "Partly cloudy and [temp] degrees. The 'meh' of weather conditions. Nobody is impressed.",
+    "text": "Partly cloudy and [temp] degrees. The 'meh' of weather conditions. Nobody gives a shit.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -10953,7 +10953,7 @@
     "nightOnly": false
   },
   {
-    "text": "Scattered clouds at [temp] degrees. Scattered is also how your afternoon plans are looking.",
+    "text": "Scattered clouds at [temp] degrees. Scattered is also how your bullshit afternoon plans are looking.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -11032,7 +11032,7 @@
     "nightOnly": false
   },
   {
-    "text": "Partly cloudy. The sky is doing the bare minimum, just like you at work. Respect.",
+    "text": "Partly cloudy. The sky is doing the bare fucking minimum, just like you at work. Respect.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -11042,7 +11042,7 @@
     "nightOnly": false
   },
   {
-    "text": "Clouds and clear patches at [temp]. Not bad, not good. The weather equivalent of a shrug.",
+    "text": "Clouds and clear patches at [temp]. Not bad, not good. The weather equivalent of a bullshit half-assed shrug.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -11359,7 +11359,7 @@
     "nightOnly": false
   },
   {
-    "text": "Wind and extreme heat at [temp] degrees. A hot hair dryer pointed at your face. That's the forecast.",
+    "text": "Wind and extreme heat at [temp] degrees. Like a fucking hair dryer pointed at your stupid face. That's the forecast.",
     "conditions": [
       "wind"
     ],
@@ -11468,5 +11468,6226 @@
     "priority": 1,
     "dayOnly": false,
     "nightOnly": false
+  },
+  {
+    "text": "Fog at night. The streetlights look like UFOs and you're too tired to give a shit either way.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night. Can't see a goddamn thing past your driveway. The void wins tonight.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog so thick you could cut it with a knife. Or just say fuck it and stay inside.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy evening. Your headlights are illuminating jack shit. Just a wall of gray bullshit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog rolled in after dark. Your neighborhood looks like a horror movie set. Fuck this.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime fog advisory. Translation: don't go anywhere unless you enjoy driving blind as fuck.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dense fog tonight. Your shitty porch light illuminates approximately three feet of nothing.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog and darkness. The two worst fucking driving companions showed up at the same time.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night at [temp] degrees. The world has been replaced by a gray fucking void.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog. Every set of headlights coming at you looks like death. Shit's terrifying.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The fog tonight is giving 'you're about to get murdered' vibes. Fuck walking to the car.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog at night. Can't see the moon, can't see shit, can barely see your own goddamn feet.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dense fog after dark. Your footsteps echo weird as fuck and you don't like it one bit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy and [temp] degrees tonight. The world ends at your property line. Fuck everything beyond it.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog. The cat came in looking like it crawled out of a fucking portal.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night. Perfect weather for wondering what the fuck that noise was outside.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog so thick at night even the GPS is confused. Technology is fucking useless.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The fog is hugging the ground tonight like it's hiding a body or some shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime. Fog. Zero visibility. The holy shit trifecta of 'stay on the fucking couch.'",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy evening. The dog doesn't even want to go out. Smart little bastard.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog at [temp] degrees. Windshield fogged inside AND outside. Thanks for fucking nothing, universe.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      28,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog tonight. The streetlights have halos like some bullshit religious painting. Can't see shit though.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dense fog after sunset. Your high beams just make it fucking worse. Great job, Einstein.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy and dark. Nearly hit the trash cans because they appeared out of fucking nowhere.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog. The only thing you can see clearly is your own goddamn breath.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      25,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog rolled in thick tonight. Somewhere a ship horn is going off. Spooky shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night. Walking the dog feels like wandering through a fucking Stephen King novel.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog so dense the motion-sensor lights can't even find your ass.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog and [temp] degrees at night. Perfect for absolutely fuck all except staying inside.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thick fog tonight. The only clear thing is that going outside would be stupid as shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain after dark. The sidewalk is a fucking ice rink you didn't sign up for.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy night. Every step outside is a trust fall with the goddamn pavement.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain tonight. Your car is now a giant ice sculpture. Fucking great.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice storm at night. Trees are cracking like shit is about to go down. Because it is.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet hitting the windows at [temp] degrees. The world's shittiest lullaby.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain after sunset. Tomorrow's commute is going to be a complete shitshow.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice forming on everything tonight. Your front steps are a fucking death trap.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime freezing rain. The power lines are glazed like donuts and about to fuck your electricity.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy night at [temp] degrees. Branches clicking together like the goddamn death chimes.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing drizzle after dark. Better have salt or you're eating shit on your own stairs tomorrow.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet at night. Sounds nice on the roof. The ice on the stairs will fuck you up though.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain overnight. Tomorrow the world will be a beautiful, treacherous bitch.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice storm tonight. Tomorrow morning's forecast: absolute fucking chaos.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain at [temp] degrees. Your driveway is plotting to destroy your ass by morning.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      26,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime ice. Every surface is a betrayal and the universe doesn't give a shit about your tailbone.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet pelting the windows. Be grateful you're inside. Outside is a frozen hellscape of bullshit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain after dark. The dog needs to piss and you need to not bust your ass. Good luck.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice accumulating overnight. School closures tomorrow. Your kids are fucking thrilled. You're not.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime sleet and [temp] degrees. The roads are basically a suggestion. A shitty one.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain tonight. Your car doors will be frozen shut by morning. Fuck your schedule.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice storm after dark. Looks magical. Is actually a goddamn death trap. Stay the fuck inside.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet and darkness. Individually fine. Together, they're a shit sandwich.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain at night. Your windshield wipers are frozen to the glass. Because of course they fucking are.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy conditions after sunset. The salt truck hasn't come. It's not fucking coming.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing drizzle at [temp] degrees tonight. Tomorrow's black ice is forming right now. Shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      28,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind howling outside tonight. Every branch tap on the window scares the shit out of you.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night. Your trash cans are going on a fucking adventure without you.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night gusts at [temp] degrees. Sleep with earplugs or don't fucking sleep at all.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      30,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind so loud tonight you can't tell if it's the weather or the universe telling you to fuck off.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night. Something just blew off the porch. Not your problem until morning. Fuck it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "High winds after dark. The house is making noises that say 'your insurance premium is bullshit.'",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night wind at [temp] degrees. The windchill is a lying piece of shit. It's way worse than the number says.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      15,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Gusts rattling the windows at night. Very atmospheric. Very fucking annoying.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy evening. Every outdoor decoration you own has fucked off to the neighbor's yard.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind advisory tonight. Perfect weather for lying in bed listening to shit fly around outside.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night gusts. That thud on the roof is probably a branch. If not, you're fucked anyway.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Howling wind at [temp] degrees. The kind of night where you pretend the house creaking is normal. It's not. Shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      20,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy and dark. The gate keeps banging. Fix it? Nah. Suffer. Fuck the gate.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind whipping around at night. Your sleep quality is shit and the wind doesn't care.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night wind. The neighbor's flag sounds like a fucking machine gun and it's 2 AM.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Gusty at [temp] degrees tonight. The wind chill feels like the Arctic is pissing on your face.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      10,
+      35
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night. The loose shutter you never fixed is being a loud piece of shit about it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind gusts after dark. Your patio umbrella is now a goddamn projectile. Hope nobody's outside.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime wind. The trees are doing a dramatic bullshit performance outside your bedroom window.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night at [temp] degrees. Sounds like someone is trying to break in through the fucking chimney.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      25,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "High winds tonight. Every loose thing in the neighborhood is on the move. Not your shit? Not your problem.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night gusts. Can't sleep. The wind has a personal fucking vendetta against your house.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Not exciting enough to talk about, but you'll fucking bring it up at least three times today.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The weather's effort level today is somewhere between 'meh' and 'fuck this.'",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Perfect for walking to the fridge and calling it exercise, you lazy piece of shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Your wardrobe is having a fucking existential crisis right now.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Everyone in the office will argue about the goddamn AC. It's a war. Pick a side.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and your phone battery is dying faster than your bullshit enthusiasm.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kind of weather where you text 'nice day!' to someone and immediately regret it. Shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      65,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A balmy [temp] degrees. Perfect for pretending you have outdoor hobbies. You don't. Fuck off.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      70,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your thermostat and the actual temperature are having a fucking disagreement.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Room temperature if the room is a goddamn parking lot.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The weather is so aggressively mediocre it should be studied by scientists who also don't give a shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] degrees. That number will mean jack shit in two hours because it'll fucking change.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your jacket is in the car. Your car is far. Stupid fucking decisions were made.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      42,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the weather is the most stable thing in your shitshow of a life right now.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Somewhere someone is calling this 'perfect weather' and they need to shut the fuck up.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      70,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. That's a fact. How you feel about it is your fucking problem.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Nature is phoning it in today and honestly? Same bullshit energy.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Your car thermometer disagrees because that lying piece of shit always does.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and your allergies have entered the chat like an uninvited asshole.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] out. The weather isn't the problem today. You're the fucking problem. But also the weather.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Time to argue with a coworker about whether that's cold. Spoiler: nobody gives a shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A solid [temp] degrees. The kind of temperature that makes you say 'it's nice out' while your soul says 'I feel nothing.' Fuck feelings.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and the pollen count is higher than your fucking credit score.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. You'll survive. Probably. The weather isn't the thing trying to fuck you over.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The weather is [temp] degrees and your opinion about it is as useful as a screen door on a fucking submarine.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees tonight. The temperature is dropping and so are your shit eyelids.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night at [temp] degrees. Your bed is calling and it won't accept a fucking voicemail.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees after dark. The fridge light is the only goddamn light you need right now.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] degrees and way too late to be awake. Your alarm clock is judging your dumb ass.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees tonight. The moon is up, you're up, neither of you should fucking be.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime. [temp] degrees. The neighbors are asleep. You're eating cereal over the sink like a shit gremlin.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees at night. The world is quiet. Your brain is a shitstorm.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Late night. [temp] degrees. You could go to bed or scroll for another hour. Dumbass choice made.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees tonight. The stars are out and you're arguing with strangers online like an asshole.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] and dark. Tomorrow's a problem for tomorrow's version of you. That poor bastard.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear skies and [temp] degrees. Your sunglasses are clean for once. Enjoy the fucking clarity.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny at [temp]. The park is calling. Your couch is countercalling. The couch wins, you lazy shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Not a cloud in sight at [temp] degrees. Your vitamin D deficiency is sobbing with goddamn relief.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Blue sky, bright sun, [temp] degrees. Instagram is about to be insufferable as fuck.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      68,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear and [temp] degrees. Every dog owner is at the same park pretending their dog isn't an asshole.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny and gorgeous at [temp]. Your plants are thriving. You are fucking not.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear sky. [temp] degrees. The kind of day that makes you forget your problems for eleven shitty minutes.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      68,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunshine and [temp] degrees. Your neighbor started mowing at 7 AM. That inconsiderate fuck.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear at [temp]. A beautiful day to be stuck on a bullshit conference call staring out the window.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny. [temp] degrees. The ice cream truck is coming and you're an adult with a wallet. Fuck adulting.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      75,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Perfect day at [temp] degrees. Every restaurant has a patio wait and these assholes all had the same idea.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      68,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear sky at [temp] degrees. The birds are extremely loud and unaware of your fucking hangover.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Blue skies. [temp] degrees. Every brunch spot has a 45-minute wait. Plan ahead next time, dipshit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear at [temp] degrees. A perfect day ruined only by the existence of responsibilities and bullshit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunshine at [temp] degrees. Someone said 'let's eat outside' and now there are bees. Fucking great.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      70,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear and warm at [temp]. Your dashboard is hot enough to fry an egg. Don't fucking test it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      80,
+      95
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny day at [temp]. The UV index is plotting against your stupid fucking forehead specifically.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      75,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear sky, [temp] degrees. Joggers everywhere. They look happy. They're lying through their teeth, the bastards.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Beautiful clear day at [temp] degrees and you're reading a weather app. Go the fuck outside.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny at [temp] degrees. The squirrels are more active than your lazy ass.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear night at [temp] degrees. The stars are putting on a free show and you're missing it, asshole.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Starry night. [temp] degrees. Makes you briefly consider astronomy. Very briefly. Then back to your bullshit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear night sky. You can see Orion. That's the only constellation you know, you uncultured shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Moonlit night at [temp] degrees. The world looks silver and you look tired as fuck.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear and calm tonight. The only sound is a distant siren and the hum of your shitty refrigerator.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night sky is crystal clear. Someone just pointed out the Big Dipper like they fucking discovered it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear night. [temp] degrees. The crickets are louder than your bullshit thoughts. Good.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Perfectly clear night. You stepped outside, looked up, felt small, said 'fuck' and went back inside.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear at [temp] tonight. Your backyard looks peaceful. Deceptively so. Probably those bastard raccoons.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Starry night at [temp] degrees. Romantic if you had someone. You have a phone. Pathetic shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy at [temp] degrees. The sun keeps playing hide and seek and it's pissing you off.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun and clouds at [temp]. Nature can't fucking decide. Neither can you about lunch, asshole.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. [temp] degrees. The weather is giving mixed signals, like every shitty relationship you've had.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with partial cloud cover. Very noncommittal of the sky. Grow a fucking backbone, atmosphere.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The sun is on a flexible goddamn schedule today.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Clouds and sun at [temp] degrees. The weather equivalent of 'it's complicated.' Fuck your status.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Partly cloudy. The forecast is as indecisive as you at a fucking restaurant.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp]. Good enough for outside. Not good enough for a picnic blanket commitment. Half-ass weather.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and partly cloudy. The clouds are decorative today. Not threatening. Just bullshit vibes.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. One half of the sky looks great. The other half looks like shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun peeking through clouds at [temp] degrees. Like a celebrity dodging paparazzi. Fuck off, sun.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with some clouds. Your shadow appears and disappears like a glitch in the fucking matrix.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp]. Sunglasses on, off, on, off. This is exhausting bullshit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Half sunny, half cloudy at [temp]. The sky is doing the absolute bare fucking minimum.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Clouds are rolling through like they have somewhere to fucking be.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Not bad enough to cancel shit. Not nice enough to plan shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Some sun, some clouds at [temp]. Make a goddamn decision, atmosphere.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with clouds coming and going. Very casual. Very 'whatever the fuck' weather.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Your tan will be uneven as shit today.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      70,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and partly cloudy. Some would say 'partly sunny.' Those people are delusional optimistic shits.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The clouds look like animals if you're five. If you're an adult staring at clouds, you should be working, you slacker piece of shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The kind of sky that can't commit to being good or shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with partial clouds. Your mood: also partially fucking cloudy.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      45,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Perfect weather for having no strong fucking feelings about the weather.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The weather's personality test came back: fucking ambivert. Commits to nothing. Just like you at brunch.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp] degrees tonight. The moon plays peekaboo through the gaps. Annoying shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clouds and stars at [temp] degrees. The night sky is a half-finished puzzle. Lazy bastard sky.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy night. [temp] degrees. The moon keeps disappearing like your fucking motivation.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night sky at [temp] degrees with scattered clouds. You can see some stars. Not enough to give a shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy night at [temp]. The moonlight comes and goes. Very moody. Very bullshit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Overcast at [temp] degrees. The sky is wearing a gray turtleneck. Pretentious shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and [temp]. No shadows today. You and the sun have that in common — fucking invisible.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gray skies at [temp] degrees. The lighting outside is like a shitty office — fluorescent and depressing.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy. [temp] degrees. The world looks like it was rendered at the lowest goddamn resolution.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees under a blanket of clouds. Not the cozy kind. The suffocating bullshit kind.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast at [temp]. The sun hasn't been seen in hours. File a missing persons report. Or don't. Fuck it.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and [temp] degrees. Perfect weather for being productive indoors. You won't be, you useless shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gray on gray at [temp] degrees. Even the birds look bored as shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and overcast. The sky looks like the inside of a goddamn dryer lint trap.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp]. The weather is as exciting as the third hour of a bullshit board meeting.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast night at [temp] degrees. The sky is a solid wall of absolutely fucking nothing.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy night. [temp] degrees. Not a single star. The sky is fully booked with bullshit clouds.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Dark and cloudy at [temp] degrees tonight. The streetlights are doing all the goddamn work.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy night at [temp]. No moon, no stars, just shitty vibes.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Overcast tonight at [temp] degrees. The darkness has texture. Gray, depressing texture. Fuck.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy at [temp] degrees. Perfect weather for a nap you'll pretend is productive. Bullshit nap.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast and [temp]. The sky looks like it's thinking about raining but hasn't committed. Indecisive piece of shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Wall-to-wall clouds. The sun called in sick. Lazy bastard.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy day at [temp]. Your mood ring would be gray too. And broken. Like your shit attitude.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast at [temp] degrees. This is the weather equivalent of elevator music. Boring as fuck.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Total overcast. The sun is on PTO. Must be fucking nice.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp] degrees. The sky is wearing sweatpants and not giving a single shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp] degrees. Not enough rain for an umbrella. Enough to fuck your hair up.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Light drizzle and [temp]. Your jacket says water-resistant. That jacket is a lying piece of shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling at [temp] degrees. The kind of rain that's too proud to commit. Cowardly bullshit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with a light drizzle. Your windshield wipers have one speed for this: annoying as fuck.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Misting at [temp] degrees. Not rain. Not not rain. A quantum weather clusterfuck.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. Every surface is slightly damp. Including your shitty mood.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Light drizzle and [temp] degrees. The puddles are forming passive-aggressively. Fuck those puddles.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Drizzle. The weather is whispering rain without saying it. Spit it out, bitch.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. Your dog will still want to walk and will still hate every wet second. Stubborn shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A gentle drizzle at [temp] degrees. 'Gentle' is bullshit. It's still getting you wet.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. [temp] degrees. The kind of moisture that makes every fucking thing slightly worse.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and drizzle. Not dramatic enough for sympathy, not dry enough for shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Light rain at [temp] degrees. Your glasses are covered in tiny droplets. Very impressionist. Very fucking blurry.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The sidewalk is that perfect wet where your shoes make embarrassing shit squeaks.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Just enough drizzle to make everyone walk faster and look fucking miserable.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night drizzle at [temp] degrees. The streetlights have halos. Very film noir. Very fuck this.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzling after dark. [temp] degrees. The windshield is a mess of tiny shitty reflections.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Light rain tonight at [temp]. Perfect for falling asleep. Terrible because your windows are open, dumbass.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night drizzle. [temp] degrees. The sound on the roof is either relaxing or maddening. No fucking middle ground.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle and [temp] degrees after dark. The late-night dog walk is a damp fucking regret.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Misting tonight at [temp] degrees. Everything glistens. Pretty but slippery as shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle at [temp]. Walking through it is like walking through a lost cloud. A damp, bullshit cloud.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and a persistent drizzle. Persistent is a compliment usually. Not now. Fuck off, drizzle.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. [temp] degrees. Your plans aren't ruined. They're just... damp. Which is somehow fucking worse.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at [temp] degrees. Your car windows are down somewhere. You can feel it in your fucking bones.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and rain. Commute home takes twice as long because every asshole forgot how to drive.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. Your umbrella is at home. You are not at home. This shit is a pattern.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. [temp] degrees. The roof sounds nice. The puddle forming in your shoe? Not so fucking nice.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and raining. Perfect weather for canceling plans and blaming the fucking weather.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp] degrees. Every driver on the road suddenly forgot what turn signals are. Fucking idiots.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at [temp]. 'It's just water' says someone who's dry. Fuck that person.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Steady rain. Your outdoor furniture is becoming a goddamn water feature.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp] degrees. Kids are inside. The noise level indoors now exceeds the fucking storm.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at [temp]. Coffee shops are packed with assholes who suddenly need to 'work remotely.'",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees in the rain. The romantic version involves a kiss. Your version involves wet shit socks.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The forecast said 20% chance. The forecast is a lying sack of shit.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and raining. Your delivery driver is having a worse day than you. Tip well, asshole.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      40,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rainy night at [temp] degrees. The sound on the roof should help you sleep. Key word: fucking should.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain at [temp]. The streets are reflective and empty. Very cinematic. Very goddamn wet.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Raining after dark. [temp] degrees. The windshield is a Jackson Pollock of water and bullshit.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Rain at night. Every car sounds like a zipper on wet pavement. Annoying shit.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain. [temp] degrees. The gutters are working overtime. You can hear it from fucking bed.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rainy night at [temp]. Perfect excuse to cancel plans you didn't want to keep anyway. Fuck those plans.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Pouring at [temp] degrees. The sky opened up like it had a personal fucking grudge.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain and [temp] degrees. The parking lot is a lake. Your car is an island. You're fucked.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Torrential rain at [temp]. 'Raining cats and dogs' doesn't cover this. This is raining goddamn furniture.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp] degrees. Three seconds outside and you're fully fucking baptized.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Rain so heavy the wipers are on max and still losing. Piece of shit wipers.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp]. Flash flood warnings on your phone, anxiety in your shit soul.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. [temp] degrees. Traffic is a parking lot and the parking lot is a fucking pool.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night downpour at [temp] degrees. Rain on the roof went from soothing to 'what the fuck' alarming.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Pouring rain after dark. [temp] degrees. Visibility is 'good fucking luck out there.'",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain at night. [temp] degrees. The storm drain sounds like a goddamn river.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Nighttime downpour at [temp]. The thunder of rain just woke the dog. Fucking great.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Torrential rain tonight at [temp] degrees. Your leaky window chose NOW to reveal itself. Shit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowing at [temp] degrees. Beautiful until you have to shovel this shit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and snow. The world looks like a postcard. Your driveway looks like a fucking problem.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. Your car is now a snow-covered mystery shape. Good luck finding it, asshole.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      18,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. [temp] degrees. Kids want to play in it. You want to pretend it's not fucking happening.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Light snow. Just enough to make driving interesting and by interesting I mean shit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling at [temp] degrees. Your neighbor is already out with a leaf blower. Ballsy move, dipshit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and snowing. Forecast says 3 inches. It's either lying or being optimistic. Either way, bullshit.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp] degrees. Your boots are somewhere in the closet. Under every other piece of shit you own.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing and [temp]. The quiet is beautiful until the snowplow fucking destroys it at 5 AM.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and snowing. Your car's defrost setting is optimistic as shit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowy night at [temp] degrees. The world is muffled and eerily quiet. Peaceful as fuck actually.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow falling at night. [temp] degrees. The streetlights make it magical. The alarm will ruin it. Shit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night snow at [temp] degrees. Tomorrow's commute is loading. This is going to fucking suck.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Snow after dark. The plows will wake you at 4 AM. Fuck that truck.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowy night at [temp]. Accumulating on the porch. By morning the shovel will be buried too. Shit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Blizzard conditions at [temp] degrees. Nature said 'nobody fucking leaves.'",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow at [temp]. Visibility: shit. Road conditions: worse. Your attitude: the worst.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Snow dumping hard. Your yard and sidewalk are the same goddamn thing now.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowstorm at [temp] degrees. Schools didn't even announce it. Everyone fucking knew.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow. [temp] degrees. Your snow shovel is already tired and you haven't done shit yet.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Major snowfall at [temp] degrees. Time to find out if you actually have enough bread. Spoiler: you don't, dipshit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Snowpocalypse. The grocery store has been raided. The bread is gone. Shit's real.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Blizzard at [temp] degrees at night. The world outside doesn't fucking exist anymore.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy snow falling all night at [temp]. By morning your car will be a shapeless bullshit snowdrift.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night blizzard at [temp] degrees. The wind is screaming. The snow is piling. Fuck everything outside.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunderstorm at [temp] degrees. The sky picked a fight and it's winning. Fuck.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      82
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder and lightning at [temp]. Nature's anger management is going to shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm at [temp] degrees. The car alarms formed a fucking choir. Nobody asked for this concert.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm. [temp] degrees. You can feel the bass through the goddamn floor.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning at [temp] degrees. The flash count is higher than your shit productivity today.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm rolling through at [temp]. Power flickered three times. Cool cool cool. Fuck.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm at [temp] degrees. The lightning is spectacular. The anxiety is fucking spectacular too.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night thunderstorm at [temp] degrees. Lightning turns your bedroom into a goddamn strobe light.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Storm after dark at [temp] degrees. Every thunder crack makes the whole house shit itself.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night storm. [temp] degrees. Rain on window plus thunder equals zero fucking sleep.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Lightning at [temp] degrees tonight. Phone sent a weather alert. Thanks, I heard the goddamn thunder.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunderstorm at night. The dog is in the bathtub. The cat is under the bed. Everyone's losing their shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night storm at [temp] degrees. Power went out. Time to find out where you put the fucking candles.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      58,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain at [temp] degrees. Every surface is a goddamn conspiracy against your balance.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice and sleet at [temp]. Your car door handle requires a fucking physics degree to operate.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Freezing rain. The world is wearing a glass coat and it's not fashion, it's bullshit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      26,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet at [temp] degrees. Nature typing a strongly worded letter on your shitty window.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing drizzle at [temp]. Your driveway just became a lawsuit. Fuck.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      28,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm at [temp] degrees. Walking to the mailbox is now an extreme fucking sport.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and freezing rain. Trees are beautiful. Roads are treacherous. Nature is a two-faced bitch.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. [temp] degrees. Your de-icer is in the car. The car is encased in ice. Fuck the irony.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Freezing rain glazing everything like a sadistic goddamn pastry chef.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      26,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice accumulating at [temp] degrees. Your morning windshield scrape time just tripled. Shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. School's canceled. Kids are thrilled. Parents are fucking trapped.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Sleet pelting you with tiny ice bullets and calling it precipitation. Fuck off, sky.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      28,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice at [temp] degrees. The penguin walk is survival, not a suggestion, dipshit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Your front steps are a goddamn ice luge and you're not dressed for the Olympics.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind gusts at [temp] degrees. Your recycling just introduced itself to the fucking neighbors.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and windy. Your hairstyle lasted from door to car. A record of shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty at [temp]. Everything not bolted down is now community fucking property.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp] degrees. The trees are bending like they owe the wind money. Shit looks serious.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and howling wind. Your outdoor dining is now a napkin-chasing shitshow.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. [temp] degrees. The flag next door is going to need goddamn therapy after today.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees with sustained wind. Debris providing free exfoliation. You didn't fucking ask for it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind gusts at [temp]. Your car door just tried to take out the car next to it. Shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp] degrees. Your patio umbrella just achieved liftoff. Goodbye, you cheap piece of shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and breezy. 'Breezy' is underselling it. Your trash cans think 'breezy' is bullshit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp] degrees. The branches are stress-testing your goddamn roof.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and gusts. Your yard is collecting shit that isn't yours. Free stuff. Windy surprise.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Outdoor dining was a shit choice. The napkins are in the next county.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty at [temp] degrees. Power lines are swinging. That's fine. Every fucking thing is fine.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The wind is rearranging your yard free of charge. Didn't ask for this shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy at [temp] degrees. Visibility: your hand. Maybe. Shit's thick.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Dense fog at [temp]. Your morning just got ten minutes longer and zero percent less shitty.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at [temp] degrees. The world loaded at 20%. Buffering. Fuck this connection.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and foggy. Trees across the street are suggestions now. Bullshit suggestions.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog advisory at [temp] degrees. Advisory means 'this shit sucks and we're telling you officially.'",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy. [temp] degrees. Everything beyond 50 feet is a goddamn rumor.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees in the fog. Your commute is a slow-motion trust exercise. Fuck trust.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Dense fog at [temp]. Car headlights are just decorative bullshit at this point.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at [temp] degrees. Everything looks like it's behind frosted glass. Pretty. Useless. Shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and fog. A lighthouse would earn its keep. Your headlights can't see shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy morning at [temp] degrees. Coffee is hot. Visibility is not. Fuck this fog.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at [temp]. Step outside and the world ends at the property line. Fuck everything past that.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The thermostat wars have begun. Nobody wins. Everybody fucking suffers.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      76
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Your weather small talk is preloaded. Fire at will, asshole.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Perfect for that walk you keep saying you'll take, you lying sack of shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      62,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The barista asked 'hot or iced?' and you froze. Ironic at this fucking temperature.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your body can't decide if it's cold or if you're being a dramatic little bitch.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      48,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the forecast keeps changing. The weather has commitment issues. Like your shit ex.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The kind of temperature that exists so coworkers have something to say in the elevator besides 'fuck, it's Monday.'",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Dress in layers. Regret at least one fucking layer by noon.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Not cold enough for sympathy. Not warm enough for shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Tomorrow will be different. You will bitch about it either way.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. So unremarkable that even this weather app is struggling to give a shit about it.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      58,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. So hot the road is shimmering. The mirage is more interesting than your shit day.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Even the shade is hot. There is no escape. Only acceptance and profuse fucking sweating.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your car's AC has been running for ten minutes and it's still losing the fucking battle.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kind of morning where your breath is visible and your patience is not. Fuck.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      25,
+      38
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Transitioning from car heat to outside air is a personal fucking betrayal.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      30,
+      42
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Warm enough to forget your jacket. Cold enough to regret it by evening. Shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Too warm for soup, too cold for salad. You're eating a sad desk sandwich and you fucking know it.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and the only thing sweating harder than you is your bullshit water bottle.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The weather app just told you what you could've figured out by walking the fuck outside.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The weather channel is showing your city. You're famous. For shit weather.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and someone is grilling. You can smell it. You weren't fucking invited.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      70,
+      88
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Perfect temperature for staring at your phone in a parking lot questioning your shit life choices.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and the automatic doors opened for nobody. The sensor gave up on humanity. Honestly? Fucking same.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your water bottle went from ice cold to piss warm in twenty minutes. Thermodynamics is a bitch.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      78,
+      95
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the only thing you're sure of is that you dressed wrong, dipshit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Shorts weather for the brave. Jeans weather for people with a fucking brain.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      52,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the WiFi is slow for no reason. Blame the weather. Blame fucking everything.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] out. Somebody just said 'at least it's not raining.' Shut your jinxing ass up.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Morning fog at [temp] degrees. Your commute just unlocked hard mode, you poor bastard.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      30,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. Kids are refreshing the school website every three seconds. Little shits want a snow day.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Drizzle that can't decide if it's rain. Like a participation trophy from the shit sky.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and [temp]. The weather equivalent of 'read' with no goddamn reply.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. [temp] degrees. The forecast used 'intermittent.' Fancy bullshit word for 'who fucking knows.'",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and windy. Your eyes are watering. You're not crying. The wind is doing it, asshole.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear evening at [temp] degrees. The sunset is gorgeous. Your phone storage is fucked.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and freezing rain. The world is a shitty snow globe someone shook and abandoned.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder at [temp] degrees. The pet hiding under the bed has the right fucking idea.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Heavy rain sounds like applause. Nobody is clapping for your dumb ass though.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] tonight and the heating blanket is the only goddamn thing keeping you alive.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      20,
+      38
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Night. Quiet. Your stomach just growled loud enough to scare the shit out of you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain at [temp]. The windshield wipers on the parked car are going. That's creepy as fuck.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy night at [temp] degrees. Sky ceiling at 200 feet. Claustrophobic bullshit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees and heavy snow at night. Silence between snowflakes is eerie as shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night drizzle at [temp]. The world sounds like it's wrapped in wet fucking tissue paper.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Your Uber driver is three minutes away and you're not even dressed. Get your shit together.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside and you're googling 'is it normal to hate weather.' It is. Fuck weather.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The bus stop has zero shade and the sun is personally fucking with you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and every surface in your car is somehow the wrong temperature. The steering wheel? Burning. The seat? Freezing. Fuck cars.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      30,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your coworker is wearing shorts. It's not shorts weather, Kevin. What the fuck.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      48,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The vending machine ate your dollar. The weather ate your patience. Fuck today.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Someone said 'it builds character.' Fuck your character-building weather.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the office thermostat is set to 'fuck everyone equally.'",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      68,
+      76
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your car's heated steering wheel is the closest thing to human warmth you've felt all week. Pathetic shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      15,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Perfect temperature for complaining about the temperature. Which you're doing. Asshole.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The forecast said 'pleasant.' The forecast can eat my entire ass.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the sun is attacking you through the car window like a targeted assault.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      80,
+      95
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Clear skies. Your sunburn from the weekend is peeling. Gross shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      70,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny at [temp]. Every basic person within a 5-mile radius is posting 'vitamin sea' bullshit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      75,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear and [temp]. The air smells good and you're suspicious as fuck about it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and blue sky. The construction crew outside started at 7 AM. Fuck them and their jackhammer.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp]. The sun is being a tease. Put up or shut up, you flaky shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Partly cloudy. Like your personality — half bright, half full of shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp] degrees. The weather is as decisive as you at a four-way stop. Fucking useless.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp]. The sky has the personality of wet concrete. Shit weather for shit people.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and overcast. The clouds are suffocating the sun. I relate to this bullshit on a personal level.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast and [temp]. The world looks like it gave up. Same energy as your fucking Monday.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog and [temp] degrees. Driving through this is like navigating a fart cloud. Can't see shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and foggy. The fog is so thick you could spread it on toast. Disgusting shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp] degrees. Not real rain. Just the sky spitting on you. Disrespectful shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and drizzle. Your hair went from 'styled' to 'shit' in the walk from car to door.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp] degrees. Every asshole with an SUV is driving like they're invincible. They're not.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and pouring. Your pants are wet up to the shins. You look like you pissed yourself. Great.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at [temp]. Your coworker brought a golf umbrella inside. It's dripping on everything. Inconsiderate fuck.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp] degrees. The pothole on your street is now a koi pond. Fuck that pothole.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Monsoon-level rain. Your gutters are overflowing because you never clean them, you lazy shit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp]. You just saw someone's trash can float by. Not your problem. Fuck it.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow and [temp] degrees. Your back already hurts just looking at the driveway. Shoveling is bullshit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and snowing. The first flake is magical. The next four inches are a motherfucking nightmare.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      18,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. Your neighbor's car has no snow brush. They're using a spatula. Fucking amateur.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Blizzard at [temp]. The governor said stay inside. For once the government and common sense agree. Holy shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Whiteout conditions. Can't tell where the road ends and the ditch begins. Shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow at [temp]. Your snow boots have a hole in them. You just found out. In the snow. Fuck.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm and [temp] degrees. Your surge protector is earning its goddamn keep tonight.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and thunder. The transformer on your street just blew. The fireworks were free. Shit's dark now.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm at [temp] degrees. Hail the size of marbles. Your car is getting acupuncture. Fuck.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning at [temp]. The flash was bright enough to see the mess in your garage. Wish you hadn't. Shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp] degrees. Your trampoline is in someone else's yard. Not even the same block. Shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and gusting. The wind took your hat, your dignity, and your will to go outside. Fuck this.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Your door just slammed so hard the pictures fell off the wall. Son of a bitch.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp] degrees. Dust in both eyes simultaneously. Life is a cruel bitch.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. You just watched someone eat shit on the sidewalk. You're next, asshole.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and sleet. The ice is making art on your windshield. Beautiful art you have to fucking destroy to drive.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm at [temp]. Your neighbor fell getting the mail. You laughed. Then you fell too. Karma's a bitch.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Black ice. The road looks fine. The road is lying. The road is a treacherous piece of shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp] degrees. Your car is entombed in ice. You're going to be late as fuck.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the wind chill makes it feel like absolute dogshit outside.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      20,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your nose hairs froze. Didn't know that was possible? Now you fucking do.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -10,
+      10
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] degrees. Hot enough that the birds are walking. Even they said 'fuck flying.'",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The heat shimmer on the road looks like water. It's not. It's just hot bullshit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the AC unit sounds like it's about to fucking die. RIP your comfort.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Cold enough that your phone battery dropped 20% just from being outside. Piece of shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -5,
+      15
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Even your smartwatch is telling you to go the fuck inside.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The concrete is warm enough to fry an egg. Who the fuck wants a concrete egg.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      100,
+      120
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] degrees at 2 AM. Why the fuck are you awake checking the weather? Go to sleep, dumbass.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees tonight. Your blanket situation is inadequate and you know it, cheap bastard.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      25,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night at [temp] degrees. The only thing colder than outside is the other side of your goddamn bed.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      15,
+      35
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Late night. Your neighbor's dog is barking at nothing again. Shut that shit up.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] and dark. The sound you just heard was probably nothing. Probably. Shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees at night. You left the porch light on. Bugs are having a fucking rave out there.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night. [temp] degrees. The gas station down the street is the only sign of life. Depressing shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] and you're still up because your brain won't shut the fuck up.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. The moon is judging you for still being awake. Mind your fucking business, moon.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear night. [temp] degrees. Perfect for a late drive to nowhere. Gas prices say go fuck yourself though.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      50,
+      68
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Stormy night at [temp]. Lightning is providing free temporary lighting for the bathroom trip. Thanks, asshole sky.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowy night at [temp] degrees. The flakes in the streetlight look like TV static in slow motion. Trippy shit.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzly night at [temp]. The windshield is crying. You might be too. Fuck it, nobody's watching.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog at [temp] degrees. The headlights illuminate your poor fucking decisions. All three feet of visibility.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Windy night at [temp]. The house is creaking its own shitty nighttime horror soundtrack.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      30,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Icy night at [temp] degrees. The world outside is beautiful and hostile. A gorgeous piece of shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees and raining. The only dry thing about today is your shit sense of humor.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and snowing. Somewhere a child is overjoyed. Somewhere an adult is shoveling and cursing. Fuck snow.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Cloudy enough that your vitamin D supplement is the only thing standing between you and looking like a fucking ghost.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The sky is blue, the grass is green, and you're on your phone like always, you screen-addicted shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 2,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. You checked the weather. Then checked it again. Then looked out the window anyway. Paranoid shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 2,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your toes went numb ten minutes ago. Can't feel your shit. Literally.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      5,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. The vending machine coffee is the warmest thing in your pathetic shit life.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      15,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your lips are cracked, your nose is running, and you look like hammered shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      10,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and every parking spot near the entrance is taken. Walk, you lazy fuck.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      30,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your glasses fogged up walking inside. Now you're blind and look like an idiot. Shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      20,
+      35
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] out and you wore flip-flops. In this weather. What the fuck is wrong with you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      35,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your lunch is lukewarm because you left it in the car. Smart fucking move.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      30,
+      50
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] degrees. Nobody at the gym, everybody at Chili's. Shit checks out.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      25,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The toilet seat is freezing. The daily ambush. Fuck winter bathrooms.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      10,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] outside. Summer feels like a lie someone told you once. Frozen bullshit everywhere.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -10,
+      15
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. You can see your breath. Pretend it's dragon smoke. You're still fucking cold though.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and your car made a noise it's never made before. Cold does that. Or it's dying. Shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The icicles on the roof are gorgeous. Also they're weapons. Nature is a bitch.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -10,
+      15
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear day at [temp] degrees. Nature photographers are out in force. Watch where you walk, they don't give a shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunny at [temp]. The playground equipment is a burn hazard. Kids learn this the hard fucking way.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      85,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and clear. Your neighbor is washing their car. Again. That obsessive shit is concerning.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      65,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. If the weather were a Yelp review it'd be three stars. Mid. Bullshit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and partly cloudy. The sun is gaslighting you. 'I'm here! No I'm not! Fuck you!'",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp] degrees. The lighting makes everyone look sick. You included, you pale shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      40,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and overcast. Gray sky, gray mood, gray coffee because you forgot creamer. The trifecta of 'fuck today.'",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at [temp]. Your windshield is fogged, your mirrors are fogged, your brain is fogged. Total shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      32,
+      48
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and fog. Can't see the speed limit sign. Plausible deniability. Fuck yes.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      35,
+      52
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle and [temp] degrees. Not enough to use an umbrella without looking like an overdramatic shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and misting. The rain is so light it's basically the weather giving you the passive-aggressive silent treatment. Fuck that.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. Your rain boots have been in the closet so long they smell like a fucking museum.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees and raining. Traffic is backed up because one asshole doesn't have wipers.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp]. Your sunroof has ONE leak and it found it. Right on the fucking seat.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and pouring. The dog tracked mud through the entire house. Every fucking room.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp] degrees. Someone wrote 'wash me' on your car. Hilarious. Fuck that person.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and snowing. Your snow boots are in the garage. Under summer shit. Under more shit. Buried.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      15,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Blizzard at [temp]. Amazon just sent a delay notification. Even Prime doesn't work in this shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      0,
+      20
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Whiteout blizzard. The snowman the kids built yesterday is already a war casualty. Shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": [
+      5,
+      25
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder at [temp] degrees. Your Alexa just lost WiFi. The smart home is now a dumb house. Fuck.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and lightning. The strike was close. The power flickered. Your unsaved document is gone. Shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind at [temp] degrees. Somebody's lawn chair just flew past your window like a goddamn UFO.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] and windy. Your fence panel fell over. Again. Third time this shit year.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      35,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. Your ice scraper snapped in half. Of course it did. Cheap piece of shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Ice everywhere. Walking like a newborn deer on a frozen lake. Embarrassing as fuck.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees at night. Ordered food delivery. The driver hates you. Tip accordingly, asshole.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      30,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night at [temp] degrees. You just heard a noise outside. It's nothing. Probably. Fuck it, lock the door.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees after midnight. The gas station hot dog is calling. It shouldn't. That shit is lethal.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] and late. Your Netflix asked 'are you still watching?' Judgmental piece of shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night. [temp] degrees. The raccoons are going through your trash like it's a goddamn buffet.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees tonight. Your pillow is warm on both sides. The kind of bullshit that breaks a person.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      72,
+      88
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Late night at [temp]. Your neighbor's sprinklers just went off. At midnight. Who does that shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "It's [temp] and you're awake at 3 AM reading weather data. Seek help. Or don't. I'm an app, not a fucking therapist.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "[temp] degrees. Can't sleep because it's too hot. Can't open windows because bugs exist. Fuck bugs.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      72,
+      88
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
   }
 ]
