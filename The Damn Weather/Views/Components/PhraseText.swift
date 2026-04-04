@@ -32,5 +32,7 @@ struct PhraseText: View {
                 }
             }
             .padding(.horizontal, DesignTokens.spaceMD)
+            .accessibilityLabel(phrase)
+            .accessibilityHint("Double tap for a new phrase")
     }
 }

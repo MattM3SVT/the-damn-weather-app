@@ -8,8 +8,8 @@ actor WeatherService {
     private var cache: [String: WeatherSnapshot] = [:]
 
     private func cacheKey(for location: CLLocation) -> String {
-        let lat = (location.coordinate.latitude * 100).rounded() / 100
-        let lon = (location.coordinate.longitude * 100).rounded() / 100
+        let lat = (location.coordinate.latitude * 1000).rounded() / 1000
+        let lon = (location.coordinate.longitude * 1000).rounded() / 1000
         return "\(lat),\(lon)"
     }
 

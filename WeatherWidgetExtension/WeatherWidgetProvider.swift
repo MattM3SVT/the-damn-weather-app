@@ -35,7 +35,12 @@ struct WeatherWidgetEntry: TimelineEntry {
     }
 
     static var placeholder: WeatherWidgetEntry {
-        WeatherWidgetEntry(
+        // Use the user's last known location name if available
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        let savedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName)
+        let locationName = (savedName?.isEmpty == false) ? savedName! : "Your Location"
+
+        return WeatherWidgetEntry(
             date: Date(),
             temperature: 72,
             conditionTag: .partlyCloudy,
@@ -57,7 +62,7 @@ struct WeatherWidgetEntry: TimelineEntry {
                 .init(day: "Thu", high: 72, low: 57, conditionTag: .cloudy),
                 .init(day: "Fri", high: 80, low: 63, conditionTag: .clear),
             ],
-            locationName: "Seattle, WA"
+            locationName: locationName
         )
     }
 }

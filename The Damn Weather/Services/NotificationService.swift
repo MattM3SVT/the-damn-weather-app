@@ -7,6 +7,9 @@ actor NotificationService {
             return try await UNUserNotificationCenter.current()
                 .requestAuthorization(options: [.alert, .sound, .badge])
         } catch {
+            #if DEBUG
+            print("🔔 Notification permission request failed: \(error)")
+            #endif
             return false
         }
     }
@@ -33,7 +36,13 @@ actor NotificationService {
             trigger: trigger
         )
 
-        try? await UNUserNotificationCenter.current().add(request)
+        do {
+            try await UNUserNotificationCenter.current().add(request)
+        } catch {
+            #if DEBUG
+            print("🔔 Failed to schedule morning forecast: \(error)")
+            #endif
+        }
     }
 
     func sendSevereWeatherAlert(headline: String, description: String) async {
@@ -50,7 +59,13 @@ actor NotificationService {
             trigger: nil // Deliver immediately
         )
 
-        try? await UNUserNotificationCenter.current().add(request)
+        do {
+            try await UNUserNotificationCenter.current().add(request)
+        } catch {
+            #if DEBUG
+            print("🔔 Failed to send severe weather alert: \(error)")
+            #endif
+        }
     }
 
     func cancelMorningForecast() {

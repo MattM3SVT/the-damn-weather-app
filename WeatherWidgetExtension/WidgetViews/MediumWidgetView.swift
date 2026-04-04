@@ -8,9 +8,11 @@ struct MediumWidgetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
+            Spacer(minLength: 0)
+
             // THE PHRASE — big, bold, front and center
             Text(entry.phrase)
-                .font(.system(size: 18, weight: .bold))
+                .font(.system(size: 20, weight: .bold))
                 .lineLimit(3)
                 .minimumScaleFactor(0.8)
                 .foregroundStyle(.white)

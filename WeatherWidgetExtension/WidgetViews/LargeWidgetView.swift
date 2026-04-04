@@ -29,9 +29,11 @@ struct LargeWidgetView: View {
                 }
             }
 
+            Spacer(minLength: 0)
+
             // THE PHRASE — big, bold, full text, no truncation
             Text(entry.phrase)
-                .font(.system(size: 17, weight: .bold))
+                .font(.system(size: 19, weight: .bold))
                 .lineLimit(4)
                 .minimumScaleFactor(0.75)
                 .foregroundStyle(.white)
@@ -68,6 +70,7 @@ struct LargeWidgetView: View {
                             .font(.system(size: 11, weight: .medium))
                             .frame(width: 40, alignment: .leading)
 
+                        // Daily forecast always uses daytime icons (standard weather app convention)
                         Image(systemName: day.conditionTag.sfSymbol(isDay: true))
                             .symbolRenderingMode(.multicolor)
                             .font(.system(size: 12))

@@ -25,16 +25,16 @@ final class AppState {
         if let unit = defaults.string(forKey: AppConstants.UserDefaultsKeys.temperatureUnit) {
             temperatureUnit = TemperatureUnit(rawValue: unit) ?? .fahrenheit
         }
-        if let unit = defaults.string(forKey: "windSpeedUnit") {
+        if let unit = defaults.string(forKey: AppConstants.UserDefaultsKeys.windSpeedUnit) {
             windSpeedUnit = WindSpeedUnit(rawValue: unit) ?? .mph
         }
-        if let unit = defaults.string(forKey: "pressureUnit") {
+        if let unit = defaults.string(forKey: AppConstants.UserDefaultsKeys.pressureUnit) {
             pressureUnit = PressureUnit(rawValue: unit) ?? .hPa
         }
-        if let unit = defaults.string(forKey: "precipitationUnit") {
+        if let unit = defaults.string(forKey: AppConstants.UserDefaultsKeys.precipitationUnit) {
             precipitationUnit = PrecipitationUnit(rawValue: unit) ?? .inches
         }
-        if let unit = defaults.string(forKey: "distanceUnit") {
+        if let unit = defaults.string(forKey: AppConstants.UserDefaultsKeys.distanceUnit) {
             distanceUnit = DistanceUnit(rawValue: unit) ?? .miles
         }
     }
@@ -56,22 +56,22 @@ final class AppState {
 
     func saveWindSpeedUnit(_ unit: WindSpeedUnit) {
         windSpeedUnit = unit
-        UserDefaults.standard.set(unit.rawValue, forKey: "windSpeedUnit")
+        UserDefaults.standard.set(unit.rawValue, forKey: AppConstants.UserDefaultsKeys.windSpeedUnit)
     }
 
     func savePressureUnit(_ unit: PressureUnit) {
         pressureUnit = unit
-        UserDefaults.standard.set(unit.rawValue, forKey: "pressureUnit")
+        UserDefaults.standard.set(unit.rawValue, forKey: AppConstants.UserDefaultsKeys.pressureUnit)
     }
 
     func savePrecipitationUnit(_ unit: PrecipitationUnit) {
         precipitationUnit = unit
-        UserDefaults.standard.set(unit.rawValue, forKey: "precipitationUnit")
+        UserDefaults.standard.set(unit.rawValue, forKey: AppConstants.UserDefaultsKeys.precipitationUnit)
     }
 
     func saveDistanceUnit(_ unit: DistanceUnit) {
         distanceUnit = unit
-        UserDefaults.standard.set(unit.rawValue, forKey: "distanceUnit")
+        UserDefaults.standard.set(unit.rawValue, forKey: AppConstants.UserDefaultsKeys.distanceUnit)
     }
 }
 

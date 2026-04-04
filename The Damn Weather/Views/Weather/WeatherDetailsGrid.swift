@@ -38,7 +38,9 @@ struct WeatherDetailsGrid: View {
                     extra: weather.current.humidity.humidityDescription,
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .humidity }
+                .accessibilityLabel("Humidity, \(weather.current.humidity.percentString)")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .humidity }
 
                 // Wind
                 DetailCard(
@@ -48,7 +50,9 @@ struct WeatherDetailsGrid: View {
                     extra: "\(weather.current.windDirection.compassDirection) · Gusts \(appState.windSpeedUnit.format(weather.current.windGusts))",
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .wind }
+                .accessibilityLabel("Wind, \(appState.windSpeedUnit.format(weather.current.windSpeed))")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .wind }
 
                 // UV Index
                 DetailCard(
@@ -58,7 +62,9 @@ struct WeatherDetailsGrid: View {
                     extra: Double(weather.current.uvIndex).uvLevel,
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .uvIndex }
+                .accessibilityLabel("UV Index, \(weather.current.uvIndex), \(Double(weather.current.uvIndex).uvLevel)")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .uvIndex }
 
                 // Pressure
                 DetailCard(
@@ -68,7 +74,9 @@ struct WeatherDetailsGrid: View {
                     extra: nil,
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .pressure }
+                .accessibilityLabel("Pressure, \(appState.pressureUnit.format(weather.current.pressure))")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .pressure }
 
                 // Sunrise/Sunset
                 if let today = weather.daily.first {
@@ -79,7 +87,9 @@ struct WeatherDetailsGrid: View {
                         extra: "↓ \(today.sunset.timeString(timezone: weather.timezone))",
                         tappable: true
                     )
-                    .onTapGesture { selectedDetail = .sun }
+                    .accessibilityLabel("Sunrise and sunset times")
+                    .accessibilityHint("Double tap for details")
+                    .onTapGesture { HapticsService.lightTap(); selectedDetail = .sun }
                 }
 
                 // Precipitation
@@ -91,7 +101,9 @@ struct WeatherDetailsGrid: View {
                         extra: "\(today.precipitationProbability.percentString) chance",
                         tappable: true
                     )
-                    .onTapGesture { selectedDetail = .precipitation }
+                    .accessibilityLabel("Precipitation")
+                    .accessibilityHint("Double tap for details")
+                    .onTapGesture { HapticsService.lightTap(); selectedDetail = .precipitation }
                 }
 
                 // Visibility
@@ -102,7 +114,9 @@ struct WeatherDetailsGrid: View {
                     extra: weather.current.visibility.visibilityDescription,
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .visibility }
+                .accessibilityLabel("Visibility, \(appState.distanceUnit.format(weather.current.visibility))")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .visibility }
 
                 // Dew Point
                 DetailCard(
@@ -112,7 +126,9 @@ struct WeatherDetailsGrid: View {
                     extra: nil,
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .dewPoint }
+                .accessibilityLabel("Dew Point, \(unit.format(weather.current.dewPoint))")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .dewPoint }
 
                 // Cloud Cover
                 DetailCard(
@@ -122,7 +138,9 @@ struct WeatherDetailsGrid: View {
                     extra: nil,
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .cloudCover }
+                .accessibilityLabel("Cloud Cover, \(weather.current.cloudCover.percentString)")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .cloudCover }
 
                 // Temperature (feels like)
                 DetailCard(
@@ -132,7 +150,9 @@ struct WeatherDetailsGrid: View {
                     extra: "Feels like \(unit.format(weather.current.feelsLike))",
                     tappable: true
                 )
-                .onTapGesture { selectedDetail = .temperature }
+                .accessibilityLabel("Temperature, \(unit.format(weather.current.temperature)), feels like \(unit.format(weather.current.feelsLike))")
+                .accessibilityHint("Double tap for details")
+                .onTapGesture { HapticsService.lightTap(); selectedDetail = .temperature }
 
                 // Moon Phase
                 if let moon = weather.moonPhase {
@@ -143,7 +163,9 @@ struct WeatherDetailsGrid: View {
                         extra: "\(Int(moon.illumination * 100))% illuminated",
                         tappable: true
                     )
-                    .onTapGesture { selectedDetail = .moon }
+                    .accessibilityLabel("Moon, \(moon.phase.rawValue), \(Int(moon.illumination * 100)) percent illuminated")
+                    .accessibilityHint("Double tap for details")
+                    .onTapGesture { HapticsService.lightTap(); selectedDetail = .moon }
                 }
             }
         }

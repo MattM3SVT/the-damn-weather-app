@@ -92,9 +92,12 @@ struct SettingsView: View {
                         Label("What's New", systemImage: "sparkles")
                     }
 
-                    // TODO: Replace with actual App Store URL after first submission
-                    Link(destination: URL(string: "https://apps.apple.com/app/idXXXXXXXXXX")!) {
-                        Label("Rate the App", systemImage: "star.fill")
+                    // Rate the App — hidden until actual App Store ID is set
+                    if let rateURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX"),
+                       !rateURL.absoluteString.contains("XXXXXXXXXX") {
+                        Link(destination: rateURL) {
+                            Label("Rate the App", systemImage: "star.fill")
+                        }
                     }
 
                     Link(destination: URL(string: "https://thedamnweather.com/privacy")!) {

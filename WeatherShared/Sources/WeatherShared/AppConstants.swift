@@ -3,7 +3,7 @@ import Foundation
 public enum AppConstants {
     public static let appGroupID = "group.DamnWeather.The-Damn-Weather"
     public static let weatherCacheTTL: TimeInterval = 15 * 60  // 15 minutes
-    public static let maxSeenPhrases = 200
+    public static let maxSeenPhrases = 300
     public static let windOverrideThreshold: Double = 25.0  // mph
 
     public enum UserDefaultsKeys {
@@ -19,5 +19,11 @@ public enum AppConstants {
         public static let morningForecastEnabled = "morningForecastEnabled"
         public static let morningForecastTime = "morningForecastTime"
         public static let severeWeatherAlertsEnabled = "severeWeatherAlertsEnabled"
+        public static let windSpeedUnit = "windSpeedUnit"
+        public static let pressureUnit = "pressureUnit"
+        public static let precipitationUnit = "precipitationUnit"
+        public static let distanceUnit = "distanceUnit"
+        public static let lastShownClean = "lastShownPhrase_clean"
+        public static let lastShownExplicit = "lastShownPhrase_explicit"
     }
 }

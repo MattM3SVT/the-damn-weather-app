@@ -80,7 +80,9 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 }
                 return Self.extractAddress(from: item)
             } catch {
+                #if DEBUG
                 print("📍 MKReverseGeocodingRequest failed: \(error). Falling back to CLGeocoder.")
+                #endif
             }
         }
 
@@ -97,14 +99,11 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 country: place.country ?? ""
             )
         } catch {
+            #if DEBUG
             print("📍 CLGeocoder also failed: \(error). Returning defaults.")
+            #endif
             return ("Unknown", "", "")
         }
-    }
-
-    func search(query: String) async throws -> [MKLocalSearchCompletion] {
-        // Handled by LocationSearchViewModel's completer
-        return []
     }
 
     func searchLocation(query: String) async throws -> [(name: String, state: String, country: String, location: CLLocation)] {

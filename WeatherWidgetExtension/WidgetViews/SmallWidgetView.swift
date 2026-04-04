@@ -19,7 +19,7 @@ struct SmallWidgetView: View {
             }
             .foregroundStyle(.white.opacity(0.7))
 
-            Spacer(minLength: 4)
+            Spacer(minLength: 0)
 
             // THE PHRASE — fill as much space as possible
             Text(entry.phrase)

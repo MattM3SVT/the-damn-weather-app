@@ -104,7 +104,9 @@ final class WeatherViewModel {
             isLoading = false
         } catch {
             let errorDesc = String(describing: error)
+            #if DEBUG
             print("🌦️ WeatherKit Error: \(errorDesc)")
+            #endif
 
             let geocode = await geocodeTask
             locationName = geocode.name.isEmpty ? "Unknown" : geocode.name

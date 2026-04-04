@@ -7,7 +7,7 @@ public actor PhraseEngine {
     private var explicitPhrases: [Phrase] = []
     private var isLoaded = false
 
-    /// Tracks the last phrase shown per mode to prevent back-to-back repeats
+    /// Tracks the last phrase shown per mode to prevent back-to-back repeats (persisted)
     private var lastShownClean: String?
     private var lastShownExplicit: String?
 
@@ -15,6 +15,9 @@ public actor PhraseEngine {
 
     public init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
+        // Restore last-shown phrases from persistence
+        lastShownClean = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastShownClean)
+        lastShownExplicit = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastShownExplicit)
     }
 
     /// Load phrase bundles from the package's Resources
@@ -118,12 +121,14 @@ public actor PhraseEngine {
         // Replace [temp] token with actual temperature
         let text = selected.rendered(tempF: tempF)
 
-        // Track this phrase as seen and as last-shown
+        // Track this phrase as seen and as last-shown (persisted to prevent repeats across launches)
         markSeen(mode: mode, phraseText: selected.text)
         if mode == .explicit {
             lastShownExplicit = selected.text
+            defaults.set(selected.text, forKey: AppConstants.UserDefaultsKeys.lastShownExplicit)
         } else {
             lastShownClean = selected.text
+            defaults.set(selected.text, forKey: AppConstants.UserDefaultsKeys.lastShownClean)
         }
 
         return text
