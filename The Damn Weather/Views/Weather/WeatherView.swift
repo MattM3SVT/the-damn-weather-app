@@ -38,7 +38,7 @@ struct WeatherView: View {
                 // Hourly forecast
                 if let weather = viewModel.weather {
                     HourlyForecastView(
-                        hours: weather.hourly,
+                        hours: weather.hourly.filter { $0.time >= Date().addingTimeInterval(-3600) },
                         timezone: weather.timezone,
                         unit: viewModel.temperatureUnit
                     )

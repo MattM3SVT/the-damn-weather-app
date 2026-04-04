@@ -60,7 +60,13 @@ actor WeatherService {
             dewPoint: current.dewPoint.converted(to: .fahrenheit).value
         )
 
-        let hourlyData = hourly.prefix(24).map { (hour: HourWeather) -> HourlyForecastPoint in
+        // Filter out past hours — WeatherKit may return hours from earlier today/last night.
+        // Keep anything within the last hour (so the current hour is included) and forward.
+        let now = Date()
+        let hourlyData = hourly
+            .filter { $0.date >= now.addingTimeInterval(-3600) }
+            .prefix(24)
+            .map { (hour: HourWeather) -> HourlyForecastPoint in
             let hourWindMph = hour.wind.speed.converted(to: .milesPerHour).value
             let hourPrecipInches = hour.precipitationAmount.converted(to: .inches).value
             return HourlyForecastPoint(
