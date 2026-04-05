@@ -23,7 +23,7 @@ struct SmallWidgetView: View {
 
             // THE PHRASE — bold, fills remaining space, auto-shrinks for long text
             Text(entry.phrase)
-                .font(.system(size: 16, weight: .bold))
+                .font(.system(size: 20, weight: .bold))
                 .lineLimit(5)
                 .minimumScaleFactor(0.6)
                 .foregroundStyle(.white.opacity(0.9))

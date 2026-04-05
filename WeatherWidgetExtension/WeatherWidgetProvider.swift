@@ -78,8 +78,14 @@ struct WeatherWidgetProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
-        // Use a phrase from the engine for snapshots so the gallery looks real
         Task {
+            // Try to show real weather data if location is available
+            if let entry = try? await fetchWeatherEntry() {
+                completion(entry)
+                return
+            }
+
+            // Fall back to placeholder with a real phrase
             let phrase = await phraseEngine.selectPhrase(
                 conditionTag: .partlyCloudy,
                 tempF: 72,
@@ -87,7 +93,6 @@ struct WeatherWidgetProvider: TimelineProvider {
                 isDay: true
             )
             let entry = WeatherWidgetEntry.placeholder
-            // Can't mutate directly, rebuild with real phrase
             let snapshotEntry = WeatherWidgetEntry(
                 date: entry.date,
                 temperature: entry.temperature,
@@ -159,6 +164,9 @@ struct WeatherWidgetProvider: TimelineProvider {
         let location: CLLocation
         if lat != 0 || lon != 0 {
             location = CLLocation(latitude: lat, longitude: lon)
+        } else if let cachedLocation = CLLocationManager().location {
+            // Use system's cached last-known location as fallback
+            location = cachedLocation
         } else {
             throw WidgetError.noLocation
         }

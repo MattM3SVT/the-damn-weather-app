@@ -97,6 +97,9 @@ final class WeatherViewModel {
             defaults.set(location.coordinate.longitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
             defaults.set(geocode.name, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
 
+            // Trigger widget reload immediately so it picks up the new location
+            WidgetCenter.shared.reloadAllTimelines()
+
             // Generate phrase
             await refreshPhrase()
 
