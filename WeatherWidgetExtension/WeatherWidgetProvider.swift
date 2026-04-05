@@ -36,8 +36,14 @@ struct WeatherWidgetEntry: TimelineEntry {
     }
 
     static var placeholder: WeatherWidgetEntry {
-        // Use the user's last known location name if available
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        // DEBUG: Check what's accessible from widget extension
+        let hasContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID) != nil
+        let hasFile = WidgetDataStore.load() != nil
+        let suiteDefaults = UserDefaults(suiteName: AppConstants.appGroupID)
+        let hasDefaults = suiteDefaults?.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag) != nil
+        let debugInfo = "F:\(hasFile) C:\(hasContainer) D:\(hasDefaults)"
+
+        let defaults = suiteDefaults ?? .standard
         let savedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName)
         let locationName = savedName?.isEmpty == false ? savedName ?? "Your Location" : "Your Location"
 
@@ -47,7 +53,7 @@ struct WeatherWidgetEntry: TimelineEntry {
             conditionTag: .partlyCloudy,
             conditionLabel: "Partly Cloudy",
             isDay: true,
-            phrase: "Open the app to load weather data.",
+            phrase: "[\(debugInfo)] Open app to load weather.",
             feelsLike: 70,
             high: 78,
             low: 62,
