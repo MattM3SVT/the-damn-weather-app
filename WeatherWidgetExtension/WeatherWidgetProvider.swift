@@ -1,6 +1,7 @@
 import WidgetKit
 import WeatherKit
 import CoreLocation
+import MapKit
 import WeatherShared
 
 struct WeatherWidgetEntry: TimelineEntry {
@@ -191,8 +192,22 @@ struct WeatherWidgetProvider: TimelineProvider {
             )
         }
 
-        // Derive timezone from location for correct hour/day labels
-        let locationTimezone = TimeZone(secondsFromGMT: Int((lon / 15).rounded()) * 3600) ?? .current
+        // Get DST-aware timezone via reverse geocoding
+        let locationTimezone: TimeZone
+        if #available(iOS 26, *) {
+            if let request = MKReverseGeocodingRequest(location: location),
+               let tz = try? await request.mapItems.first?.timeZone {
+                locationTimezone = tz
+            } else {
+                locationTimezone = .current
+            }
+        } else {
+            if let tz = try? await CLGeocoder().reverseGeocodeLocation(location).first?.timeZone {
+                locationTimezone = tz
+            } else {
+                locationTimezone = .current
+            }
+        }
 
         // Filter to current hour and forward — WeatherKit returns past hours too
         let currentHourStart = Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date()

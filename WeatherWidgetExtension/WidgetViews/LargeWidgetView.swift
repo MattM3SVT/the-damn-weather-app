@@ -29,6 +29,8 @@ struct LargeWidgetView: View {
                 }
             }
 
+            Spacer(minLength: 0)
+
             // THE PHRASE — bold, wraps up to 3 lines, auto-shrinks for longest phrases
             Text(entry.phrase)
                 .font(.system(size: 17, weight: .bold))

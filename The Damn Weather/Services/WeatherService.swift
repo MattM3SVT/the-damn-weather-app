@@ -1,6 +1,7 @@
 import Foundation
 import WeatherKit
 import CoreLocation
+import MapKit
 import WeatherShared
 
 actor WeatherService {
@@ -166,8 +167,8 @@ actor WeatherService {
             )
         }
 
-        // Derive timezone from location coordinates (±15° per hour offset)
-        let locationTimezone = Self.timezone(for: location) ?? .current
+        // Get DST-aware timezone via reverse geocoding
+        let locationTimezone = await Self.timezone(for: location)
 
         let snapshot = WeatherSnapshot(
             current: currentData,
@@ -189,11 +190,36 @@ actor WeatherService {
         cache.removeAll()
     }
 
-    /// Approximate timezone from longitude. Each 15° of longitude ≈ 1 hour offset.
-    /// This is sufficient for weather display (sunrise/sunset, hourly labels).
-    private nonisolated static func timezone(for location: CLLocation) -> TimeZone? {
-        let offsetSeconds = Int((location.coordinate.longitude / 15).rounded()) * 3600
-        return TimeZone(secondsFromGMT: offsetSeconds)
+    /// Get the correct timezone for a location via reverse geocoding.
+    /// Returns the IANA timezone (e.g. "America/Los_Angeles") which handles DST correctly.
+    private static func timezone(for location: CLLocation) async -> TimeZone {
+        if #available(iOS 26, *) {
+            do {
+                guard let request = MKReverseGeocodingRequest(location: location) else {
+                    return .current
+                }
+                let items = try await request.mapItems
+                if let tz = items.first?.timeZone {
+                    return tz
+                }
+            } catch {
+                #if DEBUG
+                print("⚠️ WeatherService: MK timezone lookup failed: \(error). Using device timezone.")
+                #endif
+            }
+        } else {
+            do {
+                let placemarks = try await CLGeocoder().reverseGeocodeLocation(location)
+                if let tz = placemarks.first?.timeZone {
+                    return tz
+                }
+            } catch {
+                #if DEBUG
+                print("⚠️ WeatherService: CL timezone lookup failed: \(error). Using device timezone.")
+                #endif
+            }
+        }
+        return .current
     }
 
     private nonisolated func mapSeverity(_ severity: WeatherSeverity) -> WeatherAlertData.AlertSeverity {
