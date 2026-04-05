@@ -79,36 +79,20 @@ struct WeatherWidgetProvider: TimelineProvider {
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
         Task {
-            // Try to show real weather data if location is available
+            // Try cached data first (instant, no network) — this is what the app already saved
+            if let cached = await buildCachedEntry() {
+                completion(cached)
+                return
+            }
+
+            // No cached data — try live WeatherKit fetch
             if let entry = try? await fetchWeatherEntry() {
                 completion(entry)
                 return
             }
 
-            // Fall back to placeholder with a real phrase
-            let phrase = await phraseEngine.selectPhrase(
-                conditionTag: .partlyCloudy,
-                tempF: 72,
-                mode: .clean,
-                isDay: true
-            )
-            let entry = WeatherWidgetEntry.placeholder
-            let snapshotEntry = WeatherWidgetEntry(
-                date: entry.date,
-                temperature: entry.temperature,
-                conditionTag: entry.conditionTag,
-                conditionLabel: entry.conditionLabel,
-                isDay: entry.isDay,
-                phrase: phrase,
-                feelsLike: entry.feelsLike,
-                high: entry.high,
-                low: entry.low,
-                precipProbability: entry.precipProbability,
-                hourlyPreview: entry.hourlyPreview,
-                dailyPreview: entry.dailyPreview,
-                locationName: entry.locationName
-            )
-            completion(snapshotEntry)
+            // Absolute last resort — hardcoded placeholder
+            completion(.placeholder)
         }
     }
 
@@ -120,58 +104,69 @@ struct WeatherWidgetProvider: TimelineProvider {
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
                 completion(timeline)
             } catch {
-                // Use cached weather data the main app saved, or hardcoded fallback
-                let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-                defaults.synchronize()
-
-                let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
-                let cachedConditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
-                let hasCachedData = cachedTemp != 0 || cachedConditionRaw != nil
-
-                let temperature = hasCachedData ? Int(cachedTemp.rounded()) : 72
-                let conditionTag = cachedConditionRaw.flatMap { WeatherConditionTag(rawValue: $0) } ?? .partlyCloudy
-                let conditionLabel = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel) ?? "Partly Cloudy"
-                let isDay = hasCachedData ? defaults.bool(forKey: AppConstants.UserDefaultsKeys.cachedIsDay) : true
-                let feelsLike = hasCachedData ? Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike).rounded()) : 70
-                let high = hasCachedData ? Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedHigh).rounded()) : 78
-                let low = hasCachedData ? Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedLow).rounded()) : 62
-                let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "The Damn Weather"
-
-                let phrase: String
-                if let sharedPhrase = defaults.string(forKey: "currentPhrase"), !sharedPhrase.isEmpty {
-                    phrase = sharedPhrase
-                } else {
-                    let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
-                    let mode = PhraseMode(rawValue: modeStr) ?? .clean
-                    phrase = await phraseEngine.selectPhrase(
-                        conditionTag: conditionTag,
-                        tempF: Double(temperature),
-                        mode: mode,
-                        isDay: isDay
-                    )
-                }
-
-                let fallback = WeatherWidgetEntry(
-                    date: Date(),
-                    temperature: temperature,
-                    conditionTag: conditionTag,
-                    conditionLabel: conditionLabel,
-                    isDay: isDay,
-                    phrase: phrase,
-                    feelsLike: feelsLike,
-                    high: high,
-                    low: low,
-                    precipProbability: 0,
-                    hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
-                    dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
-                    locationName: locationName
-                )
+                // Use cached weather data the main app saved, or hardcoded placeholder
+                let fallback = await buildCachedEntry() ?? .placeholder
                 // Retry quickly — data may not have synced yet or WeatherKit may have failed
                 let nextUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: Date()) ?? Date()
                 let timeline = Timeline(entries: [fallback], policy: .after(nextUpdate))
                 completion(timeline)
             }
         }
+    }
+
+    /// Build an entry from cached weather data the main app wrote to shared UserDefaults.
+    /// Returns nil if no cached data exists (app has never fetched weather).
+    private func buildCachedEntry() async -> WeatherWidgetEntry? {
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        defaults.synchronize()
+
+        let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
+        let cachedConditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
+
+        // If no cached condition tag exists, the app has never saved weather data
+        guard let conditionRaw = cachedConditionRaw,
+              let conditionTag = WeatherConditionTag(rawValue: conditionRaw) else {
+            return nil
+        }
+
+        let temperature = Int(cachedTemp.rounded())
+        let conditionLabel = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel) ?? conditionTag.label
+        let isDay = defaults.bool(forKey: AppConstants.UserDefaultsKeys.cachedIsDay)
+        let feelsLike = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike).rounded())
+        let high = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedHigh).rounded())
+        let low = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedLow).rounded())
+        let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
+
+        // Use shared phrase or generate a fresh one
+        let phrase: String
+        if let sharedPhrase = defaults.string(forKey: "currentPhrase"), !sharedPhrase.isEmpty {
+            phrase = sharedPhrase
+        } else {
+            let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
+            let mode = PhraseMode(rawValue: modeStr) ?? .clean
+            phrase = await phraseEngine.selectPhrase(
+                conditionTag: conditionTag,
+                tempF: cachedTemp,
+                mode: mode,
+                isDay: isDay
+            )
+        }
+
+        return WeatherWidgetEntry(
+            date: Date(),
+            temperature: temperature,
+            conditionTag: conditionTag,
+            conditionLabel: conditionLabel,
+            isDay: isDay,
+            phrase: phrase,
+            feelsLike: feelsLike,
+            high: high,
+            low: low,
+            precipProbability: 0,
+            hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
+            dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
+            locationName: locationName
+        )
     }
 
     private func fetchWeatherEntry() async throws -> WeatherWidgetEntry {
