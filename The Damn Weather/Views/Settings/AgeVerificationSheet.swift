@@ -20,7 +20,7 @@ struct AgeVerificationSheet: View {
             Text("Heads up!")
                 .font(.title2.bold())
 
-            Text("You're about to enable some **colorful language**. The phrases will contain explicit profanity. You must be 18 or older to continue.")
+            Text("You're about to enable some **colorful language**. The phrases will contain explicit profanity.")
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -32,7 +32,7 @@ struct AgeVerificationSheet: View {
                     onConfirmed()
                     dismiss()
                 } label: {
-                    Text("I'm 18+, bring it on")
+                    Text("Enable explicit mode")
                         .font(.body.bold())
                         .frame(maxWidth: .infinity)
                         .padding()

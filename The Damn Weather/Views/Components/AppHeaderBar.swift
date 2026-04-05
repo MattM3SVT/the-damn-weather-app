@@ -85,7 +85,7 @@ struct AppHeaderBar: View {
                     HapticsService.lightTap()
                 }
             )) {
-                Text("18+")
+                Text("Explicit")
                     .font(.system(size: 12, weight: .bold))
                     .foregroundStyle(.white.opacity(0.7))
             }

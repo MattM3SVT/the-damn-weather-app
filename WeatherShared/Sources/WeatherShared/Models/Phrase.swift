@@ -43,7 +43,7 @@ public enum PhraseMode: String, Codable, CaseIterable, Sendable {
     public var displayName: String {
         switch self {
         case .clean: return "Clean"
-        case .explicit: return "Explicit (18+)"
+        case .explicit: return "Explicit"
         }
     }
 }

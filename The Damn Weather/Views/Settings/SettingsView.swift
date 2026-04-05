@@ -14,7 +14,7 @@ struct SettingsView: View {
                 Section {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Explicit Mode (18+)")
+                            Text("Explicit Mode")
                                 .font(.body)
                             Text("Enable colorful language")
                                 .font(.caption)

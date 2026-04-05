@@ -85,7 +85,7 @@ struct WeatherView: View {
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
                     .padding(.top, DesignTokens.spaceMD)
-                    .padding(.bottom, DesignTokens.space2XL)
+                    .padding(.bottom, DesignTokens.spaceSM)
             }
             .padding(.horizontal, DesignTokens.spaceMD)
             .frame(maxWidth: DesignTokens.maxWidth)
@@ -94,7 +94,7 @@ struct WeatherView: View {
         .scrollIndicators(.never)
         .safeAreaInset(edge: .bottom) {
             // Reserve space for the floating bottom bar so content scrolls fully past it
-            Color.clear.frame(height: 72)
+            Color.clear.frame(height: 56)
         }
         .onScrollGeometryChange(for: CGFloat.self) { geometry in
             geometry.contentOffset.y + geometry.contentInsets.top

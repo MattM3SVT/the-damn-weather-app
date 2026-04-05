@@ -116,7 +116,7 @@ struct WeatherWidgetProvider: TimelineProvider {
         Task {
             do {
                 let entry = try await fetchWeatherEntry()
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
+                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date()
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
                 completion(timeline)
             } catch {
@@ -148,7 +148,7 @@ struct WeatherWidgetProvider: TimelineProvider {
                     dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
                     locationName: "The Damn Weather"
                 )
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
+                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date()
                 let timeline = Timeline(entries: [fallback], policy: .after(nextUpdate))
                 completion(timeline)
             }
@@ -185,20 +185,15 @@ struct WeatherWidgetProvider: TimelineProvider {
         let conditionTag = WeatherConditionTag.from(current.condition, windSpeed: windMph)
         let tempF = current.temperature.converted(to: .fahrenheit).value
 
-        // Use the phrase the app shared, or generate a fresh one
-        let phrase: String
-        if let sharedPhrase = defaults.string(forKey: "currentPhrase"), !sharedPhrase.isEmpty {
-            phrase = sharedPhrase
-        } else {
-            let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
-            let mode = PhraseMode(rawValue: modeStr) ?? .clean
-            phrase = await phraseEngine.selectPhrase(
-                conditionTag: conditionTag,
-                tempF: tempF,
-                mode: mode,
-                isDay: current.isDaylight
-            )
-        }
+        // Always generate a fresh phrase from live weather data
+        let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
+        let mode = PhraseMode(rawValue: modeStr) ?? .clean
+        let phrase = await phraseEngine.selectPhrase(
+            conditionTag: conditionTag,
+            tempF: tempF,
+            mode: mode,
+            isDay: current.isDaylight
+        )
 
         // Get DST-aware timezone via reverse geocoding
         let locationTimezone: TimeZone
