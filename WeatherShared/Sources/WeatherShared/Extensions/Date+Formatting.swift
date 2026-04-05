@@ -1,14 +1,9 @@
 import Foundation
 
 extension Date {
-    /// Format as hour label (e.g., "3 PM", "Now")
-    public func hourLabel(timezone: TimeZone = .current, relativeTo now: Date = Date()) -> String {
-        let cal = Calendar.current
-        if cal.isDate(self, equalTo: now, toGranularity: .hour) &&
-           cal.isDate(self, inSameDayAs: now) {
-            return "Now"
-        }
-
+    /// Format as hour label (e.g., "3 PM").
+    /// "Now" detection is handled by callers (HourlyForecastView, widget) — not here.
+    public func hourLabel(timezone: TimeZone = .current) -> String {
         let formatter = DateFormatter()
         formatter.timeZone = timezone
         formatter.dateFormat = "h a"
@@ -24,11 +19,14 @@ extension Date {
     }
 
     /// Format as day label (e.g., "Mon", "Today")
-    public func dayLabel(index: Int = -1) -> String {
-        if index == 0 || Calendar.current.isDateInToday(self) {
+    public func dayLabel(index: Int = -1, timezone: TimeZone = .current) -> String {
+        var calendar = Calendar.current
+        calendar.timeZone = timezone
+        if index == 0 || calendar.isDateInToday(self) {
             return "Today"
         }
         let formatter = DateFormatter()
+        formatter.timeZone = timezone
         formatter.dateFormat = "EEE"
         return formatter.string(from: self)
     }

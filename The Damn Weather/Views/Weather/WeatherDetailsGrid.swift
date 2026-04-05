@@ -4,7 +4,7 @@ import WeatherShared
 /// Detail page types that can be opened from cards
 enum WeatherDetailType: Identifiable {
     case temperature, wind, uvIndex, pressure, sun, precipitation
-    case visibility, dewPoint, cloudCover, moon, humidity
+    case visibility, cloudCover, moon, humidity
 
     var id: String { String(describing: self) }
 }
@@ -118,18 +118,6 @@ struct WeatherDetailsGrid: View {
                 .accessibilityHint("Double tap for details")
                 .onTapGesture { HapticsService.lightTap(); selectedDetail = .visibility }
 
-                // Dew Point
-                DetailCard(
-                    icon: "drop.deferred.fill",
-                    label: "Dew Point",
-                    value: unit.format(weather.current.dewPoint),
-                    extra: nil,
-                    tappable: true
-                )
-                .accessibilityLabel("Dew Point, \(unit.format(weather.current.dewPoint))")
-                .accessibilityHint("Double tap for details")
-                .onTapGesture { HapticsService.lightTap(); selectedDetail = .dewPoint }
-
                 // Cloud Cover
                 DetailCard(
                     icon: "cloud.fill",
@@ -193,8 +181,6 @@ struct WeatherDetailsGrid: View {
             HumidityDetailView(weather: weather, unit: unit)
         case .visibility:
             VisibilityDetailView(weather: weather)
-        case .dewPoint:
-            DewPointDetailView(weather: weather, unit: unit)
         case .cloudCover:
             CloudCoverDetailView(weather: weather)
         case .moon:

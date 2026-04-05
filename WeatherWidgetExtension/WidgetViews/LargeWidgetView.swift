@@ -8,34 +8,32 @@ struct LargeWidgetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            // Weather header row — compact
+            // Weather header row
             HStack(alignment: .center) {
                 Image(systemName: entry.conditionTag.sfSymbol(isDay: entry.isDay))
                     .symbolRenderingMode(.multicolor)
-                    .font(.system(size: 22))
+                    .font(.system(size: 24))
 
                 Text("\(entry.temperature)°")
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
 
                 Spacer()
 
-                VStack(alignment: .trailing, spacing: 1) {
+                VStack(alignment: .trailing, spacing: 2) {
                     Text(entry.locationName)
-                        .font(.system(size: 10, weight: .medium))
+                        .font(.system(size: 11, weight: .medium))
                         .foregroundStyle(.white.opacity(0.6))
                     Text("H:\(entry.high)° L:\(entry.low)°")
-                        .font(.system(size: 10, weight: .medium))
+                        .font(.system(size: 11, weight: .medium))
                         .foregroundStyle(.white.opacity(0.5))
                 }
             }
 
-            Spacer(minLength: 0)
-
-            // THE PHRASE — big, bold, full text, no truncation
+            // THE PHRASE — bold, wraps up to 3 lines, auto-shrinks for longest phrases
             Text(entry.phrase)
-                .font(.system(size: 19, weight: .bold))
-                .lineLimit(4)
-                .minimumScaleFactor(0.75)
+                .font(.system(size: 17, weight: .bold))
+                .lineLimit(3)
+                .minimumScaleFactor(0.85)
                 .foregroundStyle(.white)
                 .fixedSize(horizontal: false, vertical: true)
 
@@ -43,18 +41,18 @@ struct LargeWidgetView: View {
 
             Divider().overlay(Color.white.opacity(0.15))
 
-            // Hourly strip — compact
+            // Hourly strip
             HStack(spacing: 0) {
                 ForEach(entry.hourlyPreview) { hour in
-                    VStack(spacing: 2) {
+                    VStack(spacing: 3) {
                         Text(hour.hour)
-                            .font(.system(size: 9))
+                            .font(.system(size: 11))
                             .foregroundStyle(.white.opacity(0.6))
                         Image(systemName: hour.conditionTag.sfSymbol(isDay: hour.isDay))
                             .symbolRenderingMode(.multicolor)
-                            .font(.system(size: 12))
+                            .font(.system(size: 16))
                         Text("\(hour.temp)°")
-                            .font(.system(size: 10, weight: .semibold))
+                            .font(.system(size: 13, weight: .semibold))
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -62,26 +60,26 @@ struct LargeWidgetView: View {
 
             Divider().overlay(Color.white.opacity(0.15))
 
-            // Daily forecast — tighter spacing
-            VStack(spacing: 3) {
+            // Daily forecast
+            VStack(spacing: 4) {
                 ForEach(entry.dailyPreview) { day in
                     HStack {
                         Text(day.day)
-                            .font(.system(size: 11, weight: .medium))
-                            .frame(width: 40, alignment: .leading)
+                            .font(.system(size: 13, weight: .medium))
+                            .frame(width: 44, alignment: .leading)
 
                         // Daily forecast always uses daytime icons (standard weather app convention)
                         Image(systemName: day.conditionTag.sfSymbol(isDay: true))
                             .symbolRenderingMode(.multicolor)
-                            .font(.system(size: 12))
-                            .frame(width: 18)
+                            .font(.system(size: 15))
+                            .frame(width: 22)
 
                         Spacer()
 
                         Text("\(day.low)°")
-                            .font(.system(size: 10))
+                            .font(.system(size: 12))
                             .foregroundStyle(.white.opacity(0.6))
-                            .frame(width: 26, alignment: .trailing)
+                            .frame(width: 28, alignment: .trailing)
 
                         GeometryReader { geo in
                             let allLows = entry.dailyPreview.map(\.low)
@@ -97,7 +95,7 @@ struct LargeWidgetView: View {
                                 ZStack(alignment: .leading) {
                                     Capsule()
                                         .fill(.white.opacity(0.1))
-                                        .frame(height: 3)
+                                        .frame(height: 4)
 
                                     Capsule()
                                         .fill(
@@ -108,18 +106,18 @@ struct LargeWidgetView: View {
                                             )
                                         )
                                         .frame(
-                                            width: max(geo.size.width * (1 - leftPct - rightPct), 3),
-                                            height: 3
+                                            width: max(geo.size.width * (1 - leftPct - rightPct), 4),
+                                            height: 4
                                         )
                                         .offset(x: geo.size.width * leftPct)
                                 }
                             }
                         }
-                        .frame(height: 3)
+                        .frame(height: 4)
 
                         Text("\(day.high)°")
-                            .font(.system(size: 10, weight: .semibold))
-                            .frame(width: 26, alignment: .trailing)
+                            .font(.system(size: 12, weight: .semibold))
+                            .frame(width: 28, alignment: .trailing)
                     }
                 }
             }

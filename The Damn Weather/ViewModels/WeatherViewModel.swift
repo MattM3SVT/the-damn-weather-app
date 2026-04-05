@@ -183,11 +183,11 @@ final class WeatherViewModel {
         await loadWeather(for: weather.location)
     }
 
-    /// Auto-refresh when app returns from background with stale data.
-    /// Only fetches if weather is older than 15 minutes — avoids unnecessary network calls.
+    /// Auto-refresh when app returns to foreground.
+    /// Always fetches fresh data to keep the display current.
     /// Guarded against concurrent calls from rapid foreground transitions.
-    func refreshIfStale() async {
-        guard !isRefreshing, let weather, weather.isStale else { return }
+    func refreshOnForeground() async {
+        guard !isRefreshing, let weather else { return }
         isRefreshing = true
         defer { isRefreshing = false }
 

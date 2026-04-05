@@ -71,7 +71,7 @@ struct HeroSection: View {
             }
 
             // Quick stats row
-            HStack(spacing: DesignTokens.spaceLG) {
+            HStack(spacing: DesignTokens.spaceMD) {
                 StatItem(label: "Feels Like", value: unit.format(weather.feelsLike))
                 StatItem(label: "Condition", value: weather.conditionTag.label)
                 StatItem(label: "Wind", value: appState.windSpeedUnit.format(weather.windSpeed))
@@ -96,6 +96,7 @@ struct StatItem: View {
                 .foregroundStyle(.secondary)
             Text(value)
                 .font(.system(size: DesignTokens.smallSize, weight: .semibold))
+                .minimumScaleFactor(0.8)
         }
     }
 }

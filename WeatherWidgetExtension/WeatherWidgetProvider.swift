@@ -110,7 +110,7 @@ struct WeatherWidgetProvider: TimelineProvider {
         Task {
             do {
                 let entry = try await fetchWeatherEntry()
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date()
+                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
                 completion(timeline)
             } catch {
@@ -191,9 +191,16 @@ struct WeatherWidgetProvider: TimelineProvider {
             )
         }
 
-        let hourlyPreview = Array(hourly.prefix(6)).enumerated().map { index, h in
+        // Derive timezone from location for correct hour/day labels
+        let locationTimezone = TimeZone(secondsFromGMT: Int((lon / 15).rounded()) * 3600) ?? .current
+
+        // Filter to current hour and forward — WeatherKit returns past hours too
+        let currentHourStart = Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date()
+        let filteredHourly = hourly.filter { $0.date >= currentHourStart }
+
+        let hourlyPreview = Array(filteredHourly.prefix(6)).enumerated().map { index, h in
             WeatherWidgetEntry.HourlyWidgetPoint(
-                hour: index == 0 ? "Now" : h.date.hourLabel(),
+                hour: index == 0 ? "Now" : h.date.hourLabel(timezone: locationTimezone),
                 temp: Int(h.temperature.converted(to: .fahrenheit).value.rounded()),
                 conditionTag: WeatherConditionTag.from(h.condition),
                 isDay: h.isDaylight
@@ -202,7 +209,7 @@ struct WeatherWidgetProvider: TimelineProvider {
 
         let dailyPreview = Array(daily.prefix(5)).enumerated().map { index, d in
             WeatherWidgetEntry.DailyWidgetPoint(
-                day: d.date.dayLabel(index: index),
+                day: d.date.dayLabel(index: index, timezone: locationTimezone),
                 high: Int(d.highTemperature.converted(to: .fahrenheit).value.rounded()),
                 low: Int(d.lowTemperature.converted(to: .fahrenheit).value.rounded()),
                 conditionTag: WeatherConditionTag.from(d.condition)

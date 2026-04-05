@@ -8,9 +8,7 @@ actor WeatherService {
     private var cache: [String: WeatherSnapshot] = [:]
 
     private func cacheKey(for location: CLLocation) -> String {
-        let lat = (location.coordinate.latitude * 1000).rounded() / 1000
-        let lon = (location.coordinate.longitude * 1000).rounded() / 1000
-        return "\(lat),\(lon)"
+        String(format: "%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude)
     }
 
     func fetchWeather(for location: CLLocation) async throws -> WeatherSnapshot {
@@ -60,35 +58,60 @@ actor WeatherService {
             dewPoint: current.dewPoint.converted(to: .fahrenheit).value
         )
 
-        // Filter out past hours — WeatherKit may return hours from earlier today/last night.
-        // Keep anything within the last hour (so the current hour is included) and forward.
+        // Filter to current hour and forward only — use start-of-current-hour
+        // so at 3:43 PM we include 3:00 PM (current hour) but NOT 2:00 PM.
         let now = Date()
-        let hourlyData = hourly
-            .filter { $0.date >= now.addingTimeInterval(-3600) }
+        let currentHourStart = Calendar.current.dateInterval(of: .hour, for: now)?.start ?? now
+        var hourlyArray = Array(hourly
+            .filter { $0.date >= currentHourStart }
             .prefix(24)
             .map { (hour: HourWeather) -> HourlyForecastPoint in
-            let hourWindMph = hour.wind.speed.converted(to: .milesPerHour).value
-            let hourPrecipInches = hour.precipitationAmount.converted(to: .inches).value
-            return HourlyForecastPoint(
-                time: hour.date,
-                temperature: hour.temperature.converted(to: .fahrenheit).value,
-                feelsLike: hour.apparentTemperature.converted(to: .fahrenheit).value,
-                precipitationProbability: hour.precipitationChance * 100,
-                conditionTag: WeatherConditionTag.from(
-                    hour.condition,
-                    windSpeed: hourWindMph
-                ),
-                windSpeed: hourWindMph,
-                windDirection: hour.wind.direction.value,
-                windGusts: hour.wind.gust?.converted(to: .milesPerHour).value ?? hourWindMph,
-                isDay: hour.isDaylight,
-                humidity: hour.humidity * 100,
-                pressure: hour.pressure.converted(to: .hectopascals).value,
-                visibility: hour.visibility.converted(to: .miles).value,
-                uvIndex: hour.uvIndex.value,
-                dewPoint: hour.dewPoint.converted(to: .fahrenheit).value,
-                cloudCover: hour.cloudCover * 100,
-                precipitationAmount: hourPrecipInches
+                let hourWindMph = hour.wind.speed.converted(to: .milesPerHour).value
+                let hourPrecipInches = hour.precipitationAmount.converted(to: .inches).value
+                return HourlyForecastPoint(
+                    time: hour.date,
+                    temperature: hour.temperature.converted(to: .fahrenheit).value,
+                    feelsLike: hour.apparentTemperature.converted(to: .fahrenheit).value,
+                    precipitationProbability: hour.precipitationChance * 100,
+                    conditionTag: WeatherConditionTag.from(
+                        hour.condition,
+                        windSpeed: hourWindMph
+                    ),
+                    windSpeed: hourWindMph,
+                    windDirection: hour.wind.direction.value,
+                    windGusts: hour.wind.gust?.converted(to: .milesPerHour).value ?? hourWindMph,
+                    isDay: hour.isDaylight,
+                    humidity: hour.humidity * 100,
+                    pressure: hour.pressure.converted(to: .hectopascals).value,
+                    visibility: hour.visibility.converted(to: .miles).value,
+                    uvIndex: hour.uvIndex.value,
+                    dewPoint: hour.dewPoint.converted(to: .fahrenheit).value,
+                    cloudCover: hour.cloudCover * 100,
+                    precipitationAmount: hourPrecipInches
+                )
+            })
+
+        // Override the "Now" hour with real-time current observation so the hourly
+        // "Now" card matches the hero section exactly (same temp, condition, etc.)
+        if let firstHour = hourlyArray.first,
+           Calendar.current.isDate(firstHour.time, equalTo: now, toGranularity: .hour) {
+            hourlyArray[0] = HourlyForecastPoint(
+                time: firstHour.time,
+                temperature: currentData.temperature,
+                feelsLike: currentData.feelsLike,
+                precipitationProbability: firstHour.precipitationProbability,
+                conditionTag: currentData.conditionTag,
+                windSpeed: currentData.windSpeed,
+                windDirection: currentData.windDirection,
+                windGusts: currentData.windGusts,
+                isDay: currentData.isDay,
+                humidity: currentData.humidity,
+                pressure: currentData.pressure,
+                visibility: currentData.visibility,
+                uvIndex: currentData.uvIndex,
+                dewPoint: currentData.dewPoint,
+                cloudCover: currentData.cloudCover,
+                precipitationAmount: firstHour.precipitationAmount
             )
         }
 
@@ -148,7 +171,7 @@ actor WeatherService {
 
         let snapshot = WeatherSnapshot(
             current: currentData,
-            hourly: hourlyData,
+            hourly: hourlyArray,
             daily: dailyData,
             minutePrecipitation: minuteData,
             alerts: alertData,

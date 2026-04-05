@@ -57,7 +57,7 @@ struct WeatherView: View {
                 // Hourly forecast
                 if let weather = viewModel.weather {
                     HourlyForecastView(
-                        hours: weather.hourly.filter { $0.time >= Date().addingTimeInterval(-3600) },
+                        hours: weather.hourly.filter { $0.time >= Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date() },
                         timezone: weather.timezone,
                         unit: viewModel.temperatureUnit
                     )

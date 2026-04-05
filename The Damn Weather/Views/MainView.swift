@@ -53,7 +53,7 @@ struct MainView: View {
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 Task {
-                    await weatherVM.refreshIfStale()
+                    await weatherVM.refreshOnForeground()
                 }
             }
         }
@@ -189,6 +189,7 @@ struct MainView: View {
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
+            .ignoresSafeArea(edges: .bottom)
             .onChange(of: selectedPage) { _, newPage in
                 heroCollapseProgress = 0
                 Task {
@@ -323,7 +324,7 @@ struct EmptyStateView: View {
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
+                .padding(.horizontal, DesignTokens.spaceLG)
 
             VStack(spacing: 12) {
                 Button(action: onUseLocation) {
@@ -343,7 +344,7 @@ struct EmptyStateView: View {
                         .clipShape(RoundedRectangle(cornerRadius: DesignTokens.cornerRadius))
                 }
             }
-            .padding(.horizontal, 40)
+            .padding(.horizontal, DesignTokens.spaceLG)
         }
         .frame(maxWidth: 500)
     }
@@ -368,7 +369,7 @@ struct ErrorView: View {
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
+                .padding(.horizontal, DesignTokens.spaceLG)
 
             Button(action: onRetry) {
                 Text("Try Again")
@@ -378,7 +379,7 @@ struct ErrorView: View {
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: DesignTokens.cornerRadius))
             }
-            .padding(.horizontal, 40)
+            .padding(.horizontal, DesignTokens.spaceLG)
         }
         .frame(maxWidth: 500)
     }
