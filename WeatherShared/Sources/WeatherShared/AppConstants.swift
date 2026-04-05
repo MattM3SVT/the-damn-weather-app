@@ -25,5 +25,13 @@ public enum AppConstants {
         public static let distanceUnit = "distanceUnit"
         public static let lastShownClean = "lastShownPhrase_clean"
         public static let lastShownExplicit = "lastShownPhrase_explicit"
+        // Cached weather data for widget fallback
+        public static let cachedTemperature = "cachedTemperature"
+        public static let cachedConditionTag = "cachedConditionTag"
+        public static let cachedConditionLabel = "cachedConditionLabel"
+        public static let cachedIsDay = "cachedIsDay"
+        public static let cachedFeelsLike = "cachedFeelsLike"
+        public static let cachedHigh = "cachedHigh"
+        public static let cachedLow = "cachedLow"
     }
 }

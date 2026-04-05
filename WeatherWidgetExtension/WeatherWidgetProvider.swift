@@ -120,35 +120,53 @@ struct WeatherWidgetProvider: TimelineProvider {
                 let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
                 completion(timeline)
             } catch {
-                // Read the phrase the app saved, or generate one as fallback
+                // Use cached weather data the main app saved, or hardcoded fallback
                 let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+                defaults.synchronize()
+
+                let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
+                let cachedConditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
+                let hasCachedData = cachedTemp != 0 || cachedConditionRaw != nil
+
+                let temperature = hasCachedData ? Int(cachedTemp.rounded()) : 72
+                let conditionTag = cachedConditionRaw.flatMap { WeatherConditionTag(rawValue: $0) } ?? .partlyCloudy
+                let conditionLabel = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel) ?? "Partly Cloudy"
+                let isDay = hasCachedData ? defaults.bool(forKey: AppConstants.UserDefaultsKeys.cachedIsDay) : true
+                let feelsLike = hasCachedData ? Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike).rounded()) : 70
+                let high = hasCachedData ? Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedHigh).rounded()) : 78
+                let low = hasCachedData ? Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedLow).rounded()) : 62
+                let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "The Damn Weather"
+
                 let phrase: String
                 if let sharedPhrase = defaults.string(forKey: "currentPhrase"), !sharedPhrase.isEmpty {
                     phrase = sharedPhrase
                 } else {
+                    let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
+                    let mode = PhraseMode(rawValue: modeStr) ?? .clean
                     phrase = await phraseEngine.selectPhrase(
-                        conditionTag: .partlyCloudy,
-                        tempF: 72,
-                        mode: .clean,
-                        isDay: true
+                        conditionTag: conditionTag,
+                        tempF: Double(temperature),
+                        mode: mode,
+                        isDay: isDay
                     )
                 }
+
                 let fallback = WeatherWidgetEntry(
                     date: Date(),
-                    temperature: 72,
-                    conditionTag: .partlyCloudy,
-                    conditionLabel: "Partly Cloudy",
-                    isDay: true,
+                    temperature: temperature,
+                    conditionTag: conditionTag,
+                    conditionLabel: conditionLabel,
+                    isDay: isDay,
                     phrase: phrase,
-                    feelsLike: 70,
-                    high: 78,
-                    low: 62,
+                    feelsLike: feelsLike,
+                    high: high,
+                    low: low,
                     precipProbability: 0,
                     hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
                     dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
-                    locationName: "The Damn Weather"
+                    locationName: locationName
                 )
-                // Retry quickly — location data may not have synced yet
+                // Retry quickly — data may not have synced yet or WeatherKit may have failed
                 let nextUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: Date()) ?? Date()
                 let timeline = Timeline(entries: [fallback], policy: .after(nextUpdate))
                 completion(timeline)

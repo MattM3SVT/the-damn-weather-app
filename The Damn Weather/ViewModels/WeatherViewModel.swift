@@ -91,11 +91,20 @@ final class WeatherViewModel {
                 currentLocationState = geocode.state
             }
 
-            // Save location to shared defaults for widgets
+            // Save location + weather snapshot to shared defaults for widgets
             let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
             defaults.set(location.coordinate.latitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
             defaults.set(location.coordinate.longitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
             defaults.set(geocode.name, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
+            // Cache weather data so widget fallback shows real data instead of placeholder
+            defaults.set(snapshot.current.temperature, forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
+            defaults.set(snapshot.current.conditionTag.rawValue, forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
+            defaults.set(snapshot.current.conditionLabel, forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel)
+            defaults.set(snapshot.current.isDay, forKey: AppConstants.UserDefaultsKeys.cachedIsDay)
+            defaults.set(snapshot.current.feelsLike, forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike)
+            defaults.set(snapshot.daily.first?.high ?? 0, forKey: AppConstants.UserDefaultsKeys.cachedHigh)
+            defaults.set(snapshot.daily.first?.low ?? 0, forKey: AppConstants.UserDefaultsKeys.cachedLow)
+            defaults.synchronize()
 
             // Trigger widget reload immediately so it picks up the new location
             WidgetCenter.shared.reloadAllTimelines()
