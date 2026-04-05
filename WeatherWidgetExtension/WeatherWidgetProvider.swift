@@ -122,19 +122,35 @@ struct WeatherWidgetProvider: TimelineProvider {
         }
     }
 
-    /// Build an entry from cached weather data the main app wrote to shared UserDefaults.
+    /// Build an entry from cached weather data the main app wrote to the shared container.
+    /// Uses file-based sharing (reliable cross-process) with UserDefaults as fallback.
     /// Returns nil if no cached data exists (app has never fetched weather).
-    /// IMPORTANT: This method is intentionally synchronous (no PhraseEngine calls) so it
-    /// completes within WidgetKit's tight time budget for getSnapshot(). Loading PhraseEngine's
-    /// 728KB of JSON in the widget extension can cause timeouts.
     private func buildCachedEntry() -> WeatherWidgetEntry? {
+        // PRIMARY: Read from shared JSON file — reliable cross-process on iPhone
+        if let cached = WidgetDataStore.load(),
+           let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) {
+            return WeatherWidgetEntry(
+                date: Date(),
+                temperature: Int(cached.temperature.rounded()),
+                conditionTag: conditionTag,
+                conditionLabel: cached.conditionLabel,
+                isDay: cached.isDay,
+                phrase: cached.phrase,
+                feelsLike: Int(cached.feelsLike.rounded()),
+                high: Int(cached.high.rounded()),
+                low: Int(cached.low.rounded()),
+                precipProbability: 0,
+                hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
+                dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
+                locationName: cached.locationName
+            )
+        }
+
+        // FALLBACK: Try UserDefaults (may not have synced cross-process yet)
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         defaults.synchronize()
 
-        let cachedConditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
-
-        // If no cached condition tag exists, the app has never saved weather data
-        guard let conditionRaw = cachedConditionRaw,
+        guard let conditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag),
               let conditionTag = WeatherConditionTag(rawValue: conditionRaw) else {
             return nil
         }
@@ -147,8 +163,6 @@ struct WeatherWidgetProvider: TimelineProvider {
         let high = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedHigh).rounded())
         let low = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedLow).rounded())
         let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
-
-        // Read the phrase the app already saved — no PhraseEngine generation here
         let phrase = defaults.string(forKey: AppConstants.UserDefaultsKeys.currentPhrase) ?? "\(conditionLabel) and \(temperature)°."
 
         return WeatherWidgetEntry(
@@ -179,7 +193,24 @@ struct WeatherWidgetProvider: TimelineProvider {
     /// Write a fresh entry's data to shared UserDefaults so buildCachedEntry() returns
     /// updated values on the next timeline refresh.
     private func saveFreshDataToCache(_ entry: WeatherWidgetEntry) {
+        // Write to shared JSON file (primary, reliable)
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
+
+        WidgetDataStore.save(CachedWeatherData(
+            temperature: Double(entry.temperature),
+            conditionTag: entry.conditionTag.rawValue,
+            conditionLabel: entry.conditionLabel,
+            isDay: entry.isDay,
+            feelsLike: Double(entry.feelsLike),
+            high: Double(entry.high),
+            low: Double(entry.low),
+            locationName: entry.locationName,
+            phrase: entry.phrase,
+            phraseMode: modeStr
+        ))
+
+        // Also write to UserDefaults as fallback
         defaults.set(Double(entry.temperature), forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
         defaults.set(entry.conditionTag.rawValue, forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
         defaults.set(entry.conditionLabel, forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel)

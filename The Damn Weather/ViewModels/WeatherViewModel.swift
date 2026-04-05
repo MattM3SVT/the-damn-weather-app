@@ -91,12 +91,27 @@ final class WeatherViewModel {
                 currentLocationState = geocode.state
             }
 
-            // Save location + weather snapshot to shared defaults for widgets
+            // Save location + weather snapshot to shared container for widgets
             let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
             defaults.set(location.coordinate.latitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
             defaults.set(location.coordinate.longitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
             defaults.set(geocode.name, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
-            // Cache weather data so widget fallback shows real data instead of placeholder
+
+            // Write to shared JSON file (reliable cross-process, used by widget)
+            WidgetDataStore.save(CachedWeatherData(
+                temperature: snapshot.current.temperature,
+                conditionTag: snapshot.current.conditionTag.rawValue,
+                conditionLabel: snapshot.current.conditionLabel,
+                isDay: snapshot.current.isDay,
+                feelsLike: snapshot.current.feelsLike,
+                high: snapshot.daily.first?.high ?? 0,
+                low: snapshot.daily.first?.low ?? 0,
+                locationName: geocode.name,
+                phrase: currentPhrase,
+                phraseMode: appState.phraseMode.rawValue
+            ))
+
+            // Also write to UserDefaults as fallback
             defaults.set(snapshot.current.temperature, forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
             defaults.set(snapshot.current.conditionTag.rawValue, forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
             defaults.set(snapshot.current.conditionLabel, forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel)
@@ -180,6 +195,7 @@ final class WeatherViewModel {
         )
 
         // Share the phrase with the widget and trigger refresh
+        WidgetDataStore.updatePhrase(currentPhrase, mode: appState.phraseMode.rawValue)
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         defaults.set(currentPhrase, forKey: AppConstants.UserDefaultsKeys.currentPhrase)
         defaults.set(appState.phraseMode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
