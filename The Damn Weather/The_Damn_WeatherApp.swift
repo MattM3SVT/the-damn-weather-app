@@ -17,11 +17,13 @@ struct The_Damn_WeatherApp: App {
     let modelContainer: ModelContainer
 
     init() {
-        // Create model container once upfront — avoids repeated creation in the view modifier
+        // Create model container — falls back to in-memory store if persistent storage fails
         do {
             modelContainer = try ModelContainer(for: SavedLocation.self)
         } catch {
-            fatalError("Failed to create ModelContainer: \(error)")
+            // Persistent storage failed (corruption, migration, disk full) — use in-memory so the app still launches
+            let config = ModelConfiguration(isStoredInMemoryOnly: true)
+            modelContainer = try! ModelContainer(for: SavedLocation.self, configurations: config)
         }
     }
 

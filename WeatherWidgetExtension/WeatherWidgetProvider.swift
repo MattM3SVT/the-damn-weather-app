@@ -39,7 +39,7 @@ struct WeatherWidgetEntry: TimelineEntry {
         // Use the user's last known location name if available
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         let savedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName)
-        let locationName = (savedName?.isEmpty == false) ? savedName! : "Your Location"
+        let locationName = savedName?.isEmpty == false ? savedName ?? "Your Location" : "Your Location"
 
         return WeatherWidgetEntry(
             date: Date(),

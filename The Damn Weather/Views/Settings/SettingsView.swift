@@ -100,16 +100,22 @@ struct SettingsView: View {
                         }
                     }
 
-                    Link(destination: URL(string: "https://thedamnweather.com/privacy")!) {
-                        Label("Privacy Policy", systemImage: "hand.raised.fill")
+                    if let url = URL(string: "https://thedamnweather.com/privacy") {
+                        Link(destination: url) {
+                            Label("Privacy Policy", systemImage: "hand.raised.fill")
+                        }
                     }
 
-                    Link(destination: URL(string: "https://thedamnweather.com/terms")!) {
-                        Label("Terms of Service", systemImage: "doc.text.fill")
+                    if let url = URL(string: "https://thedamnweather.com/terms") {
+                        Link(destination: url) {
+                            Label("Terms of Service", systemImage: "doc.text.fill")
+                        }
                     }
 
-                    Link(destination: URL(string: "https://weatherkit.apple.com/legal-attribution.html")!) {
-                        Label("Weather Data by Apple Weather", systemImage: "cloud.fill")
+                    if let url = URL(string: "https://weatherkit.apple.com/legal-attribution.html") {
+                        Link(destination: url) {
+                            Label("Weather Data by Apple Weather", systemImage: "cloud.fill")
+                        }
                     }
 
                     HStack {

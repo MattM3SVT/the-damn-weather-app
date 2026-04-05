@@ -36,6 +36,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         }
 
         return try await withCheckedThrowingContinuation { continuation in
+            // Cancel any pending continuation to prevent it from hanging forever
+            locationContinuation?.resume(throwing: LocationError.cancelled)
             locationContinuation = continuation
             manager.requestLocation()
         }
@@ -58,9 +60,12 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     enum LocationError: LocalizedError {
         case permissionDenied
+        case cancelled
 
         var errorDescription: String? {
             switch self {
+            case .cancelled:
+                return "Location request was superseded by a newer request."
             case .permissionDenied:
                 return "Location permission was denied. Enable it in Settings."
             }

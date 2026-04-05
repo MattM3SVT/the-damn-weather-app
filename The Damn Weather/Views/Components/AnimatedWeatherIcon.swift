@@ -156,6 +156,7 @@ private struct SunIcon: View {
             // Rays (rotate)
             SunRays(scale: scale, rayLength: 14, rayWidth: 5, radius: 40)
                 .rotationEffect(.degrees(rotating ? 45 : 0))
+                .animation(.linear(duration: 6).repeatForever(autoreverses: false), value: rotating)
 
             // Sun circle (fixed)
             Circle()
@@ -169,11 +170,7 @@ private struct SunIcon: View {
                 .overlay(Circle().stroke(IconColors.sunOrange.opacity(0.6), lineWidth: 2 * scale))
                 .frame(width: 44 * scale, height: 44 * scale)
         }
-        .onAppear {
-            withAnimation(.linear(duration: 6).repeatForever(autoreverses: false)) {
-                rotating = true
-            }
-        }
+        .onAppear { rotating = true }
     }
 }
 
@@ -217,11 +214,8 @@ private struct MoonIcon: View {
             )
             .frame(width: 55 * scale, height: 55 * scale)
             .rotationEffect(.degrees(rocking ? 9 : -15))
-            .onAppear {
-                withAnimation(.easeInOut(duration: 6).repeatForever(autoreverses: true)) {
-                    rocking = true
-                }
-            }
+            .animation(.easeInOut(duration: 6).repeatForever(autoreverses: true), value: rocking)
+            .onAppear { rocking = true }
     }
 }
 
@@ -256,6 +250,7 @@ private struct PartlyCloudyDayIcon: View {
             ZStack {
                 SunRays(scale: scale * 0.55, rayLength: 12, rayWidth: 4.5, radius: 34)
                     .rotationEffect(.degrees(rotating ? 45 : 0))
+                    .animation(.linear(duration: 6).repeatForever(autoreverses: false), value: rotating)
 
                 Circle()
                     .fill(
@@ -273,11 +268,7 @@ private struct PartlyCloudyDayIcon: View {
             CloudView(scale: scale, width: 72, height: 46)
                 .offset(x: 6 * scale, y: 10 * scale)
         }
-        .onAppear {
-            withAnimation(.linear(duration: 6).repeatForever(autoreverses: false)) {
-                rotating = true
-            }
-        }
+        .onAppear { rotating = true }
     }
 }
 
@@ -304,17 +295,14 @@ private struct PartlyCloudyNightIcon: View {
                 )
                 .frame(width: 36 * scale, height: 36 * scale)
                 .rotationEffect(.degrees(rocking ? 9 : -15))
+                .animation(.easeInOut(duration: 6).repeatForever(autoreverses: true), value: rocking)
                 .offset(x: -20 * scale, y: -16 * scale)
 
             // Cloud (in front)
             CloudView(scale: scale, width: 72, height: 46)
                 .offset(x: 6 * scale, y: 10 * scale)
         }
-        .onAppear {
-            withAnimation(.easeInOut(duration: 6).repeatForever(autoreverses: true)) {
-                rocking = true
-            }
-        }
+        .onAppear { rocking = true }
     }
 }
 
@@ -327,11 +315,8 @@ private struct CloudyIcon: View {
     var body: some View {
         CloudView(scale: scale)
             .offset(x: swaying ? 6 * scale : -6 * scale)
-            .onAppear {
-                withAnimation(.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
-                    swaying = true
-                }
-            }
+            .animation(.easeInOut(duration: 3).repeatForever(autoreverses: true), value: swaying)
+            .onAppear { swaying = true }
     }
 }
 
@@ -351,19 +336,17 @@ private struct FogIcon: View {
                                         startPoint: .leading, endPoint: .trailing))
                     .frame(width: 60 * scale, height: 5 * scale)
                     .offset(x: sliding ? 8 * scale : -8 * scale)
+                    .animation(.easeInOut(duration: 3).repeatForever(autoreverses: true), value: sliding)
 
                 Capsule()
                     .fill(LinearGradient(colors: [IconColors.windDark, IconColors.windGray],
                                         startPoint: .leading, endPoint: .trailing))
                     .frame(width: 48 * scale, height: 5 * scale)
                     .offset(x: sliding ? -8 * scale : 8 * scale)
+                    .animation(.easeInOut(duration: 3).repeatForever(autoreverses: true), value: sliding)
             }
         }
-        .onAppear {
-            withAnimation(.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
-                sliding = true
-            }
-        }
+        .onAppear { sliding = true }
     }
 }
 
@@ -412,7 +395,9 @@ private struct RainDrop: View {
             )
             .frame(width: dropWidth * scale, height: dropHeight * scale)
             .offset(y: falling ? fallDistance * scale : 0)
+            .animation(.linear(duration: duration).repeatForever(autoreverses: false), value: falling)
             .opacity(visible ? 0 : 1)
+            .animation(.linear(duration: duration).repeatForever(autoreverses: false), value: visible)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                     startAnimation()
@@ -421,12 +406,8 @@ private struct RainDrop: View {
     }
 
     private func startAnimation() {
-        withAnimation(.linear(duration: duration).repeatForever(autoreverses: false)) {
-            falling = true
-        }
-        withAnimation(.linear(duration: duration).repeatForever(autoreverses: false)) {
-            visible = true
-        }
+        falling = true
+        visible = true
     }
 }
 
@@ -487,19 +468,16 @@ private struct Snowflake: View {
             .stroke(IconColors.snowBlue, lineWidth: 1.5 * scale)
             .frame(width: 10 * scale, height: 10 * scale)
             .rotationEffect(.degrees(spinning ? 360 : 0))
+            .animation(.linear(duration: 6).repeatForever(autoreverses: false), value: spinning)
             .offset(y: falling ? 24 * scale : 0)
+            .animation(.easeIn(duration: 2).repeatForever(autoreverses: false), value: falling)
             .opacity(visible ? 0 : 1)
+            .animation(.easeIn(duration: 2).repeatForever(autoreverses: false), value: visible)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    withAnimation(.linear(duration: 6).repeatForever(autoreverses: false)) {
-                        spinning = true
-                    }
-                    withAnimation(.easeIn(duration: 2).repeatForever(autoreverses: false)) {
-                        falling = true
-                    }
-                    withAnimation(.easeIn(duration: 2).repeatForever(autoreverses: false)) {
-                        visible = true
-                    }
+                    spinning = true
+                    falling = true
+                    visible = true
                 }
             }
     }
@@ -564,8 +542,9 @@ private struct SleetIcon: View {
 private struct ThunderstormIcon: View {
     let scale: CGFloat
     @State private var flickerPhase: Int = 0
+    @State private var timer: Timer.TimerPublisher = Timer.publish(every: 0.167, on: .main, in: .common)
+    @State private var timerConnection: Cancellable?
 
-    private let timer = Timer.publish(every: 0.167, on: .main, in: .common).autoconnect()
     private let pattern: [Double] = [1, 1, 0, 1, 0, 1, 0, 1]
 
     var body: some View {
@@ -577,6 +556,12 @@ private struct ThunderstormIcon: View {
         }
         .onReceive(timer) { _ in
             flickerPhase = (flickerPhase + 1) % pattern.count
+        }
+        .onAppear {
+            timerConnection = timer.connect()
+        }
+        .onDisappear {
+            timerConnection?.cancel()
         }
     }
 }
@@ -645,6 +630,7 @@ private struct WindIcon: View {
                         dashPhase: dashPhase1
                     )
                 )
+                .animation(.linear(duration: 6).repeatForever(autoreverses: false), value: dashPhase1)
                 .frame(width: 75 * scale, height: 16 * scale)
                 .offset(y: -14 * scale)
 
@@ -662,16 +648,13 @@ private struct WindIcon: View {
                         dashPhase: dashPhase2
                     )
                 )
+                .animation(.linear(duration: 6).repeatForever(autoreverses: false), value: dashPhase2)
                 .frame(width: 58 * scale, height: 14 * scale)
                 .offset(x: -8 * scale, y: 14 * scale)
         }
         .onAppear {
-            withAnimation(.linear(duration: 6).repeatForever(autoreverses: false)) {
-                dashPhase1 = -(dashLength + gapLength) * 6
-            }
-            withAnimation(.linear(duration: 6).repeatForever(autoreverses: false)) {
-                dashPhase2 = -(dashLength * 0.8 + gapLength * 0.8) * 5
-            }
+            dashPhase1 = -(dashLength + gapLength) * 6
+            dashPhase2 = -(dashLength * 0.8 + gapLength * 0.8) * 5
         }
     }
 }

@@ -284,12 +284,12 @@ struct MainView: View {
                 },
                 topInset: isRegular ? 0 : headerOverlayHeight
             )
-        } else if weatherVM.error != nil,
+        } else if let error = weatherVM.error,
                   locationService.authorizationStatus != .denied,
                   locationService.authorizationStatus != .restricted,
                   locationService.authorizationStatus != .notDetermined {
             // Only show error view for non-permission errors (e.g. network failure)
-            ErrorView(message: weatherVM.error!) {
+            ErrorView(message: error) {
                 Task { await weatherVM.loadWeatherForCurrentLocation() }
             }
             .frame(maxHeight: .infinity)
