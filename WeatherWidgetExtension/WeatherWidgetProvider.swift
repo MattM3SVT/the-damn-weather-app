@@ -78,19 +78,19 @@ struct WeatherWidgetProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
-        Task {
-            // Try cached data first (instant, no network) — this is what the app already saved
-            if let cached = await buildCachedEntry() {
-                completion(cached)
-                return
-            }
+        // Try cached data first — pure UserDefaults reads, completes in milliseconds.
+        // This avoids PhraseEngine's 728KB JSON load which can timeout the widget extension.
+        if let cached = buildCachedEntry() {
+            completion(cached)
+            return
+        }
 
-            // No cached data — try live WeatherKit fetch
+        // No cached data (app never opened) — try live WeatherKit fetch
+        Task {
             if let entry = try? await fetchWeatherEntry() {
                 completion(entry)
                 return
             }
-
             // Absolute last resort — hardcoded placeholder
             completion(.placeholder)
         }
@@ -105,7 +105,7 @@ struct WeatherWidgetProvider: TimelineProvider {
                 completion(timeline)
             } catch {
                 // Use cached weather data the main app saved, or hardcoded placeholder
-                let fallback = await buildCachedEntry() ?? .placeholder
+                let fallback = buildCachedEntry() ?? .placeholder
                 // Retry quickly — data may not have synced yet or WeatherKit may have failed
                 let nextUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: Date()) ?? Date()
                 let timeline = Timeline(entries: [fallback], policy: .after(nextUpdate))
@@ -116,11 +116,13 @@ struct WeatherWidgetProvider: TimelineProvider {
 
     /// Build an entry from cached weather data the main app wrote to shared UserDefaults.
     /// Returns nil if no cached data exists (app has never fetched weather).
-    private func buildCachedEntry() async -> WeatherWidgetEntry? {
+    /// IMPORTANT: This method is intentionally synchronous (no PhraseEngine calls) so it
+    /// completes within WidgetKit's tight time budget for getSnapshot(). Loading PhraseEngine's
+    /// 728KB of JSON in the widget extension can cause timeouts.
+    private func buildCachedEntry() -> WeatherWidgetEntry? {
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         defaults.synchronize()
 
-        let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
         let cachedConditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
 
         // If no cached condition tag exists, the app has never saved weather data
@@ -129,6 +131,7 @@ struct WeatherWidgetProvider: TimelineProvider {
             return nil
         }
 
+        let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
         let temperature = Int(cachedTemp.rounded())
         let conditionLabel = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel) ?? conditionTag.label
         let isDay = defaults.bool(forKey: AppConstants.UserDefaultsKeys.cachedIsDay)
@@ -137,20 +140,8 @@ struct WeatherWidgetProvider: TimelineProvider {
         let low = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedLow).rounded())
         let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
 
-        // Use shared phrase or generate a fresh one
-        let phrase: String
-        if let sharedPhrase = defaults.string(forKey: "currentPhrase"), !sharedPhrase.isEmpty {
-            phrase = sharedPhrase
-        } else {
-            let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
-            let mode = PhraseMode(rawValue: modeStr) ?? .clean
-            phrase = await phraseEngine.selectPhrase(
-                conditionTag: conditionTag,
-                tempF: cachedTemp,
-                mode: mode,
-                isDay: isDay
-            )
-        }
+        // Read the phrase the app already saved — no PhraseEngine generation here
+        let phrase = defaults.string(forKey: "currentPhrase") ?? "\(conditionLabel) and \(temperature)°."
 
         return WeatherWidgetEntry(
             date: Date(),
