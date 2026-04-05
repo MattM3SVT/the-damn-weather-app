@@ -641,7 +641,7 @@
       18.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -876,7 +876,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -1752,7 +1752,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -2542,7 +2542,7 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "It's snowing sideways and your coat zipper is stuck. Today is absolute horseshit.",
@@ -3119,7 +3119,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -3797,7 +3797,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -3857,7 +3857,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -4735,7 +4735,7 @@
       0.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -5289,7 +5289,7 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "Clear skies but [temp] degrees. Looks beautiful, feels like ass. Stay the fuck inside.",
@@ -5315,7 +5315,7 @@
       32.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -5355,7 +5355,7 @@
       35.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -5598,7 +5598,7 @@
       50.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -6848,7 +6848,7 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "It's [temp] outside. That's the temperature, not a suggestion for how many fucks to give.",
@@ -8946,7 +8946,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -9122,7 +9122,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -9482,7 +9482,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -10648,7 +10648,7 @@
       0.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -11395,7 +11395,7 @@
       52.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12346,7 +12346,7 @@
       80
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12411,7 +12411,7 @@
       75
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13182,7 +13182,7 @@
       78
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -14094,7 +14094,7 @@
       65
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -14350,7 +14350,7 @@
       68
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -14415,7 +14415,7 @@
       68
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15523,7 +15523,7 @@
       76
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15598,7 +15598,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15784,7 +15784,7 @@
       88
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15797,7 +15797,7 @@
       65
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15960,7 +15960,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16136,7 +16136,7 @@
       58
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16172,7 +16172,7 @@
       76
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16444,7 +16444,7 @@
       60
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16576,7 +16576,7 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "[temp] and thunder. The transformer on your street just blew. The fireworks were free. Shit's dark now.",
@@ -17064,7 +17064,7 @@
       55
     ],
     "priority": 2,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -17113,7 +17113,7 @@
       32
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -17347,7 +17347,7 @@
       58
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {

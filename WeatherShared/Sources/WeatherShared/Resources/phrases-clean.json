@@ -436,7 +436,7 @@
       105.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -524,7 +524,7 @@
       38.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -1707,7 +1707,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -1918,7 +1918,7 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "Downpour outside. Your dash to the car door will be a sprint.",
@@ -2005,7 +2005,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -2126,7 +2126,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -2335,7 +2335,7 @@
     ],
     "tempRange": null,
     "priority": 2,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -2388,7 +2388,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -2775,7 +2775,7 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "That thunder boom just made the whole neighborhood jump collectively.",
@@ -2874,7 +2874,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -3614,7 +3614,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -4124,7 +4124,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -8202,7 +8202,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -8519,7 +8519,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -8971,7 +8971,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -9591,7 +9591,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -10146,7 +10146,7 @@
       130.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -10276,7 +10276,7 @@
       0.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -10936,7 +10936,7 @@
       45.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -11043,7 +11043,7 @@
       25.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -11950,7 +11950,7 @@
       80
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12015,7 +12015,7 @@
       75
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12789,7 +12789,7 @@
       78
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13818,7 +13818,7 @@
       65
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -14100,7 +14100,7 @@
       68
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -14165,7 +14165,7 @@
       68
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -14477,7 +14477,7 @@
       32
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15255,7 +15255,7 @@
       78
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15314,7 +15314,7 @@
       68
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15843,7 +15843,7 @@
       33
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16103,7 +16103,7 @@
       76
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16201,7 +16201,7 @@
       50
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16654,7 +16654,7 @@
       85
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16680,7 +16680,7 @@
       58
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16781,7 +16781,7 @@
       55
     ],
     "priority": 2,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16986,7 +16986,7 @@
       88
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16999,7 +16999,7 @@
       65
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -17172,7 +17172,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {

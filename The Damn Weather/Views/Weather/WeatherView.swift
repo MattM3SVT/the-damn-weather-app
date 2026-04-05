@@ -1,4 +1,5 @@
 import SwiftUI
+import WeatherShared
 
 /// Main weather screen — scrollable with all weather sections.
 /// Tracks scroll offset to drive the collapsing hero animation.
@@ -49,9 +50,9 @@ struct WeatherView: View {
                     )
                 }
 
-                // Minute-by-minute precipitation chart
+                // Minute-by-minute precipitation summary
                 if let weather = viewModel.weather, weather.minutePrecipitation.contains(where: { $0.intensity > 0 }) {
-                    PrecipitationChart(data: weather.minutePrecipitation)
+                    PrecipitationCard(data: weather.minutePrecipitation, isExplicit: appState.phraseMode == .explicit)
                 }
 
                 // Hourly forecast
