@@ -47,7 +47,7 @@ struct WeatherWidgetEntry: TimelineEntry {
             conditionTag: .partlyCloudy,
             conditionLabel: "Partly Cloudy",
             isDay: true,
-            phrase: "72° and partly cloudy. Nature's way of saying \"meh.\"",
+            phrase: "Open the app to load weather data.",
             feelsLike: 70,
             high: 78,
             low: 62,
@@ -74,7 +74,9 @@ struct WeatherWidgetProvider: TimelineProvider {
     )
 
     func placeholder(in context: Context) -> WeatherWidgetEntry {
-        .placeholder
+        // On iPhone, WidgetKit may show placeholder() for longer before calling getTimeline().
+        // Use cached data here too so the user sees real weather immediately.
+        buildCachedEntry() ?? .placeholder
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
@@ -97,19 +99,39 @@ struct WeatherWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherWidgetEntry>) -> Void) {
-        // SYNCHRONOUS — call completion() before WidgetKit can kill the extension.
-        // Same pattern that fixed getSnapshot().
-        if let cached = buildCachedEntry() {
-            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-            completion(Timeline(entries: [cached], policy: .after(nextUpdate)))
+        // DEBUG: Check what data sources are available
+        let hasFile = WidgetDataStore.load() != nil
+        let hasContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID) != nil
+        let hasDefaults = UserDefaults(suiteName: AppConstants.appGroupID)?.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag) != nil
+        let debugPrefix = "[F:\(hasFile) C:\(hasContainer) D:\(hasDefaults)] "
 
-            // Background: fetch fresh weather + phrase and save to UserDefaults
-            // so the NEXT 15-min refresh picks up fresh data
+        // SYNCHRONOUS — call completion() before WidgetKit can kill the extension.
+        if let cached = buildCachedEntry() {
+            // Temporarily prepend debug info to the phrase so we can see what's happening
+            let debugEntry = WeatherWidgetEntry(
+                date: cached.date,
+                temperature: cached.temperature,
+                conditionTag: cached.conditionTag,
+                conditionLabel: cached.conditionLabel,
+                isDay: cached.isDay,
+                phrase: debugPrefix + cached.phrase,
+                feelsLike: cached.feelsLike,
+                high: cached.high,
+                low: cached.low,
+                precipProbability: cached.precipProbability,
+                hourlyPreview: cached.hourlyPreview,
+                dailyPreview: cached.dailyPreview,
+                locationName: cached.locationName
+            )
+            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
+            completion(Timeline(entries: [debugEntry], policy: .after(nextUpdate)))
+
+            // Background: fetch fresh weather + phrase and save for next refresh
             Task { await refreshCachedData() }
             return
         }
 
-        // No cached data (app never opened) — must try async as last resort
+        // No cached data — try async as last resort
         Task {
             if let entry = try? await fetchWeatherEntry() {
                 saveFreshDataToCache(entry)
