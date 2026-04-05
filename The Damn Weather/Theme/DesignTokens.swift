@@ -27,7 +27,7 @@ enum DesignTokens {
     static let headerHeight: CGFloat = 64
 
     // MARK: - Weather Icon Size
-    static let heroIconSize: CGFloat = 100
+    static let heroIconSize: CGFloat = 120
     static let hourlyIconSize: CGFloat = 28
     static let dailyIconSize: CGFloat = 24
     static let detailIconSize: CGFloat = 20

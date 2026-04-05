@@ -1,10 +1,9 @@
 import SwiftUI
 
-/// Minute-by-minute precipitation summary card with attitude.
-/// Replaces the old chart with a plain-language description.
+/// Minute-by-minute precipitation summary card.
+/// Shows clear, informative text about what to expect in the next hour.
 struct PrecipitationCard: View {
     let data: [MinutePrecipitationPoint]
-    let isExplicit: Bool
 
     private var summary: PrecipitationSummary {
         PrecipitationSummary(data: data)
@@ -25,7 +24,7 @@ struct PrecipitationCard: View {
                         .font(.title2)
                         .foregroundStyle(.blue)
 
-                    Text(summary.message(isExplicit: isExplicit))
+                    Text(summary.message)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -45,16 +44,10 @@ private struct PrecipitationSummary {
     let peakIntensity: IntensityLevel
     let icon: String
 
-    enum IntensityLevel {
-        case light, moderate, heavy
-
-        var label: String {
-            switch self {
-            case .light: return "light"
-            case .moderate: return "moderate"
-            case .heavy: return "heavy"
-            }
-        }
+    enum IntensityLevel: String {
+        case light = "Light"
+        case moderate = "Moderate"
+        case heavy = "Heavy"
     }
 
     init(data: [MinutePrecipitationPoint]) {
@@ -102,86 +95,37 @@ private struct PrecipitationSummary {
         }
     }
 
-    func message(isExplicit: Bool) -> String {
-        let intensity = peakIntensity.label
+    var message: String {
+        let intensity = peakIntensity.rawValue.lowercased()
 
         // Scenario 1: Raining now and stops within the hour
         if isRainingNow, let ends = endsInMinutes, ends < 55 {
-            let timeStr = minutesDescription(ends)
-            return isExplicit
-                ? pick([
-                    "\(intensity.capitalized) rain happening right now. Should clear up in about \(timeStr). Hang in there, asshole.",
-                    "It's raining. \(intensity.capitalized) stuff. Give it \(timeStr) and it'll piss off.",
-                    "\(intensity.capitalized) rain. It'll quit its bullshit in about \(timeStr)."
-                ])
-                : pick([
-                    "\(intensity.capitalized) rain right now. Should ease up in about \(timeStr). Patience.",
-                    "Currently raining. \(intensity.capitalized) intensity. Give it \(timeStr) and you'll be fine.",
-                    "\(intensity.capitalized) rain falling. It'll move on in about \(timeStr)."
-                ])
+            return "\(peakIntensity.rawValue) rain right now. Expected to stop in \(minutesDescription(ends))."
         }
 
         // Scenario 2: Raining now and continues through the hour
         if isRainingNow {
-            return isExplicit
-                ? pick([
-                    "\(intensity.capitalized) rain and it's not stopping anytime soon. You're stuck with this shit.",
-                    "Raining. \(intensity.capitalized). For the whole damn hour at least. Plan accordingly, genius.",
-                    "\(intensity.capitalized) rain for the foreseeable future. Umbrella or regret. Your call, dumbass."
-                ])
-                : pick([
-                    "\(intensity.capitalized) rain for at least the next hour. Get comfortable.",
-                    "It's raining and it's staying. \(intensity.capitalized) intensity for the foreseeable future.",
-                    "\(intensity.capitalized) rain isn't going anywhere. The next hour belongs to it."
-                ])
+            return "\(peakIntensity.rawValue) rain continuing for at least the next hour."
         }
 
-        // Scenario 3: Not raining yet, rain coming
+        // Scenario 3: Not raining yet, rain coming and ending within the hour
         if let starts = startsInMinutes {
-            let timeStr = minutesDescription(starts)
             if let ends = endsInMinutes, ends < 55 {
-                let durationStr = minutesDescription(ends - starts)
-                return isExplicit
-                    ? pick([
-                        "\(intensity.capitalized) rain in about \(timeStr). Lasting roughly \(durationStr). Shit timing as always.",
-                        "Rain incoming in \(timeStr). \(intensity.capitalized) stuff for about \(durationStr). Fucking wonderful.",
-                        "Heads up, dipshit. \(intensity.capitalized) rain hitting in about \(timeStr). Gone in \(durationStr)."
-                    ])
-                    : pick([
-                        "\(intensity.capitalized) rain expected in about \(timeStr). Should last around \(durationStr).",
-                        "Rain's coming in \(timeStr). \(intensity.capitalized) intensity, lasting about \(durationStr).",
-                        "Expect \(intensity) rain in roughly \(timeStr). It'll pass in about \(durationStr)."
-                    ])
+                let duration = ends - starts
+                return "\(peakIntensity.rawValue) rain expected in \(minutesDescription(starts)), lasting about \(minutesDescription(duration))."
             } else {
-                return isExplicit
-                    ? pick([
-                        "\(intensity.capitalized) rain in about \(timeStr). And it's not stopping. Great.",
-                        "Rain hitting in \(timeStr). \(intensity.capitalized) and settling in for the long haul. Fuck.",
-                        "\(timeStr) until \(intensity) rain arrives and ruins the rest of your night. Shit."
-                    ])
-                    : pick([
-                        "\(intensity.capitalized) rain expected in about \(timeStr). Sticking around a while.",
-                        "Rain's on the way. \(intensity.capitalized) intensity arriving in about \(timeStr).",
-                        "\(intensity.capitalized) rain incoming in roughly \(timeStr). No end in sight this hour."
-                    ])
+                return "\(peakIntensity.rawValue) rain expected in \(minutesDescription(starts)), continuing through the hour."
             }
         }
 
         // Fallback
-        return isExplicit
-            ? "Something wet is happening out there. Good luck, asshole."
-            : "Precipitation activity detected in the next hour."
+        return "Precipitation expected in the next hour."
     }
 
     private func minutesDescription(_ minutes: Int) -> String {
         if minutes < 5 { return "a few minutes" }
         if minutes < 10 { return "\(minutes) minutes" }
-        // Round to nearest 5
         let rounded = (minutes / 5) * 5
         return "\(rounded) minutes"
-    }
-
-    private func pick(_ options: [String]) -> String {
-        options.randomElement() ?? options[0]
     }
 }

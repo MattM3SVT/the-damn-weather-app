@@ -52,7 +52,7 @@ struct WeatherView: View {
 
                 // Minute-by-minute precipitation summary
                 if let weather = viewModel.weather, weather.minutePrecipitation.contains(where: { $0.intensity > 0 }) {
-                    PrecipitationCard(data: weather.minutePrecipitation, isExplicit: appState.phraseMode == .explicit)
+                    PrecipitationCard(data: weather.minutePrecipitation)
                 }
 
                 // Hourly forecast

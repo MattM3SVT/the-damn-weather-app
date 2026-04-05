@@ -19,7 +19,7 @@ struct HeroSection: View {
     @Environment(AppState.self) private var appState
 
     private var isRegular: Bool { sizeClass == .regular }
-    private var iconSize: CGFloat { isRegular ? 140 : DesignTokens.heroIconSize }
+    private var iconSize: CGFloat { isRegular ? 168 : DesignTokens.heroIconSize }
     private var tempSize: CGFloat { isRegular ? 128 : DesignTokens.heroTempSize }
     private var phraseSize: CGFloat { isRegular ? 28 : DesignTokens.phraseSize }
 
