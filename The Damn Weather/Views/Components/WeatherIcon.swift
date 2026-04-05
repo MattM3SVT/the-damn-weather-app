@@ -9,7 +9,8 @@ struct WeatherIcon: View {
 
     var body: some View {
         AnimatedWeatherIcon(condition: condition, isDay: isDay, size: size)
-            .frame(width: size)
+            .frame(width: size, height: size)
+            .clipped()
     }
 }
 
@@ -22,5 +23,6 @@ struct CompactWeatherIcon: View {
     var body: some View {
         AnimatedWeatherIcon(condition: condition, isDay: isDay, size: size)
             .frame(width: size * 1.2, height: size * 1.2)
+            .clipped()
     }
 }

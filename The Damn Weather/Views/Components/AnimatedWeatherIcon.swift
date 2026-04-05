@@ -49,6 +49,7 @@ struct AnimatedWeatherIcon: View {
             }
         }
         .frame(width: size, height: size)
+        .clipped()
     }
 }
 
