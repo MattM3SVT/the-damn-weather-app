@@ -97,16 +97,27 @@ struct WeatherWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherWidgetEntry>) -> Void) {
+        // SYNCHRONOUS — call completion() before WidgetKit can kill the extension.
+        // Same pattern that fixed getSnapshot().
+        if let cached = buildCachedEntry() {
+            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
+            completion(Timeline(entries: [cached], policy: .after(nextUpdate)))
+
+            // Background: fetch fresh weather + phrase and save to UserDefaults
+            // so the NEXT 15-min refresh picks up fresh data
+            Task { await refreshCachedData() }
+            return
+        }
+
+        // No cached data (app never opened) — must try async as last resort
         Task {
-            do {
-                let entry = try await fetchWeatherEntry()
+            if let entry = try? await fetchWeatherEntry() {
+                saveFreshDataToCache(entry)
                 let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
                 completion(Timeline(entries: [entry], policy: .after(nextUpdate)))
-            } catch {
-                // WeatherKit failed — use cached data from the main app
-                let fallback = buildCachedEntry() ?? .placeholder
+            } else {
                 let nextUpdate = Calendar.current.date(byAdding: .minute, value: 5, to: Date()) ?? Date()
-                completion(Timeline(entries: [fallback], policy: .after(nextUpdate)))
+                completion(Timeline(entries: [.placeholder], policy: .after(nextUpdate)))
             }
         }
     }
@@ -155,6 +166,30 @@ struct WeatherWidgetProvider: TimelineProvider {
             dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
             locationName: locationName
         )
+    }
+
+    /// Fetch fresh weather + phrase in the background and save to UserDefaults.
+    /// The current widget cycle already has cached data displayed — this updates the
+    /// cache so the NEXT 15-min refresh shows fresh data.
+    private func refreshCachedData() async {
+        guard let entry = try? await fetchWeatherEntry() else { return }
+        saveFreshDataToCache(entry)
+    }
+
+    /// Write a fresh entry's data to shared UserDefaults so buildCachedEntry() returns
+    /// updated values on the next timeline refresh.
+    private func saveFreshDataToCache(_ entry: WeatherWidgetEntry) {
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        defaults.set(Double(entry.temperature), forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
+        defaults.set(entry.conditionTag.rawValue, forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
+        defaults.set(entry.conditionLabel, forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel)
+        defaults.set(entry.isDay, forKey: AppConstants.UserDefaultsKeys.cachedIsDay)
+        defaults.set(Double(entry.feelsLike), forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike)
+        defaults.set(Double(entry.high), forKey: AppConstants.UserDefaultsKeys.cachedHigh)
+        defaults.set(Double(entry.low), forKey: AppConstants.UserDefaultsKeys.cachedLow)
+        defaults.set(entry.phrase, forKey: AppConstants.UserDefaultsKeys.currentPhrase)
+        defaults.set(entry.locationName, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
+        defaults.synchronize()
     }
 
     private func fetchWeatherEntry() async throws -> WeatherWidgetEntry {
