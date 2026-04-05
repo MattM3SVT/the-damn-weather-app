@@ -148,7 +148,8 @@ struct WeatherWidgetProvider: TimelineProvider {
                     dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
                     locationName: "The Damn Weather"
                 )
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date()
+                // Retry quickly — location data may not have synced yet
+                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: Date()) ?? Date()
                 let timeline = Timeline(entries: [fallback], policy: .after(nextUpdate))
                 completion(timeline)
             }
@@ -157,6 +158,8 @@ struct WeatherWidgetProvider: TimelineProvider {
 
     private func fetchWeatherEntry() async throws -> WeatherWidgetEntry {
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        // Force cross-process sync so we pick up data the main app just wrote
+        defaults.synchronize()
         let lat = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
         let lon = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
         let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
