@@ -73,8 +73,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     func reverseGeocode(_ location: CLLocation) async -> (name: String, state: String, country: String) {
-        // Try iOS 26 MKReverseGeocodingRequest first
         if #available(iOS 26, *) {
+            // Use MKReverseGeocodingRequest on iOS 26+
             do {
                 guard let request = MKReverseGeocodingRequest(location: location) else {
                     return ("Unknown", "", "")
@@ -86,28 +86,29 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 return Self.extractAddress(from: item)
             } catch {
                 #if DEBUG
-                print("📍 MKReverseGeocodingRequest failed: \(error). Falling back to CLGeocoder.")
+                print("📍 MKReverseGeocodingRequest failed: \(error). Returning defaults.")
                 #endif
-            }
-        }
-
-        // Fallback to CLGeocoder (stable, works on all versions)
-        do {
-            let geocoder = CLGeocoder()
-            let placemarks = try await geocoder.reverseGeocodeLocation(location)
-            guard let place = placemarks.first else {
                 return ("Unknown", "", "")
             }
-            return (
-                name: place.locality ?? place.name ?? "Unknown",
-                state: place.administrativeArea ?? "",
-                country: place.country ?? ""
-            )
-        } catch {
-            #if DEBUG
-            print("📍 CLGeocoder also failed: \(error). Returning defaults.")
-            #endif
-            return ("Unknown", "", "")
+        } else {
+            // Fallback to CLGeocoder on older iOS versions
+            do {
+                let geocoder = CLGeocoder()
+                let placemarks = try await geocoder.reverseGeocodeLocation(location)
+                guard let place = placemarks.first else {
+                    return ("Unknown", "", "")
+                }
+                return (
+                    name: place.locality ?? place.name ?? "Unknown",
+                    state: place.administrativeArea ?? "",
+                    country: place.country ?? ""
+                )
+            } catch {
+                #if DEBUG
+                print("📍 CLGeocoder failed: \(error). Returning defaults.")
+                #endif
+                return ("Unknown", "", "")
+            }
         }
     }
 

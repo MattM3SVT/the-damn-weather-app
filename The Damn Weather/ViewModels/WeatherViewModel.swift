@@ -181,7 +181,7 @@ final class WeatherViewModel {
 
         // Share the phrase with the widget and trigger refresh
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        defaults.set(currentPhrase, forKey: "currentPhrase")
+        defaults.set(currentPhrase, forKey: AppConstants.UserDefaultsKeys.currentPhrase)
         defaults.set(appState.phraseMode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
         WidgetCenter.shared.reloadAllTimelines()
     }

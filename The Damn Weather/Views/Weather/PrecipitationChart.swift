@@ -96,8 +96,6 @@ private struct PrecipitationSummary {
     }
 
     var message: String {
-        let intensity = peakIntensity.rawValue.lowercased()
-
         // Scenario 1: Raining now and stops within the hour
         if isRainingNow, let ends = endsInMinutes, ends < 55 {
             return "\(peakIntensity.rawValue) rain right now. Expected to stop in \(minutesDescription(ends))."

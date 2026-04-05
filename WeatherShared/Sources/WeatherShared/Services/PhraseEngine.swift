@@ -1,11 +1,37 @@
 import Foundation
 
+/// Thread-safe wrapper so `isReady` can be read outside the actor without `await`.
+private final class ReadyFlag: @unchecked Sendable {
+    private let lock = NSLock()
+    private var _value = false
+
+    var value: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return _value
+    }
+
+    func set() {
+        lock.lock()
+        _value = true
+        lock.unlock()
+    }
+}
+
 /// Phrase selection engine -- exact port of the website's phrases.js algorithm.
 /// Uses a 6-step cascading filter to find the best phrase match.
 public actor PhraseEngine {
     private var cleanPhrases: [Phrase] = []
     private var explicitPhrases: [Phrase] = []
     private var isLoaded = false
+
+    /// Thread-safe flag readable outside the actor (no await needed).
+    /// Used by the widget to check if JSON is already loaded before entering a Task.
+    private let _isReady = ReadyFlag()
+
+    /// Whether phrase JSON has already been loaded into memory.
+    /// Can be read synchronously from any context (nonisolated).
+    nonisolated public var isReady: Bool { _isReady.value }
 
     /// Tracks the last phrase shown per mode to prevent back-to-back repeats (persisted)
     private var lastShownClean: String?
@@ -55,6 +81,13 @@ public actor PhraseEngine {
         }
 
         isLoaded = true
+        _isReady.set()
+    }
+
+    /// Pre-load phrase JSON so subsequent `selectPhrase()` calls complete instantly.
+    /// Call from a background Task to warm up the engine without blocking the caller.
+    public func warmUp() {
+        loadIfNeeded()
     }
 
     /// Select a phrase based on current weather conditions and time of day.

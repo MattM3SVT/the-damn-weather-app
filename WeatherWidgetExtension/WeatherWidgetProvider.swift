@@ -100,16 +100,13 @@ struct WeatherWidgetProvider: TimelineProvider {
         Task {
             do {
                 let entry = try await fetchWeatherEntry()
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date()
-                let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
-                completion(timeline)
+                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
+                completion(Timeline(entries: [entry], policy: .after(nextUpdate)))
             } catch {
-                // Use cached weather data the main app saved, or hardcoded placeholder
+                // WeatherKit failed — use cached data from the main app
                 let fallback = buildCachedEntry() ?? .placeholder
-                // Retry quickly — data may not have synced yet or WeatherKit may have failed
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: Date()) ?? Date()
-                let timeline = Timeline(entries: [fallback], policy: .after(nextUpdate))
-                completion(timeline)
+                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 5, to: Date()) ?? Date()
+                completion(Timeline(entries: [fallback], policy: .after(nextUpdate)))
             }
         }
     }
@@ -141,7 +138,7 @@ struct WeatherWidgetProvider: TimelineProvider {
         let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
 
         // Read the phrase the app already saved — no PhraseEngine generation here
-        let phrase = defaults.string(forKey: "currentPhrase") ?? "\(conditionLabel) and \(temperature)°."
+        let phrase = defaults.string(forKey: AppConstants.UserDefaultsKeys.currentPhrase) ?? "\(conditionLabel) and \(temperature)°."
 
         return WeatherWidgetEntry(
             date: Date(),
@@ -178,6 +175,11 @@ struct WeatherWidgetProvider: TimelineProvider {
             throw WidgetError.noLocation
         }
 
+        // Start PhraseEngine warmup concurrently — it loads 728KB of JSON from disk,
+        // which runs in parallel with the WeatherKit network call below.
+        // By the time WeatherKit returns (~2-5s), PhraseEngine is almost always ready.
+        Task { [phraseEngine] in await phraseEngine.warmUp() }
+
         let service = WeatherKit.WeatherService.shared
         let weather = try await service.weather(
             for: location,
@@ -192,15 +194,23 @@ struct WeatherWidgetProvider: TimelineProvider {
         let conditionTag = WeatherConditionTag.from(current.condition, windSpeed: windMph)
         let tempF = current.temperature.converted(to: .fahrenheit).value
 
-        // Always generate a fresh phrase from live weather data
+        // Generate a fresh phrase if PhraseEngine is ready (warmed up during WeatherKit fetch).
+        // If still loading (rare — only on very slow disk I/O), use the cached phrase.
         let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
         let mode = PhraseMode(rawValue: modeStr) ?? .clean
-        let phrase = await phraseEngine.selectPhrase(
-            conditionTag: conditionTag,
-            tempF: tempF,
-            mode: mode,
-            isDay: current.isDaylight
-        )
+
+        let phrase: String
+        if phraseEngine.isReady {
+            phrase = await phraseEngine.selectPhrase(
+                conditionTag: conditionTag,
+                tempF: tempF,
+                mode: mode,
+                isDay: current.isDaylight
+            )
+        } else {
+            phrase = defaults.string(forKey: AppConstants.UserDefaultsKeys.currentPhrase)
+                ?? "\(conditionTag.label) and \(Int(tempF.rounded()))°."
+        }
 
         // Get DST-aware timezone via reverse geocoding
         let locationTimezone: TimeZone

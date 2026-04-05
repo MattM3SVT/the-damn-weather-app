@@ -33,5 +33,6 @@ public enum AppConstants {
         public static let cachedFeelsLike = "cachedFeelsLike"
         public static let cachedHigh = "cachedHigh"
         public static let cachedLow = "cachedLow"
+        public static let currentPhrase = "currentPhrase"
     }
 }
