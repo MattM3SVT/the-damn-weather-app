@@ -7,6 +7,7 @@ import WeatherShared
 actor WeatherService {
     private let service = WeatherKit.WeatherService.shared
     private var cache: [String: WeatherSnapshot] = [:]
+    private var timezoneCache: [String: TimeZone] = [:]
 
     private func cacheKey(for location: CLLocation) -> String {
         String(format: "%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude)
@@ -167,8 +168,15 @@ actor WeatherService {
             )
         }
 
-        // Get DST-aware timezone via reverse geocoding
-        let locationTimezone = await Self.timezone(for: location)
+        // Get DST-aware timezone via reverse geocoding (cached to avoid redundant geocoding)
+        let locationTimezone: TimeZone
+        if let cachedTZ = timezoneCache[key] {
+            locationTimezone = cachedTZ
+        } else {
+            let tz = await Self.timezone(for: location)
+            timezoneCache[key] = tz
+            locationTimezone = tz
+        }
 
         let snapshot = WeatherSnapshot(
             current: currentData,

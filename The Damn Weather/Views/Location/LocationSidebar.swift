@@ -297,74 +297,16 @@ struct LocationSidebar: View {
     // MARK: - Weather Fetching
 
     private func fetchAllSummaries() async {
-        let service = WeatherKit.WeatherService.shared
-
-        // Capture main-actor state before entering task group
-        let unit = appState.temperatureUnit
-        let phraseMode = appState.phraseMode
-        let engine = phraseEngine
-
-        // Extract Sendable data from @Model objects before crossing concurrency boundary
         let locationInfos: [(key: String, location: CLLocation)] = locations.map { loc in
             (key: loc.name + "\(loc.latitude)", location: CLLocation(latitude: loc.latitude, longitude: loc.longitude))
         }
-
-        await withTaskGroup(of: (String, LocationSummary?).self) { group in
-            for info in locationInfos {
-                let infoKey = info.key
-                let infoLocation = info.location
-                group.addTask {
-                    do {
-                        let weather = try await service.weather(
-                            for: infoLocation,
-                            including: .current, .daily
-                        )
-                        let current = weather.0
-                        let daily = weather.1
-                        let windMph = current.wind.speed.converted(to: .milesPerHour).value
-                        let conditionTag = WeatherConditionTag.from(current.condition, windSpeed: windMph)
-                        let tempF = current.temperature.converted(to: .fahrenheit).value
-
-                        let phrase = await engine.selectPhrase(
-                            conditionTag: conditionTag,
-                            tempF: tempF,
-                            mode: phraseMode,
-                            isDay: current.isDaylight,
-                            trackAsSeen: false  // Preview phrases don't pollute dedup
-                        )
-
-                        let todayHigh = daily.first.map { $0.highTemperature.converted(to: .fahrenheit).value } ?? 0
-                        let todayLow = daily.first.map { $0.lowTemperature.converted(to: .fahrenheit).value } ?? 0
-
-                        let tempStr = unit.format(tempF)
-                        let highStr = unit.format(todayHigh)
-                        let lowStr = unit.format(todayLow)
-                        let condLabel = current.condition.description
-                        let isDay = current.isDaylight
-
-                        return (infoKey, LocationSummary(
-                            id: infoKey,
-                            temperature: tempStr,
-                            high: highStr,
-                            low: lowStr,
-                            conditionTag: conditionTag,
-                            conditionLabel: condLabel,
-                            isDay: isDay,
-                            phrase: phrase
-                        ))
-                    } catch {
-                        return (infoKey, nil)
-                    }
-                }
-            }
-            var results: [String: LocationSummary] = [:]
-            for await (key, summary) in group {
-                if let summary {
-                    results[key] = summary
-                }
-            }
-            summaries.merge(results) { _, new in new }
-        }
+        let results = await LocationSummaryFetcher.fetchAll(
+            locationInfos: locationInfos,
+            unit: appState.temperatureUnit,
+            phraseMode: appState.phraseMode,
+            phraseEngine: phraseEngine
+        )
+        summaries.merge(results) { _, new in new }
     }
 }
 

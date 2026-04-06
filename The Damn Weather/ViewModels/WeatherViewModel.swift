@@ -267,7 +267,7 @@ final class WeatherViewModel {
     }
 
     var hasAlerts: Bool {
-        !(weather?.alerts.isEmpty ?? true)
+        weather?.alerts.isEmpty == false
     }
 
     var temperatureUnit: TemperatureUnit {
@@ -286,10 +286,11 @@ final class WeatherViewModel {
     }
 
     private func updateAllPageTimes() {
-        for (key, state) in pageStates {
-            pageStates[key]?.currentTime = Date.currentTimeString(timezone: state.weather.timezone)
+        // Only update the active page (visible to user) and the stored property for iPad.
+        // Other pages are updated lazily when navigated to via onChange(of: selectedPage).
+        if let state = pageStates[activePageKey] {
+            pageStates[activePageKey]?.currentTime = Date.currentTimeString(timezone: state.weather.timezone)
         }
-        // Also update the stored property for iPad
         if let tz = weather?.timezone {
             currentTime = Date.currentTimeString(timezone: tz)
         }

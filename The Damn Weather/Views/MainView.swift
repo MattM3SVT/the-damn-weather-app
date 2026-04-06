@@ -190,6 +190,13 @@ struct MainView: View {
 
     private var iPhoneLayout: some View {
         ZStack {
+            // Root background — covers the status bar area that per-page backgrounds
+            // inside the TabView can't reach (TabView only ignores bottom safe area).
+            DynamicBackground(
+                condition: weatherVM.pageStates[weatherVM.activePageKey]?.weather.current.conditionTag ?? .clear,
+                isDay: weatherVM.pageStates[weatherVM.activePageKey]?.weather.current.isDay ?? true
+            )
+
             // TabView with per-page CityPageView — each page has its own background + data
             TabView(selection: $selectedPage) {
                 // Page 0: Current location
@@ -309,9 +316,12 @@ struct MainView: View {
                 },
                 onAddedLocation: { location in
                     Task { await weatherVM.loadWeather(for: location) }
-                    // Navigate to the newly added location (will be last)
+                    // Navigate to the newly added location (will be last).
+                    // Capture the target page now — savedLocations.count may change
+                    // if a deletion happens during the delay.
+                    let targetPage = savedLocations.count
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        selectedPage = savedLocations.count // count already includes the new one
+                        selectedPage = min(targetPage, pageCount - 1)
                     }
                 }
             )

@@ -29,7 +29,13 @@ struct The_Damn_WeatherApp: App {
         } catch {
             // Persistent storage failed (corruption, migration, disk full) — use in-memory so the app still launches
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
-            modelContainer = try! ModelContainer(for: SavedLocation.self, configurations: config)
+            do {
+                modelContainer = try ModelContainer(for: SavedLocation.self, configurations: config)
+            } catch {
+                // This should never happen, but if it does, create a bare container
+                // rather than crashing the app on launch.
+                fatalError("Failed to create even an in-memory ModelContainer: \(error)")
+            }
         }
     }
 

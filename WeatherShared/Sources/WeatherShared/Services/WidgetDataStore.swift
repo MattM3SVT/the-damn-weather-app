@@ -116,7 +116,7 @@ public struct CachedWeatherData: Codable {
         locationName = try container.decode(String.self, forKey: .locationName)
         phrase = try container.decode(String.self, forKey: .phrase)
         phraseMode = try container.decodeIfPresent(String.self, forKey: .phraseMode) ?? "clean"
-        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt) ?? Date.distantPast
         additionalPhrases = try container.decodeIfPresent([String].self, forKey: .additionalPhrases) ?? []
         smallPhrase = try container.decodeIfPresent(String.self, forKey: .smallPhrase)
         hourlyPreview = try container.decodeIfPresent([CachedHourlyPoint].self, forKey: .hourlyPreview) ?? []

@@ -67,6 +67,24 @@ struct WeatherWidgetProvider: TimelineProvider {
         defaults: UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
     )
 
+    // MARK: - Shared Conversion Helpers
+
+    /// Convert cached hourly/daily forecast data to widget entry types.
+    private static func convertForecastPoints(from cached: CachedWeatherData) -> (
+        hourly: [WeatherWidgetEntry.HourlyWidgetPoint],
+        daily: [WeatherWidgetEntry.DailyWidgetPoint]
+    ) {
+        let hourly = cached.hourlyPreview.compactMap { point -> WeatherWidgetEntry.HourlyWidgetPoint? in
+            guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
+            return WeatherWidgetEntry.HourlyWidgetPoint(hour: point.hour, temp: point.temp, conditionTag: tag, isDay: point.isDay)
+        }
+        let daily = cached.dailyPreview.compactMap { point -> WeatherWidgetEntry.DailyWidgetPoint? in
+            guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
+            return WeatherWidgetEntry.DailyWidgetPoint(day: point.day, high: point.high, low: point.low, conditionTag: tag)
+        }
+        return (hourly, daily)
+    }
+
     init() {
         // Ensure App Group subdirectories exist — prevents CoreData sandbox errors
         // from WidgetKit's internal bookkeeping on first widget extension launch.
@@ -123,20 +141,7 @@ struct WeatherWidgetProvider: TimelineProvider {
             // The main app pre-generates 4 phrases so the widget shows variety without
             // needing PhraseEngine (which requires loading 728KB of JSON in the extension).
             let allPhrases = cachedData.allPhrases
-
-            // Convert cached forecast data to widget entry types
-            let hourlyPoints: [WeatherWidgetEntry.HourlyWidgetPoint] = cachedData.hourlyPreview.compactMap { point in
-                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
-                return WeatherWidgetEntry.HourlyWidgetPoint(
-                    hour: point.hour, temp: point.temp, conditionTag: tag, isDay: point.isDay
-                )
-            }
-            let dailyPoints: [WeatherWidgetEntry.DailyWidgetPoint] = cachedData.dailyPreview.compactMap { point in
-                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
-                return WeatherWidgetEntry.DailyWidgetPoint(
-                    day: point.day, high: point.high, low: point.low, conditionTag: tag
-                )
-            }
+            let forecast = Self.convertForecastPoints(from: cachedData)
 
             // Single entry per timeline — WidgetKit refreshes every 15 minutes,
             // fetching fresh weather data + a new phrase each cycle.
@@ -155,8 +160,8 @@ struct WeatherWidgetProvider: TimelineProvider {
                 high: Int(cachedData.high.rounded()),
                 low: Int(cachedData.low.rounded()),
                 precipProbability: 0,
-                hourlyPreview: hourlyPoints,
-                dailyPreview: dailyPoints,
+                hourlyPreview: forecast.hourly,
+                dailyPreview: forecast.daily,
                 locationName: cachedData.locationName
             )
 
@@ -200,18 +205,7 @@ struct WeatherWidgetProvider: TimelineProvider {
         // PRIMARY: Read from shared JSON file — reliable cross-process on iPhone
         if let cached = WidgetDataStore.load(),
            let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) {
-            let hourlyPoints: [WeatherWidgetEntry.HourlyWidgetPoint] = cached.hourlyPreview.compactMap { point in
-                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
-                return WeatherWidgetEntry.HourlyWidgetPoint(
-                    hour: point.hour, temp: point.temp, conditionTag: tag, isDay: point.isDay
-                )
-            }
-            let dailyPoints: [WeatherWidgetEntry.DailyWidgetPoint] = cached.dailyPreview.compactMap { point in
-                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
-                return WeatherWidgetEntry.DailyWidgetPoint(
-                    day: point.day, high: point.high, low: point.low, conditionTag: tag
-                )
-            }
+            let forecast = Self.convertForecastPoints(from: cached)
             return WeatherWidgetEntry(
                 date: Date(),
                 temperature: Int(cached.temperature.rounded()),
@@ -224,8 +218,8 @@ struct WeatherWidgetProvider: TimelineProvider {
                 high: Int(cached.high.rounded()),
                 low: Int(cached.low.rounded()),
                 precipProbability: 0,
-                hourlyPreview: hourlyPoints,
-                dailyPreview: dailyPoints,
+                hourlyPreview: forecast.hourly,
+                dailyPreview: forecast.daily,
                 locationName: cached.locationName
             )
         }

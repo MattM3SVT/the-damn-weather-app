@@ -20,6 +20,12 @@ struct WeatherView: View {
 
     @State private var scrollOffset: CGFloat = 0
 
+    /// Hours from the current hour onward — precomputed to stabilize the view tree.
+    private var currentAndFutureHours: [HourlyForecastPoint] {
+        let hourStart = Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date()
+        return weather.hourly.filter { $0.time >= hourStart }
+    }
+
     /// How far collapsed the hero is (0 = fully expanded, 1 = fully collapsed).
     /// 350pt window = smooth, gentle collapse across the full hero height.
     private var collapseProgress: CGFloat {
@@ -59,9 +65,9 @@ struct WeatherView: View {
                     PrecipitationCard(data: weather.minutePrecipitation)
                 }
 
-                // Hourly forecast
+                // Hourly forecast (filter precomputed to avoid re-running on every body evaluation)
                 HourlyForecastView(
-                    hours: weather.hourly.filter { $0.time >= Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date() },
+                    hours: currentAndFutureHours,
                     timezone: weather.timezone,
                     unit: temperatureUnit
                 )
