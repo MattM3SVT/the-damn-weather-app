@@ -43,17 +43,25 @@ struct MainView: View {
             }
         }
         .task {
+            // Diagnostic: check widget data store state on launch
+            #if DEBUG
+            print("🔍 Widget DataStore Diagnostic:\n\(WidgetDataStore.diagnose())")
+            #endif
             // Only auto-fetch if we already have location permission.
             // Otherwise show the "Where the hell are you?" empty state immediately.
             let status = locationService.authorizationStatus
             if status == .authorizedWhenInUse || status == .authorizedAlways {
                 await weatherVM.loadWeatherForCurrentLocation()
+                // Pre-fetch all saved cities in background for instant swiping
+                await weatherVM.prefetchAllLocations(savedLocations)
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 Task {
                     await weatherVM.refreshOnForeground()
+                    // Re-prefetch all saved cities after foreground refresh
+                    await weatherVM.prefetchAllLocations(savedLocations)
                 }
             }
         }
@@ -73,6 +81,7 @@ struct MainView: View {
             if showSidebar {
                 LocationSidebar(
                     locationService: locationService,
+                    phraseEngine: weatherVM.phraseEngine,
                     currentLocationName: weatherVM.currentLocationDisplayName,
                     currentTemperature: weatherVM.currentLocationWeather.map { appState.temperatureUnit.format($0.current.temperature) } ?? "--°",
                     currentHigh: weatherVM.currentLocationWeather?.daily.first.map { appState.temperatureUnit.format($0.high) } ?? "--°",
@@ -138,7 +147,10 @@ struct MainView: View {
                                 }
                             },
                             onPhraseModeChanged: {
-                                Task { await weatherVM.refreshPhrase() }
+                                Task {
+                                    await weatherVM.refreshPhrase()
+                                    await weatherVM.updateWidget(for: weatherVM.activePageKey)
+                                }
                             },
                             showBackground: false
                         )
@@ -149,7 +161,7 @@ struct MainView: View {
                             .ignoresSafeArea(edges: .top)
                     )
 
-                    weatherContent
+                    iPadWeatherContent
                 }
             }
             .contentShape(Rectangle())
@@ -168,52 +180,91 @@ struct MainView: View {
     /// Height of the floating header overlay so scroll content starts below it.
     private let headerOverlayHeight: CGFloat = 48
 
+    /// The display name for the currently active page (drives the header bar).
+    private var activeDisplayName: String {
+        if let state = weatherVM.pageStates[weatherVM.activePageKey] {
+            return state.displayName
+        }
+        return weatherVM.displayName
+    }
+
     private var iPhoneLayout: some View {
         ZStack {
-            // Layer 1: Background (full screen)
-            DynamicBackground(
-                condition: weatherVM.weather?.current.conditionTag ?? .clear,
-                isDay: weatherVM.weather?.current.isDay ?? true
-            )
-
-            // Layer 2: Scrollable content — starts at the very top, scrolls behind header
+            // TabView with per-page CityPageView — each page has its own background + data
             TabView(selection: $selectedPage) {
                 // Page 0: Current location
-                weatherContent
-                    .tag(0)
+                CityPageView(
+                    pageState: weatherVM.pageStates[WeatherViewModel.currentLocationKey],
+                    isLoading: weatherVM.isLoading,
+                    error: weatherVM.error,
+                    appState: appState,
+                    onCollapseProgressChanged: { heroCollapseProgress = $0 },
+                    topInset: headerOverlayHeight,
+                    onRefreshPhrase: { Task { await weatherVM.refreshPhraseForPage(WeatherViewModel.currentLocationKey) } },
+                    onRefresh: { await weatherVM.refresh() },
+                    isCurrentLocationPage: true,
+                    onSearch: { showSavedLocations = true },
+                    onUseLocation: { await weatherVM.loadWeatherForCurrentLocation() }
+                )
+                .tag(0)
 
-                // Pages 1+: Saved locations
-                ForEach(Array(savedLocations.enumerated()), id: \.element.id) { index, _ in
-                    weatherContent
-                        .tag(index + 1)
+                // Pages 1+: Saved locations — each gets its own pre-loaded data
+                ForEach(Array(savedLocations.enumerated()), id: \.element.id) { index, location in
+                    CityPageView(
+                        pageState: weatherVM.pageStates[weatherVM.pageKey(for: location)],
+                        isLoading: false,
+                        error: nil,
+                        appState: appState,
+                        onCollapseProgressChanged: { heroCollapseProgress = $0 },
+                        topInset: headerOverlayHeight,
+                        onRefreshPhrase: { Task { await weatherVM.refreshPhraseForPage(weatherVM.pageKey(for: location)) } },
+                        onRefresh: { await weatherVM.refreshPage(for: location) }
+                    )
+                    .tag(index + 1)
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea(edges: .bottom)
             .onChange(of: selectedPage) { _, newPage in
                 heroCollapseProgress = 0
-                Task {
-                    if newPage == 0 {
-                        await weatherVM.loadWeatherForCurrentLocation()
-                    } else {
-                        let locationIndex = newPage - 1
-                        if locationIndex < savedLocations.count {
-                            await weatherVM.loadWeather(for: savedLocations[locationIndex])
-                        }
+                let capturedKey: String
+                if newPage == 0 {
+                    weatherVM.activePageKey = WeatherViewModel.currentLocationKey
+                    weatherVM.showCurrentLocation()
+                    capturedKey = WeatherViewModel.currentLocationKey
+                } else if newPage - 1 < savedLocations.count {
+                    let location = savedLocations[newPage - 1]
+                    let key = weatherVM.pageKey(for: location)
+                    weatherVM.activePageKey = key
+                    // Sync stored properties from pageState (for iPad/widget compat)
+                    if let state = weatherVM.pageStates[key] {
+                        weatherVM.weather = state.weather
+                        weatherVM.locationName = state.locationName
+                        weatherVM.locationState = state.locationState
+                        weatherVM.currentPhrase = state.phrase
                     }
+                    capturedKey = key
+                } else {
+                    return
                 }
+                // Cancel any in-flight widget update and schedule one for the new page.
+                // Captures pageKey at swipe time so rapid swipes don't race.
+                weatherVM.scheduleWidgetUpdate(for: capturedKey)
             }
 
-            // Layer 3: Floating header overlay — content scrolls behind this
+            // Floating header overlay — content scrolls behind this
             VStack(spacing: 0) {
                 AppHeaderBar(
                     appState: appState,
                     settingsVM: settingsVM,
-                    locationName: weatherVM.displayName,
+                    locationName: activeDisplayName,
                     onSearchTap: {},
                     onLogoTap: { showSavedLocations = true },
                     onPhraseModeChanged: {
-                        Task { await weatherVM.refreshPhrase() }
+                        Task {
+                            await weatherVM.refreshAllPagePhrases()
+                            await weatherVM.updateWidget(for: weatherVM.activePageKey)
+                        }
                     },
                     showBackground: heroCollapseProgress > 0.3,
                     showSearchBar: false
@@ -223,7 +274,7 @@ struct MainView: View {
                 Spacer()
             }
 
-            // Layer 4: Bottom bar with page dots and list button
+            // Bottom bar with page dots and list button
             VStack {
                 Spacer()
                 FloatingBottomBar(
@@ -236,6 +287,7 @@ struct MainView: View {
         .fullScreenCover(isPresented: $showSavedLocations) {
             SavedLocationsView(
                 locationService: locationService,
+                phraseEngine: weatherVM.phraseEngine,
                 currentLocationName: weatherVM.currentLocationDisplayName,
                 currentTemperature: weatherVM.currentLocationWeather.map { appState.temperatureUnit.format($0.current.temperature) } ?? "--°",
                 currentHigh: weatherVM.currentLocationWeather?.daily.first.map { appState.temperatureUnit.format($0.high) } ?? "--°",
@@ -253,7 +305,7 @@ struct MainView: View {
                 },
                 onSelectCurrent: {
                     selectedPage = 0
-                    Task { await weatherVM.loadWeatherForCurrentLocation() }
+                    weatherVM.showCurrentLocation()
                 },
                 onAddedLocation: { location in
                     Task { await weatherVM.loadWeather(for: location) }
@@ -266,23 +318,32 @@ struct MainView: View {
         }
     }
 
-    // MARK: - Shared Weather Content
+    // MARK: - iPad Weather Content
 
     @ViewBuilder
-    private var weatherContent: some View {
+    private var iPadWeatherContent: some View {
         if weatherVM.isLoading && weatherVM.weather == nil {
             ShimmerView()
                 .padding()
                 .frame(maxHeight: .infinity, alignment: .top)
-        } else if weatherVM.weather != nil {
+        } else if let weather = weatherVM.weather {
             WeatherView(
-                viewModel: weatherVM,
+                weather: weather,
+                phrase: weatherVM.currentPhrase,
+                locationName: weatherVM.displayName,
+                currentTime: weatherVM.currentTime,
+                temperatureUnit: weatherVM.temperatureUnit,
                 appState: appState,
                 sidebarOpen: showSidebar,
-                onCollapseProgressChanged: isRegular ? nil : { progress in
-                    heroCollapseProgress = progress
+                onRefreshPhrase: {
+                    Task {
+                        await weatherVM.refreshPhrase()
+                        await weatherVM.updateWidget(for: weatherVM.activePageKey)
+                    }
                 },
-                topInset: isRegular ? 0 : headerOverlayHeight
+                onRefresh: {
+                    await weatherVM.refresh()
+                }
             )
         } else if let error = weatherVM.error,
                   locationService.authorizationStatus != .denied,

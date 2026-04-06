@@ -7,11 +7,12 @@ import WeatherShared
 /// iPad sidebar — always-visible list of saved locations with weather + phrases.
 /// Matches Apple Weather's iPad sidebar pattern.
 struct LocationSidebar: View {
-    @Query(sort: \SavedLocation.sortOrder) private var locations: [SavedLocation]
+    @Query(sort: \SavedLocation.sortOrder, animation: .smooth) private var locations: [SavedLocation]
     @Environment(\.modelContext) private var modelContext
     @Environment(AppState.self) private var appState
 
     let locationService: LocationService
+    let phraseEngine: PhraseEngine
     let currentLocationName: String
     let currentTemperature: String
     let currentHigh: String
@@ -27,13 +28,12 @@ struct LocationSidebar: View {
     @Binding var activateSearch: Bool
 
     @State private var summaries: [String: LocationSummary] = [:]
+    @State private var deletingIDs: Set<String> = []
     @State private var showDuplicateAlert = false
     @State private var isSearching = false
     @State private var searchText = ""
     @State private var searchVM: LocationSearchViewModel?
     @FocusState private var isSearchFocused: Bool
-
-    private let phraseEngine = PhraseEngine()
 
     private func ensureSearchVM() -> LocationSearchViewModel {
         if let vm = searchVM { return vm }
@@ -225,6 +225,9 @@ struct LocationSidebar: View {
 
                 // Saved locations
                 ForEach(locations) { location in
+                    let locationKey = location.name + "\(location.latitude)"
+                    let isDeleting = deletingIDs.contains(locationKey)
+
                     Button { onSelect(location) } label: {
                         if let summary = summaries[location.name + "\(location.latitude)"] {
                             SidebarLocationCard(
@@ -254,9 +257,10 @@ struct LocationSidebar: View {
                             )
                         }
                     }
+                    .opacity(isDeleting ? 0 : 1)
                     .contextMenu {
                         Button(role: .destructive) {
-                            modelContext.delete(location)
+                            deleteLocation(location)
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
@@ -265,6 +269,28 @@ struct LocationSidebar: View {
             }
             .padding(.horizontal, 12)
             .padding(.bottom, 12)
+        }
+    }
+
+    private func deleteLocation(_ location: SavedLocation) {
+        let key = location.name + "\(location.latitude)"
+
+        // Phase 1: Fade out the card. The card keeps its space in the VStack
+        // so cards below do NOT move yet. The fade runs behind the context
+        // menu's dismiss snapshot — by the time the snapshot clears (~0.4s),
+        // the card is already invisible.
+        _ = withAnimation(.easeIn(duration: 0.7)) {
+            deletingIDs.insert(key)
+        }
+
+        // Phase 2: After the context menu snapshot is gone AND the fade is
+        // complete, delete from SwiftData. This removes the item from ForEach
+        // and the VStack smoothly collapses the gap — but the card is already
+        // invisible, so the user only sees cards sliding up into empty space.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+            withAnimation(.smooth(duration: 0.3)) {
+                self.modelContext.delete(location)
+            }
         }
     }
 
@@ -303,7 +329,8 @@ struct LocationSidebar: View {
                             conditionTag: conditionTag,
                             tempF: tempF,
                             mode: phraseMode,
-                            isDay: current.isDaylight
+                            isDay: current.isDaylight,
+                            trackAsSeen: false  // Preview phrases don't pollute dedup
                         )
 
                         let todayHigh = daily.first.map { $0.highTemperature.converted(to: .fahrenheit).value } ?? 0

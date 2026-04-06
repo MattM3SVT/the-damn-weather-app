@@ -1,4 +1,7 @@
 import Foundation
+import os.log
+
+private let widgetLog = Logger(subsystem: "DamnWeather", category: "WidgetDataStore")
 
 /// Lightweight hourly forecast point for widget display.
 public struct CachedHourlyPoint: Codable, Sendable {
@@ -112,7 +115,7 @@ public struct CachedWeatherData: Codable {
         low = try container.decode(Double.self, forKey: .low)
         locationName = try container.decode(String.self, forKey: .locationName)
         phrase = try container.decode(String.self, forKey: .phrase)
-        phraseMode = try container.decode(String.self, forKey: .phraseMode)
+        phraseMode = try container.decodeIfPresent(String.self, forKey: .phraseMode) ?? "clean"
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         additionalPhrases = try container.decodeIfPresent([String].self, forKey: .additionalPhrases) ?? []
         smallPhrase = try container.decodeIfPresent(String.self, forKey: .smallPhrase)
@@ -128,74 +131,103 @@ public enum WidgetDataStore {
     private static let fileName = "widget-weather.json"
 
     private static var fileURL: URL? {
-        FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID)?
-            .appendingPathComponent(fileName)
+        guard let container = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID) else {
+            return nil
+        }
+        // Ensure the container directory allows widget extension access.
+        // Without this, the default file protection can block background reads.
+        try? FileManager.default.setAttributes(
+            [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication],
+            ofItemAtPath: container.path
+        )
+        return container.appendingPathComponent(fileName)
     }
 
     /// Save weather data to the shared container. Called by the main app after every fetch.
     public static func save(_ data: CachedWeatherData) {
         guard let url = fileURL else {
-            #if DEBUG
-            print("⚠️ WidgetDataStore: Could not get app group container URL")
-            #endif
+            widgetLog.error("SAVE FAILED: Could not get app group container URL for '\(AppConstants.appGroupID)'")
             return
         }
 
         do {
             let encoded = try JSONEncoder().encode(data)
-            try encoded.write(to: url, options: .atomic)
+            // .atomic ensures all-or-nothing writes (no partial/corrupt files).
+            // .completeFileProtectionUntilFirstUserAuthentication ensures the widget
+            // extension can read this file even from a background context — the default
+            // protection (.completeFileProtection) blocks reads when the device is locked,
+            // which prevents WidgetKit background refreshes and can also block the first
+            // read when a widget is initially added.
+            try encoded.write(to: url, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+            widgetLog.info("SAVE OK: \(url.path) (\(encoded.count) bytes) temp=\(data.temperature) location=\(data.locationName)")
         } catch {
-            #if DEBUG
-            print("⚠️ WidgetDataStore: Failed to save: \(error)")
-            #endif
+            widgetLog.error("SAVE FAILED: \(error.localizedDescription) at \(url.path)")
         }
     }
 
     /// Load weather data from the shared container. Called by the widget to get cached data.
     public static func load() -> CachedWeatherData? {
         guard let url = fileURL else {
-            #if DEBUG
-            print("⚠️ WidgetDataStore: Could not get app group container URL")
-            #endif
+            widgetLog.error("LOAD FAILED: Could not get app group container URL for '\(AppConstants.appGroupID)'")
             return nil
         }
 
         guard FileManager.default.fileExists(atPath: url.path) else {
+            widgetLog.warning("LOAD: File does not exist at \(url.path)")
             return nil
         }
 
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode(CachedWeatherData.self, from: data)
+            let decoded = try JSONDecoder().decode(CachedWeatherData.self, from: data)
+            widgetLog.info("LOAD OK: \(url.path) temp=\(decoded.temperature) location=\(decoded.locationName) phrase=\(decoded.phrase.prefix(30))")
+            return decoded
         } catch {
-            #if DEBUG
-            print("⚠️ WidgetDataStore: Failed to load: \(error)")
-            #endif
+            widgetLog.error("LOAD FAILED: Decode error: \(error.localizedDescription) at \(url.path)")
+            // Log raw file contents for diagnosis
+            if let raw = try? String(contentsOf: url, encoding: .utf8) {
+                widgetLog.error("LOAD FAILED: Raw JSON (first 200 chars): \(raw.prefix(200))")
+            }
             return nil
         }
     }
 
-    /// Update just the phrase(s) in the existing cached data. Called after phrase refresh.
-    public static func updatePhrase(_ phrase: String, mode: String, additionalPhrases: [String] = [], smallPhrase: String? = nil) {
-        guard var cached = load() else { return }
-        cached = CachedWeatherData(
-            temperature: cached.temperature,
-            conditionTag: cached.conditionTag,
-            conditionLabel: cached.conditionLabel,
-            isDay: cached.isDay,
-            feelsLike: cached.feelsLike,
-            high: cached.high,
-            low: cached.low,
-            locationName: cached.locationName,
-            phrase: phrase,
-            phraseMode: mode,
-            updatedAt: Date(),
-            additionalPhrases: additionalPhrases,
-            smallPhrase: smallPhrase ?? cached.smallPhrase,
-            hourlyPreview: cached.hourlyPreview,
-            dailyPreview: cached.dailyPreview
-        )
-        save(cached)
+    /// Diagnostic: Check the state of the shared container (call from main app to verify setup).
+    public static func diagnose() -> String {
+        let groupID = AppConstants.appGroupID
+        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) else {
+            return "FAIL: containerURL is nil for '\(groupID)'"
+        }
+
+        let url = containerURL.appendingPathComponent(fileName)
+        let exists = FileManager.default.fileExists(atPath: url.path)
+
+        var result = "Container: \(containerURL.path)\nFile: \(url.path)\nExists: \(exists)"
+
+        if exists {
+            if let attrs = try? FileManager.default.attributesOfItem(atPath: url.path) {
+                let size = attrs[.size] as? Int ?? 0
+                let modified = attrs[.modificationDate] as? Date
+                let protection = attrs[.protectionKey] as? FileProtectionType
+                result += "\nSize: \(size) bytes"
+                result += "\nModified: \(modified?.description ?? "unknown")"
+                result += "\nProtection: \(protection?.rawValue ?? "not set")"
+            }
+            if let data = try? Data(contentsOf: url),
+               let decoded = try? JSONDecoder().decode(CachedWeatherData.self, from: data) {
+                result += "\nDecode: OK — temp=\(decoded.temperature) location=\(decoded.locationName)"
+            } else if let data = try? Data(contentsOf: url) {
+                result += "\nDecode: FAILED — raw size \(data.count) bytes"
+                if let raw = String(data: data, encoding: .utf8) {
+                    result += "\nRaw (first 200): \(String(raw.prefix(200)))"
+                }
+            } else {
+                result += "\nRead: FAILED — could not read file data"
+            }
+        }
+
+        return result
     }
+
 }

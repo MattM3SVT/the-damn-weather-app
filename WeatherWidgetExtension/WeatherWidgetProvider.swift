@@ -3,6 +3,9 @@ import WeatherKit
 import CoreLocation
 import MapKit
 import WeatherShared
+import os.log
+
+private let widgetProviderLog = Logger(subsystem: "DamnWeather", category: "WidgetProvider")
 
 struct WeatherWidgetEntry: TimelineEntry {
     let date: Date
@@ -79,31 +82,42 @@ struct WeatherWidgetProvider: TimelineProvider {
 
     func placeholder(in context: Context) -> WeatherWidgetEntry {
         // Use cached data so widget shows real weather immediately on iPhone.
-        buildCachedEntry() ?? .placeholder
+        widgetProviderLog.info("placeholder(in:) called")
+        let result = buildCachedEntry() ?? .placeholder
+        widgetProviderLog.info("placeholder(in:) returning isPlaceholder=\(result.isPlaceholder)")
+        return result
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
+        widgetProviderLog.info("getSnapshot called, isPreview=\(context.isPreview)")
         // Try cached data first — pure file/UserDefaults reads, completes in milliseconds.
         if let cached = buildCachedEntry() {
+            widgetProviderLog.info("getSnapshot: returning cached entry, temp=\(cached.temperature)")
             completion(cached)
             return
         }
 
+        widgetProviderLog.warning("getSnapshot: no cached data, trying async fetch")
         // No cached data (app never opened) — try live WeatherKit fetch
         Task {
             if let entry = try? await fetchWeatherEntry() {
+                widgetProviderLog.info("getSnapshot: async fetch succeeded")
                 completion(entry)
                 return
             }
             // Absolute last resort — hardcoded placeholder
+            widgetProviderLog.error("getSnapshot: ALL sources failed, returning placeholder")
             completion(.placeholder)
         }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherWidgetEntry>) -> Void) {
+        widgetProviderLog.info("getTimeline called")
+        widgetProviderLog.info("getTimeline: diagnose = \(WidgetDataStore.diagnose())")
         // Call completion synchronously with cached data — WidgetKit kills extensions that go async.
         if let cachedData = WidgetDataStore.load(),
            let conditionTag = WeatherConditionTag(rawValue: cachedData.conditionTag) {
+            widgetProviderLog.info("getTimeline PATH 1: JSON load succeeded, temp=\(cachedData.temperature) location=\(cachedData.locationName)")
 
             // Build multi-entry timeline: one entry per 15 minutes using pre-generated phrases.
             // The main app pre-generates 4 phrases so the widget shows variety without
@@ -156,7 +170,9 @@ struct WeatherWidgetProvider: TimelineProvider {
         }
 
         // Fallback: try UserDefaults-based cached entry
+        widgetProviderLog.warning("getTimeline: JSON load failed, trying UserDefaults fallback")
         if let cached = buildCachedEntry() {
+            widgetProviderLog.info("getTimeline PATH 2: UserDefaults fallback succeeded")
             let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
             completion(Timeline(entries: [cached], policy: .after(nextUpdate)))
             Task { await refreshCachedData() }
@@ -164,6 +180,7 @@ struct WeatherWidgetProvider: TimelineProvider {
         }
 
         // No cached data (app never opened) — try async fetch as last resort.
+        widgetProviderLog.error("getTimeline PATH 3: No cached data at all, trying async fetch")
         Task {
             if let entry = try? await fetchWeatherEntry() {
                 saveFreshDataToCache(entry)

@@ -20,6 +20,15 @@ private final class ReadyFlag: @unchecked Sendable {
 
 /// Phrase selection engine -- exact port of the website's phrases.js algorithm.
 /// Uses a 6-step cascading filter to find the best phrase match.
+///
+/// Dedup strategy:
+/// - Seen phrases are tracked **per condition** (e.g., "clear", "rain") so that
+///   a small pool like "clear" (220 phrases) doesn't get exhausted by phrases
+///   selected for other conditions filling up the global seen list.
+/// - Each condition's seen window is capped at half its pool size (max 100),
+///   guaranteeing at least 50% of phrases are always available as "unseen."
+/// - Preview/throwaway phrases (e.g., city card previews in saved locations list)
+///   can be generated with `trackAsSeen: false` so they don't pollute the dedup.
 public actor PhraseEngine {
     private var cleanPhrases: [Phrase] = []
     private var explicitPhrases: [Phrase] = []
@@ -38,6 +47,10 @@ public actor PhraseEngine {
     private var lastShownExplicit: String?
 
     private let defaults: UserDefaults
+
+    /// Max seen phrases per condition bucket. Capped to ensure at least 50% of the
+    /// pool is always available as "unseen."
+    private let maxSeenPerCondition = 100
 
     public init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -82,6 +95,9 @@ public actor PhraseEngine {
 
         isLoaded = true
         _isReady.set()
+
+        // Migrate old flat seen-phrase format to new per-condition format
+        migrateSeenPhrasesIfNeeded()
     }
 
     /// Pre-load phrase JSON so subsequent `selectPhrase()` calls complete instantly.
@@ -92,17 +108,22 @@ public actor PhraseEngine {
 
     /// Select a phrase based on current weather conditions and time of day.
     /// Direct port of selectPhrase() from the website's phrases.js (lines 81-167).
+    ///
+    /// - Parameter trackAsSeen: Whether to mark the selected phrase as "seen" for dedup.
+    ///   Pass `false` for throwaway/preview phrases (e.g., city card previews in saved locations).
     public func selectPhrase(
         conditionTag: WeatherConditionTag,
         tempF: Double,
         mode: PhraseMode = .clean,
         isDay: Bool = true,
-        maxLength: Int? = nil
+        maxLength: Int? = nil,
+        trackAsSeen: Bool = true
     ) -> String {
         loadIfNeeded()
 
         let pool = mode == .explicit ? explicitPhrases : cleanPhrases
-        let seen = getSeenPhrases(mode: mode)
+        let condition = conditionTag.rawValue
+        let seen = trackAsSeen ? getSeenPhrases(mode: mode, condition: condition) : []
         let lastShown = mode == .explicit ? lastShownExplicit : lastShownClean
 
         // Step 1: Filter by condition AND temperature range AND day/night
@@ -158,10 +179,12 @@ public actor PhraseEngine {
             }
         }
 
-        // Remove recently seen phrases (if we still have enough left)
-        let unseen = matches.filter { p in !seen.contains(p.text) }
-        if unseen.count >= 1 {
-            matches = unseen
+        // Remove recently seen phrases for this condition (if we still have enough left)
+        if trackAsSeen {
+            let unseen = matches.filter { p in !seen.contains(p.text) }
+            if unseen.count >= 1 {
+                matches = unseen
+            }
         }
 
         // Build weighted pool (priority 2 = 2x weight)
@@ -176,7 +199,7 @@ public actor PhraseEngine {
         // Guard against empty pool
         guard !weighted.isEmpty else {
             let safeTempF = tempF.isFinite ? Int(tempF.rounded()) : 0
-            return "It's \(safeTempF)° outside. That's the weather."
+            return "It's \(safeTempF)\u{00B0} outside. That's the weather."
         }
 
         // True random selection
@@ -186,13 +209,15 @@ public actor PhraseEngine {
         let text = selected.rendered(tempF: tempF)
 
         // Track this phrase as seen and as last-shown (persisted to prevent repeats across launches)
-        markSeen(mode: mode, phraseText: selected.text)
-        if mode == .explicit {
-            lastShownExplicit = selected.text
-            defaults.set(selected.text, forKey: AppConstants.UserDefaultsKeys.lastShownExplicit)
-        } else {
-            lastShownClean = selected.text
-            defaults.set(selected.text, forKey: AppConstants.UserDefaultsKeys.lastShownClean)
+        if trackAsSeen {
+            markSeen(mode: mode, condition: condition, phraseText: selected.text)
+            if mode == .explicit {
+                lastShownExplicit = selected.text
+                defaults.set(selected.text, forKey: AppConstants.UserDefaultsKeys.lastShownExplicit)
+            } else {
+                lastShownClean = selected.text
+                defaults.set(selected.text, forKey: AppConstants.UserDefaultsKeys.lastShownClean)
+            }
         }
 
         return text
@@ -200,6 +225,8 @@ public actor PhraseEngine {
 
     /// Generate multiple unique phrases for widget timeline entries.
     /// Each phrase avoids repeating the previous ones in the batch.
+    /// These extra phrases are NOT tracked as "seen" — only the primary phrase
+    /// selection (in selectPhrase with default trackAsSeen: true) affects dedup.
     public func selectMultiplePhrases(
         count: Int,
         conditionTag: WeatherConditionTag,
@@ -213,42 +240,76 @@ public actor PhraseEngine {
                 conditionTag: conditionTag,
                 tempF: tempF,
                 mode: mode,
-                isDay: isDay
+                isDay: isDay,
+                trackAsSeen: false  // Only primary phrase selection tracks
             )
             phrases.append(phrase)
         }
         return phrases
     }
 
-    // MARK: - Seen Phrases Tracking
+    // MARK: - Per-Condition Seen Phrases Tracking
 
-    private func getSeenPhrases(mode: PhraseMode) -> [String] {
+    /// Get seen phrases for a specific condition bucket.
+    private func getSeenPhrases(mode: PhraseMode, condition: String) -> [String] {
+        let allSeen = getAllSeenPhrases(mode: mode)
+        return allSeen[condition] ?? []
+    }
+
+    /// Mark a phrase as seen under a specific condition bucket.
+    private func markSeen(mode: PhraseMode, condition: String, phraseText: String) {
+        var allSeen = getAllSeenPhrases(mode: mode)
+        var conditionSeen = allSeen[condition] ?? []
+        conditionSeen.append(phraseText)
+
+        // Cap at maxSeenPerCondition — FIFO rolling window
+        if conditionSeen.count > maxSeenPerCondition {
+            conditionSeen.removeFirst(conditionSeen.count - maxSeenPerCondition)
+        }
+
+        allSeen[condition] = conditionSeen
+        saveAllSeenPhrases(mode: mode, allSeen: allSeen)
+    }
+
+    /// Read the full per-condition seen dictionary from UserDefaults.
+    private func getAllSeenPhrases(mode: PhraseMode) -> [String: [String]] {
         let key = mode == .explicit
             ? AppConstants.UserDefaultsKeys.seenPhrasesExplicit
             : AppConstants.UserDefaultsKeys.seenPhrasesClean
 
         guard let data = defaults.data(forKey: key),
-              let seen = try? JSONDecoder().decode([String].self, from: data) else {
-            return []
+              let dict = try? JSONDecoder().decode([String: [String]].self, from: data) else {
+            return [:]
         }
-        return seen
+        return dict
     }
 
-    private func markSeen(mode: PhraseMode, phraseText: String) {
+    /// Write the full per-condition seen dictionary to UserDefaults.
+    private func saveAllSeenPhrases(mode: PhraseMode, allSeen: [String: [String]]) {
         let key = mode == .explicit
             ? AppConstants.UserDefaultsKeys.seenPhrasesExplicit
             : AppConstants.UserDefaultsKeys.seenPhrasesClean
 
-        var seen = getSeenPhrases(mode: mode)
-        seen.append(phraseText)
-
-        // Only keep the last MAX_SEEN
-        if seen.count > AppConstants.maxSeenPhrases {
-            seen.removeFirst(seen.count - AppConstants.maxSeenPhrases)
-        }
-
-        if let data = try? JSONEncoder().encode(seen) {
+        if let data = try? JSONEncoder().encode(allSeen) {
             defaults.set(data, forKey: key)
+        }
+    }
+
+    /// One-time migration: if UserDefaults has old flat [String] format, clear it
+    /// so the new per-condition [String: [String]] format takes over.
+    private func migrateSeenPhrasesIfNeeded() {
+        for key in [AppConstants.UserDefaultsKeys.seenPhrasesClean,
+                    AppConstants.UserDefaultsKeys.seenPhrasesExplicit] {
+            guard let data = defaults.data(forKey: key) else { continue }
+            // Try decoding as the NEW format first
+            if (try? JSONDecoder().decode([String: [String]].self, from: data)) != nil {
+                continue  // Already in new format
+            }
+            // Try decoding as the OLD flat format
+            if (try? JSONDecoder().decode([String].self, from: data)) != nil {
+                // Old format found — clear it to start fresh with new format
+                defaults.removeObject(forKey: key)
+            }
         }
     }
 }

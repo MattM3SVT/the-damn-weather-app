@@ -4,10 +4,16 @@ import WeatherShared
 /// Main weather screen — scrollable with all weather sections.
 /// Tracks scroll offset to drive the collapsing hero animation.
 struct WeatherView: View {
-    let viewModel: WeatherViewModel
+    let weather: WeatherSnapshot
+    let phrase: String
+    let locationName: String
+    let currentTime: String
+    let temperatureUnit: TemperatureUnit
     let appState: AppState
     var sidebarOpen: Bool = false
     var onCollapseProgressChanged: ((CGFloat) -> Void)? = nil
+    var onRefreshPhrase: (() -> Void)? = nil
+    var onRefresh: (() async -> Void)? = nil
 
     /// Extra top padding to push content below the floating header overlay
     var topInset: CGFloat = 0
@@ -29,56 +35,48 @@ struct WeatherView: View {
                 }
 
                 // Severe weather alert banner
-                if let weather = viewModel.weather, !weather.alerts.isEmpty {
+                if !weather.alerts.isEmpty {
                     SevereAlertBanner(alerts: weather.alerts)
                         .transition(.move(edge: .top).combined(with: .opacity))
                 }
 
                 // Hero section — visual-only collapse (no layout changes)
-                if let weather = viewModel.weather {
-                    HeroSection(
-                        weather: weather.current,
-                        phrase: viewModel.currentPhrase,
-                        locationName: viewModel.displayName,
-                        currentTime: viewModel.currentTime,
-                        unit: viewModel.temperatureUnit,
-                        onRefreshPhrase: {
-                            Task { await viewModel.refreshPhrase() }
-                        },
-                        phraseTapEnabled: !sidebarOpen,
-                        collapseProgress: collapseProgress
-                    )
-                }
+                HeroSection(
+                    weather: weather.current,
+                    phrase: phrase,
+                    locationName: locationName,
+                    currentTime: currentTime,
+                    unit: temperatureUnit,
+                    onRefreshPhrase: {
+                        onRefreshPhrase?()
+                    },
+                    phraseTapEnabled: !sidebarOpen,
+                    collapseProgress: collapseProgress
+                )
 
                 // Minute-by-minute precipitation summary
-                if let weather = viewModel.weather, weather.minutePrecipitation.contains(where: { $0.intensity > 0 }) {
+                if weather.minutePrecipitation.contains(where: { $0.intensity > 0 }) {
                     PrecipitationCard(data: weather.minutePrecipitation)
                 }
 
                 // Hourly forecast
-                if let weather = viewModel.weather {
-                    HourlyForecastView(
-                        hours: weather.hourly.filter { $0.time >= Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date() },
-                        timezone: weather.timezone,
-                        unit: viewModel.temperatureUnit
-                    )
-                }
+                HourlyForecastView(
+                    hours: weather.hourly.filter { $0.time >= Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date() },
+                    timezone: weather.timezone,
+                    unit: temperatureUnit
+                )
 
                 // Daily forecast
-                if let weather = viewModel.weather {
-                    DailyForecastView(
-                        days: weather.daily,
-                        unit: viewModel.temperatureUnit
-                    )
-                }
+                DailyForecastView(
+                    days: weather.daily,
+                    unit: temperatureUnit
+                )
 
                 // Weather details grid
-                if let weather = viewModel.weather {
-                    WeatherDetailsGrid(
-                        weather: weather,
-                        unit: viewModel.temperatureUnit
-                    )
-                }
+                WeatherDetailsGrid(
+                    weather: weather,
+                    unit: temperatureUnit
+                )
 
                 // Apple Weather attribution
                 Text("Weather data provided by Apple Weather")
@@ -103,7 +101,7 @@ struct WeatherView: View {
             onCollapseProgressChanged?(collapseProgress)
         }
         .refreshable {
-            await viewModel.refresh()
+            await onRefresh?()
         }
     }
 }
