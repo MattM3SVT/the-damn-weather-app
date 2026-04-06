@@ -11,124 +11,137 @@ struct LargeWidgetView: View {
         GeometryReader { geo in
             let scale = min(1.3, max(0.95, geo.size.width / 338))
 
-            VStack(alignment: .leading, spacing: 6 * scale) {
-                // Weather header row
-                HStack(alignment: .center) {
-                    Image(systemName: entry.conditionTag.sfSymbol(isDay: entry.isDay))
-                        .symbolRenderingMode(.multicolor)
-                        .font(.system(size: 24 * scale))
-
-                    Text("\(entry.temperature)°")
-                        .font(.system(size: 30 * scale, weight: .bold, design: .rounded))
-
+            if entry.isPlaceholder {
+                // No weather data yet — centered prompt
+                VStack {
                     Spacer()
-
-                    VStack(alignment: .trailing, spacing: 2 * scale) {
-                        Text(entry.locationName)
-                            .font(.system(size: 11 * scale, weight: .medium))
-                            .foregroundStyle(.white.opacity(0.6))
-                        Text("H:\(entry.high)° L:\(entry.low)°")
-                            .font(.system(size: 11 * scale, weight: .medium))
-                            .foregroundStyle(.white.opacity(0.5))
-                    }
+                    Text(entry.phrase)
+                        .font(.system(size: 20 * scale, weight: .bold))
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.white)
+                    Spacer()
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                VStack(alignment: .leading, spacing: 6 * scale) {
+                    // Weather header row
+                    HStack(alignment: .center) {
+                        Image(systemName: entry.conditionTag.sfSymbol(isDay: entry.isDay))
+                            .symbolRenderingMode(.multicolor)
+                            .font(.system(size: 24 * scale))
 
-                Spacer(minLength: 0)
+                        Text("\(entry.temperature)°")
+                            .font(.system(size: 30 * scale, weight: .bold, design: .rounded))
 
-                // THE PHRASE — bold, wraps up to 3 lines, auto-shrinks for longest phrases
-                Text(entry.phrase)
-                    .font(.system(size: 17 * scale, weight: .bold))
-                    .lineLimit(3)
-                    .minimumScaleFactor(0.85)
-                    .foregroundStyle(.white)
+                        Spacer()
 
-                Spacer(minLength: 0)
-
-                Divider().overlay(Color.white.opacity(0.15))
-
-                // Hourly strip
-                HStack(spacing: 0) {
-                    ForEach(entry.hourlyPreview) { hour in
-                        VStack(spacing: 3 * scale) {
-                            Text(hour.hour)
-                                .font(.system(size: 11 * scale))
+                        VStack(alignment: .trailing, spacing: 2 * scale) {
+                            Text(entry.locationName)
+                                .font(.system(size: 11 * scale, weight: .medium))
                                 .foregroundStyle(.white.opacity(0.6))
-                            Image(systemName: hour.conditionTag.sfSymbol(isDay: hour.isDay))
-                                .symbolRenderingMode(.multicolor)
-                                .font(.system(size: 16 * scale))
-                            Text("\(hour.temp)°")
-                                .font(.system(size: 13 * scale, weight: .semibold))
+                            Text("H:\(entry.high)° L:\(entry.low)°")
+                                .font(.system(size: 11 * scale, weight: .medium))
+                                .foregroundStyle(.white.opacity(0.5))
                         }
-                        .frame(maxWidth: .infinity)
                     }
-                }
 
-                Divider().overlay(Color.white.opacity(0.15))
+                    Spacer(minLength: 0)
 
-                // Daily forecast
-                VStack(spacing: 4 * scale) {
-                    ForEach(entry.dailyPreview) { day in
-                        HStack {
-                            Text(day.day)
-                                .font(.system(size: 13 * scale, weight: .medium))
-                                .frame(width: 44 * scale, alignment: .leading)
+                    // THE PHRASE — bold, wraps up to 3 lines, auto-shrinks for longest phrases
+                    Text(entry.phrase)
+                        .font(.system(size: 17 * scale, weight: .bold))
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.85)
+                        .foregroundStyle(.white)
 
-                            // Daily forecast always uses daytime icons (standard weather app convention)
-                            Image(systemName: day.conditionTag.sfSymbol(isDay: true))
-                                .symbolRenderingMode(.multicolor)
-                                .font(.system(size: 15 * scale))
-                                .frame(width: 22 * scale)
+                    Spacer(minLength: 0)
 
-                            Spacer()
+                    Divider().overlay(Color.white.opacity(0.15))
 
-                            Text("\(day.low)°")
-                                .font(.system(size: 12 * scale))
-                                .foregroundStyle(.white.opacity(0.6))
-                                .frame(width: 28 * scale, alignment: .trailing)
+                    // Hourly strip
+                    HStack(spacing: 0) {
+                        ForEach(entry.hourlyPreview) { hour in
+                            VStack(spacing: 3 * scale) {
+                                Text(hour.hour)
+                                    .font(.system(size: 11 * scale))
+                                    .foregroundStyle(.white.opacity(0.6))
+                                Image(systemName: hour.conditionTag.sfSymbol(isDay: hour.isDay))
+                                    .symbolRenderingMode(.multicolor)
+                                    .font(.system(size: 16 * scale))
+                                Text("\(hour.temp)°")
+                                    .font(.system(size: 13 * scale, weight: .semibold))
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
 
-                            GeometryReader { barGeo in
-                                let allLows = entry.dailyPreview.map(\.low)
-                                let allHighs = entry.dailyPreview.map(\.high)
-                                let minTemp = allLows.min() ?? 0
-                                let maxTemp = allHighs.max() ?? 100
-                                let range = Double(maxTemp - minTemp)
+                    Divider().overlay(Color.white.opacity(0.15))
 
-                                if range > 0 {
-                                    let leftPct = Double(day.low - minTemp) / range
-                                    let rightPct = Double(maxTemp - day.high) / range
+                    // Daily forecast
+                    VStack(spacing: 4 * scale) {
+                        ForEach(entry.dailyPreview) { day in
+                            HStack {
+                                Text(day.day)
+                                    .font(.system(size: 13 * scale, weight: .medium))
+                                    .frame(width: 44 * scale, alignment: .leading)
 
-                                    ZStack(alignment: .leading) {
-                                        Capsule()
-                                            .fill(.white.opacity(0.1))
-                                            .frame(height: 4 * scale)
+                                // Daily forecast always uses daytime icons (standard weather app convention)
+                                Image(systemName: day.conditionTag.sfSymbol(isDay: true))
+                                    .symbolRenderingMode(.multicolor)
+                                    .font(.system(size: 15 * scale))
+                                    .frame(width: 22 * scale)
 
-                                        Capsule()
-                                            .fill(
-                                                LinearGradient(
-                                                    colors: [.accentBlue, .accentRed],
-                                                    startPoint: .leading,
-                                                    endPoint: .trailing
+                                Spacer()
+
+                                Text("\(day.low)°")
+                                    .font(.system(size: 12 * scale))
+                                    .foregroundStyle(.white.opacity(0.6))
+                                    .frame(width: 28 * scale, alignment: .trailing)
+
+                                GeometryReader { barGeo in
+                                    let allLows = entry.dailyPreview.map(\.low)
+                                    let allHighs = entry.dailyPreview.map(\.high)
+                                    let minTemp = allLows.min() ?? 0
+                                    let maxTemp = allHighs.max() ?? 100
+                                    let range = Double(maxTemp - minTemp)
+
+                                    if range > 0 {
+                                        let leftPct = Double(day.low - minTemp) / range
+                                        let rightPct = Double(maxTemp - day.high) / range
+
+                                        ZStack(alignment: .leading) {
+                                            Capsule()
+                                                .fill(.white.opacity(0.1))
+                                                .frame(height: 4 * scale)
+
+                                            Capsule()
+                                                .fill(
+                                                    LinearGradient(
+                                                        colors: [.accentBlue, .accentRed],
+                                                        startPoint: .leading,
+                                                        endPoint: .trailing
+                                                    )
                                                 )
-                                            )
-                                            .frame(
-                                                width: max(barGeo.size.width * (1 - leftPct - rightPct), 4),
-                                                height: 4 * scale
-                                            )
-                                            .offset(x: barGeo.size.width * leftPct)
+                                                .frame(
+                                                    width: max(barGeo.size.width * (1 - leftPct - rightPct), 4),
+                                                    height: 4 * scale
+                                                )
+                                                .offset(x: barGeo.size.width * leftPct)
+                                        }
                                     }
                                 }
-                            }
-                            .frame(height: 4 * scale)
+                                .frame(height: 4 * scale)
 
-                            Text("\(day.high)°")
-                                .font(.system(size: 12 * scale, weight: .semibold))
-                                .frame(width: 28 * scale, alignment: .trailing)
+                                Text("\(day.high)°")
+                                    .font(.system(size: 12 * scale, weight: .semibold))
+                                    .frame(width: 28 * scale, alignment: .trailing)
+                            }
                         }
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundStyle(.white)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .foregroundStyle(.white)
         }
     }
 }

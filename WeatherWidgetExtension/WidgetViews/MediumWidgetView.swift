@@ -20,31 +20,33 @@ struct MediumWidgetView: View {
 
             Spacer(minLength: 0)
 
-            // Weather context bar at the bottom
-            HStack(spacing: 0) {
-                // Current conditions
-                HStack(spacing: 4) {
-                    Image(systemName: entry.conditionTag.sfSymbol(isDay: entry.isDay))
-                        .symbolRenderingMode(.multicolor)
-                        .font(.system(size: 16))
-                    Text("\(entry.temperature)°")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+            if !entry.isPlaceholder {
+                // Weather context bar at the bottom
+                HStack(spacing: 0) {
+                    // Current conditions
+                    HStack(spacing: 4) {
+                        Image(systemName: entry.conditionTag.sfSymbol(isDay: entry.isDay))
+                            .symbolRenderingMode(.multicolor)
+                            .font(.system(size: 16))
+                        Text("\(entry.temperature)°")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                    }
+
+                    Spacer()
+
+                    // Hi/Lo
+                    Text("H:\(entry.high)° L:\(entry.low)°")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.6))
+
+                    Spacer()
+
+                    // Location
+                    Text(entry.locationName)
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.5))
+                        .lineLimit(1)
                 }
-
-                Spacer()
-
-                // Hi/Lo
-                Text("H:\(entry.high)° L:\(entry.low)°")
-                    .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(.white.opacity(0.6))
-
-                Spacer()
-
-                // Location
-                Text(entry.locationName)
-                    .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(.white.opacity(0.5))
-                    .lineLimit(1)
             }
         }
         .foregroundStyle(.white)

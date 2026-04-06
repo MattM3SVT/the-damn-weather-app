@@ -39,6 +39,7 @@ struct SavedLocationsView: View {
     let onAddedLocation: (CLLocation) -> Void
 
     @State private var summaries: [String: LocationSummary] = [:]
+    @State private var showDuplicateAlert = false
     @State private var isSearching = false
     @State private var searchText = ""
     @State private var searchVM: LocationSearchViewModel?
@@ -46,10 +47,10 @@ struct SavedLocationsView: View {
 
     private let phraseEngine = PhraseEngine()
 
-    private var activeSearchVM: LocationSearchViewModel {
+    private func ensureSearchVM() -> LocationSearchViewModel {
         if let vm = searchVM { return vm }
         let vm = LocationSearchViewModel(locationService: locationService)
-        DispatchQueue.main.async { searchVM = vm }
+        searchVM = vm
         return vm
     }
 
@@ -66,7 +67,7 @@ struct SavedLocationsView: View {
                     .focused($isSearchFocused)
                     .autocorrectionDisabled()
                     .onChange(of: searchText) { _, newValue in
-                        activeSearchVM.updateSearch(newValue)
+                        ensureSearchVM().updateSearch(newValue)
                     }
             } else {
                 Text("Search for a city or airport")
@@ -78,7 +79,7 @@ struct SavedLocationsView: View {
             if isSearching && !searchText.isEmpty {
                 Button {
                     searchText = ""
-                    activeSearchVM.clear()
+                    ensureSearchVM().clear()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 16))
@@ -88,12 +89,10 @@ struct SavedLocationsView: View {
 
             if isSearching {
                 Button("Cancel") {
-                    withAnimation(.easeInOut(duration: 0.25)) {
-                        isSearching = false
-                        isSearchFocused = false
-                        searchText = ""
-                        activeSearchVM.clear()
-                    }
+                    isSearching = false
+                    isSearchFocused = false
+                    searchText = ""
+                    ensureSearchVM().clear()
                 }
                 .font(.system(size: 15))
                 .foregroundStyle(.white)
@@ -111,9 +110,7 @@ struct SavedLocationsView: View {
         .padding(.horizontal)
         .onTapGesture {
             if !isSearching {
-                withAnimation(.easeInOut(duration: 0.25)) {
-                    isSearching = true
-                }
+                isSearching = true
                 isSearchFocused = true
             }
         }
@@ -121,30 +118,39 @@ struct SavedLocationsView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.weatherBgDark
-                    .ignoresSafeArea()
-
-                VStack(spacing: 0) {
-                    searchBar
-                        .padding(.top, 8)
-                        .padding(.bottom, 8)
-
-                    if isSearching {
-                        searchResultsList
-                    } else {
-                        ScrollView {
-                            cityCardsContent
-                        }
+            VStack(spacing: 0) {
+                // Fixed header: title + search bar
+                VStack(alignment: .leading, spacing: 8) {
+                    if !isSearching {
+                        Text("Weather")
+                            .font(.system(size: 34, weight: .bold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal)
                     }
+
+                    searchBar
+                }
+                .padding(.top, isSearching ? 4 : 8)
+                .padding(.bottom, 8)
+
+                // Content: cards or search results
+                if isSearching {
+                    searchResultsList
+                } else {
+                    ScrollView {
+                        cityCardsContent
+                    }
+                    .scrollDismissesKeyboard(.interactively)
                 }
             }
-            .navigationTitle("Weather")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                // Intentionally empty — settings moved to main header gear icon
+            .background(Color.weatherBgDark.ignoresSafeArea())
+            .toolbar(.hidden, for: .navigationBar)
+            .animation(.easeInOut(duration: 0.2), value: isSearching)
+            .alert("Already Added", isPresented: $showDuplicateAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("You've already saved that location.")
             }
-            .toolbarColorScheme(.dark, for: .navigationBar)
         }
         .task {
             await fetchAllSummaries()
@@ -155,23 +161,23 @@ struct SavedLocationsView: View {
 
     private var searchResultsList: some View {
         List {
-            if activeSearchVM.results.isEmpty && !searchText.isEmpty {
+            if ensureSearchVM().results.isEmpty && !searchText.isEmpty {
                 Text("No results found")
                     .foregroundStyle(.secondary)
                     .listRowBackground(Color.clear)
             }
 
-            ForEach(activeSearchVM.results) { result in
+            ForEach(ensureSearchVM().results) { result in
                 Button {
                     Task {
-                        if let selected = await activeSearchVM.selectResult(result) {
-                            // Prevent duplicate locations
+                        if let selected = await ensureSearchVM().selectResult(result) {
+                            // Prevent adding the same saved city twice
                             let isDuplicate = locations.contains { existing in
                                 abs(existing.latitude - selected.location.coordinate.latitude) < 0.01 &&
                                 abs(existing.longitude - selected.location.coordinate.longitude) < 0.01
                             }
                             guard !isDuplicate else {
-                                dismiss()
+                                showDuplicateAlert = true
                                 return
                             }
 
@@ -214,7 +220,7 @@ struct SavedLocationsView: View {
     // MARK: - City Cards
 
     private var cityCardsContent: some View {
-        VStack(spacing: 12) {
+        LazyVStack(spacing: 12) {
             // Current location card
             if !currentLocationName.isEmpty {
                 Button {
@@ -351,11 +357,13 @@ struct SavedLocationsView: View {
                 }
             }
 
+            var results: [String: LocationSummary] = [:]
             for await (key, summary) in group {
                 if let summary {
-                    summaries[key] = summary
+                    results[key] = summary
                 }
             }
+            summaries.merge(results) { _, new in new }
         }
     }
 }

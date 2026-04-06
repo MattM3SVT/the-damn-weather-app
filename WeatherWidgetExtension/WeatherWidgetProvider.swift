@@ -11,6 +11,7 @@ struct WeatherWidgetEntry: TimelineEntry {
     let conditionLabel: String
     let isDay: Bool
     let phrase: String
+    let smallPhrase: String   // Shorter phrase for small widget (≤70 chars)
     let feelsLike: Int
     let high: Int
     let low: Int
@@ -18,6 +19,9 @@ struct WeatherWidgetEntry: TimelineEntry {
     let hourlyPreview: [HourlyWidgetPoint]
     let dailyPreview: [DailyWidgetPoint]
     let locationName: String
+
+    /// True when no real weather data is available (app hasn't been opened yet).
+    var isPlaceholder: Bool { conditionTag == .any && temperature == 0 }
 
     struct HourlyWidgetPoint: Identifiable {
         let id = UUID()
@@ -36,40 +40,21 @@ struct WeatherWidgetEntry: TimelineEntry {
     }
 
     static var placeholder: WeatherWidgetEntry {
-        // DEBUG: Check what's accessible from widget extension
-        let hasContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID) != nil
-        let hasFile = WidgetDataStore.load() != nil
-        let suiteDefaults = UserDefaults(suiteName: AppConstants.appGroupID)
-        let hasDefaults = suiteDefaults?.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag) != nil
-        let debugInfo = "F:\(hasFile) C:\(hasContainer) D:\(hasDefaults)"
-
-        let defaults = suiteDefaults ?? .standard
-        let savedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName)
-        let locationName = savedName?.isEmpty == false ? savedName ?? "Your Location" : "Your Location"
-
         return WeatherWidgetEntry(
             date: Date(),
-            temperature: 72,
-            conditionTag: .partlyCloudy,
-            conditionLabel: "Partly Cloudy",
+            temperature: 0,
+            conditionTag: .any,
+            conditionLabel: "",
             isDay: true,
-            phrase: "[\(debugInfo)] Open app to load weather.",
-            feelsLike: 70,
-            high: 78,
-            low: 62,
-            precipProbability: 10,
-            hourlyPreview: (0..<6).map { i in
-                let tags: [WeatherConditionTag] = [.partlyCloudy, .clear, .partlyCloudy, .cloudy, .clear, .partlyCloudy]
-                return .init(hour: i == 0 ? "Now" : "\(i + 1) PM", temp: 72 + i, conditionTag: tags[i], isDay: true)
-            },
-            dailyPreview: [
-                .init(day: "Today", high: 78, low: 62, conditionTag: .partlyCloudy),
-                .init(day: "Tue", high: 75, low: 58, conditionTag: .clear),
-                .init(day: "Wed", high: 68, low: 55, conditionTag: .rain),
-                .init(day: "Thu", high: 72, low: 57, conditionTag: .cloudy),
-                .init(day: "Fri", high: 80, low: 63, conditionTag: .clear),
-            ],
-            locationName: locationName
+            phrase: "Open The Damn Weather app to get started.",
+            smallPhrase: "Open the app to get started.",
+            feelsLike: 0,
+            high: 0,
+            low: 0,
+            precipProbability: 0,
+            hourlyPreview: [],
+            dailyPreview: [],
+            locationName: ""
         )
     }
 }
@@ -79,49 +64,28 @@ struct WeatherWidgetProvider: TimelineProvider {
         defaults: UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
     )
 
-    func placeholder(in context: Context) -> WeatherWidgetEntry {
-        // On iPhone, WidgetKit may show placeholder() for longer before calling getTimeline().
-        // Use cached data here too so the user sees real weather immediately.
-        if let cached = buildCachedEntry() {
-            // Tag with PH: so we know this came from placeholder()
-            return WeatherWidgetEntry(
-                date: cached.date,
-                temperature: cached.temperature,
-                conditionTag: cached.conditionTag,
-                conditionLabel: cached.conditionLabel,
-                isDay: cached.isDay,
-                phrase: "PH: " + cached.phrase,
-                feelsLike: cached.feelsLike,
-                high: cached.high,
-                low: cached.low,
-                precipProbability: cached.precipProbability,
-                hourlyPreview: cached.hourlyPreview,
-                dailyPreview: cached.dailyPreview,
-                locationName: cached.locationName
-            )
+    init() {
+        // Ensure App Group subdirectories exist — prevents CoreData sandbox errors
+        // from WidgetKit's internal bookkeeping on first widget extension launch.
+        if let groupURL = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: AppConstants.appGroupID
+        ) {
+            let appSupport = groupURL.appendingPathComponent("Library/Application Support")
+            if !FileManager.default.fileExists(atPath: appSupport.path) {
+                try? FileManager.default.createDirectory(at: appSupport, withIntermediateDirectories: true)
+            }
         }
-        return .placeholder
+    }
+
+    func placeholder(in context: Context) -> WeatherWidgetEntry {
+        // Use cached data so widget shows real weather immediately on iPhone.
+        buildCachedEntry() ?? .placeholder
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
         // Try cached data first — pure file/UserDefaults reads, completes in milliseconds.
         if let cached = buildCachedEntry() {
-            let entry = WeatherWidgetEntry(
-                date: cached.date,
-                temperature: cached.temperature,
-                conditionTag: cached.conditionTag,
-                conditionLabel: cached.conditionLabel,
-                isDay: cached.isDay,
-                phrase: "SS: " + cached.phrase,
-                feelsLike: cached.feelsLike,
-                high: cached.high,
-                low: cached.low,
-                precipProbability: cached.precipProbability,
-                hourlyPreview: cached.hourlyPreview,
-                dailyPreview: cached.dailyPreview,
-                locationName: cached.locationName
-            )
-            completion(entry)
+            completion(cached)
             return
         }
 
@@ -137,36 +101,69 @@ struct WeatherWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherWidgetEntry>) -> Void) {
-        // buildCachedEntry() now ALWAYS returns an entry (diagnostic if data fails).
-        // Call completion synchronously — WidgetKit kills extensions that go async.
-        let cached = buildCachedEntry()
-        if let cached {
-            // Prepend TL: so we know this came from getTimeline, not placeholder
+        // Call completion synchronously with cached data — WidgetKit kills extensions that go async.
+        if let cachedData = WidgetDataStore.load(),
+           let conditionTag = WeatherConditionTag(rawValue: cachedData.conditionTag) {
+
+            // Build multi-entry timeline: one entry per 15 minutes using pre-generated phrases.
+            // The main app pre-generates 4 phrases so the widget shows variety without
+            // needing PhraseEngine (which requires loading 728KB of JSON in the extension).
+            let allPhrases = cachedData.allPhrases
+
+            // Convert cached forecast data to widget entry types
+            let hourlyPoints: [WeatherWidgetEntry.HourlyWidgetPoint] = cachedData.hourlyPreview.compactMap { point in
+                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
+                return WeatherWidgetEntry.HourlyWidgetPoint(
+                    hour: point.hour, temp: point.temp, conditionTag: tag, isDay: point.isDay
+                )
+            }
+            let dailyPoints: [WeatherWidgetEntry.DailyWidgetPoint] = cachedData.dailyPreview.compactMap { point in
+                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
+                return WeatherWidgetEntry.DailyWidgetPoint(
+                    day: point.day, high: point.high, low: point.low, conditionTag: tag
+                )
+            }
+
+            // Single entry per timeline — WidgetKit refreshes every 15 minutes,
+            // fetching fresh weather data + a new phrase each cycle.
+            // Pick a random phrase from the pre-generated set for variety.
+            let phrase = allPhrases.randomElement() ?? cachedData.phrase
+
             let entry = WeatherWidgetEntry(
-                date: cached.date,
-                temperature: cached.temperature,
-                conditionTag: cached.conditionTag,
-                conditionLabel: cached.conditionLabel,
-                isDay: cached.isDay,
-                phrase: "TL: " + cached.phrase,
-                feelsLike: cached.feelsLike,
-                high: cached.high,
-                low: cached.low,
-                precipProbability: cached.precipProbability,
-                hourlyPreview: cached.hourlyPreview,
-                dailyPreview: cached.dailyPreview,
-                locationName: cached.locationName
+                date: Date(),
+                temperature: Int(cachedData.temperature.rounded()),
+                conditionTag: conditionTag,
+                conditionLabel: cachedData.conditionLabel,
+                isDay: cachedData.isDay,
+                phrase: phrase,
+                smallPhrase: cachedData.smallPhrase ?? phrase,
+                feelsLike: Int(cachedData.feelsLike.rounded()),
+                high: Int(cachedData.high.rounded()),
+                low: Int(cachedData.low.rounded()),
+                precipProbability: 0,
+                hourlyPreview: hourlyPoints,
+                dailyPreview: dailyPoints,
+                locationName: cachedData.locationName
             )
+
+            // Request refresh in 15 minutes — matches industry standard for weather apps.
             let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
             completion(Timeline(entries: [entry], policy: .after(nextUpdate)))
 
-            // Background: fetch fresh weather + phrase and save for next refresh
+            // Background: fetch fresh weather + new phrases and save for next cycle
             Task { await refreshCachedData() }
             return
         }
 
-        // Should never reach here now — buildCachedEntry returns diagnostic entries instead of nil.
-        // But keep as safety net.
+        // Fallback: try UserDefaults-based cached entry
+        if let cached = buildCachedEntry() {
+            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
+            completion(Timeline(entries: [cached], policy: .after(nextUpdate)))
+            Task { await refreshCachedData() }
+            return
+        }
+
+        // No cached data (app never opened) — try async fetch as last resort.
         Task {
             if let entry = try? await fetchWeatherEntry() {
                 saveFreshDataToCache(entry)
@@ -184,49 +181,45 @@ struct WeatherWidgetProvider: TimelineProvider {
     /// Returns nil if no cached data exists (app has never fetched weather).
     private func buildCachedEntry() -> WeatherWidgetEntry? {
         // PRIMARY: Read from shared JSON file — reliable cross-process on iPhone
-        let fileData = WidgetDataStore.load()
-        if let cached = fileData {
-            let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag)
-            if let conditionTag {
-                return WeatherWidgetEntry(
-                    date: Date(),
-                    temperature: Int(cached.temperature.rounded()),
-                    conditionTag: conditionTag,
-                    conditionLabel: cached.conditionLabel,
-                    isDay: cached.isDay,
-                    phrase: cached.phrase,
-                    feelsLike: Int(cached.feelsLike.rounded()),
-                    high: Int(cached.high.rounded()),
-                    low: Int(cached.low.rounded()),
-                    precipProbability: 0,
-                    hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
-                    dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
-                    locationName: cached.locationName
+        if let cached = WidgetDataStore.load(),
+           let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) {
+            let hourlyPoints: [WeatherWidgetEntry.HourlyWidgetPoint] = cached.hourlyPreview.compactMap { point in
+                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
+                return WeatherWidgetEntry.HourlyWidgetPoint(
+                    hour: point.hour, temp: point.temp, conditionTag: tag, isDay: point.isDay
                 )
-            } else {
-                // DEBUG: File loaded but conditionTag rawValue didn't match enum
-                return makeDiagnosticEntry("FILE_OK tag_FAIL rawVal='\(cached.conditionTag)' temp=\(cached.temperature)")
             }
+            let dailyPoints: [WeatherWidgetEntry.DailyWidgetPoint] = cached.dailyPreview.compactMap { point in
+                guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
+                return WeatherWidgetEntry.DailyWidgetPoint(
+                    day: point.day, high: point.high, low: point.low, conditionTag: tag
+                )
+            }
+            return WeatherWidgetEntry(
+                date: Date(),
+                temperature: Int(cached.temperature.rounded()),
+                conditionTag: conditionTag,
+                conditionLabel: cached.conditionLabel,
+                isDay: cached.isDay,
+                phrase: cached.phrase,
+                smallPhrase: cached.smallPhrase ?? cached.phrase,
+                feelsLike: Int(cached.feelsLike.rounded()),
+                high: Int(cached.high.rounded()),
+                low: Int(cached.low.rounded()),
+                precipProbability: 0,
+                hourlyPreview: hourlyPoints,
+                dailyPreview: dailyPoints,
+                locationName: cached.locationName
+            )
         }
 
         // FALLBACK: Try UserDefaults (may not have synced cross-process yet)
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         defaults.synchronize()
 
-        let conditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
-        guard let conditionRaw else {
-            // DEBUG: Granular diagnostics — separate container access from file existence
-            let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID)
-            let containerOK = containerURL != nil
-            let fileExists = WidgetDataStore.debugFileExists()
-            let groupID = AppConstants.appGroupID
-            let udSuite = UserDefaults(suiteName: groupID) != nil
-            return makeDiagnosticEntry("ctr=\(containerOK) fe=\(fileExists) ud=\(udSuite) gid=\(groupID.suffix(15))")
-        }
-
-        let conditionTag = WeatherConditionTag(rawValue: conditionRaw)
-        guard let conditionTag else {
-            return makeDiagnosticEntry("UD_TAG_FAIL rawVal='\(conditionRaw)'")
+        guard let conditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag),
+              let conditionTag = WeatherConditionTag(rawValue: conditionRaw) else {
+            return nil
         }
 
         let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
@@ -246,6 +239,7 @@ struct WeatherWidgetProvider: TimelineProvider {
             conditionLabel: conditionLabel,
             isDay: isDay,
             phrase: phrase,
+            smallPhrase: phrase,
             feelsLike: feelsLike,
             high: high,
             low: low,
@@ -256,39 +250,43 @@ struct WeatherWidgetProvider: TimelineProvider {
         )
     }
 
-    /// Creates a diagnostic entry so we can see exactly what failed on the widget face
-    private func makeDiagnosticEntry(_ info: String) -> WeatherWidgetEntry {
-        WeatherWidgetEntry(
-            date: Date(),
-            temperature: 0,
-            conditionTag: .clear,
-            conditionLabel: "Debug",
-            isDay: true,
-            phrase: "DBG: \(info)",
-            feelsLike: 0,
-            high: 0,
-            low: 0,
-            precipProbability: 0,
-            hourlyPreview: [],
-            dailyPreview: [],
-            locationName: "Diagnostics"
-        )
-    }
-
-    /// Fetch fresh weather + phrase in the background and save to UserDefaults.
+    /// Fetch fresh weather + phrases in the background and save to cache.
     /// The current widget cycle already has cached data displayed — this updates the
-    /// cache so the NEXT 15-min refresh shows fresh data.
+    /// cache so the NEXT timeline cycle shows fresh data with new phrases.
     private func refreshCachedData() async {
         guard let entry = try? await fetchWeatherEntry() else { return }
-        saveFreshDataToCache(entry)
+
+        // Pre-generate additional phrases for the next multi-entry timeline.
+        // selectPhrase() always generates a new phrase (has anti-repeat logic).
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
+        let mode = PhraseMode(rawValue: modeStr) ?? .clean
+
+        let extraPhrases = await phraseEngine.selectMultiplePhrases(
+            count: 3,
+            conditionTag: entry.conditionTag,
+            tempF: Double(entry.temperature),
+            mode: mode,
+            isDay: entry.isDay
+        )
+
+        saveFreshDataToCache(entry, additionalPhrases: extraPhrases)
     }
 
-    /// Write a fresh entry's data to shared UserDefaults so buildCachedEntry() returns
+    /// Write a fresh entry's data to the shared container so buildCachedEntry() returns
     /// updated values on the next timeline refresh.
-    private func saveFreshDataToCache(_ entry: WeatherWidgetEntry) {
+    private func saveFreshDataToCache(_ entry: WeatherWidgetEntry, additionalPhrases: [String] = []) {
         // Write to shared JSON file (primary, reliable)
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
+
+        // Convert entry's hourly/daily preview to cached format
+        let cachedHourly = entry.hourlyPreview.map { h in
+            CachedHourlyPoint(hour: h.hour, temp: h.temp, conditionTag: h.conditionTag.rawValue, isDay: h.isDay)
+        }
+        let cachedDaily = entry.dailyPreview.map { d in
+            CachedDailyPoint(day: d.day, high: d.high, low: d.low, conditionTag: d.conditionTag.rawValue)
+        }
 
         WidgetDataStore.save(CachedWeatherData(
             temperature: Double(entry.temperature),
@@ -300,7 +298,11 @@ struct WeatherWidgetProvider: TimelineProvider {
             low: Double(entry.low),
             locationName: entry.locationName,
             phrase: entry.phrase,
-            phraseMode: modeStr
+            phraseMode: modeStr,
+            additionalPhrases: additionalPhrases,
+            smallPhrase: entry.smallPhrase,
+            hourlyPreview: cachedHourly,
+            dailyPreview: cachedDaily
         ))
 
         // Also write to UserDefaults as fallback
@@ -334,11 +336,6 @@ struct WeatherWidgetProvider: TimelineProvider {
             throw WidgetError.noLocation
         }
 
-        // Start PhraseEngine warmup concurrently — it loads 728KB of JSON from disk,
-        // which runs in parallel with the WeatherKit network call below.
-        // By the time WeatherKit returns (~2-5s), PhraseEngine is almost always ready.
-        Task { [phraseEngine] in await phraseEngine.warmUp() }
-
         let service = WeatherKit.WeatherService.shared
         let weather = try await service.weather(
             for: location,
@@ -353,23 +350,18 @@ struct WeatherWidgetProvider: TimelineProvider {
         let conditionTag = WeatherConditionTag.from(current.condition, windSpeed: windMph)
         let tempF = current.temperature.converted(to: .fahrenheit).value
 
-        // Generate a fresh phrase if PhraseEngine is ready (warmed up during WeatherKit fetch).
-        // If still loading (rare — only on very slow disk I/O), use the cached phrase.
+        // Always generate a fresh phrase. selectPhrase() calls loadIfNeeded() internally,
+        // so it handles PhraseEngine initialization. This runs after completion() has
+        // already been called, so taking a moment to load JSON is fine.
         let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
         let mode = PhraseMode(rawValue: modeStr) ?? .clean
 
-        let phrase: String
-        if phraseEngine.isReady {
-            phrase = await phraseEngine.selectPhrase(
-                conditionTag: conditionTag,
-                tempF: tempF,
-                mode: mode,
-                isDay: current.isDaylight
-            )
-        } else {
-            phrase = defaults.string(forKey: AppConstants.UserDefaultsKeys.currentPhrase)
-                ?? "\(conditionTag.label) and \(Int(tempF.rounded()))°."
-        }
+        let phrase = await phraseEngine.selectPhrase(
+            conditionTag: conditionTag,
+            tempF: tempF,
+            mode: mode,
+            isDay: current.isDaylight
+        )
 
         // Get DST-aware timezone via reverse geocoding
         let locationTimezone: TimeZone
@@ -413,6 +405,15 @@ struct WeatherWidgetProvider: TimelineProvider {
         let todayHigh = daily.first.map { Int($0.highTemperature.converted(to: .fahrenheit).value.rounded()) } ?? 0
         let todayLow = daily.first.map { Int($0.lowTemperature.converted(to: .fahrenheit).value.rounded()) } ?? 0
 
+        // Generate a shorter phrase for the small widget
+        let smallPhrase = await phraseEngine.selectPhrase(
+            conditionTag: conditionTag,
+            tempF: tempF,
+            mode: mode,
+            isDay: current.isDaylight,
+            maxLength: 70
+        )
+
         return WeatherWidgetEntry(
             date: Date(),
             temperature: Int(tempF.rounded()),
@@ -420,6 +421,7 @@ struct WeatherWidgetProvider: TimelineProvider {
             conditionLabel: current.condition.description,
             isDay: current.isDaylight,
             phrase: phrase,
+            smallPhrase: smallPhrase,
             feelsLike: Int(current.apparentTemperature.converted(to: .fahrenheit).value.rounded()),
             high: todayHigh,
             low: todayLow,

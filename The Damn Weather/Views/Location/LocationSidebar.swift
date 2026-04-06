@@ -27,6 +27,7 @@ struct LocationSidebar: View {
     @Binding var activateSearch: Bool
 
     @State private var summaries: [String: LocationSummary] = [:]
+    @State private var showDuplicateAlert = false
     @State private var isSearching = false
     @State private var searchText = ""
     @State private var searchVM: LocationSearchViewModel?
@@ -34,10 +35,10 @@ struct LocationSidebar: View {
 
     private let phraseEngine = PhraseEngine()
 
-    private var activeSearchVM: LocationSearchViewModel {
+    private func ensureSearchVM() -> LocationSearchViewModel {
         if let vm = searchVM { return vm }
         let vm = LocationSearchViewModel(locationService: locationService)
-        DispatchQueue.main.async { searchVM = vm }
+        searchVM = vm
         return vm
     }
 
@@ -63,7 +64,7 @@ struct LocationSidebar: View {
                         .focused($isSearchFocused)
                         .autocorrectionDisabled()
                         .onChange(of: searchText) { _, newValue in
-                            activeSearchVM.updateSearch(newValue)
+                            ensureSearchVM().updateSearch(newValue)
                         }
                 } else {
                     Text("Search for a city or airport")
@@ -75,7 +76,7 @@ struct LocationSidebar: View {
                 if isSearching && !searchText.isEmpty {
                     Button {
                         searchText = ""
-                        activeSearchVM.clear()
+                        ensureSearchVM().clear()
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 14))
@@ -89,7 +90,7 @@ struct LocationSidebar: View {
                             isSearching = false
                             isSearchFocused = false
                             searchText = ""
-                            activeSearchVM.clear()
+                            ensureSearchVM().clear()
                         }
                     }
                     .font(.system(size: 13))
@@ -122,6 +123,11 @@ struct LocationSidebar: View {
             }
         }
         .background(Color.weatherBgDark)
+        .alert("Already Added", isPresented: $showDuplicateAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("You've already saved that location.")
+        }
         .onChange(of: activateSearch) { _, newValue in
             if newValue {
                 withAnimation(.easeInOut(duration: 0.2)) {
@@ -141,16 +147,19 @@ struct LocationSidebar: View {
     private var sidebarSearchResults: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
-                ForEach(activeSearchVM.results) { result in
+                ForEach(ensureSearchVM().results) { result in
                     Button {
                         Task {
-                            if let selected = await activeSearchVM.selectResult(result) {
-                                // Prevent duplicate locations
+                            if let selected = await ensureSearchVM().selectResult(result) {
+                                // Prevent adding the same saved city twice
                                 let isDuplicate = locations.contains { existing in
                                     abs(existing.latitude - selected.location.coordinate.latitude) < 0.01 &&
                                     abs(existing.longitude - selected.location.coordinate.longitude) < 0.01
                                 }
-                                guard !isDuplicate else { return }
+                                guard !isDuplicate else {
+                                    showDuplicateAlert = true
+                                    return
+                                }
 
                                 let saved = SavedLocation(
                                     name: selected.name,
@@ -166,7 +175,7 @@ struct LocationSidebar: View {
                                 withAnimation {
                                     isSearching = false
                                     searchText = ""
-                                    activeSearchVM.clear()
+                                    ensureSearchVM().clear()
                                 }
                             }
                         }
@@ -321,11 +330,13 @@ struct LocationSidebar: View {
                     }
                 }
             }
+            var results: [String: LocationSummary] = [:]
             for await (key, summary) in group {
                 if let summary {
-                    summaries[key] = summary
+                    results[key] = summary
                 }
             }
+            summaries.merge(results) { _, new in new }
         }
     }
 }
@@ -408,6 +419,7 @@ struct SidebarLocationCard: View {
                     lineWidth: 0.5
                 )
         )
-        .shadow(color: .black.opacity(0.15), radius: 6, y: 3)
+        .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
+        .drawingGroup()
     }
 }

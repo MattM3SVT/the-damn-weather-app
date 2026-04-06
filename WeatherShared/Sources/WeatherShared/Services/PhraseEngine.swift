@@ -96,7 +96,8 @@ public actor PhraseEngine {
         conditionTag: WeatherConditionTag,
         tempF: Double,
         mode: PhraseMode = .clean,
-        isDay: Bool = true
+        isDay: Bool = true,
+        maxLength: Int? = nil
     ) -> String {
         loadIfNeeded()
 
@@ -148,6 +149,15 @@ public actor PhraseEngine {
             matches = matches.filter { $0.text != lastShown }
         }
 
+        // Filter by max length if requested (e.g., small widget needs short phrases).
+        // Only apply if we still have enough matches after filtering.
+        if let maxLength {
+            let shortEnough = matches.filter { $0.rendered(tempF: tempF).count <= maxLength }
+            if !shortEnough.isEmpty {
+                matches = shortEnough
+            }
+        }
+
         // Remove recently seen phrases (if we still have enough left)
         let unseen = matches.filter { p in !seen.contains(p.text) }
         if unseen.count >= 1 {
@@ -186,6 +196,28 @@ public actor PhraseEngine {
         }
 
         return text
+    }
+
+    /// Generate multiple unique phrases for widget timeline entries.
+    /// Each phrase avoids repeating the previous ones in the batch.
+    public func selectMultiplePhrases(
+        count: Int,
+        conditionTag: WeatherConditionTag,
+        tempF: Double,
+        mode: PhraseMode = .clean,
+        isDay: Bool = true
+    ) -> [String] {
+        var phrases: [String] = []
+        for _ in 0..<count {
+            let phrase = selectPhrase(
+                conditionTag: conditionTag,
+                tempF: tempF,
+                mode: mode,
+                isDay: isDay
+            )
+            phrases.append(phrase)
+        }
+        return phrases
     }
 
     // MARK: - Seen Phrases Tracking

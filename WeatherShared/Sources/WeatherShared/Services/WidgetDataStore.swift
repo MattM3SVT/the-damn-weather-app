@@ -1,5 +1,35 @@
 import Foundation
 
+/// Lightweight hourly forecast point for widget display.
+public struct CachedHourlyPoint: Codable, Sendable {
+    public let hour: String          // "Now", "3 PM"
+    public let temp: Int
+    public let conditionTag: String  // WeatherConditionTag raw value
+    public let isDay: Bool
+
+    public init(hour: String, temp: Int, conditionTag: String, isDay: Bool) {
+        self.hour = hour
+        self.temp = temp
+        self.conditionTag = conditionTag
+        self.isDay = isDay
+    }
+}
+
+/// Lightweight daily forecast point for widget display.
+public struct CachedDailyPoint: Codable, Sendable {
+    public let day: String           // "Today", "Mon"
+    public let high: Int
+    public let low: Int
+    public let conditionTag: String  // WeatherConditionTag raw value
+
+    public init(day: String, high: Int, low: Int, conditionTag: String) {
+        self.day = day
+        self.high = high
+        self.low = low
+        self.conditionTag = conditionTag
+    }
+}
+
 /// Cached weather data shared between the main app and widget extension via a JSON file
 /// in the App Group container. This is more reliable than UserDefaults for cross-process
 /// data sharing on iPhone, where UserDefaults sync can be delayed or fail entirely.
@@ -16,6 +46,20 @@ public struct CachedWeatherData: Codable {
     public let phraseMode: String
     public let updatedAt: Date
 
+    /// Pre-generated phrases for multi-entry widget timelines.
+    /// The widget uses these to show a different phrase every 15 minutes
+    /// without needing to run PhraseEngine in the extension process.
+    public let additionalPhrases: [String]
+
+    /// Shorter phrase for the small widget (≤70 chars). Falls back to main phrase if nil.
+    public let smallPhrase: String?
+
+    /// Hourly forecast preview for large widget (6 points).
+    public let hourlyPreview: [CachedHourlyPoint]
+
+    /// Daily forecast preview for large widget (5 points).
+    public let dailyPreview: [CachedDailyPoint]
+
     public init(
         temperature: Double,
         conditionTag: String,
@@ -27,7 +71,11 @@ public struct CachedWeatherData: Codable {
         locationName: String,
         phrase: String,
         phraseMode: String,
-        updatedAt: Date = Date()
+        updatedAt: Date = Date(),
+        additionalPhrases: [String] = [],
+        smallPhrase: String? = nil,
+        hourlyPreview: [CachedHourlyPoint] = [],
+        dailyPreview: [CachedDailyPoint] = []
     ) {
         self.temperature = temperature
         self.conditionTag = conditionTag
@@ -40,6 +88,36 @@ public struct CachedWeatherData: Codable {
         self.phrase = phrase
         self.phraseMode = phraseMode
         self.updatedAt = updatedAt
+        self.additionalPhrases = additionalPhrases
+        self.smallPhrase = smallPhrase
+        self.hourlyPreview = hourlyPreview
+        self.dailyPreview = dailyPreview
+    }
+
+    /// All phrases in order: primary phrase first, then additional.
+    public var allPhrases: [String] {
+        [phrase] + additionalPhrases
+    }
+
+    /// Custom decoder to handle backward compatibility — older cached JSON
+    /// won't have the additionalPhrases field.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        temperature = try container.decode(Double.self, forKey: .temperature)
+        conditionTag = try container.decode(String.self, forKey: .conditionTag)
+        conditionLabel = try container.decode(String.self, forKey: .conditionLabel)
+        isDay = try container.decode(Bool.self, forKey: .isDay)
+        feelsLike = try container.decode(Double.self, forKey: .feelsLike)
+        high = try container.decode(Double.self, forKey: .high)
+        low = try container.decode(Double.self, forKey: .low)
+        locationName = try container.decode(String.self, forKey: .locationName)
+        phrase = try container.decode(String.self, forKey: .phrase)
+        phraseMode = try container.decode(String.self, forKey: .phraseMode)
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        additionalPhrases = try container.decodeIfPresent([String].self, forKey: .additionalPhrases) ?? []
+        smallPhrase = try container.decodeIfPresent(String.self, forKey: .smallPhrase)
+        hourlyPreview = try container.decodeIfPresent([CachedHourlyPoint].self, forKey: .hourlyPreview) ?? []
+        dailyPreview = try container.decodeIfPresent([CachedDailyPoint].self, forKey: .dailyPreview) ?? []
     }
 }
 
@@ -98,20 +176,8 @@ public enum WidgetDataStore {
         }
     }
 
-    /// Debug helper: check if the file exists at the expected path (without attempting to decode).
-    public static func debugFileExists() -> Bool {
-        guard let url = fileURL else { return false }
-        return FileManager.default.fileExists(atPath: url.path)
-    }
-
-    /// Debug helper: return raw file contents as string for diagnostics.
-    public static func debugRawContents() -> String? {
-        guard let url = fileURL else { return nil }
-        return try? String(contentsOf: url, encoding: .utf8)
-    }
-
-    /// Update just the phrase in the existing cached data. Called after phrase refresh.
-    public static func updatePhrase(_ phrase: String, mode: String) {
+    /// Update just the phrase(s) in the existing cached data. Called after phrase refresh.
+    public static func updatePhrase(_ phrase: String, mode: String, additionalPhrases: [String] = [], smallPhrase: String? = nil) {
         guard var cached = load() else { return }
         cached = CachedWeatherData(
             temperature: cached.temperature,
@@ -124,7 +190,11 @@ public enum WidgetDataStore {
             locationName: cached.locationName,
             phrase: phrase,
             phraseMode: mode,
-            updatedAt: Date()
+            updatedAt: Date(),
+            additionalPhrases: additionalPhrases,
+            smallPhrase: smallPhrase ?? cached.smallPhrase,
+            hourlyPreview: cached.hourlyPreview,
+            dailyPreview: cached.dailyPreview
         )
         save(cached)
     }

@@ -97,6 +97,48 @@ final class WeatherViewModel {
             defaults.set(location.coordinate.longitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
             defaults.set(geocode.name, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
 
+            // Build hourly/daily preview arrays for the large widget
+            let now = Date()
+            let hourFormatter = DateFormatter()
+            hourFormatter.dateFormat = "ha"   // "3PM"
+            let cachedHourly: [CachedHourlyPoint] = Array(
+                snapshot.hourly.filter { $0.time >= now }.prefix(6)
+            ).enumerated().map { index, h in
+                CachedHourlyPoint(
+                    hour: index == 0 ? "Now" : hourFormatter.string(from: h.time).replacingOccurrences(of: " ", with: ""),
+                    temp: Int(h.temperature.rounded()),
+                    conditionTag: h.conditionTag.rawValue,
+                    isDay: h.isDay
+                )
+            }
+            let cachedDaily: [CachedDailyPoint] = Array(
+                snapshot.daily.prefix(5)
+            ).enumerated().map { index, d in
+                let dayStr: String
+                if index == 0 {
+                    dayStr = "Today"
+                } else {
+                    let fmt = DateFormatter()
+                    fmt.dateFormat = "EEE"
+                    dayStr = fmt.string(from: d.date)
+                }
+                return CachedDailyPoint(
+                    day: dayStr,
+                    high: Int(d.high.rounded()),
+                    low: Int(d.low.rounded()),
+                    conditionTag: d.conditionTag.rawValue
+                )
+            }
+
+            // Generate a short phrase for the small widget (≤70 chars)
+            let smallPhrase = await phraseEngine.selectPhrase(
+                conditionTag: snapshot.current.conditionTag,
+                tempF: snapshot.current.temperature,
+                mode: appState.phraseMode,
+                isDay: snapshot.current.isDay,
+                maxLength: 70
+            )
+
             // Write to shared JSON file (reliable cross-process, used by widget)
             WidgetDataStore.save(CachedWeatherData(
                 temperature: snapshot.current.temperature,
@@ -108,7 +150,10 @@ final class WeatherViewModel {
                 low: snapshot.daily.first?.low ?? 0,
                 locationName: geocode.name,
                 phrase: currentPhrase,
-                phraseMode: appState.phraseMode.rawValue
+                phraseMode: appState.phraseMode.rawValue,
+                smallPhrase: smallPhrase,
+                hourlyPreview: cachedHourly,
+                dailyPreview: cachedDaily
             ))
 
             // Also write to UserDefaults as fallback
@@ -187,6 +232,8 @@ final class WeatherViewModel {
 
     func refreshPhrase() async {
         guard let weather else { return }
+
+        // Generate the primary phrase for the app display
         currentPhrase = await phraseEngine.selectPhrase(
             conditionTag: weather.current.conditionTag,
             tempF: weather.current.temperature,
@@ -194,8 +241,33 @@ final class WeatherViewModel {
             isDay: weather.current.isDay
         )
 
-        // Share the phrase with the widget and trigger refresh
-        WidgetDataStore.updatePhrase(currentPhrase, mode: appState.phraseMode.rawValue)
+        // Pre-generate 3 additional phrases for the widget's multi-entry timeline.
+        // The widget shows a different phrase every 15 minutes without needing
+        // to run PhraseEngine in the extension (which can be killed by WidgetKit).
+        let extraPhrases = await phraseEngine.selectMultiplePhrases(
+            count: 3,
+            conditionTag: weather.current.conditionTag,
+            tempF: weather.current.temperature,
+            mode: appState.phraseMode,
+            isDay: weather.current.isDay
+        )
+
+        // Generate a short phrase for the small widget (≤70 chars)
+        let smallPhrase = await phraseEngine.selectPhrase(
+            conditionTag: weather.current.conditionTag,
+            tempF: weather.current.temperature,
+            mode: appState.phraseMode,
+            isDay: weather.current.isDay,
+            maxLength: 70
+        )
+
+        // Share phrases with the widget and trigger refresh
+        WidgetDataStore.updatePhrase(
+            currentPhrase,
+            mode: appState.phraseMode.rawValue,
+            additionalPhrases: extraPhrases,
+            smallPhrase: smallPhrase
+        )
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         defaults.set(currentPhrase, forKey: AppConstants.UserDefaultsKeys.currentPhrase)
         defaults.set(appState.phraseMode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
