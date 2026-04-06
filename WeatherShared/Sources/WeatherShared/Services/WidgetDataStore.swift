@@ -98,6 +98,18 @@ public enum WidgetDataStore {
         }
     }
 
+    /// Debug helper: check if the file exists at the expected path (without attempting to decode).
+    public static func debugFileExists() -> Bool {
+        guard let url = fileURL else { return false }
+        return FileManager.default.fileExists(atPath: url.path)
+    }
+
+    /// Debug helper: return raw file contents as string for diagnostics.
+    public static func debugRawContents() -> String? {
+        guard let url = fileURL else { return nil }
+        return try? String(contentsOf: url, encoding: .utf8)
+    }
+
     /// Update just the phrase in the existing cached data. Called after phrase refresh.
     public static func updatePhrase(_ phrase: String, mode: String) {
         guard var cached = load() else { return }

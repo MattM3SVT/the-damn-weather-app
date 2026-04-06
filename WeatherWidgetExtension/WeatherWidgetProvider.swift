@@ -82,14 +82,46 @@ struct WeatherWidgetProvider: TimelineProvider {
     func placeholder(in context: Context) -> WeatherWidgetEntry {
         // On iPhone, WidgetKit may show placeholder() for longer before calling getTimeline().
         // Use cached data here too so the user sees real weather immediately.
-        buildCachedEntry() ?? .placeholder
+        if let cached = buildCachedEntry() {
+            // Tag with PH: so we know this came from placeholder()
+            return WeatherWidgetEntry(
+                date: cached.date,
+                temperature: cached.temperature,
+                conditionTag: cached.conditionTag,
+                conditionLabel: cached.conditionLabel,
+                isDay: cached.isDay,
+                phrase: "PH: " + cached.phrase,
+                feelsLike: cached.feelsLike,
+                high: cached.high,
+                low: cached.low,
+                precipProbability: cached.precipProbability,
+                hourlyPreview: cached.hourlyPreview,
+                dailyPreview: cached.dailyPreview,
+                locationName: cached.locationName
+            )
+        }
+        return .placeholder
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
-        // Try cached data first — pure UserDefaults reads, completes in milliseconds.
-        // This avoids PhraseEngine's 728KB JSON load which can timeout the widget extension.
+        // Try cached data first — pure file/UserDefaults reads, completes in milliseconds.
         if let cached = buildCachedEntry() {
-            completion(cached)
+            let entry = WeatherWidgetEntry(
+                date: cached.date,
+                temperature: cached.temperature,
+                conditionTag: cached.conditionTag,
+                conditionLabel: cached.conditionLabel,
+                isDay: cached.isDay,
+                phrase: "SS: " + cached.phrase,
+                feelsLike: cached.feelsLike,
+                high: cached.high,
+                low: cached.low,
+                precipProbability: cached.precipProbability,
+                hourlyPreview: cached.hourlyPreview,
+                dailyPreview: cached.dailyPreview,
+                locationName: cached.locationName
+            )
+            completion(entry)
             return
         }
 
@@ -105,22 +137,18 @@ struct WeatherWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherWidgetEntry>) -> Void) {
-        // DEBUG: Check what data sources are available
-        let hasFile = WidgetDataStore.load() != nil
-        let hasContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID) != nil
-        let hasDefaults = UserDefaults(suiteName: AppConstants.appGroupID)?.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag) != nil
-        let debugPrefix = "[F:\(hasFile) C:\(hasContainer) D:\(hasDefaults)] "
-
-        // SYNCHRONOUS — call completion() before WidgetKit can kill the extension.
-        if let cached = buildCachedEntry() {
-            // Temporarily prepend debug info to the phrase so we can see what's happening
-            let debugEntry = WeatherWidgetEntry(
+        // buildCachedEntry() now ALWAYS returns an entry (diagnostic if data fails).
+        // Call completion synchronously — WidgetKit kills extensions that go async.
+        let cached = buildCachedEntry()
+        if let cached {
+            // Prepend TL: so we know this came from getTimeline, not placeholder
+            let entry = WeatherWidgetEntry(
                 date: cached.date,
                 temperature: cached.temperature,
                 conditionTag: cached.conditionTag,
                 conditionLabel: cached.conditionLabel,
                 isDay: cached.isDay,
-                phrase: debugPrefix + cached.phrase,
+                phrase: "TL: " + cached.phrase,
                 feelsLike: cached.feelsLike,
                 high: cached.high,
                 low: cached.low,
@@ -130,14 +158,15 @@ struct WeatherWidgetProvider: TimelineProvider {
                 locationName: cached.locationName
             )
             let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-            completion(Timeline(entries: [debugEntry], policy: .after(nextUpdate)))
+            completion(Timeline(entries: [entry], policy: .after(nextUpdate)))
 
             // Background: fetch fresh weather + phrase and save for next refresh
             Task { await refreshCachedData() }
             return
         }
 
-        // No cached data — try async as last resort
+        // Should never reach here now — buildCachedEntry returns diagnostic entries instead of nil.
+        // But keep as safety net.
         Task {
             if let entry = try? await fetchWeatherEntry() {
                 saveFreshDataToCache(entry)
@@ -155,32 +184,45 @@ struct WeatherWidgetProvider: TimelineProvider {
     /// Returns nil if no cached data exists (app has never fetched weather).
     private func buildCachedEntry() -> WeatherWidgetEntry? {
         // PRIMARY: Read from shared JSON file — reliable cross-process on iPhone
-        if let cached = WidgetDataStore.load(),
-           let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) {
-            return WeatherWidgetEntry(
-                date: Date(),
-                temperature: Int(cached.temperature.rounded()),
-                conditionTag: conditionTag,
-                conditionLabel: cached.conditionLabel,
-                isDay: cached.isDay,
-                phrase: cached.phrase,
-                feelsLike: Int(cached.feelsLike.rounded()),
-                high: Int(cached.high.rounded()),
-                low: Int(cached.low.rounded()),
-                precipProbability: 0,
-                hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
-                dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
-                locationName: cached.locationName
-            )
+        let fileData = WidgetDataStore.load()
+        if let cached = fileData {
+            let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag)
+            if let conditionTag {
+                return WeatherWidgetEntry(
+                    date: Date(),
+                    temperature: Int(cached.temperature.rounded()),
+                    conditionTag: conditionTag,
+                    conditionLabel: cached.conditionLabel,
+                    isDay: cached.isDay,
+                    phrase: cached.phrase,
+                    feelsLike: Int(cached.feelsLike.rounded()),
+                    high: Int(cached.high.rounded()),
+                    low: Int(cached.low.rounded()),
+                    precipProbability: 0,
+                    hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
+                    dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
+                    locationName: cached.locationName
+                )
+            } else {
+                // DEBUG: File loaded but conditionTag rawValue didn't match enum
+                return makeDiagnosticEntry("FILE_OK tag_FAIL rawVal='\(cached.conditionTag)' temp=\(cached.temperature)")
+            }
         }
 
         // FALLBACK: Try UserDefaults (may not have synced cross-process yet)
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         defaults.synchronize()
 
-        guard let conditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag),
-              let conditionTag = WeatherConditionTag(rawValue: conditionRaw) else {
-            return nil
+        let conditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
+        guard let conditionRaw else {
+            // DEBUG: Neither file nor UserDefaults had data
+            let fileURLExists = WidgetDataStore.debugFileExists()
+            return makeDiagnosticEntry("NO_DATA file=\(fileData != nil) fileURL=\(fileURLExists)")
+        }
+
+        let conditionTag = WeatherConditionTag(rawValue: conditionRaw)
+        guard let conditionTag else {
+            return makeDiagnosticEntry("UD_TAG_FAIL rawVal='\(conditionRaw)'")
         }
 
         let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
@@ -207,6 +249,25 @@ struct WeatherWidgetProvider: TimelineProvider {
             hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
             dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
             locationName: locationName
+        )
+    }
+
+    /// Creates a diagnostic entry so we can see exactly what failed on the widget face
+    private func makeDiagnosticEntry(_ info: String) -> WeatherWidgetEntry {
+        WeatherWidgetEntry(
+            date: Date(),
+            temperature: 0,
+            conditionTag: .clear,
+            conditionLabel: "Debug",
+            isDay: true,
+            phrase: "DBG: \(info)",
+            feelsLike: 0,
+            high: 0,
+            low: 0,
+            precipProbability: 0,
+            hourlyPreview: [],
+            dailyPreview: [],
+            locationName: "Diagnostics"
         )
     }
 
