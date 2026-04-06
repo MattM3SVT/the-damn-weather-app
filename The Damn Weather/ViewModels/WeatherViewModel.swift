@@ -374,10 +374,11 @@ final class WeatherViewModel {
 
         // Build hourly/daily preview arrays for the large widget
         let now = Date()
+        let currentHourStart = Calendar.current.dateInterval(of: .hour, for: now)?.start ?? now
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "ha"
         let cachedHourly: [CachedHourlyPoint] = Array(
-            snapshot.hourly.filter { $0.time >= now }.prefix(6)
+            snapshot.hourly.filter { $0.time >= currentHourStart }.prefix(6)
         ).enumerated().map { index, h in
             CachedHourlyPoint(
                 hour: index == 0 ? "Now" : hourFormatter.string(from: h.time).replacingOccurrences(of: " ", with: ""),
