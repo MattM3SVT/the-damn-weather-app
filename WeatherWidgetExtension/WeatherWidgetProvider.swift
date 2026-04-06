@@ -215,9 +215,13 @@ struct WeatherWidgetProvider: TimelineProvider {
 
         let conditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
         guard let conditionRaw else {
-            // DEBUG: Neither file nor UserDefaults had data
-            let fileURLExists = WidgetDataStore.debugFileExists()
-            return makeDiagnosticEntry("NO_DATA file=\(fileData != nil) fileURL=\(fileURLExists)")
+            // DEBUG: Granular diagnostics — separate container access from file existence
+            let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID)
+            let containerOK = containerURL != nil
+            let fileExists = WidgetDataStore.debugFileExists()
+            let groupID = AppConstants.appGroupID
+            let udSuite = UserDefaults(suiteName: groupID) != nil
+            return makeDiagnosticEntry("ctr=\(containerOK) fe=\(fileExists) ud=\(udSuite) gid=\(groupID.suffix(15))")
         }
 
         let conditionTag = WeatherConditionTag(rawValue: conditionRaw)
