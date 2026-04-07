@@ -26,6 +26,12 @@ struct AgeVerificationSheet: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, DesignTokens.spaceXL)
 
+            Text("By enabling this, you confirm you are 17 years or older.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, DesignTokens.spaceXL)
+
             VStack(spacing: 12) {
                 Button {
                     viewModel.confirmAge()

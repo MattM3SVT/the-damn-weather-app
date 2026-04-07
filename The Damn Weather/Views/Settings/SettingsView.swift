@@ -112,6 +112,10 @@ struct SettingsView: View {
                         }
                     }
 
+                    Link(destination: URL(string: "mailto:support@hivewerks.com")!) {
+                        Label("Contact Support", systemImage: "envelope.fill")
+                    }
+
                     if let url = URL(string: "https://weatherkit.apple.com/legal-attribution.html") {
                         Link(destination: url) {
                             Label("Weather Data by Apple Weather", systemImage: "cloud.fill")
@@ -121,7 +125,7 @@ struct SettingsView: View {
                     HStack {
                         Text("Version")
                         Spacer()
-                        Text("1.0")
+                        Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
                             .foregroundStyle(.secondary)
                     }
                 } header: {
