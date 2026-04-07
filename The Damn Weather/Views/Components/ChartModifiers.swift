@@ -12,13 +12,14 @@ func nowIndicator(hourlyTimes: [Date]) -> some ChartContent {
         RuleMark(x: .value("Now", now))
             .foregroundStyle(.white.opacity(0.6))
             .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 3]))
-            .annotation(position: .top, alignment: .center) {
+            .annotation(position: .top, alignment: .center, spacing: 4) {
                 Text("Now")
                     .font(.system(size: 9, weight: .bold))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
                     .background(Capsule().fill(.white.opacity(0.2)))
+                    .offset(y: 16)
             }
     }
 }

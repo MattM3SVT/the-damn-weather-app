@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - The Damn Weather</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #e0e0e0;
+            background-color: #0a0a0a;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+            color: #ffffff;
+        }
+        .subtitle {
+            color: #888;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+        h2 {
+            font-size: 1.35rem;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        a {
+            color: #66b3ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid #222;
+            margin: 2rem 0;
+        }
+        .toc {
+            background: #111;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .toc-title {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin-bottom: 0.3rem;
+        }
+        .faq-item {
+            margin-bottom: 1.75rem;
+        }
+        .faq-q {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+        .faq-a {
+            color: #ccc;
+        }
+        .faq-a ol {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+        }
+        .faq-a ol li {
+            margin-bottom: 0.3rem;
+        }
+        .contact-box {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+        .contact-email {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+        .response-time {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #222;
+        }
+        .footer-links a {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: #66b3ff;
+        }
+        code {
+            background: #1a1a1a;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Support</h1>
+        <p class="subtitle">The Damn Weather - Help & FAQ</p>
+
+        <div class="toc">
+            <div class="toc-title">Jump to a section</div>
+            <ul>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#locations">Managing Locations</a></li>
+                <li><a href="#explicit-mode">Explicit Mode</a></li>
+                <li><a href="#widgets">Widgets</a></li>
+                <li><a href="#units">Units & Settings</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                <li><a href="#privacy">Data & Privacy</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- GETTING STARTED -->
+        <h2 id="getting-started">Getting Started</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">How does The Damn Weather work?</div>
+            <div class="faq-a">The Damn Weather shows you real-time weather forecasts powered by Apple WeatherKit, paired with sarcastic phrases that describe your weather with a little more honesty than usual. Open the app, grant location access, and you'll see your local forecast immediately. Swipe left to view saved cities.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Does the app need location access?</div>
+            <div class="faq-a">Location access lets the app show weather for your current area. If you'd rather not share your location, you can skip it entirely and search for any city manually. The app works just fine either way.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">I see "Where the hell are you?" when I open the app.</div>
+            <div class="faq-a">That's the app's way of asking for your location. You have two options:
+                <ul>
+                    <li><strong>Use My Location</strong> grants location permission so the app can find your weather automatically</li>
+                    <li><strong>Search Location</strong> lets you type in any city or zip code without sharing your location</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Do I need to create an account?</div>
+            <div class="faq-a">No. The Damn Weather has no accounts, no sign-up, and no login. Just open it and go.</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- MANAGING LOCATIONS -->
+        <h2 id="locations">Managing Locations</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I add a city?</div>
+            <div class="faq-a">Tap the list icon at the bottom of the screen to open your saved locations. Tap the search bar and type a city name or zip code. Tap a result to save it. You can save as many cities as you like.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I switch between cities?</div>
+            <div class="faq-a">On iPhone, swipe left or right to move between your current location and saved cities. On iPad, use the sidebar to select a location.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I delete a saved city?</div>
+            <div class="faq-a">Open your saved locations list, then long-press the city card you want to remove. Tap <strong>Delete</strong> from the menu that appears.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">I'm getting "You've already saved that location."</div>
+            <div class="faq-a">That city is already in your saved list. Scroll through your saved locations to find it, or swipe through your pages on the main screen.</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- EXPLICIT MODE -->
+        <h2 id="explicit-mode">Explicit Mode</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">What is Explicit Mode?</div>
+            <div class="faq-a">Explicit Mode replaces the app's clean sarcastic phrases with versions that include profanity. It's the unfiltered version. The weather data stays exactly the same - only the commentary changes.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I turn it on or off?</div>
+            <div class="faq-a">Go to <strong>Settings</strong> and toggle <strong>Explicit Mode</strong>. When enabling it for the first time, you'll see a confirmation screen. You can turn it off again at any time the same way.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Is Explicit Mode appropriate for kids?</div>
+            <div class="faq-a">No. Explicit Mode contains strong profanity and is intended for users 16 and older. The app defaults to clean mode with no profanity. If you share your device with children, keep Explicit Mode turned off.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Can I get a new phrase?</div>
+            <div class="faq-a">Yes. Tap the phrase text on the main weather screen to generate a new one. There are thousands of unique phrases, so you'll rarely see the same one twice.</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- WIDGETS -->
+        <h2 id="widgets">Widgets</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I add a widget to my home screen?</div>
+            <div class="faq-a">
+                <ol>
+                    <li>Long-press on an empty area of your home screen until the icons jiggle</li>
+                    <li>Tap the <strong>+</strong> button in the top-left corner</li>
+                    <li>Search for "The Damn Weather"</li>
+                    <li>Choose a size (small, medium, or large) and tap <strong>Add Widget</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">What sizes are available?</div>
+            <div class="faq-a">Three sizes:
+                <ul>
+                    <li><strong>Small</strong> - Current temperature, condition, and a short phrase</li>
+                    <li><strong>Medium</strong> - Temperature, condition, phrase, and hourly forecast</li>
+                    <li><strong>Large</strong> - Everything in medium, plus the daily forecast</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Why isn't my widget updating?</div>
+            <div class="faq-a">Widgets update on a schedule managed by iOS, typically every 15 minutes. If your widget seems stuck:
+                <ul>
+                    <li>Open the main app, which triggers a fresh data sync to the widget</li>
+                    <li>Make sure the app has location permission (Settings > Privacy & Security > Location Services)</li>
+                    <li>Check that you have an internet connection</li>
+                    <li>Restart your device if the issue persists</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Does the widget show explicit phrases?</div>
+            <div class="faq-a">Yes, if you have Explicit Mode enabled in the app. The widget reflects your current phrase mode setting.</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- UNITS & SETTINGS -->
+        <h2 id="units">Units & Settings</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I change temperature units?</div>
+            <div class="faq-a">Open <strong>Settings</strong> (gear icon) and find the <strong>Units</strong> section. You can independently customize:
+                <ul>
+                    <li>Temperature (°F or °C)</li>
+                    <li>Wind speed (mph, km/h, knots, or m/s)</li>
+                    <li>Pressure (hPa, inHg, or mmHg)</li>
+                    <li>Precipitation (inches or mm)</li>
+                    <li>Distance (miles or km)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Where are my settings stored?</div>
+            <div class="faq-a">All settings are stored locally on your device. They are not synced across devices or backed up to any server. If you uninstall and reinstall the app, your preferences will reset to defaults.</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- TROUBLESHOOTING -->
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">The app says "Well, damn." with an error.</div>
+            <div class="faq-a">This means the app couldn't fetch weather data. Common causes:
+                <ul>
+                    <li><strong>No internet connection</strong> - Check your Wi-Fi or cellular data</li>
+                    <li><strong>Apple WeatherKit is temporarily down</strong> - Wait a few minutes and tap Retry</li>
+                    <li><strong>Location couldn't be determined</strong> - Make sure location services are enabled for the app</li>
+                </ul>
+                Tap the <strong>Retry</strong> button to try again.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Weather data looks wrong or outdated.</div>
+            <div class="faq-a">Weather data comes from Apple WeatherKit and refreshes automatically. To force a fresh update, pull down on the main weather screen or close and reopen the app. If data still seems off, it may be a temporary issue with Apple's data sources.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Location isn't working.</div>
+            <div class="faq-a">
+                <ol>
+                    <li>Go to your device's <strong>Settings > Privacy & Security > Location Services</strong></li>
+                    <li>Make sure Location Services is turned on</li>
+                    <li>Find <strong>The Damn Weather</strong> in the list and set it to <strong>While Using the App</strong></li>
+                    <li>Return to the app - it should detect your location automatically</li>
+                </ol>
+                If you previously denied permission, you may need to change it in Settings since iOS doesn't re-prompt after a denial.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">The app is using too much battery.</div>
+            <div class="faq-a">The Damn Weather only accesses your location while the app is open ("While Using" permission). It does not track your location in the background. If you notice unusual battery usage, try force-closing and reopening the app.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I report a bug?</div>
+            <div class="faq-a">Email us at <a href="mailto:support@thedamnweather.com">support@thedamnweather.com</a> with a description of the issue, your device model, and iOS version. Screenshots help too.</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- DATA & PRIVACY -->
+        <h2 id="privacy">Data & Privacy</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">Where does the weather data come from?</div>
+            <div class="faq-a">All weather data is provided by <a href="https://weatherkit.apple.com/legal-attribution.html" target="_blank" rel="noopener">Apple WeatherKit</a>, which aggregates data from national and international meteorological services.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">What data does the app collect?</div>
+            <div class="faq-a">Only your location (when you grant permission) to fetch your local weather. That's it. No names, no email, no accounts, no device IDs, no analytics, no tracking. Everything is stored on your device and never sent to our servers - because we don't have any.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">How do I delete my data?</div>
+            <div class="faq-a">All data is stored locally on your device. Delete individual saved cities by long-pressing them, or uninstall the app to remove everything. There's nothing on our end to delete because we never had it.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">Is there a full privacy policy?</div>
+            <div class="faq-a">Yes. Read our complete <a href="/privacy">Privacy Policy</a> for all the details.</div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- CONTACT -->
+        <h2 id="contact">Contact Us</h2>
+
+        <p>Didn't find what you were looking for? Reach out and we'll help.</p>
+
+        <div class="contact-box">
+            <p class="contact-email"><a href="mailto:support@thedamnweather.com">support@thedamnweather.com</a></p>
+            <p class="response-time">We typically respond within 24 hours.</p>
+        </div>
+
+        <p>When reporting an issue, it helps to include:</p>
+        <ul>
+            <li>Your device model (e.g., iPhone 15 Pro)</li>
+            <li>Your iOS version (e.g., iOS 18.4)</li>
+            <li>A description of the problem</li>
+            <li>Screenshots, if possible</li>
+        </ul>
+
+        <div class="footer-links">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+        </div>
+
+    </div>
+</body>
+</html>
