@@ -92,9 +92,7 @@ struct SettingsView: View {
                         Label("What's New", systemImage: "sparkles")
                     }
 
-                    // Rate the App — hidden until actual App Store ID is set
-                    if let rateURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX"),
-                       !rateURL.absoluteString.contains("XXXXXXXXXX") {
+                    if let rateURL = URL(string: "https://apps.apple.com/app/id6761637304?action=write-review") {
                         Link(destination: rateURL) {
                             Label("Rate the App", systemImage: "star.fill")
                         }
