@@ -150,6 +150,35 @@ struct WhatsNewView: View {
         List {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.2")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "iphone", color: .blue, text: "Now supports iOS 26.0 and later — no forced OS update required")
+                        ChangelogItem(icon: "sparkles", color: .yellow, text: "What's New now shows the full version history")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.1")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "applelogo", color: .white, text: "Official Apple Weather attribution on every weather screen")
+                        ChangelogItem(icon: "star.fill", color: .yellow, text: "\"Rate the App\" button now works in Settings")
+                        ChangelogItem(icon: "envelope.fill", color: .blue, text: "Contact Support link added to Settings")
+                        ChangelogItem(icon: "chart.xyaxis.line", color: .cyan, text: "Fixed chart \"Now\" label overlapping the section header")
+                        ChangelogItem(icon: "hand.raised.fill", color: .green, text: "Privacy manifests for improved App Store compliance")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.0")
                         .font(.title2.bold())
 
