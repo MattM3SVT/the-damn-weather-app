@@ -37,6 +37,14 @@ struct SmallWidgetView: View {
                     .minimumScaleFactor(0.6)
                     .foregroundStyle(.white.opacity(0.9))
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+
+                HStack(spacing: 2) {
+                    Image(systemName: "apple.logo")
+                    Text("Weather")
+                }
+                .font(.system(size: 7))
+                .foregroundStyle(.white.opacity(0.35))
+                .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
         .foregroundStyle(.white)

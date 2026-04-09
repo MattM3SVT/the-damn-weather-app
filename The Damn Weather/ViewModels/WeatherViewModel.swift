@@ -2,6 +2,7 @@ import Foundation
 import CoreLocation
 import SwiftUI
 import WidgetKit
+import WeatherKit
 import WeatherShared
 
 // MARK: - Per-page weather state (single source of truth for all weather display)
@@ -29,6 +30,7 @@ final class WeatherViewModel {
     var isLoading = false
     var error: String?
     var currentTime: String = ""
+    var weatherAttribution: WeatherAttribution?
 
     // MARK: - Per-page pre-loaded state (single source of truth)
     var pageStates: [String: PageWeatherState] = [:]
@@ -111,6 +113,11 @@ final class WeatherViewModel {
 
         do {
             let snapshot = try await weatherService.fetchWeather(for: location)
+
+            // Fetch attribution once (same for all locations)
+            if weatherAttribution == nil {
+                weatherAttribution = await weatherService.fetchAttribution()
+            }
 
             // WeatherKit succeeded — use real data
             weather = snapshot

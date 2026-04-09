@@ -1,4 +1,5 @@
 import SwiftUI
+import WeatherKit
 import WeatherShared
 
 /// Main weather screen — scrollable with all weather sections.
@@ -17,6 +18,7 @@ struct WeatherView: View {
 
     /// Extra top padding to push content below the floating header overlay
     var topInset: CGFloat = 0
+    var attribution: WeatherAttribution? = nil
 
     @State private var scrollOffset: CGFloat = 0
 
@@ -85,9 +87,7 @@ struct WeatherView: View {
                 )
 
                 // Apple Weather attribution
-                Text("Weather data provided by Apple Weather")
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
+                WeatherAttributionView(attribution: attribution)
                     .padding(.top, DesignTokens.spaceMD)
                     .padding(.bottom, DesignTokens.spaceSM)
             }

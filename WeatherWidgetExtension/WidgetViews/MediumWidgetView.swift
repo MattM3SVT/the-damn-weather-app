@@ -48,6 +48,14 @@ struct MediumWidgetView: View {
                         .lineLimit(1)
                 }
             }
+
+            HStack(spacing: 2) {
+                Image(systemName: "apple.logo")
+                Text("Weather")
+            }
+            .font(.system(size: 7))
+            .foregroundStyle(.white.opacity(0.35))
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .foregroundStyle(.white)
     }

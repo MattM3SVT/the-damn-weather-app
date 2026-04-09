@@ -1,4 +1,5 @@
 import SwiftUI
+import WeatherKit
 import WeatherShared
 
 /// A single page in the iPhone city-swiping TabView.
@@ -19,6 +20,7 @@ struct CityPageView: View {
     var isCurrentLocationPage: Bool = false
     var onSearch: (() -> Void)? = nil
     var onUseLocation: (() async -> Void)? = nil
+    var attribution: WeatherAttribution? = nil
 
     var body: some View {
         ZStack {
@@ -40,7 +42,8 @@ struct CityPageView: View {
                     onCollapseProgressChanged: onCollapseProgressChanged,
                     onRefreshPhrase: onRefreshPhrase,
                     onRefresh: onRefresh,
-                    topInset: topInset
+                    topInset: topInset,
+                    attribution: attribution
                 )
             } else if let error {
                 ErrorView(message: error) {

@@ -8,6 +8,7 @@ actor WeatherService {
     private let service = WeatherKit.WeatherService.shared
     private var cache: [String: WeatherSnapshot] = [:]
     private var timezoneCache: [String: TimeZone] = [:]
+    private var cachedAttribution: WeatherAttribution?
 
     private func cacheKey(for location: CLLocation) -> String {
         String(format: "%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude)
@@ -192,6 +193,17 @@ actor WeatherService {
 
         cache[key] = snapshot
         return snapshot
+    }
+
+    func fetchAttribution() async -> WeatherAttribution? {
+        if let cachedAttribution { return cachedAttribution }
+        do {
+            let attribution = try await service.attribution
+            cachedAttribution = attribution
+            return attribution
+        } catch {
+            return nil
+        }
     }
 
     func clearCache() {

@@ -211,7 +211,8 @@ struct MainView: View {
                     onRefresh: { await weatherVM.refresh() },
                     isCurrentLocationPage: true,
                     onSearch: { showSavedLocations = true },
-                    onUseLocation: { await weatherVM.loadWeatherForCurrentLocation() }
+                    onUseLocation: { await weatherVM.loadWeatherForCurrentLocation() },
+                    attribution: weatherVM.weatherAttribution
                 )
                 .tag(0)
 
@@ -225,7 +226,8 @@ struct MainView: View {
                         onCollapseProgressChanged: { heroCollapseProgress = $0 },
                         topInset: headerOverlayHeight,
                         onRefreshPhrase: { Task { await weatherVM.refreshPhraseForPage(weatherVM.pageKey(for: location)) } },
-                        onRefresh: { await weatherVM.refreshPage(for: location) }
+                        onRefresh: { await weatherVM.refreshPage(for: location) },
+                        attribution: weatherVM.weatherAttribution
                     )
                     .tag(index + 1)
                 }
@@ -353,7 +355,8 @@ struct MainView: View {
                 },
                 onRefresh: {
                     await weatherVM.refresh()
-                }
+                },
+                attribution: weatherVM.weatherAttribution
             )
         } else if let error = weatherVM.error,
                   locationService.authorizationStatus != .denied,

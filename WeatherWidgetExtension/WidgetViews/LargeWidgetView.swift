@@ -138,6 +138,14 @@ struct LargeWidgetView: View {
                             }
                         }
                     }
+
+                    HStack(spacing: 2) {
+                        Image(systemName: "apple.logo")
+                        Text("Weather")
+                    }
+                    .font(.system(size: 8))
+                    .foregroundStyle(.white.opacity(0.35))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(.white)
