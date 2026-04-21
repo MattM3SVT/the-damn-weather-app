@@ -120,6 +120,12 @@ struct SettingsView: View {
                         }
                     }
 
+                    NavigationLink {
+                        DataSourcesView()
+                    } label: {
+                        Label("About Our Data", systemImage: "antenna.radiowaves.left.and.right")
+                    }
+
                     HStack {
                         Text("Version")
                         Spacer()
@@ -148,6 +154,20 @@ struct SettingsView: View {
 struct WhatsNewView: View {
     var body: some View {
         List {
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.3")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "square.and.arrow.up", color: .accentRed, text: "Share the damn weather — tap the share icon in the header to send a stylized card")
+                        ChangelogItem(icon: "antenna.radiowaves.left.and.right", color: .blue, text: "Observations cross-checked against NWS and METAR data sources for accuracy")
+                        ChangelogItem(icon: "wrench.and.screwdriver.fill", color: .gray, text: "Bug fixes and polish")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
             Section {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.2")

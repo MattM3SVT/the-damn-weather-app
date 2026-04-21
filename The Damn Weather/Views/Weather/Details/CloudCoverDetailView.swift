@@ -45,7 +45,8 @@ struct CloudCoverDetailView: View {
             description: description,
             accentColor: .gray
         ) {
-            Chart {
+            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                Chart {
                 // Zone annotations
                 RectangleMark(
                     yStart: .value("Low", 75),
@@ -88,16 +89,23 @@ struct CloudCoverDetailView: View {
                     currentValuePoint(time: current.time, value: current.value, yLabel: "Cloud Cover", color: .white)
                 }
             }
-            .chartYScale(domain: 0...100)
+            // Y-domain extends to 110 to create visual headroom above 100%.
+            // Without this, a line at 100% rides the plot's top edge and
+            // crowds the "Now" pill. Axis labels are pinned to 0–100.
+            .chartYScale(domain: 0...110)
             .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                        .foregroundStyle(.secondary)
+                AxisMarks(values: .stride(by: .hour, count: 4)) { value in
+                    AxisValueLabel {
+                        if let date = value.as(Date.self) {
+                            Text(date.hourLabel(timezone: weather.timezone))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
             .chartYAxis {
-                AxisMarks { value in
+                AxisMarks(values: [0, 25, 50, 75, 100]) { value in
                     AxisValueLabel {
                         if let v = value.as(Double.self) {
                             Text("\(Int(v))%")
@@ -107,70 +115,14 @@ struct CloudCoverDetailView: View {
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
-        } dailyStrip: {
-            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
-                // Cloud cover scale
-                HStack(spacing: DesignTokens.spaceLG) {
-                    VStack(spacing: 4) {
-                        Image(systemName: "sun.max.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.yellow)
-                        Text("Clear")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("0–25%")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
+            .frame(height: 180)
 
-                    VStack(spacing: 4) {
-                        Image(systemName: "cloud.sun.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.white.opacity(0.7))
-                        Text("Partly")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("25–50%")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    VStack(spacing: 4) {
-                        Image(systemName: "cloud.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.white.opacity(0.5))
-                        Text("Mostly")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("50–75%")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    VStack(spacing: 4) {
-                        Image(systemName: "smoke.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.white.opacity(0.3))
-                        Text("Overcast")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("75–100%")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-
-                Divider().overlay(Color.white.opacity(0.05))
-
-                // Current status
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Current Sky")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                        Text(coverageLevel)
-                            .font(.system(size: 14, weight: .semibold))
-                    }
-                    Spacer()
-                    Text(cloudPct.percentString)
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                // Chart band legend
+                HStack(spacing: DesignTokens.spaceSM) {
+                    LegendDot(color: .yellow,               label: "Clear (0–25%)")
+                    LegendDot(color: .white.opacity(0.7),   label: "Partly (25–50%)")
+                    LegendDot(color: .white.opacity(0.5),   label: "Mostly (50–75%)")
+                    LegendDot(color: .white.opacity(0.3),   label: "Overcast (75%+)")
                 }
             }
         }

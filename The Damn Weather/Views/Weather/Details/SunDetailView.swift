@@ -54,12 +54,13 @@ struct SunDetailView: View {
             SunArcView(
                 sunrise: todaySunrise ?? Date(),
                 sunset: todaySunset ?? Date(),
-                progress: sunProgress
+                progress: sunProgress,
+                timezone: weather.timezone
             )
         } dailyStrip: {
             ForEach(Array(weather.daily.enumerated()), id: \.element.id) { index, day in
                 HStack {
-                    Text(day.date.dayLabel(index: index))
+                    Text(day.date.dayLabel(index: index, timezone: weather.timezone))
                         .font(.system(size: DesignTokens.smallSize, weight: .medium))
                         .frame(width: 60, alignment: .leading)
 
@@ -98,6 +99,7 @@ struct SunArcView: View {
     let sunrise: Date
     let sunset: Date
     let progress: Double
+    let timezone: TimeZone
 
     /// Evaluate the quadratic Bezier y-position for a given t.
     /// Control offset `c` means the control point is at `baseY - c`.
@@ -202,7 +204,7 @@ struct SunArcView: View {
                     Text("Sunrise")
                         .font(.system(size: 9, weight: .medium))
                         .foregroundStyle(.secondary)
-                    Text(sunrise.timeString())
+                    Text(sunrise.timeString(timezone: timezone))
                         .font(.system(size: 11, weight: .semibold))
                         .foregroundStyle(.yellow)
                 }
@@ -213,7 +215,7 @@ struct SunArcView: View {
                     Text("Sunset")
                         .font(.system(size: 9, weight: .medium))
                         .foregroundStyle(.secondary)
-                    Text(sunset.timeString())
+                    Text(sunset.timeString(timezone: timezone))
                         .font(.system(size: 11, weight: .semibold))
                         .foregroundStyle(.orange)
                 }

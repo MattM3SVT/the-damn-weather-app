@@ -9,6 +9,7 @@ actor WeatherService {
     private var cache: [String: WeatherSnapshot] = [:]
     private var timezoneCache: [String: TimeZone] = [:]
     private var cachedAttribution: WeatherAttribution?
+    private let crossCheck = ObservationCrossCheckService()
 
     private func cacheKey(for location: CLLocation) -> String {
         String(format: "%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude)
@@ -22,11 +23,17 @@ actor WeatherService {
             return cached
         }
 
-        // Fetch all weather data in one call
-        let weather = try await service.weather(
+        // Fetch WeatherKit + NWS + METAR in parallel. The cross-check internally
+        // fans out to NWS and METAR via its own async let — all three sources run
+        // concurrently, with the cross-check non-throwing (empty on failure).
+        async let wkTask = service.weather(
             for: location,
             including: .current, .hourly, .daily, .minute, .alerts
         )
+        async let consensusTask = crossCheck.fetchSkyConsensus(for: location)
+
+        let weather = try await wkTask
+        let consensus = await consensusTask
 
         let current = weather.0
         let hourly = weather.1
@@ -35,22 +42,33 @@ actor WeatherService {
         let alerts: [WeatherAlert] = weather.4 ?? []
 
         let windMph = current.wind.speed.converted(to: .milesPerHour).value
-        let conditionTag = WeatherConditionTag.from(
+        let baseTag = WeatherConditionTag.from(
             current.condition,
             windSpeed: windMph
         )
+        let conditionTag = applyConsensusOverride(
+            base: baseTag,
+            consensus: consensus,
+            wkCloudCoverPct: current.cloudCover * 100
+        )
+        // When override fires, switch the displayed label to the corrected tag's label
+        // so the text on screen matches the gradient/icon/phrase. Otherwise preserve
+        // WeatherKit's nuanced description (e.g. "Mostly Cloudy" vs "Cloudy").
+        let conditionLabel = (conditionTag != baseTag)
+            ? conditionTag.label
+            : current.condition.description
 
         // precipitationIntensity — get raw value and convert
         let precipInPerHour = current.precipitationIntensity.value * 0.0393701  // mm to inches approx
 
-        let currentData = CurrentWeatherData(
+        var currentData = CurrentWeatherData(
             temperature: current.temperature.converted(to: .fahrenheit).value,
             feelsLike: current.apparentTemperature.converted(to: .fahrenheit).value,
             humidity: current.humidity * 100,
             isDay: current.isDaylight,
             precipitation: precipInPerHour,
             conditionTag: conditionTag,
-            conditionLabel: current.condition.description,
+            conditionLabel: conditionLabel,
             pressure: current.pressure.converted(to: .hectopascals).value,
             windSpeed: windMph,
             windDirection: current.wind.direction.value,
@@ -60,6 +78,15 @@ actor WeatherService {
             visibility: current.visibility.converted(to: .miles).value,
             dewPoint: current.dewPoint.converted(to: .fahrenheit).value
         )
+        #if DEBUG
+        currentData.crossCheckDebug = CrossCheckDebugInfo(
+            wkDescription: current.condition.description,
+            baseTag: baseTag,
+            finalTag: conditionTag,
+            nws: consensus.nws,
+            metar: consensus.metar
+        )
+        #endif
 
         // Filter to current hour and forward only — use start-of-current-hour
         // so at 3:43 PM we include 3:00 PM (current hour) but NOT 2:00 PM.
@@ -206,8 +233,9 @@ actor WeatherService {
         }
     }
 
-    func clearCache() {
+    func clearCache() async {
         cache.removeAll()
+        await crossCheck.clearCache()
     }
 
     /// Get the correct timezone for a location via reverse geocoding.

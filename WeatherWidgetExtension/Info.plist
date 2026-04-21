@@ -7,5 +7,10 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widgetkit-extension</string>
 	</dict>
+	<!-- Enables widget location access and auto-reloads the timeline on
+	     significant location changes. Required for Apple Weather-style
+	     "follow the device as you travel" behavior. -->
+	<key>NSWidgetWantsLocation</key>
+	<true/>
 </dict>
 </plist>

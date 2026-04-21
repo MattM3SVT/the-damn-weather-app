@@ -5,6 +5,7 @@ import WeatherShared
 /// Port of the website's daily section.
 struct DailyForecastView: View {
     let days: [DailyForecastPoint]
+    let timezone: TimeZone
     let unit: TemperatureUnit
 
     private var overallLow: Double {
@@ -28,6 +29,7 @@ struct DailyForecastView: View {
                             index: index,
                             overallLow: overallLow,
                             overallHigh: overallHigh,
+                            timezone: timezone,
                             unit: unit
                         )
 
@@ -48,6 +50,7 @@ struct DailyRow: View {
     let index: Int
     let overallLow: Double
     let overallHigh: Double
+    let timezone: TimeZone
     let unit: TemperatureUnit
 
     @Environment(\.horizontalSizeClass) private var sizeClass
@@ -60,10 +63,10 @@ struct DailyRow: View {
         HStack(spacing: DesignTokens.spaceSM) {
             // Day name
             VStack(alignment: .leading, spacing: 0) {
-                Text(day.date.dayLabel(index: index))
+                Text(day.date.dayLabel(index: index, timezone: timezone))
                     .font(.system(size: DesignTokens.smallSize, weight: .semibold))
                     .frame(width: dayWidth, alignment: .leading)
-                Text(day.date.shortDate())
+                Text(day.date.shortDate(timezone: timezone))
                     .font(.system(size: 10))
                     .foregroundStyle(.secondary)
                     .frame(width: dayWidth, alignment: .leading)

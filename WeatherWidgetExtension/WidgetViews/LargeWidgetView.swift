@@ -36,9 +36,15 @@ struct LargeWidgetView: View {
                         Spacer()
 
                         VStack(alignment: .trailing, spacing: 2 * scale) {
-                            Text(entry.locationName)
-                                .font(.system(size: 11 * scale, weight: .medium))
-                                .foregroundStyle(.white.opacity(0.6))
+                            HStack(spacing: 3 * scale) {
+                                Text(entry.locationName)
+                                    .font(.system(size: 11 * scale, weight: .medium))
+                                if entry.isDeviceLocation {
+                                    Image(systemName: "location.fill")
+                                        .font(.system(size: 8 * scale, weight: .semibold))
+                                }
+                            }
+                            .foregroundStyle(.white.opacity(0.6))
                             Text("H:\(entry.high)° L:\(entry.low)°")
                                 .font(.system(size: 11 * scale, weight: .medium))
                                 .foregroundStyle(.white.opacity(0.5))

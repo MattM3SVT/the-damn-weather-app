@@ -58,7 +58,8 @@ struct DewPointDetailView: View {
             description: description,
             accentColor: .blue
         ) {
-            Chart {
+            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                Chart {
                 // Comfortable zone (below ~55°F)
                 if dewPointRange.lowerBound < comfortZoneLow {
                     RectangleMark(
@@ -118,9 +119,13 @@ struct DewPointDetailView: View {
             }
             .chartYScale(domain: dewPointRange)
             .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                        .foregroundStyle(.secondary)
+                AxisMarks(values: .stride(by: .hour, count: 4)) { value in
+                    AxisValueLabel {
+                        if let date = value.as(Date.self) {
+                            Text(date.hourLabel(timezone: weather.timezone))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
@@ -135,47 +140,14 @@ struct DewPointDetailView: View {
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
-        } dailyStrip: {
-            VStack(spacing: DesignTokens.spaceSM) {
+            .frame(height: 180)
+
+                // Chart band legend
                 HStack(spacing: DesignTokens.spaceSM) {
-                    // Comfort scale
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack(spacing: 4) {
-                            Circle().fill(.green).frame(width: 8, height: 8)
-                            Text("Comfortable (< 55°)")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                        }
-                        HStack(spacing: 4) {
-                            Circle().fill(.yellow).frame(width: 8, height: 8)
-                            Text("Noticeable (55–65°)")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                        }
-                        HStack(spacing: 4) {
-                            Circle().fill(.orange).frame(width: 8, height: 8)
-                            Text("Sticky (65–70°)")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                        }
-                        HStack(spacing: 4) {
-                            Circle().fill(.red).frame(width: 8, height: 8)
-                            Text("Oppressive (70°+)")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-
-                    Spacer()
-
-                    // Current dew point highlight
-                    VStack(spacing: 4) {
-                        Text("Dew Point")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                        Text(unit.format(dewPointF))
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                    }
+                    LegendDot(color: .green, label: "Comfortable (<55°)")
+                    LegendDot(color: .yellow, label: "Noticeable (55–65°)")
+                    LegendDot(color: .orange, label: "Sticky (65–70°)")
+                    LegendDot(color: .red, label: "Oppressive (70°+)")
                 }
             }
         }

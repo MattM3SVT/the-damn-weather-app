@@ -17,6 +17,9 @@ struct MainView: View {
     @State private var sidebarSearchActive = false
     @State private var selectedPage = 0
     @State private var heroCollapseProgress: CGFloat = 0
+    /// Tracks the active saved city by identity so reorder/delete inside the modal
+    /// can restore the correct page on dismiss (index-based selectedPage alone is unsafe).
+    @State private var activeSavedLocationID: SavedLocation.ID?
 
     private let locationService: LocationService
 
@@ -71,6 +74,30 @@ struct MainView: View {
                 selectedPage = max(0, pageCount - 1)
             }
         }
+        .onChange(of: showSavedLocations) { wasShown, isShown in
+            // On modal dismiss, restore the user's active city by identity —
+            // savedLocations indices may have shifted due to reorder inside the modal.
+            guard wasShown, !isShown else { return }
+            DispatchQueue.main.async {
+                // Page 0 (current location): nothing to restore.
+                guard selectedPage > 0 else { return }
+                // Already correct — user didn't reorder/delete the active city.
+                if selectedPage - 1 < savedLocations.count,
+                   let activeID = activeSavedLocationID,
+                   savedLocations[selectedPage - 1].id == activeID {
+                    return
+                }
+                // Active city still exists at a new index — restore.
+                if let activeID = activeSavedLocationID,
+                   let newIndex = savedLocations.firstIndex(where: { $0.id == activeID }) {
+                    selectedPage = newIndex + 1
+                    return
+                }
+                // Active city was deleted — fall back to current location (Apple Weather UX).
+                selectedPage = 0
+                activeSavedLocationID = nil
+            }
+        }
         .preferredColorScheme(.dark)
     }
 
@@ -102,7 +129,7 @@ struct MainView: View {
                         }
                         weatherVM.showCurrentLocation()
                     },
-                    onAddedLocation: { location in
+                    onAddedLocation: { location, _ in
                         Task { await weatherVM.loadWeather(for: location) }
                     },
                     activateSearch: $sidebarSearchActive
@@ -152,7 +179,12 @@ struct MainView: View {
                                     await weatherVM.updateWidget(for: weatherVM.activePageKey)
                                 }
                             },
-                            showBackground: false
+                            showBackground: false,
+                            shareWeather: weatherVM.weather?.current,
+                            sharePhrase: weatherVM.currentPhrase,
+                            shareLocationName: weatherVM.displayName,
+                            shareTimezone: weatherVM.weather?.timezone ?? .current,
+                            shareAttribution: weatherVM.weatherAttribution
                         )
                     }
                     .background(
@@ -241,6 +273,7 @@ struct MainView: View {
                     weatherVM.activePageKey = WeatherViewModel.currentLocationKey
                     weatherVM.showCurrentLocation()
                     capturedKey = WeatherViewModel.currentLocationKey
+                    activeSavedLocationID = nil
                 } else if newPage - 1 < savedLocations.count {
                     let location = savedLocations[newPage - 1]
                     let key = weatherVM.pageKey(for: location)
@@ -253,9 +286,14 @@ struct MainView: View {
                         weatherVM.currentPhrase = state.phrase
                     }
                     capturedKey = key
+                    activeSavedLocationID = location.id
                 } else {
                     return
                 }
+                // Write widget identity (flag + coords + name) IMMEDIATELY so the
+                // widget sees the current city even if the async pipeline below
+                // stalls or bails (e.g. pageState not yet loaded for this city).
+                weatherVM.writeWidgetIdentity(for: capturedKey)
                 // Cancel any in-flight widget update and schedule one for the new page.
                 // Captures pageKey at swipe time so rapid swipes don't race.
                 weatherVM.scheduleWidgetUpdate(for: capturedKey)
@@ -276,7 +314,12 @@ struct MainView: View {
                         }
                     },
                     showBackground: heroCollapseProgress > 0.3,
-                    showSearchBar: false
+                    showSearchBar: false,
+                    shareWeather: weatherVM.pageStates[weatherVM.activePageKey]?.weather.current,
+                    sharePhrase: weatherVM.pageStates[weatherVM.activePageKey]?.phrase ?? "",
+                    shareLocationName: activeDisplayName,
+                    shareTimezone: weatherVM.pageStates[weatherVM.activePageKey]?.weather.timezone ?? .current,
+                    shareAttribution: weatherVM.weatherAttribution
                 )
                 .animation(.easeInOut(duration: 0.25), value: heroCollapseProgress > 0.3)
 
@@ -316,14 +359,15 @@ struct MainView: View {
                     selectedPage = 0
                     weatherVM.showCurrentLocation()
                 },
-                onAddedLocation: { location in
+                onAddedLocation: { location, newID in
                     Task { await weatherVM.loadWeather(for: location) }
-                    // Navigate to the newly added location (will be last).
-                    // Capture the target page now — savedLocations.count may change
-                    // if a deletion happens during the delay.
-                    let targetPage = savedLocations.count
+                    // Resolve the new city's index by identity after @Query propagates
+                    // the insert. The 0.3s delay also covers the modal dismiss animation.
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        selectedPage = min(targetPage, pageCount - 1)
+                        if let index = savedLocations.firstIndex(where: { $0.id == newID }) {
+                            activeSavedLocationID = newID
+                            selectedPage = index + 1
+                        }
                     }
                 }
             )

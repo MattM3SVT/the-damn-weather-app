@@ -1,8 +1,9 @@
 import SwiftUI
+import WeatherKit
 import WeatherShared
 
 /// App header bar matching the website layout:
-/// Logo (left) | Search bar (center) | 18+ toggle + Settings gear (right)
+/// Logo (left) | Search bar (center) | 18+ toggle + Share + Settings gear (right)
 struct AppHeaderBar: View {
     let appState: AppState
     let settingsVM: SettingsViewModel
@@ -12,6 +13,13 @@ struct AppHeaderBar: View {
     let onPhraseModeChanged: () -> Void
     var showBackground: Bool = true
     var showSearchBar: Bool = true
+
+    /// Inputs for the Share button. All nil => button is hidden (no weather loaded yet).
+    var shareWeather: CurrentWeatherData? = nil
+    var sharePhrase: String = ""
+    var shareLocationName: String = ""
+    var shareTimezone: TimeZone = .current
+    var shareAttribution: WeatherAttribution? = nil
 
     @State private var showAgeVerification = false
     @State private var showSettings = false
@@ -92,6 +100,19 @@ struct AppHeaderBar: View {
             .toggleStyle(.switch)
             .tint(Color.accentRed)
             .fixedSize()
+
+            // Share button — appears once weather data is available
+            if let shareWeather, !sharePhrase.isEmpty, !shareLocationName.isEmpty {
+                ShareButton(
+                    weather: shareWeather,
+                    phrase: sharePhrase,
+                    locationName: shareLocationName,
+                    timezone: shareTimezone,
+                    unit: appState.temperatureUnit,
+                    isExplicit: appState.phraseMode == .explicit,
+                    attribution: shareAttribution
+                )
+            }
 
             // Settings gear
             Button {

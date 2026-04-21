@@ -96,9 +96,13 @@ struct WindDetailView: View {
                 }
                 .chartYScale(domain: windRange)
                 .chartXAxis {
-                    AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                        AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                            .foregroundStyle(.secondary)
+                    AxisMarks(values: .stride(by: .hour, count: 4)) { value in
+                        AxisValueLabel {
+                            if let date = value.as(Date.self) {
+                                Text(date.hourLabel(timezone: weather.timezone))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
                         AxisGridLine().foregroundStyle(.white.opacity(0.1))
                     }
                 }
@@ -148,7 +152,7 @@ struct WindDetailView: View {
                 // Daily wind max
                 ForEach(Array(weather.daily.enumerated()), id: \.element.id) { index, day in
                     DailyStripRow(
-                        dayLabel: day.date.dayLabel(index: index),
+                        dayLabel: day.date.dayLabel(index: index, timezone: weather.timezone),
                         value: windUnit.format(day.windMax),
                         icon: "wind",
                         iconColor: .cyan

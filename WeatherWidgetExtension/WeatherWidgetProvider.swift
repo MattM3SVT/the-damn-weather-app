@@ -22,6 +22,10 @@ struct WeatherWidgetEntry: TimelineEntry {
     let hourlyPreview: [HourlyWidgetPoint]
     let dailyPreview: [DailyWidgetPoint]
     let locationName: String
+    /// True when the widget is rendering weather for the device's current GPS
+    /// location (arrow indicator should show). False when displaying a pinned
+    /// saved city the user selected in-app.
+    let isDeviceLocation: Bool
 
     /// True when no real weather data is available (app hasn't been opened yet).
     var isPlaceholder: Bool { conditionTag == .any && temperature == 0 }
@@ -57,7 +61,8 @@ struct WeatherWidgetEntry: TimelineEntry {
             precipProbability: 0,
             hourlyPreview: [],
             dailyPreview: [],
-            locationName: ""
+            locationName: "",
+            isDeviceLocation: false
         )
     }
 }
@@ -66,6 +71,12 @@ struct WeatherWidgetProvider: TimelineProvider {
     private let phraseEngine = PhraseEngine(
         defaults: UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
     )
+
+    /// Held as an instance property so its CLLocationManager delegate survives
+    /// past the getTimeline / fetchWeatherEntry async call stack. iOS reloads
+    /// this widget's timeline automatically when the device's significant
+    /// location changes (enabled via NSWidgetWantsLocation in Info.plist).
+    private let locationProvider = WidgetLocationProvider()
 
     // MARK: - Shared Conversion Helpers
 
@@ -134,7 +145,8 @@ struct WeatherWidgetProvider: TimelineProvider {
         widgetProviderLog.info("getTimeline: diagnose = \(WidgetDataStore.diagnose())")
         // Call completion synchronously with cached data — WidgetKit kills extensions that go async.
         if let cachedData = WidgetDataStore.load(),
-           let conditionTag = WeatherConditionTag(rawValue: cachedData.conditionTag) {
+           let conditionTag = WeatherConditionTag(rawValue: cachedData.conditionTag),
+           !isCachedDataStale(cachedData: cachedData) {
             widgetProviderLog.info("getTimeline PATH 1: JSON load succeeded, temp=\(cachedData.temperature) location=\(cachedData.locationName)")
 
             // Build multi-entry timeline: one entry per 15 minutes using pre-generated phrases.
@@ -162,7 +174,8 @@ struct WeatherWidgetProvider: TimelineProvider {
                 precipProbability: 0,
                 hourlyPreview: forecast.hourly,
                 dailyPreview: forecast.daily,
-                locationName: cachedData.locationName
+                locationName: cachedData.locationName,
+                isDeviceLocation: currentDeviceModeFlag()
             )
 
             // Request refresh in 15 minutes — matches industry standard for weather apps.
@@ -220,7 +233,8 @@ struct WeatherWidgetProvider: TimelineProvider {
                 precipProbability: 0,
                 hourlyPreview: forecast.hourly,
                 dailyPreview: forecast.daily,
-                locationName: cached.locationName
+                locationName: cached.locationName,
+                isDeviceLocation: currentDeviceModeFlag()
             )
         }
 
@@ -257,8 +271,41 @@ struct WeatherWidgetProvider: TimelineProvider {
             precipProbability: 0,
             hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
             dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
-            locationName: locationName
+            locationName: locationName,
+            isDeviceLocation: currentDeviceModeFlag()
         )
+    }
+
+    /// Reads the app-set flag indicating whether the widget should show the
+    /// device's current GPS location (true) vs. a user-pinned city (false).
+    /// Defaults to true when absent so first-ever installs behave as
+    /// "current location" widgets — matches the Apple Weather default.
+    private func currentDeviceModeFlag() -> Bool {
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        defaults.synchronize()
+        if defaults.object(forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice) == nil {
+            return true
+        }
+        return defaults.bool(forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice)
+    }
+
+    /// Detect whether the JSON cache is out of date relative to UserDefaults.
+    /// If the app just cycled to a new city, `writeWidgetIdentity` updates
+    /// UserDefaults immediately but the JSON write is async and may lag. When
+    /// that happens, serving the stale JSON would display the wrong city —
+    /// so we skip PATH 1 and fall through to PATH 3 (fresh fetch) instead.
+    private func isCachedDataStale(cachedData: CachedWeatherData) -> Bool {
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        defaults.synchronize()
+        guard let expectedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName),
+              !expectedName.isEmpty else {
+            return false
+        }
+        let isStale = cachedData.locationName != expectedName
+        if isStale {
+            widgetProviderLog.info("getTimeline: cache stale — JSON=\(cachedData.locationName, privacy: .public) vs UserDefaults=\(expectedName, privacy: .public); skipping PATH 1")
+        }
+        return isStale
     }
 
     /// Fetch fresh weather + phrases in the background and save to cache.
@@ -333,32 +380,74 @@ struct WeatherWidgetProvider: TimelineProvider {
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         // Force cross-process sync so we pick up data the main app just wrote
         defaults.synchronize()
-        let lat = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
-        let lon = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
-        let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
+        let savedLat = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
+        let savedLon = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
+        let savedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
+        let isCurrentDeviceMode = currentDeviceModeFlag()
 
+        // LOCATION RESOLUTION branches on the mode flag written by the main app:
+        //  - Current-location mode (user was on the "My Location" page): fetch
+        //    fresh device GPS so the widget auto-updates when the user travels
+        //    (via NSWidgetWantsLocation's significant-location-change reload).
+        //  - Pinned-city mode (user selected a saved city in-app): use exactly
+        //    the coords and name the app wrote. No GPS, no reverse-geocode —
+        //    the widget should stay on that city until the user changes it
+        //    in-app, matching Apple Weather's per-widget-pin behavior.
         let location: CLLocation
-        if lat != 0 || lon != 0 {
-            location = CLLocation(latitude: lat, longitude: lon)
-        } else if let cachedLocation = CLLocationManager().location {
-            // Use system's cached last-known location as fallback
+        let locationName: String
+        if isCurrentDeviceMode, let fresh = await locationProvider.currentLocation() {
+            location = fresh
+            // If the user has moved far enough that the app-saved name is stale,
+            // reverse-geocode a fresh name. Otherwise keep the app-saved name.
+            let savedLocation = CLLocation(latitude: savedLat, longitude: savedLon)
+            let distance = (savedLat != 0 || savedLon != 0)
+                ? fresh.distance(from: savedLocation)
+                : .greatestFiniteMagnitude
+            if distance > 10_000 {
+                locationName = await reverseGeocodedCityName(for: fresh) ?? savedName
+            } else {
+                locationName = savedName
+            }
+        } else if savedLat != 0 || savedLon != 0 {
+            // Pinned-city mode OR GPS unavailable: trust the app-written coords+name.
+            location = CLLocation(latitude: savedLat, longitude: savedLon)
+            locationName = savedName
+        } else if isCurrentDeviceMode, let cachedLocation = CLLocationManager().location {
+            // Last-resort only in current-location mode: iOS-level cached location.
             location = cachedLocation
+            locationName = await reverseGeocodedCityName(for: cachedLocation) ?? "Current Location"
         } else {
             throw WidgetError.noLocation
         }
 
+        // Fetch WeatherKit + NWS + METAR in parallel. The cross-check service is
+        // short-lived (one widget invocation) — no persistent cache across refreshes,
+        // but this fallback path only runs when the main-app cache is empty.
         let service = WeatherKit.WeatherService.shared
-        let weather = try await service.weather(
+        let crossCheck = ObservationCrossCheckService()
+        async let wkTask = service.weather(
             for: location,
             including: .current, .hourly, .daily
         )
+        async let consensusTask = crossCheck.fetchSkyConsensus(for: location)
+
+        let weather = try await wkTask
+        let consensus = await consensusTask
 
         let current = weather.0
         let hourly = weather.1
         let daily = weather.2
 
         let windMph = current.wind.speed.converted(to: .milesPerHour).value
-        let conditionTag = WeatherConditionTag.from(current.condition, windSpeed: windMph)
+        let baseTag = WeatherConditionTag.from(current.condition, windSpeed: windMph)
+        let conditionTag = applyConsensusOverride(
+            base: baseTag,
+            consensus: consensus,
+            wkCloudCoverPct: current.cloudCover * 100
+        )
+        let conditionLabel = (conditionTag != baseTag)
+            ? conditionTag.label
+            : current.condition.description
         let tempF = current.temperature.converted(to: .fahrenheit).value
 
         // Always generate a fresh phrase. selectPhrase() calls loadIfNeeded() internally,
@@ -429,7 +518,7 @@ struct WeatherWidgetProvider: TimelineProvider {
             date: Date(),
             temperature: Int(tempF.rounded()),
             conditionTag: conditionTag,
-            conditionLabel: current.condition.description,
+            conditionLabel: conditionLabel,
             isDay: current.isDaylight,
             phrase: phrase,
             smallPhrase: smallPhrase,
@@ -439,8 +528,35 @@ struct WeatherWidgetProvider: TimelineProvider {
             precipProbability: Int((daily.first?.precipitationChance ?? 0) * 100),
             hourlyPreview: hourlyPreview,
             dailyPreview: dailyPreview,
-            locationName: locationName
+            locationName: locationName,
+            isDeviceLocation: isCurrentDeviceMode
         )
+    }
+
+    /// Reverse-geocode a coordinate to a user-visible city label like "Seattle, WA".
+    ///
+    /// Critical: `MKMapItem.name` can return a street address, POI, or business —
+    /// NOT the city. Prefer `addressRepresentations?.cityWithContext(.short)` for
+    /// "City, ST" formatting, then `cityName`, and only fall through to `.name`
+    /// when nothing else is available. Caller treats a nil return as a soft-fail
+    /// and keeps whatever name it already had.
+    private func reverseGeocodedCityName(for location: CLLocation) async -> String? {
+        guard let request = MKReverseGeocodingRequest(location: location),
+              let items = try? await request.mapItems,
+              let item = items.first else {
+            return nil
+        }
+        if let withContext = item.addressRepresentations?.cityWithContext(.short),
+           !withContext.isEmpty {
+            return withContext
+        }
+        if let city = item.addressRepresentations?.cityName, !city.isEmpty {
+            return city
+        }
+        if let name = item.name, !name.isEmpty {
+            return name
+        }
+        return nil
     }
 }
 

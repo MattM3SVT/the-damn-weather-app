@@ -53,12 +53,15 @@ struct PressureDetailView: View {
             description: description,
             accentColor: .indigo
         ) {
-            Chart {
-                // Standard pressure reference line
+            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                Chart {
+                // Standard pressure reference line.
+                // Annotation lives at top-RIGHT so it doesn't collide with the
+                // "Now" pill at top-left.
                 RuleMark(y: .value("Standard", 1013.25))
                     .foregroundStyle(.white.opacity(0.2))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 3]))
-                    .annotation(position: .top, alignment: .leading) {
+                    .annotation(position: .top, alignment: .trailing) {
                         Text("Standard (1013 hPa)")
                             .font(.system(size: 9))
                             .foregroundStyle(.white.opacity(0.3))
@@ -101,9 +104,13 @@ struct PressureDetailView: View {
             }
             .chartYScale(domain: pressureRange)
             .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                        .foregroundStyle(.secondary)
+                AxisMarks(values: .stride(by: .hour, count: 4)) { value in
+                    AxisValueLabel {
+                        if let date = value.as(Date.self) {
+                            Text(date.hourLabel(timezone: weather.timezone))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
@@ -118,53 +125,14 @@ struct PressureDetailView: View {
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
-        } dailyStrip: {
-            VStack(alignment: .leading, spacing: DesignTokens.spaceMD) {
-                // Pressure interpretation guide
-                HStack(spacing: DesignTokens.spaceLG) {
-                    VStack(spacing: 4) {
-                        Image(systemName: "arrow.down.right")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.blue)
-                        Text("Low")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("< 1009")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                        Text("Storms likely")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
+            .frame(height: 180)
 
-                    VStack(spacing: 4) {
-                        Image(systemName: "arrow.right")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.green)
-                        Text("Normal")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("1009-1022")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                        Text("Fair weather")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    VStack(spacing: 4) {
-                        Image(systemName: "arrow.up.right")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.orange)
-                        Text("High")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("> 1022")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                        Text("Clear & dry")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
+                // Chart band legend
+                HStack(spacing: DesignTokens.spaceMD) {
+                    LegendDot(color: .blue,   label: "Low (<1009)")
+                    LegendDot(color: .green,  label: "Normal (1009–1022)")
+                    LegendDot(color: .orange, label: "High (>1022)")
                 }
-                .frame(maxWidth: .infinity)
             }
         }
     }

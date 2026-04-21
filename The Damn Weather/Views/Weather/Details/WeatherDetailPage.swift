@@ -13,6 +13,32 @@ struct WeatherDetailPage<ChartContent: View, DailyContent: View>: View {
     let accentColor: Color
     @ViewBuilder let chart: () -> ChartContent
     @ViewBuilder let dailyStrip: () -> DailyContent
+    /// False when the view was constructed without a daily strip — skips the
+    /// "10-Day Overview" GlassCard entirely. Used by metrics WeatherKit doesn't
+    /// expose at daily granularity (humidity, dew point, pressure, visibility,
+    /// cloud cover) where a fake daily aggregate would be misleading.
+    let showsDailyStrip: Bool
+
+    init(
+        icon: String,
+        title: String,
+        currentValue: String,
+        subtitle: String,
+        description: String,
+        accentColor: Color,
+        @ViewBuilder chart: @escaping () -> ChartContent,
+        @ViewBuilder dailyStrip: @escaping () -> DailyContent
+    ) {
+        self.icon = icon
+        self.title = title
+        self.currentValue = currentValue
+        self.subtitle = subtitle
+        self.description = description
+        self.accentColor = accentColor
+        self.chart = chart
+        self.dailyStrip = dailyStrip
+        self.showsDailyStrip = true
+    }
 
     @Environment(\.dismiss) private var dismiss
 
@@ -39,9 +65,12 @@ struct WeatherDetailPage<ChartContent: View, DailyContent: View>: View {
                         }
                         .padding(.top, DesignTokens.spaceMD)
 
-                        // 24-hour chart
+                        // 24-hour chart. Uses a larger gap below the header than
+                        // the other cards so the "Now" pill annotation (~19pt tall,
+                        // including its 4pt spacing above the plot top) has room to
+                        // render above the chart without crashing into the header.
                         GlassCard {
-                            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                            VStack(alignment: .leading, spacing: DesignTokens.spaceLG) {
                                 Text("24-Hour Forecast")
                                     .font(.system(size: DesignTokens.captionSize, weight: .medium))
                                     .foregroundStyle(.secondary)
@@ -66,14 +95,18 @@ struct WeatherDetailPage<ChartContent: View, DailyContent: View>: View {
                             }
                         }
 
-                        // Daily strip
-                        GlassCard {
-                            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
-                                Text("10-Day Overview")
-                                    .font(.system(size: DesignTokens.captionSize, weight: .medium))
-                                    .foregroundStyle(.secondary)
+                        // Daily strip — only rendered when the view actually has
+                        // per-day data to show. Views for metrics WeatherKit doesn't
+                        // expose at daily granularity skip this section.
+                        if showsDailyStrip {
+                            GlassCard {
+                                VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                                    Text("10-Day Overview")
+                                        .font(.system(size: DesignTokens.captionSize, weight: .medium))
+                                        .foregroundStyle(.secondary)
 
-                                dailyStrip()
+                                    dailyStrip()
+                                }
                             }
                         }
                     }
@@ -96,6 +129,52 @@ struct WeatherDetailPage<ChartContent: View, DailyContent: View>: View {
                     }
                 }
             }
+        }
+    }
+}
+
+/// Overload for detail views that don't have 10-day data to show.
+/// Omit the `dailyStrip:` argument entirely; the "10-Day Overview" section
+/// is not rendered.
+extension WeatherDetailPage where DailyContent == EmptyView {
+    init(
+        icon: String,
+        title: String,
+        currentValue: String,
+        subtitle: String,
+        description: String,
+        accentColor: Color,
+        @ViewBuilder chart: @escaping () -> ChartContent
+    ) {
+        self.icon = icon
+        self.title = title
+        self.currentValue = currentValue
+        self.subtitle = subtitle
+        self.description = description
+        self.accentColor = accentColor
+        self.chart = chart
+        self.dailyStrip = { EmptyView() }
+        self.showsDailyStrip = false
+    }
+}
+
+/// Small colored-dot + label chip used as a chart-band key under 24-hour
+/// forecast charts. Reused by views whose chart is color-banded
+/// (Humidity, DewPoint, Visibility, CloudCover, Pressure).
+struct LegendDot: View {
+    let color: Color
+    let label: String
+
+    var body: some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(color)
+                .frame(width: 7, height: 7)
+            Text(label)
+                .font(.system(size: 10))
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
         }
     }
 }

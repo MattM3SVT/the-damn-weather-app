@@ -25,10 +25,9 @@ struct SavedLocationsView: View {
 
     let onSelect: (SavedLocation) -> Void
     let onSelectCurrent: () -> Void
-    let onAddedLocation: (CLLocation) -> Void
+    let onAddedLocation: (CLLocation, SavedLocation.ID) -> Void
 
     @State private var summaries: [String: LocationSummary] = [:]
-    @State private var deletingIDs: Set<String> = []
     @State private var showDuplicateAlert = false
     @State private var isSearching = false
     @State private var searchText = ""
@@ -131,10 +130,7 @@ struct SavedLocationsView: View {
                 if isSearching {
                     searchResultsList
                 } else {
-                    ScrollView {
-                        cityCardsContent
-                    }
-                    .scrollDismissesKeyboard(.interactively)
+                    cityCardsContent
                 }
             }
             .background(Color.weatherBgDark.ignoresSafeArea())
@@ -186,9 +182,10 @@ struct SavedLocationsView: View {
                             )
                             modelContext.insert(saved)
 
-                            // Dismiss and load
+                            // Dismiss and load — pass saved.id so the caller can
+                            // resolve the new city's index by identity once @Query updates.
                             dismiss()
-                            onAddedLocation(selected.location)
+                            onAddedLocation(selected.location, saved.id)
                         }
                     }
                 } label: {
@@ -214,10 +211,8 @@ struct SavedLocationsView: View {
     // MARK: - City Cards
 
     private var cityCardsContent: some View {
-        // VStack (not LazyVStack) — enables proper removal animations.
-        // Saved city count is small enough that lazy loading isn't needed.
-        VStack(spacing: 12) {
-            // Current location card
+        VStack(spacing: 0) {
+            // Current location card — outside the List so it can't be reordered or deleted.
             if !currentLocationName.isEmpty {
                 Button {
                     dismiss()
@@ -236,79 +231,78 @@ struct SavedLocationsView: View {
                         isCurrent: true
                     )
                 }
+                .buttonStyle(.plain)
                 .padding(.horizontal)
+                .padding(.bottom, 12)
             }
 
-            // Saved location cards
-            ForEach(locations) { location in
-                let locationKey = location.name + "\(location.latitude)"
-                let isDeleting = deletingIDs.contains(locationKey)
-
-                Button {
-                    dismiss()
-                    onSelect(location)
-                } label: {
-                    if let summary = summaries[location.name + "\(location.latitude)"] {
-                        LocationWeatherCard(
-                            name: location.name,
-                            state: location.state,
-                            temperature: summary.temperature,
-                            high: summary.high,
-                            low: summary.low,
-                            conditionTag: summary.conditionTag,
-                            conditionLabel: summary.conditionLabel,
-                            isDay: summary.isDay,
-                            phrase: summary.phrase,
-                            isCurrent: false
-                        )
-                    } else {
-                        LocationWeatherCard(
-                            name: location.name,
-                            state: location.state,
-                            temperature: "--°",
-                            high: "--°",
-                            low: "--°",
-                            conditionTag: .partlyCloudy,
-                            conditionLabel: "Loading...",
-                            isDay: true,
-                            phrase: "Hold on, getting the damn weather...",
-                            isCurrent: false
-                        )
-                    }
-                }
-                .padding(.horizontal)
-                .opacity(isDeleting ? 0 : 1)
-                .contextMenu {
-                    Button(role: .destructive) {
-                        deleteLocation(location)
+            // Saved location cards — List gives us free long-press-drag reorder
+            // and swipe-to-delete (Apple Weather style).
+            List {
+                ForEach(locations) { location in
+                    Button {
+                        dismiss()
+                        onSelect(location)
                     } label: {
-                        Label("Delete", systemImage: "trash")
+                        if let summary = summaries[location.name + "\(location.latitude)"] {
+                            LocationWeatherCard(
+                                name: location.name,
+                                state: location.state,
+                                temperature: summary.temperature,
+                                high: summary.high,
+                                low: summary.low,
+                                conditionTag: summary.conditionTag,
+                                conditionLabel: summary.conditionLabel,
+                                isDay: summary.isDay,
+                                phrase: summary.phrase,
+                                isCurrent: false
+                            )
+                        } else {
+                            LocationWeatherCard(
+                                name: location.name,
+                                state: location.state,
+                                temperature: "--°",
+                                high: "--°",
+                                low: "--°",
+                                conditionTag: .partlyCloudy,
+                                conditionLabel: "Loading...",
+                                isDay: true,
+                                phrase: "Hold on, getting the damn weather...",
+                                isCurrent: false
+                            )
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    // Constrain the drag-lift preview to the card's rounded shape so
+                    // the system doesn't show a full-width row rectangle behind it.
+                    .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 16))
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button(role: .destructive) {
+                            modelContext.delete(location)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
                     }
                 }
+                .onMove { source, destination in
+                    var reordered = locations
+                    reordered.move(fromOffsets: source, toOffset: destination)
+                    // Suppress @Query's .smooth animation during the rewrite —
+                    // List already animates the row move; double-animating flickers.
+                    withAnimation(.none) {
+                        for (index, loc) in reordered.enumerated() {
+                            loc.sortOrder = index
+                        }
+                    }
+                    try? modelContext.save()
+                }
             }
-        }
-        .padding(.bottom, 20)
-    }
-
-    private func deleteLocation(_ location: SavedLocation) {
-        let key = location.name + "\(location.latitude)"
-
-        // Phase 1: Fade out the card. The card keeps its space in the VStack
-        // so cards below do NOT move yet. The fade runs behind the context
-        // menu's dismiss snapshot — by the time the snapshot clears (~0.4s),
-        // the card is already invisible.
-        _ = withAnimation(.easeIn(duration: 0.7)) {
-            deletingIDs.insert(key)
-        }
-
-        // Phase 2: After the context menu snapshot is gone AND the fade is
-        // complete, delete from SwiftData. This removes the item from ForEach
-        // and the VStack smoothly collapses the gap — but the card is already
-        // invisible, so the user only sees cards sliding up into empty space.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-            withAnimation(.smooth(duration: 0.3)) {
-                self.modelContext.delete(location)
-            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.interactively)
         }
     }
 

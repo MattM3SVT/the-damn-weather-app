@@ -41,11 +41,17 @@ struct MediumWidgetView: View {
 
                     Spacer()
 
-                    // Location
-                    Text(entry.locationName)
-                        .font(.system(size: 11, weight: .medium))
-                        .foregroundStyle(.white.opacity(0.5))
-                        .lineLimit(1)
+                    // Location — arrow appears only when showing device GPS location
+                    HStack(spacing: 3) {
+                        Text(entry.locationName)
+                            .font(.system(size: 11, weight: .medium))
+                            .lineLimit(1)
+                        if entry.isDeviceLocation {
+                            Image(systemName: "location.fill")
+                                .font(.system(size: 8, weight: .semibold))
+                        }
+                    }
+                    .foregroundStyle(.white.opacity(0.5))
                 }
             }
 

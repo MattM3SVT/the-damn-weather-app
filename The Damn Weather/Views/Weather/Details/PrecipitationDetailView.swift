@@ -69,9 +69,13 @@ struct PrecipitationDetailView: View {
                 nowIndicator(hourlyTimes: weather.hourly.map(\.time))
             }
             .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                        .foregroundStyle(.secondary)
+                AxisMarks(values: .stride(by: .hour, count: 4)) { value in
+                    AxisValueLabel {
+                        if let date = value.as(Date.self) {
+                            Text(date.hourLabel(timezone: weather.timezone))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
@@ -119,9 +123,13 @@ struct PrecipitationDetailView: View {
                     }
                     .frame(height: 120)
                     .chartXAxis {
-                        AxisMarks(values: .stride(by: .minute, count: 15)) { _ in
-                            AxisValueLabel(format: .dateTime.minute())
-                                .foregroundStyle(.secondary)
+                        AxisMarks(values: .stride(by: .minute, count: 15)) { value in
+                            AxisValueLabel {
+                                if let date = value.as(Date.self) {
+                                    Text(date.minuteLabel(timezone: weather.timezone))
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
                         }
                     }
                     .chartYAxis(.hidden)
@@ -134,7 +142,7 @@ struct PrecipitationDetailView: View {
             // Daily totals
             ForEach(Array(weather.daily.enumerated()), id: \.element.id) { index, day in
                 HStack {
-                    Text(day.date.dayLabel(index: index))
+                    Text(day.date.dayLabel(index: index, timezone: weather.timezone))
                         .font(.system(size: DesignTokens.smallSize, weight: .medium))
                         .frame(width: 60, alignment: .leading)
 

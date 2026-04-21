@@ -19,6 +19,12 @@ struct CurrentWeatherData: Sendable {
     let uvIndex: Int
     let visibility: Double         // miles
     let dewPoint: Double           // Fahrenheit
+
+    #if DEBUG
+    /// DEBUG-only: which source produced the final condition tag.
+    /// Set post-init by WeatherService so the struct's memberwise init stays unchanged.
+    var crossCheckDebug: CrossCheckDebugInfo? = nil
+    #endif
 }
 
 /// Normalized hourly forecast point

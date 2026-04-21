@@ -30,7 +30,8 @@ struct HumidityDetailView: View {
             description: description,
             accentColor: .teal
         ) {
-            Chart {
+            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                Chart {
                 // Comfortable zone annotation
                 RectangleMark(
                     yStart: .value("Low", 30),
@@ -74,14 +75,18 @@ struct HumidityDetailView: View {
                 }
             }
             .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                        .foregroundStyle(.secondary)
+                AxisMarks(values: .stride(by: .hour, count: 4)) { value in
+                    AxisValueLabel {
+                        if let date = value.as(Date.self) {
+                            Text(date.hourLabel(timezone: weather.timezone))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
             .chartYAxis {
-                AxisMarks { value in
+                AxisMarks(values: [0, 25, 50, 75, 100]) { value in
                     AxisValueLabel {
                         if let v = value.as(Double.self) {
                             Text("\(Int(v))%")
@@ -91,42 +96,17 @@ struct HumidityDetailView: View {
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
-            .chartYScale(domain: 0...100)
-        } dailyStrip: {
-            VStack(spacing: DesignTokens.spaceSM) {
-                HStack(spacing: DesignTokens.spaceSM) {
-                    // Humidity comfort scale
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack(spacing: 4) {
-                            Circle().fill(.green).frame(width: 8, height: 8)
-                            Text("Comfortable (30-60%)")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                        }
-                        HStack(spacing: 4) {
-                            Circle().fill(.yellow).frame(width: 8, height: 8)
-                            Text("Humid (60-80%)")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                        }
-                        HStack(spacing: 4) {
-                            Circle().fill(.red).frame(width: 8, height: 8)
-                            Text("Very Humid (80%+)")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                        }
-                    }
+            // Y-domain extends to 110 to create visual headroom above 100%.
+            // Keeps a line peaking at 100% from riding the plot's top edge
+            // and crowding the "Now" pill.
+            .chartYScale(domain: 0...110)
+            .frame(height: 180)
 
-                    Spacer()
-
-                    // Current dew point highlight
-                    VStack(spacing: 4) {
-                        Text("Dew Point")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                        Text(unit.format(weather.current.dewPoint))
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                    }
+                // Chart band legend
+                HStack(spacing: DesignTokens.spaceMD) {
+                    LegendDot(color: .green, label: "Comfortable (30–60%)")
+                    LegendDot(color: .yellow, label: "Humid (60–80%)")
+                    LegendDot(color: .red, label: "Very Humid (80%+)")
                 }
             }
         }

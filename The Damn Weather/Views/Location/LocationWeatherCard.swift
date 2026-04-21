@@ -89,6 +89,5 @@ struct LocationWeatherCard: View {
                 )
         )
         .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
-        .drawingGroup()
     }
 }

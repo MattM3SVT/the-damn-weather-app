@@ -44,7 +44,7 @@ struct WeatherView: View {
 
                 // Severe weather alert banner
                 if !weather.alerts.isEmpty {
-                    SevereAlertBanner(alerts: weather.alerts)
+                    SevereAlertBanner(alerts: weather.alerts, timezone: weather.timezone)
                         .transition(.move(edge: .top).combined(with: .opacity))
                 }
 
@@ -77,6 +77,7 @@ struct WeatherView: View {
                 // Daily forecast
                 DailyForecastView(
                     days: weather.daily,
+                    timezone: weather.timezone,
                     unit: temperatureUnit
                 )
 

@@ -220,7 +220,24 @@ public actor PhraseEngine {
             }
         }
 
-        return text
+        // Hard enforce maxLength. The earlier filter is best-effort and drops itself
+        // when no candidates qualify — if that happened, truncate at the last word
+        // boundary so the small widget never has to cut mid-word.
+        return truncate(text, to: maxLength)
+    }
+
+    /// If `maxLength` is set and the string exceeds it, truncate at the last word
+    /// boundary within the budget and append an ellipsis. Preserves whole-word
+    /// integrity so a phrase like "Lazy bastard." never becomes "Lazy".
+    private func truncate(_ text: String, to maxLength: Int?) -> String {
+        guard let maxLength, text.count > maxLength else { return text }
+        // Reserve room for the ellipsis glyph itself.
+        let budget = max(1, maxLength - 1)
+        let prefix = String(text.prefix(budget))
+        if let lastSpace = prefix.lastIndex(of: " ") {
+            return String(prefix[..<lastSpace]).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
+        }
+        return prefix + "…"
     }
 
     /// Generate multiple unique phrases for widget timeline entries.

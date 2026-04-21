@@ -111,7 +111,7 @@ struct MoonDetailView: View {
             // 10-day moon phase strip
             ForEach(Array(weather.daily.enumerated()), id: \.element.id) { index, day in
                 HStack {
-                    Text(day.date.dayLabel(index: index))
+                    Text(day.date.dayLabel(index: index, timezone: weather.timezone))
                         .font(.system(size: DesignTokens.smallSize, weight: .medium))
                         .frame(width: 60, alignment: .leading)
 

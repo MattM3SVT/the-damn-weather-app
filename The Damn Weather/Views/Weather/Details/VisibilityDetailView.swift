@@ -40,7 +40,8 @@ struct VisibilityDetailView: View {
             description: description,
             accentColor: .mint
         ) {
-            Chart {
+            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                Chart {
                 // Quality zone annotations
                 RectangleMark(
                     yStart: .value("Low", 0),
@@ -95,9 +96,13 @@ struct VisibilityDetailView: View {
             }
             .chartYScale(domain: visibilityRange)
             .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 4)) { _ in
-                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .abbreviated)))
-                        .foregroundStyle(.secondary)
+                AxisMarks(values: .stride(by: .hour, count: 4)) { value in
+                    AxisValueLabel {
+                        if let date = value.as(Date.self) {
+                            Text(date.hourLabel(timezone: weather.timezone))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
@@ -112,62 +117,14 @@ struct VisibilityDetailView: View {
                     AxisGridLine().foregroundStyle(.white.opacity(0.1))
                 }
             }
-        } dailyStrip: {
-            VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
-                // Visibility quality legend
-                HStack(spacing: DesignTokens.spaceLG) {
-                    VStack(spacing: 4) {
-                        Circle().fill(.red.opacity(0.6)).frame(width: 10, height: 10)
-                        Text("Poor")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("< 1 mi")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
+            .frame(height: 180)
 
-                    VStack(spacing: 4) {
-                        Circle().fill(.yellow.opacity(0.6)).frame(width: 10, height: 10)
-                        Text("Moderate")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("1–6 mi")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    VStack(spacing: 4) {
-                        Circle().fill(.green.opacity(0.6)).frame(width: 10, height: 10)
-                        Text("Good")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("6–10 mi")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    VStack(spacing: 4) {
-                        Circle().fill(.mint).frame(width: 10, height: 10)
-                        Text("Excellent")
-                            .font(.system(size: 11, weight: .medium))
-                        Text("10+ mi")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-
-                Divider().overlay(Color.white.opacity(0.05))
-
-                // Current visibility highlight
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Current Visibility")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                        Text(visibilityMiles.visibilityDescription)
-                            .font(.system(size: 14, weight: .semibold))
-                    }
-                    Spacer()
-                    Text(appState.distanceUnit.format(visibilityMiles))
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                // Chart band legend
+                HStack(spacing: DesignTokens.spaceSM) {
+                    LegendDot(color: .red,    label: "Poor (<1mi)")
+                    LegendDot(color: .yellow, label: "Moderate (1–6mi)")
+                    LegendDot(color: .green,  label: "Good (6–10mi)")
+                    LegendDot(color: .mint,   label: "Excellent (10+mi)")
                 }
             }
         }

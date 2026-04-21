@@ -353,6 +353,29 @@ final class WeatherViewModel {
 
     // MARK: - Widget Updates
 
+    /// Write the widget's "which city is the app showing right now" identity
+    /// IMMEDIATELY — before the async weather/phrase pipeline runs. Ensures the
+    /// widget always sees the current mode flag, coords, and name even if the
+    /// full `updateWidget` bails (e.g. pageStates hasn't loaded yet for the
+    /// cycled-to city). Follows with an immediate widget reload.
+    func writeWidgetIdentity(for pageKey: String) {
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        let isCurrentDevice = (pageKey == Self.currentLocationKey)
+        defaults.set(isCurrentDevice, forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice)
+
+        // If we have weather loaded for this page, also update coords + name so
+        // the widget can render the right city even if JSON cache is stale.
+        if let state = pageStates[pageKey] {
+            defaults.set(state.weather.location.coordinate.latitude,
+                         forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
+            defaults.set(state.weather.location.coordinate.longitude,
+                         forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
+            defaults.set(state.locationName,
+                         forKey: AppConstants.UserDefaultsKeys.lastLocationName)
+        }
+        WidgetCenter.shared.reloadAllTimelines()
+    }
+
     /// Called from MainView when user swipes to a new city page.
     /// Cancels any in-flight widget update from a previous swipe so only the
     /// most recent swipe's data reaches the widget. The captured `pageKey` ensures
@@ -379,11 +402,16 @@ final class WeatherViewModel {
         defaults.set(snapshot.location.coordinate.latitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
         defaults.set(snapshot.location.coordinate.longitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
         defaults.set(state.locationName, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
+        // Tell the widget which mode it's in: true = follow device GPS
+        // (user was on "My Location" page), false = honor the pinned city.
+        let isCurrentDevice = (pageKey == Self.currentLocationKey)
+        defaults.set(isCurrentDevice, forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice)
 
         // Build hourly/daily preview arrays for the large widget
         let now = Date()
         let currentHourStart = Calendar.current.dateInterval(of: .hour, for: now)?.start ?? now
         let hourFormatter = DateFormatter()
+        hourFormatter.timeZone = snapshot.timezone
         hourFormatter.dateFormat = "ha"
         let cachedHourly: [CachedHourlyPoint] = Array(
             snapshot.hourly.filter { $0.time >= currentHourStart }.prefix(6)
@@ -403,6 +431,7 @@ final class WeatherViewModel {
                 dayStr = "Today"
             } else {
                 let fmt = DateFormatter()
+                fmt.timeZone = snapshot.timezone
                 fmt.dateFormat = "EEE"
                 dayStr = fmt.string(from: d.date)
             }

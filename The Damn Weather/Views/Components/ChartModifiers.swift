@@ -19,7 +19,6 @@ func nowIndicator(hourlyTimes: [Date]) -> some ChartContent {
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
                     .background(Capsule().fill(.white.opacity(0.2)))
-                    .offset(y: 16)
             }
     }
 }

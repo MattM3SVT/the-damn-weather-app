@@ -4,6 +4,7 @@ import WeatherShared
 /// Severe weather alert banner with expandable details.
 struct SevereAlertBanner: View {
     let alerts: [WeatherAlertData]
+    let timezone: TimeZone
     @State private var showDetails = false
 
     private var primaryAlert: WeatherAlertData? {
@@ -43,7 +44,7 @@ struct SevereAlertBanner: View {
                 .clipShape(RoundedRectangle(cornerRadius: DesignTokens.cornerRadius))
             }
             .sheet(isPresented: $showDetails) {
-                AlertDetailsSheet(alerts: alerts)
+                AlertDetailsSheet(alerts: alerts, timezone: timezone)
             }
         }
     }
@@ -61,7 +62,18 @@ struct SevereAlertBanner: View {
 
 struct AlertDetailsSheet: View {
     let alerts: [WeatherAlertData]
+    let timezone: TimeZone
     @Environment(\.dismiss) private var dismiss
+
+    /// Format alert expiration in the location's timezone so users viewing
+    /// a remote city see the expiration in that city's local clock.
+    private func formattedExpiration(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = timezone
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
 
     var body: some View {
         NavigationStack {
@@ -85,7 +97,7 @@ struct AlertDetailsSheet: View {
                                 .foregroundStyle(.secondary)
 
                             if let expires = alert.expiresAt {
-                                Text("Expires: \(expires.formatted(date: .abbreviated, time: .shortened))")
+                                Text("Expires: \(formattedExpiration(expires))")
                                     .font(.caption)
                                     .foregroundStyle(.tertiary)
                             }

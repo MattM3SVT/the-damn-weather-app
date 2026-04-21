@@ -18,6 +18,14 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    /// Format as minute-past-the-hour (e.g., ":15"), for minute-granularity axis labels.
+    public func minuteLabel(timezone: TimeZone = .current) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = timezone
+        formatter.dateFormat = ":mm"
+        return formatter.string(from: self)
+    }
+
     /// Format as day label (e.g., "Mon", "Today")
     public func dayLabel(index: Int = -1, timezone: TimeZone = .current) -> String {
         var calendar = Calendar.current
@@ -32,8 +40,9 @@ extension Date {
     }
 
     /// Format as short date (e.g., "Apr 1")
-    public func shortDate() -> String {
+    public func shortDate(timezone: TimeZone = .current) -> String {
         let formatter = DateFormatter()
+        formatter.timeZone = timezone
         formatter.dateFormat = "MMM d"
         return formatter.string(from: self)
     }
