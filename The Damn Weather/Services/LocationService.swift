@@ -1,6 +1,9 @@
 import Foundation
 import CoreLocation
 import MapKit
+import os.log
+
+nonisolated private let locationLog = Logger(subsystem: "DamnWeather", category: "LocationService")
 
 @Observable
 final class LocationService: NSObject, CLLocationManagerDelegate {
@@ -85,9 +88,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 }
                 return Self.extractAddress(from: item)
             } catch {
-                #if DEBUG
-                print("📍 MKReverseGeocodingRequest failed: \(error). Returning defaults.")
-                #endif
+                locationLog.error("MKReverseGeocodingRequest failed: \(error.localizedDescription, privacy: .public) — returning defaults")
                 return ("Unknown", "", "")
             }
         } else {
@@ -104,9 +105,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                     country: place.country ?? ""
                 )
             } catch {
-                #if DEBUG
-                print("📍 CLGeocoder failed: \(error). Returning defaults.")
-                #endif
+                locationLog.error("CLGeocoder failed: \(error.localizedDescription, privacy: .public) — returning defaults")
                 return ("Unknown", "", "")
             }
         }

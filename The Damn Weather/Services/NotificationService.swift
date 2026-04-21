@@ -1,5 +1,8 @@
 import Foundation
 import UserNotifications
+import os.log
+
+nonisolated private let notifLog = Logger(subsystem: "DamnWeather", category: "Notifications")
 
 actor NotificationService {
     func requestPermission() async -> Bool {
@@ -7,9 +10,7 @@ actor NotificationService {
             return try await UNUserNotificationCenter.current()
                 .requestAuthorization(options: [.alert, .sound, .badge])
         } catch {
-            #if DEBUG
-            print("🔔 Notification permission request failed: \(error)")
-            #endif
+            notifLog.error("permission request failed: \(error.localizedDescription, privacy: .public)")
             return false
         }
     }
@@ -39,9 +40,7 @@ actor NotificationService {
         do {
             try await UNUserNotificationCenter.current().add(request)
         } catch {
-            #if DEBUG
-            print("🔔 Failed to schedule morning forecast: \(error)")
-            #endif
+            notifLog.error("failed to schedule morning forecast: \(error.localizedDescription, privacy: .public)")
         }
     }
 
@@ -62,9 +61,7 @@ actor NotificationService {
         do {
             try await UNUserNotificationCenter.current().add(request)
         } catch {
-            #if DEBUG
-            print("🔔 Failed to send severe weather alert: \(error)")
-            #endif
+            notifLog.error("failed to send severe weather alert: \(error.localizedDescription, privacy: .public)")
         }
     }
 

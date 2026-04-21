@@ -118,9 +118,14 @@ public struct NWSClient: Sendable {
     }
 
     /// Built once at init from bundle info. Format required by api.weather.gov:
-    /// "App/version (platform; contact)".
+    /// "App/version (platform; contact)". Falls back to a hardcoded version
+    /// rather than "unknown" so the widget-extension bundle (which can report
+    /// a differently-keyed `CFBundleShortVersionString`) still advertises a
+    /// real version to NWS. NWS requires an identifying UA string.
     private static let userAgent: String = {
-        let version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "unknown"
+        let version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)
+            ?? (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String)
+            ?? "1.0"
         return "TheDamnWeather/\(version) (iOS; \(AppConstants.nwsSupportEmail))"
     }()
 }

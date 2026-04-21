@@ -30,6 +30,7 @@ struct FloatingBottomBar: View {
                 .padding(.vertical, 12)
                 .glassEffect(.regular.interactive(), in: .capsule)
                 .animation(.easeInOut(duration: 0.2), value: currentPage)
+                .accessibilityLabel("Page \(currentPage + 1) of \(pageCount)")
             }
 
             // List button
@@ -40,6 +41,7 @@ struct FloatingBottomBar: View {
                     .frame(width: 44, height: 44)
                     .glassEffect(.regular.interactive(), in: .circle)
             }
+            .accessibilityLabel("Saved locations")
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 8)

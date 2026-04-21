@@ -1,8 +1,11 @@
 import Foundation
+import os.log
+
+private let skyCoverLog = Logger(subsystem: "DamnWeather", category: "SkyCover")
 
 /// A normalized sky-cover code shared by NWS and METAR observations.
 /// Ordered so `rawValue` reflects increasing coverage — used for dominant-layer selection.
-public enum SkyCover: Int, Sendable, Comparable {
+public enum SkyCover: Int, Sendable, Comparable, Codable {
     case clear = 0      // CLR / SKC
     case few = 1        // FEW  (1-2 octas)
     case scattered = 2  // SCT  (3-4 octas)
@@ -38,9 +41,7 @@ public enum SkyCover: Int, Sendable, Comparable {
         case "OVC":                 return .overcast
         case "VV":                  return .obscured
         default:
-            #if DEBUG
-            print("⚠️ SkyCover: unknown cover code \(raw)")
-            #endif
+            skyCoverLog.warning("unknown cover code: \(raw, privacy: .public)")
             return nil
         }
     }
@@ -48,7 +49,7 @@ public enum SkyCover: Int, Sendable, Comparable {
 
 /// Combined observation result from the two ground-truth sources.
 /// A nil field means that source either failed, returned no data, or was stale.
-public struct SkyConsensus: Sendable {
+public struct SkyConsensus: Sendable, Codable {
     public let nws: SkyCover?
     public let metar: SkyCover?
 

@@ -34,6 +34,8 @@ struct HumidityDetailView: View {
                 Chart {
                 // Comfortable zone annotation
                 RectangleMark(
+                    xStart: .value("Start", weather.hourly.first?.time ?? Date()),
+                    xEnd: .value("End", weather.hourly.last?.time ?? Date()),
                     yStart: .value("Low", 30),
                     yEnd: .value("High", 60)
                 )

@@ -13,6 +13,8 @@ public enum AppConstants {
     public static let nwsMinInterRequestInterval: TimeInterval = 1.1      // seconds
     public static let observationMaxStaleness: TimeInterval = 2 * 3600    // 2h
     public static let crossCheckHTTPTimeout: TimeInterval = 10            // seconds
+    public static let crossCheckOuterTimeout: TimeInterval = 12           // whole-fetch budget
+    public static let crossCheckCacheMaxEntries = 200                     // LRU cap per dict
     public static let nwsSupportEmail = "support@hivewerks.com"
 
     // Cross-check confidence thresholds. Used by applyConsensusOverride to

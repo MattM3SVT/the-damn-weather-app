@@ -73,6 +73,7 @@ struct AppHeaderBar: View {
                     )
                 }
                 .layoutPriority(-1)
+                .accessibilityLabel("Search for a city or airport")
             } else {
                 Spacer()
             }
@@ -122,6 +123,7 @@ struct AppHeaderBar: View {
                     .font(.system(size: 18))
                     .foregroundStyle(.white.opacity(0.7))
             }
+            .accessibilityLabel("Settings")
         }
         .padding(.horizontal, DesignTokens.spaceMD)
         .padding(.vertical, 6)

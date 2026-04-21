@@ -67,8 +67,12 @@ public struct METARClient: Sendable {
         return covers.max()
     }
 
+    /// See NWSClient.userAgent — same fallback strategy so a widget-extension
+    /// bundle never advertises "unknown" to the METAR endpoint.
     private static let userAgent: String = {
-        let version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "unknown"
+        let version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)
+            ?? (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String)
+            ?? "1.0"
         return "TheDamnWeather/\(version) (iOS; \(AppConstants.nwsSupportEmail))"
     }()
 }

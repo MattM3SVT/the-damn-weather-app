@@ -3,11 +3,18 @@ import WeatherKit
 import CoreLocation
 import MapKit
 import WeatherShared
+import os.log
+
+nonisolated private let weatherLog = Logger(subsystem: "DamnWeather", category: "WeatherService")
 
 actor WeatherService {
     private let service = WeatherKit.WeatherService.shared
     private var cache: [String: WeatherSnapshot] = [:]
-    private var timezoneCache: [String: TimeZone] = [:]
+    /// Stores the IANA identifier (e.g. "America/Los_Angeles") rather than a
+    /// `TimeZone` instance. Reconstructing `TimeZone(identifier:)` on every
+    /// read ensures the returned value uses the current DST offset after a
+    /// transition (cached `TimeZone` instances capture the offset at creation).
+    private var timezoneIdentifierCache: [String: String] = [:]
     private var cachedAttribution: WeatherAttribution?
     private let crossCheck = ObservationCrossCheckService()
 
@@ -196,13 +203,15 @@ actor WeatherService {
             )
         }
 
-        // Get DST-aware timezone via reverse geocoding (cached to avoid redundant geocoding)
+        // Get DST-aware timezone via reverse geocoding (cache the IANA identifier,
+        // not the TimeZone instance, so DST transitions are reflected on the next read).
         let locationTimezone: TimeZone
-        if let cachedTZ = timezoneCache[key] {
-            locationTimezone = cachedTZ
+        if let cachedID = timezoneIdentifierCache[key],
+           let tz = TimeZone(identifier: cachedID) {
+            locationTimezone = tz
         } else {
             let tz = await Self.timezone(for: location)
-            timezoneCache[key] = tz
+            timezoneIdentifierCache[key] = tz.identifier
             locationTimezone = tz
         }
 
@@ -251,9 +260,7 @@ actor WeatherService {
                     return tz
                 }
             } catch {
-                #if DEBUG
-                print("⚠️ WeatherService: MK timezone lookup failed: \(error). Using device timezone.")
-                #endif
+                weatherLog.warning("MK timezone lookup failed: \(error.localizedDescription, privacy: .public) — using device timezone")
             }
         } else {
             do {
@@ -262,9 +269,7 @@ actor WeatherService {
                     return tz
                 }
             } catch {
-                #if DEBUG
-                print("⚠️ WeatherService: CL timezone lookup failed: \(error). Using device timezone.")
-                #endif
+                weatherLog.warning("CL timezone lookup failed: \(error.localizedDescription, privacy: .public) — using device timezone")
             }
         }
         return .current

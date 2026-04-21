@@ -49,6 +49,8 @@ struct CloudCoverDetailView: View {
                 Chart {
                 // Zone annotations
                 RectangleMark(
+                    xStart: .value("Start", weather.hourly.first?.time ?? Date()),
+                    xEnd: .value("End", weather.hourly.last?.time ?? Date()),
                     yStart: .value("Low", 75),
                     yEnd: .value("High", 100)
                 )

@@ -1,4 +1,7 @@
 import Foundation
+import os.log
+
+private let phraseLog = Logger(subsystem: "DamnWeather", category: "PhraseEngine")
 
 /// Thread-safe wrapper so `isReady` can be read outside the actor without `await`.
 private final class ReadyFlag: @unchecked Sendable {
@@ -68,14 +71,10 @@ public actor PhraseEngine {
                 let cleanData = try Data(contentsOf: cleanURL)
                 cleanPhrases = try JSONDecoder().decode([Phrase].self, from: cleanData)
             } catch {
-                #if DEBUG
-                print("⚠️ PhraseEngine: Failed to load phrases-clean.json: \(error)")
-                #endif
+                phraseLog.error("failed to load phrases-clean.json: \(error.localizedDescription, privacy: .public)")
             }
         } else {
-            #if DEBUG
-            print("⚠️ PhraseEngine: phrases-clean.json not found in bundle")
-            #endif
+            phraseLog.error("phrases-clean.json not found in bundle")
         }
 
         if let explicitURL = Bundle.module.url(forResource: "phrases-explicit", withExtension: "json") {
@@ -83,14 +82,10 @@ public actor PhraseEngine {
                 let explicitData = try Data(contentsOf: explicitURL)
                 explicitPhrases = try JSONDecoder().decode([Phrase].self, from: explicitData)
             } catch {
-                #if DEBUG
-                print("⚠️ PhraseEngine: Failed to load phrases-explicit.json: \(error)")
-                #endif
+                phraseLog.error("failed to load phrases-explicit.json: \(error.localizedDescription, privacy: .public)")
             }
         } else {
-            #if DEBUG
-            print("⚠️ PhraseEngine: phrases-explicit.json not found in bundle")
-            #endif
+            phraseLog.error("phrases-explicit.json not found in bundle")
         }
 
         isLoaded = true
@@ -252,7 +247,13 @@ public actor PhraseEngine {
         isDay: Bool = true
     ) -> [String] {
         var phrases: [String] = []
-        for _ in 0..<count {
+        var seen = Set<String>()
+        // Try up to 3× count re-rolls before accepting a duplicate — prevents
+        // an infinite loop when the filtered pool is smaller than `count`.
+        let maxAttempts = count * 3
+        var attempts = 0
+        while phrases.count < count && attempts < maxAttempts {
+            attempts += 1
             let phrase = selectPhrase(
                 conditionTag: conditionTag,
                 tempF: tempF,
@@ -260,7 +261,13 @@ public actor PhraseEngine {
                 isDay: isDay,
                 trackAsSeen: false  // Only primary phrase selection tracks
             )
-            phrases.append(phrase)
+            if seen.insert(phrase).inserted {
+                phrases.append(phrase)
+            }
+        }
+        // Pool smaller than requested count — pad with repeats rather than returning fewer.
+        while phrases.count < count {
+            phrases.append(phrases.last ?? "")
         }
         return phrases
     }

@@ -110,11 +110,11 @@ struct WeatherWidgetProvider: TimelineProvider {
     }
 
     func placeholder(in context: Context) -> WeatherWidgetEntry {
-        // Use cached data so widget shows real weather immediately on iPhone.
+        // WidgetKit calls this on a very tight budget — any disk I/O risks
+        // skipping the first render. Return the hardcoded placeholder only;
+        // real cached data is served from getSnapshot / getTimeline.
         widgetProviderLog.info("placeholder(in:) called")
-        let result = buildCachedEntry() ?? .placeholder
-        widgetProviderLog.info("placeholder(in:) returning isPlaceholder=\(result.isPlaceholder)")
-        return result
+        return .placeholder
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
@@ -149,38 +149,42 @@ struct WeatherWidgetProvider: TimelineProvider {
            !isCachedDataStale(cachedData: cachedData) {
             widgetProviderLog.info("getTimeline PATH 1: JSON load succeeded, temp=\(cachedData.temperature) location=\(cachedData.locationName)")
 
-            // Build multi-entry timeline: one entry per 15 minutes using pre-generated phrases.
-            // The main app pre-generates 4 phrases so the widget shows variety without
-            // needing PhraseEngine (which requires loading 728KB of JSON in the extension).
+            // Build multi-entry timeline using the pre-generated phrases the app wrote.
+            // 4 entries at ~4-minute intervals give the user phrase variety without
+            // WidgetKit refetching; temperature/condition stay constant within the window.
             let allPhrases = cachedData.allPhrases
             let forecast = Self.convertForecastPoints(from: cachedData)
+            let now = Date()
+            let smallFallback = cachedData.smallPhrase ?? cachedData.phrase
 
-            // Single entry per timeline — WidgetKit refreshes every 15 minutes,
-            // fetching fresh weather data + a new phrase each cycle.
-            // Pick a random phrase from the pre-generated set for variety.
-            let phrase = allPhrases.randomElement() ?? cachedData.phrase
-
-            let entry = WeatherWidgetEntry(
-                date: Date(),
-                temperature: Int(cachedData.temperature.rounded()),
-                conditionTag: conditionTag,
-                conditionLabel: cachedData.conditionLabel,
-                isDay: cachedData.isDay,
-                phrase: phrase,
-                smallPhrase: cachedData.smallPhrase ?? phrase,
-                feelsLike: Int(cachedData.feelsLike.rounded()),
-                high: Int(cachedData.high.rounded()),
-                low: Int(cachedData.low.rounded()),
-                precipProbability: 0,
-                hourlyPreview: forecast.hourly,
-                dailyPreview: forecast.daily,
-                locationName: cachedData.locationName,
-                isDeviceLocation: currentDeviceModeFlag()
-            )
+            let entries: [WeatherWidgetEntry] = (0..<4).map { offset in
+                let entryDate = Calendar.current.date(byAdding: .minute, value: offset * 4, to: now) ?? now
+                let rotatedPhrase: String = {
+                    guard !allPhrases.isEmpty else { return cachedData.phrase }
+                    return allPhrases[offset % allPhrases.count]
+                }()
+                return WeatherWidgetEntry(
+                    date: entryDate,
+                    temperature: Int(cachedData.temperature.rounded()),
+                    conditionTag: conditionTag,
+                    conditionLabel: cachedData.conditionLabel,
+                    isDay: cachedData.isDay,
+                    phrase: rotatedPhrase,
+                    smallPhrase: smallFallback,
+                    feelsLike: Int(cachedData.feelsLike.rounded()),
+                    high: Int(cachedData.high.rounded()),
+                    low: Int(cachedData.low.rounded()),
+                    precipProbability: 0,
+                    hourlyPreview: forecast.hourly,
+                    dailyPreview: forecast.daily,
+                    locationName: cachedData.locationName,
+                    isDeviceLocation: currentDeviceModeFlag()
+                )
+            }
 
             // Request refresh in 15 minutes — matches industry standard for weather apps.
             let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-            completion(Timeline(entries: [entry], policy: .after(nextUpdate)))
+            completion(Timeline(entries: entries, policy: .after(nextUpdate)))
 
             // Background: fetch fresh weather + new phrases and save for next cycle
             Task { await refreshCachedData() }

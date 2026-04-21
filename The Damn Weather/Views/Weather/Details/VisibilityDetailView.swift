@@ -44,12 +44,16 @@ struct VisibilityDetailView: View {
                 Chart {
                 // Quality zone annotations
                 RectangleMark(
+                    xStart: .value("Start", weather.hourly.first?.time ?? Date()),
+                    xEnd: .value("End", weather.hourly.last?.time ?? Date()),
                     yStart: .value("Low", 0),
                     yEnd: .value("High", appState.distanceUnit.convert(1))
                 )
                 .foregroundStyle(.red.opacity(0.06))
 
                 RectangleMark(
+                    xStart: .value("Start", weather.hourly.first?.time ?? Date()),
+                    xEnd: .value("End", weather.hourly.last?.time ?? Date()),
                     yStart: .value("Low", appState.distanceUnit.convert(6)),
                     yEnd: .value("High", visibilityRange.upperBound)
                 )

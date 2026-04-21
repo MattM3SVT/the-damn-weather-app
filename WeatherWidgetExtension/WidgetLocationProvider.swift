@@ -14,6 +14,11 @@ import os.log
 /// property so delegate callbacks survive past `getTimeline`/`fetchWeatherEntry`.
 final class WidgetLocationProvider: NSObject, CLLocationManagerDelegate, @unchecked Sendable {
     private let manager = CLLocationManager()
+    /// Guarded by `continuationLock`. CLLocationManager callbacks fire on the
+    /// thread that created the manager, but we also resume from async contexts,
+    /// so an explicit lock makes thread-safety compiler-enforceable rather than
+    /// a documentation-only invariant.
+    private let continuationLock = NSLock()
     private var continuation: CheckedContinuation<CLLocation?, Never>?
     private let log = Logger(subsystem: "DamnWeather", category: "WidgetLocation")
 
@@ -21,6 +26,16 @@ final class WidgetLocationProvider: NSObject, CLLocationManagerDelegate, @unchec
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyKilometer  // weather doesn't need meters
+    }
+
+    /// Atomic replace: returns the previous continuation (if any), so caller can
+    /// resume it without holding the lock during resume (avoids reentrancy).
+    private func swapContinuation(_ new: CheckedContinuation<CLLocation?, Never>?) -> CheckedContinuation<CLLocation?, Never>? {
+        continuationLock.lock()
+        defer { continuationLock.unlock() }
+        let old = continuation
+        continuation = new
+        return old
     }
 
     /// Returns the device's current location, or nil if unavailable.
@@ -61,10 +76,8 @@ final class WidgetLocationProvider: NSObject, CLLocationManagerDelegate, @unchec
     private func requestLocationAsync() async -> CLLocation? {
         await withCheckedContinuation { cont in
             // Replace any pending continuation — only one in flight at a time.
-            if let pending = continuation {
-                pending.resume(returning: nil)
-            }
-            continuation = cont
+            let previous = swapContinuation(cont)
+            previous?.resume(returning: nil)
             manager.requestLocation()
         }
     }
@@ -74,13 +87,11 @@ final class WidgetLocationProvider: NSObject, CLLocationManagerDelegate, @unchec
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let result = locations.last
         log.debug("didUpdateLocations — returning \(result.map(String.init(describing:)) ?? "nil")")
-        continuation?.resume(returning: result)
-        continuation = nil
+        swapContinuation(nil)?.resume(returning: result)
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         log.error("didFailWithError: \(String(describing: error), privacy: .public)")
-        continuation?.resume(returning: nil)
-        continuation = nil
+        swapContinuation(nil)?.resume(returning: nil)
     }
 }

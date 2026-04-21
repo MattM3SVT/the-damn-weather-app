@@ -677,7 +677,9 @@ private struct WindWave: Shape {
 
 // MARK: - Debug Preview Grid
 
+#if DEBUG
 /// Shows all weather icon variants in a grid. Access via Settings or debug menu.
+/// Wrapped in #if DEBUG so it doesn't ship in Release builds.
 struct WeatherIconPreviewGrid: View {
     let size: CGFloat
 
@@ -720,3 +722,4 @@ struct WeatherIconPreviewGrid: View {
         }
     }
 }
+#endif

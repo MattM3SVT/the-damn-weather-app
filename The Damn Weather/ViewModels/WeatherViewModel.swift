@@ -4,6 +4,9 @@ import SwiftUI
 import WidgetKit
 import WeatherKit
 import WeatherShared
+import os.log
+
+nonisolated private let vmLog = Logger(subsystem: "DamnWeather", category: "WeatherViewModel")
 
 // MARK: - Per-page weather state (single source of truth for all weather display)
 
@@ -169,9 +172,7 @@ final class WeatherViewModel {
             isLoading = false
         } catch {
             let errorDesc = String(describing: error)
-            #if DEBUG
-            print("🌦️ WeatherKit Error: \(errorDesc)")
-            #endif
+            vmLog.error("WeatherKit error: \(errorDesc, privacy: .public)")
 
             let geocode = await geocodeTask
             locationName = geocode.name.isEmpty ? "Unknown" : geocode.name
@@ -336,9 +337,7 @@ final class WeatherViewModel {
                             currentTime: timeStr
                         ))
                     } catch {
-                        #if DEBUG
-                        print("🌦️ Prefetch failed for \(location.name): \(error)")
-                        #endif
+                        vmLog.error("prefetch failed for \(location.name, privacy: .public): \(error.localizedDescription, privacy: .public)")
                         return (key, nil)
                     }
                 }
@@ -407,12 +406,13 @@ final class WeatherViewModel {
         let isCurrentDevice = (pageKey == Self.currentLocationKey)
         defaults.set(isCurrentDevice, forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice)
 
-        // Build hourly/daily preview arrays for the large widget
+        // Build hourly/daily preview arrays for the large widget.
+        // Formatters cached by timezone identifier so repeat widget updates
+        // don't reallocate on every page swipe (previously: N allocations per call).
         let now = Date()
         let currentHourStart = Calendar.current.dateInterval(of: .hour, for: now)?.start ?? now
-        let hourFormatter = DateFormatter()
-        hourFormatter.timeZone = snapshot.timezone
-        hourFormatter.dateFormat = "ha"
+        let hourFormatter = Self.hourFormatter(for: snapshot.timezone)
+        let dayFormatter = Self.dayFormatter(for: snapshot.timezone)
         let cachedHourly: [CachedHourlyPoint] = Array(
             snapshot.hourly.filter { $0.time >= currentHourStart }.prefix(6)
         ).enumerated().map { index, h in
@@ -426,15 +426,7 @@ final class WeatherViewModel {
         let cachedDaily: [CachedDailyPoint] = Array(
             snapshot.daily.prefix(5)
         ).enumerated().map { index, d in
-            let dayStr: String
-            if index == 0 {
-                dayStr = "Today"
-            } else {
-                let fmt = DateFormatter()
-                fmt.timeZone = snapshot.timezone
-                fmt.dateFormat = "EEE"
-                dayStr = fmt.string(from: d.date)
-            }
+            let dayStr: String = (index == 0) ? "Today" : dayFormatter.string(from: d.date)
             return CachedDailyPoint(
                 day: dayStr,
                 high: Int(d.high.rounded()),
@@ -581,9 +573,7 @@ final class WeatherViewModel {
                 await updateWidget(for: key)
             }
         } catch {
-            #if DEBUG
-            print("🌦️ Refresh failed for \(location.name): \(error)")
-            #endif
+            vmLog.error("refresh failed for \(location.name, privacy: .public): \(error.localizedDescription, privacy: .public)")
         }
     }
 
@@ -622,5 +612,30 @@ final class WeatherViewModel {
         if let activeState = pageStates[activePageKey] {
             currentPhrase = activeState.phrase
         }
+    }
+
+    // MARK: - Formatter cache
+    // DateFormatter is expensive to construct. We cache one per (timezone, format)
+    // on the main actor (where updateWidget runs), reusing across widget updates.
+
+    private static var hourFormatters: [String: DateFormatter] = [:]
+    private static var dayFormatters: [String: DateFormatter] = [:]
+
+    private static func hourFormatter(for tz: TimeZone) -> DateFormatter {
+        if let existing = hourFormatters[tz.identifier] { return existing }
+        let f = DateFormatter()
+        f.timeZone = tz
+        f.dateFormat = "ha"
+        hourFormatters[tz.identifier] = f
+        return f
+    }
+
+    private static func dayFormatter(for tz: TimeZone) -> DateFormatter {
+        if let existing = dayFormatters[tz.identifier] { return existing }
+        let f = DateFormatter()
+        f.timeZone = tz
+        f.dateFormat = "EEE"
+        dayFormatters[tz.identifier] = f
+        return f
     }
 }

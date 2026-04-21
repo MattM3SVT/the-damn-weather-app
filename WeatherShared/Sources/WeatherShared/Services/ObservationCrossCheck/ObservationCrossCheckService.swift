@@ -10,9 +10,13 @@ public actor ObservationCrossCheckService {
     private let metar: METARClient
     private let log = Logger(subsystem: "DamnWeather", category: "CrossCheck")
 
-    // Caches. Three separate TTLs per the plan.
-    private var observationCache: [String: (consensus: SkyConsensus, fetchedAt: Date)] = [:]
-    private var stationCache: [String: (icao: String, fetchedAt: Date)] = [:]
+    // Caches. Three separate TTLs per the plan. Hydrated from the App Group
+    // container on init and rewritten on every mutation so the main app and
+    // widget extension share a single view — without this, a widget refresh
+    // spawns a fresh empty cache and re-hits NWS/METAR for a station the
+    // app already resolved seconds earlier.
+    private var observationCache: [String: ObservationCacheEntry] = [:]
+    private var stationCache: [String: StationCacheEntry] = [:]
     private var noCoverageCache: [String: Date] = [:]
 
     // NWS rate-limit gate: ~1.1s between NWS requests across all locations.
@@ -21,11 +25,36 @@ public actor ObservationCrossCheckService {
     public init() {
         self.nws = NWSClient()
         self.metar = METARClient()
+        self.observationCache = CrossCheckCacheStore.loadObservations()
+        self.stationCache     = CrossCheckCacheStore.loadStations()
+        self.noCoverageCache  = CrossCheckCacheStore.loadNoCoverage()
     }
 
-    /// Public entry point. Never throws. Returns empty consensus on any failure or
-    /// when the location is outside NWS coverage.
+    /// Public entry point. Never throws. Returns empty consensus on any failure,
+    /// when the location is outside NWS coverage, or when the outer budget expires.
     public func fetchSkyConsensus(for location: CLLocation) async -> SkyConsensus {
+        // Outer budget guard: race the real work against a timeout racer so that
+        // pathological network conditions (DNS blackhole, serial HTTP timeouts,
+        // the NWS token wait stacking) can't keep a caller waiting indefinitely.
+        await withTaskGroup(of: SkyConsensus?.self) { group in
+            group.addTask { [weak self] in
+                guard let self else { return nil }
+                return await self.fetchSkyConsensusUnbounded(for: location)
+            }
+            group.addTask {
+                try? await Task.sleep(nanoseconds: UInt64(AppConstants.crossCheckOuterTimeout * 1_000_000_000))
+                return nil
+            }
+            defer { group.cancelAll() }
+            for await result in group {
+                return result ?? .empty
+            }
+            return .empty
+        }
+    }
+
+    /// Inner implementation — same logic as before, but caller enforces a timeout.
+    private func fetchSkyConsensusUnbounded(for location: CLLocation) async -> SkyConsensus {
         let obsKey = observationCacheKey(for: location)
         let coverageKey = coverageCacheKey(for: location)
 
@@ -48,7 +77,7 @@ public actor ObservationCrossCheckService {
         do {
             icao = try await resolveICAO(for: location, coverageKey: coverageKey)
         } catch NWSError.outsideCoverage {
-            noCoverageCache[coverageKey] = Date()
+            setNoCoverage(coverageKey: coverageKey)
             log.info("NWS outside coverage for \(coverageKey, privacy: .public) — cached 24h")
             return .empty
         } catch {
@@ -68,7 +97,7 @@ public actor ObservationCrossCheckService {
         let metarCover = await metarCoverTask
 
         let consensus = SkyConsensus(nws: nwsCover, metar: metarCover)
-        observationCache[obsKey] = (consensus, Date())
+        setObservation(key: obsKey, consensus: consensus)
         log.debug("consensus for \(icao, privacy: .public): nws=\(String(describing: nwsCover), privacy: .public) metar=\(String(describing: metarCover), privacy: .public)")
         return consensus
     }
@@ -77,6 +106,9 @@ public actor ObservationCrossCheckService {
         observationCache.removeAll()
         stationCache.removeAll()
         noCoverageCache.removeAll()
+        CrossCheckCacheStore.saveObservations(observationCache)
+        CrossCheckCacheStore.saveStations(stationCache)
+        CrossCheckCacheStore.saveNoCoverage(noCoverageCache)
     }
 
     // MARK: - Private helpers
@@ -99,9 +131,41 @@ public actor ObservationCrossCheckService {
         let icao = try await nws.fetchNearestICAO(from: stationsURL)
 
         if let icao {
-            stationCache[coverageKey] = (icao, Date())
+            setStation(coverageKey: coverageKey, icao: icao)
         }
         return icao
+    }
+
+    // MARK: - LRU cache writers
+    // Each cache caps at AppConstants.crossCheckCacheMaxEntries. When capped,
+    // the oldest-by-fetchedAt entry is evicted. A user roaming many cities over
+    // weeks won't accumulate unbounded memory.
+
+    private func setObservation(key: String, consensus: SkyConsensus) {
+        observationCache[key] = ObservationCacheEntry(consensus: consensus, fetchedAt: Date())
+        if observationCache.count > AppConstants.crossCheckCacheMaxEntries,
+           let oldestKey = observationCache.min(by: { $0.value.fetchedAt < $1.value.fetchedAt })?.key {
+            observationCache.removeValue(forKey: oldestKey)
+        }
+        CrossCheckCacheStore.saveObservations(observationCache)
+    }
+
+    private func setStation(coverageKey: String, icao: String) {
+        stationCache[coverageKey] = StationCacheEntry(icao: icao, fetchedAt: Date())
+        if stationCache.count > AppConstants.crossCheckCacheMaxEntries,
+           let oldestKey = stationCache.min(by: { $0.value.fetchedAt < $1.value.fetchedAt })?.key {
+            stationCache.removeValue(forKey: oldestKey)
+        }
+        CrossCheckCacheStore.saveStations(stationCache)
+    }
+
+    private func setNoCoverage(coverageKey: String) {
+        noCoverageCache[coverageKey] = Date()
+        if noCoverageCache.count > AppConstants.crossCheckCacheMaxEntries,
+           let oldestKey = noCoverageCache.min(by: { $0.value < $1.value })?.key {
+            noCoverageCache.removeValue(forKey: oldestKey)
+        }
+        CrossCheckCacheStore.saveNoCoverage(noCoverageCache)
     }
 
     private func fetchNWSCover(stationID: String) async -> SkyCover? {

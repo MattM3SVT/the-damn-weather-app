@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import CoreLocation
 import WeatherShared
+import os.log
 
 struct MainView: View {
     @Environment(AppState.self) private var appState
@@ -48,8 +49,11 @@ struct MainView: View {
         .task {
             // Diagnostic: check widget data store state on launch
             #if DEBUG
-            print("🔍 Widget DataStore Diagnostic:\n\(WidgetDataStore.diagnose())")
+            Logger(subsystem: "DamnWeather", category: "Launch").info("Widget DataStore Diagnostic:\n\(WidgetDataStore.diagnose(), privacy: .public)")
             #endif
+            // Seed the widget cache on first install so a widget added before
+            // the app has fetched weather renders something contextual.
+            WidgetDataStore.saveSeedIfMissing()
             // Only auto-fetch if we already have location permission.
             // Otherwise show the "Where the hell are you?" empty state immediately.
             let status = locationService.authorizationStatus
@@ -68,10 +72,15 @@ struct MainView: View {
                 }
             }
         }
-        .onChange(of: savedLocations.count) { _, _ in
+        .onChange(of: savedLocations.count) { oldCount, newCount in
             // Clamp selectedPage when a location is deleted to prevent out-of-bounds
             if selectedPage >= pageCount {
                 selectedPage = max(0, pageCount - 1)
+            }
+            // Prefetch weather for newly-added cities so swiping to them is instant.
+            // Skips on delete (newCount < oldCount) to avoid redundant work.
+            if newCount > oldCount {
+                Task { await weatherVM.prefetchAllLocations(savedLocations) }
             }
         }
         .onChange(of: showSavedLocations) { wasShown, isShown in
@@ -99,6 +108,10 @@ struct MainView: View {
             }
         }
         .preferredColorScheme(.dark)
+        // Clamp Dynamic Type so accessibility-sized users get some scaling (semantic
+        // fonts honor this) without the hero 96pt and chrome layouts blowing up at
+        // .accessibility3+ sizes.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility2)
     }
 
     // MARK: - iPad Layout (sidebar + content)

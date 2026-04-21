@@ -166,6 +166,30 @@ public enum WidgetDataStore {
         }
     }
 
+    /// Write a neutral seed entry if nothing exists yet. Lets the widget render
+    /// something contextual on first install before WeatherKit returns data.
+    /// Safe to call every app launch — it's a no-op once real data exists.
+    public static func saveSeedIfMissing() {
+        guard let url = fileURL else { return }
+        guard !FileManager.default.fileExists(atPath: url.path) else { return }
+
+        let seed = CachedWeatherData(
+            temperature: 72,
+            conditionTag: "clear",
+            conditionLabel: "Loading…",
+            isDay: true,
+            feelsLike: 72,
+            high: 78,
+            low: 65,
+            locationName: "",
+            phrase: "The damn weather is loading.",
+            phraseMode: "clean",
+            updatedAt: Date.distantPast
+        )
+        save(seed)
+        widgetLog.info("Seeded empty widget cache")
+    }
+
     /// Load weather data from the shared container. Called by the widget to get cached data.
     public static func load() -> CachedWeatherData? {
         guard let url = fileURL else {

@@ -27,21 +27,37 @@ struct PressureDetailView: View {
     }
 
     private var description: String {
+        // Trail every variant with the same one-line reference so the chart can
+        // stay uncluttered — normal range, standard pressure, and what "low"
+        // or "high" means live in prose, not as on-chart legends.
+        let reference = "Normal range is 1009–1022 hPa; standard at sea level is 1013 hPa."
         switch trend {
         case "Rising":
-            return "Barometric pressure is rising, which usually means improving conditions. Clear skies might be on the way — don't get too excited though."
+            return "Barometric pressure is rising, which usually means improving conditions. Clear skies might be on the way — don't get too excited though. \(reference)"
         case "Falling":
-            return "Pressure is dropping, which often signals incoming weather changes. Clouds, rain, or general atmospheric drama could be headed your way."
+            return "Pressure is dropping, which often signals incoming weather changes. Clouds, rain, or general atmospheric drama could be headed your way. \(reference)"
         default:
-            return "Pressure is holding steady at \(appState.pressureUnit.format(weather.current.pressure)). Stable conditions — the atmosphere is taking a day off."
+            return "Pressure is holding steady at \(appState.pressureUnit.format(weather.current.pressure)). Stable conditions — the atmosphere is taking a day off. \(reference)"
         }
     }
 
     private var pressureRange: ClosedRange<Double> {
         let vals = weather.hourly.map(\.pressure)
-        let lo = (vals.min() ?? 1010) - 3
-        let hi = (vals.max() ?? 1016) + 3
+        let minVal = vals.min() ?? 1010
+        let maxVal = vals.max() ?? 1016
+        // Snap bounds to even hPa so every axis gridline — including the bottom
+        // one — coincides with a labeled tick. Otherwise Swift Charts' auto-stride
+        // skips the domain floor, and the area fill bleeds into the unlabeled
+        // gap below the lowest label.
+        let lo = floor(minVal / 2) * 2 - 2
+        let hi = ceil(maxVal / 2) * 2 + 2
         return lo...hi
+    }
+
+    private var pressureAxisValues: [Double] {
+        Array(stride(from: pressureRange.lowerBound,
+                     through: pressureRange.upperBound,
+                     by: 2))
     }
 
     var body: some View {
@@ -55,23 +71,17 @@ struct PressureDetailView: View {
         ) {
             VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
                 Chart {
-                // Standard pressure reference line.
-                // Annotation lives at top-RIGHT so it doesn't collide with the
-                // "Now" pill at top-left.
-                RuleMark(y: .value("Standard", 1013.25))
-                    .foregroundStyle(.white.opacity(0.2))
-                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 3]))
-                    .annotation(position: .top, alignment: .trailing) {
-                        Text("Standard (1013 hPa)")
-                            .font(.system(size: 9))
-                            .foregroundStyle(.white.opacity(0.3))
-                    }
-
-                // Area fill under pressure line
+                // Area fill under pressure line.
+                // yStart is pinned to the domain's lower bound so the fill can't
+                // extend below the lowest gridline into the x-axis label strip.
+                // This also lets the top→bottom gradient fade across the *visible*
+                // band instead of (0, line) — otherwise the visible slice sits at
+                // near-uniform high opacity because the default baseline is y=0.
                 ForEach(weather.hourly) { hour in
                     AreaMark(
                         x: .value("Time", hour.time),
-                        y: .value("Pressure", hour.pressure)
+                        yStart: .value("Pressure", pressureRange.lowerBound),
+                        yEnd: .value("Pressure", hour.pressure)
                     )
                     .foregroundStyle(
                         .linearGradient(
@@ -115,7 +125,7 @@ struct PressureDetailView: View {
                 }
             }
             .chartYAxis {
-                AxisMarks { value in
+                AxisMarks(position: .trailing, values: pressureAxisValues) { value in
                     AxisValueLabel {
                         if let v = value.as(Double.self) {
                             Text("\(Int(v))")
@@ -126,13 +136,6 @@ struct PressureDetailView: View {
                 }
             }
             .frame(height: 180)
-
-                // Chart band legend
-                HStack(spacing: DesignTokens.spaceMD) {
-                    LegendDot(color: .blue,   label: "Low (<1009)")
-                    LegendDot(color: .green,  label: "Normal (1009–1022)")
-                    LegendDot(color: .orange, label: "High (>1022)")
-                }
             }
         }
     }

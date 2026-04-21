@@ -63,6 +63,8 @@ struct DewPointDetailView: View {
                 // Comfortable zone (below ~55°F)
                 if dewPointRange.lowerBound < comfortZoneLow {
                     RectangleMark(
+                        xStart: .value("Start", weather.hourly.first?.time ?? Date()),
+                        xEnd: .value("End", weather.hourly.last?.time ?? Date()),
                         yStart: .value("Low", dewPointRange.lowerBound),
                         yEnd: .value("High", min(comfortZoneLow, dewPointRange.upperBound))
                     )
@@ -72,6 +74,8 @@ struct DewPointDetailView: View {
                 // Sticky zone (above ~65°F)
                 if dewPointRange.upperBound > stickyZone {
                     RectangleMark(
+                        xStart: .value("Start", weather.hourly.first?.time ?? Date()),
+                        xEnd: .value("End", weather.hourly.last?.time ?? Date()),
                         yStart: .value("Low", max(stickyZone, dewPointRange.lowerBound)),
                         yEnd: .value("High", dewPointRange.upperBound)
                     )
