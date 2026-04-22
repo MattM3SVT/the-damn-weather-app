@@ -98,7 +98,7 @@ struct ShareCardView: View {
             attributionView
 
             if isExplicit {
-                Text("18+")
+                Text("Explicit")
                     .font(.system(size: 10, weight: .bold, design: .rounded))
                     .tracking(0.5)
                     .foregroundStyle(.white.opacity(0.6))

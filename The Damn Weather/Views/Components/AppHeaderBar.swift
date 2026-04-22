@@ -3,7 +3,7 @@ import WeatherKit
 import WeatherShared
 
 /// App header bar matching the website layout:
-/// Logo (left) | Search bar (center) | 18+ toggle + Share + Settings gear (right)
+/// Logo (left) | Search bar (center) | Explicit toggle + Share + Settings gear (right)
 struct AppHeaderBar: View {
     let appState: AppState
     let settingsVM: SettingsViewModel
@@ -78,7 +78,7 @@ struct AppHeaderBar: View {
                 Spacer()
             }
 
-            // 18+ toggle
+            // Explicit-mode toggle
             Toggle(isOn: Binding(
                 get: { appState.phraseMode == .explicit },
                 set: { _ in
