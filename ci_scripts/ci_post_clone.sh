@@ -9,6 +9,12 @@ echo "Build number: $CI_BUILD_NUMBER"
 echo "Workflow: $CI_WORKFLOW"
 echo "Branch: $CI_BRANCH"
 
+# Resolve the repo root from the script's own location rather than relying
+# on $CI_WORKSPACE (which has been observed as empty in some Xcode Cloud
+# environments on macOS Tahoe).
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+echo "Repo root: $REPO_ROOT"
+
 # Inject the AirNow API key into AirNowSecrets.swift before the build starts.
 # The committed source file has `hardcodedKey: String? = nil` so the key
 # never lives in git. It's stored as a secret Xcode Cloud environment variable
@@ -17,7 +23,7 @@ echo "Branch: $CI_BRANCH"
 # If the env var isn't set we WARN rather than fail so CI workflows that don't
 # need air quality (e.g. a validation-only build) still succeed — the resulting
 # binary just silently hides the Air Quality feature.
-SECRETS_FILE="$CI_WORKSPACE/WeatherShared/Sources/WeatherShared/AirNowSecrets.swift"
+SECRETS_FILE="$REPO_ROOT/WeatherShared/Sources/WeatherShared/AirNowSecrets.swift"
 if [ -n "$AIRNOW_API_KEY" ]; then
     if [ ! -f "$SECRETS_FILE" ]; then
         echo "ERROR: expected $SECRETS_FILE not found"
