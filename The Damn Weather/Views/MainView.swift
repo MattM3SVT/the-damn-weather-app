@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import CoreLocation
 import WeatherShared
+import WidgetKit
 import os.log
 
 struct MainView: View {
@@ -54,6 +55,12 @@ struct MainView: View {
             // Seed the widget cache on first install so a widget added before
             // the app has fetched weather renders something contextual.
             WidgetDataStore.saveSeedIfMissing()
+            // Backfill UUIDs on SavedLocations inserted before the uuid field existed,
+            // then mirror the full list to the App Group container so the widget's
+            // Edit-Widget picker reflects the user's current cities.
+            backfillSavedLocationUUIDs()
+            SavedLocationsStore.save(widgetLocationEntities())
+            syncSavedLocationUUIDMap()
             // Only auto-fetch if we already have location permission.
             // Otherwise show the "Where the hell are you?" empty state immediately.
             let status = locationService.authorizationStatus
@@ -82,6 +89,17 @@ struct MainView: View {
             if newCount > oldCount {
                 Task { await weatherVM.prefetchAllLocations(savedLocations) }
             }
+        }
+        // Mirror the saved-cities list to the App Group whenever the user
+        // adds, deletes, or reorders cities. Uses a composite signature
+        // because SwiftData's @Model array doesn't conform to Equatable and
+        // `.count` wouldn't catch reorder-only changes.
+        .onChange(of: savedLocationsSignature) { _, _ in
+            SavedLocationsStore.save(widgetLocationEntities())
+            syncSavedLocationUUIDMap()
+            // Nudge WidgetKit so any widget configured for a just-deleted city
+            // refreshes and falls back to My Location immediately.
+            WidgetCenter.shared.reloadAllTimelines()
         }
         .onChange(of: showSavedLocations) { wasShown, isShown in
             // On modal dismiss, restore the user's active city by identity —
@@ -279,37 +297,29 @@ struct MainView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea(edges: .bottom)
+            // Sync active page state into the view model. Widgets no longer
+            // follow the app's active page — each widget has its own
+            // AppIntent-configured location — so this only updates in-app
+            // display state. Widget refreshes happen via prefetchAllLocations
+            // on launch/foreground and the widget's own 15-minute timeline.
             .onChange(of: selectedPage) { _, newPage in
                 heroCollapseProgress = 0
-                let capturedKey: String
                 if newPage == 0 {
                     weatherVM.activePageKey = WeatherViewModel.currentLocationKey
                     weatherVM.showCurrentLocation()
-                    capturedKey = WeatherViewModel.currentLocationKey
                     activeSavedLocationID = nil
                 } else if newPage - 1 < savedLocations.count {
                     let location = savedLocations[newPage - 1]
                     let key = weatherVM.pageKey(for: location)
                     weatherVM.activePageKey = key
-                    // Sync stored properties from pageState (for iPad/widget compat)
                     if let state = weatherVM.pageStates[key] {
                         weatherVM.weather = state.weather
                         weatherVM.locationName = state.locationName
                         weatherVM.locationState = state.locationState
                         weatherVM.currentPhrase = state.phrase
                     }
-                    capturedKey = key
                     activeSavedLocationID = location.id
-                } else {
-                    return
                 }
-                // Write widget identity (flag + coords + name) IMMEDIATELY so the
-                // widget sees the current city even if the async pipeline below
-                // stalls or bails (e.g. pageState not yet loaded for this city).
-                weatherVM.writeWidgetIdentity(for: capturedKey)
-                // Cancel any in-flight widget update and schedule one for the new page.
-                // Captures pageKey at swipe time so rapid swipes don't race.
-                weatherVM.scheduleWidgetUpdate(for: capturedKey)
             }
 
             // Floating header overlay — content scrolls behind this
@@ -384,6 +394,50 @@ struct MainView: View {
                     }
                 }
             )
+        }
+    }
+
+    // MARK: - Widget location mirror
+
+    /// Stable signature of the saved-cities list that changes whenever any
+    /// city is added, removed, renamed, or reordered. Used by `onChange` to
+    /// trigger a mirror write; composite because SavedLocation isn't Equatable.
+    private var savedLocationsSignature: String {
+        savedLocations.map { "\($0.uuid):\($0.sortOrder):\($0.name)" }.joined(separator: "|")
+    }
+
+    /// Build the `LocationEntity` list the widget's Edit-Widget picker shows.
+    /// Order matches the user's in-app sort. "My Location" is prepended by the
+    /// widget's EntityQuery itself — we only export the saved cities here.
+    private func widgetLocationEntities() -> [LocationEntity] {
+        savedLocations.map { loc in
+            LocationEntity(
+                id: loc.uuid,
+                name: loc.displayName,
+                latitude: loc.latitude,
+                longitude: loc.longitude
+            )
+        }
+    }
+
+    /// Hand the view model a fresh pageKey → uuid map so `updateWidget` can
+    /// route per-location data into the right multi-cache entry.
+    private func syncSavedLocationUUIDMap() {
+        weatherVM.savedLocationUUIDs = Dictionary(
+            uniqueKeysWithValues: savedLocations.map { (weatherVM.pageKey(for: $0), $0.uuid) }
+        )
+    }
+
+    /// One-time migration: assign a UUID to any SavedLocation still carrying
+    /// the default empty string from before the `uuid` field existed.
+    private func backfillSavedLocationUUIDs() {
+        var didMutate = false
+        for loc in savedLocations where loc.uuid.isEmpty {
+            loc.uuid = UUID().uuidString
+            didMutate = true
+        }
+        if didMutate {
+            try? modelContext.save()
         }
     }
 

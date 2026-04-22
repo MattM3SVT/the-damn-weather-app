@@ -6,7 +6,15 @@ struct WeatherWidget: Widget {
     let kind = "TheDamnWeatherWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: WeatherWidgetProvider()) { entry in
+        // AppIntentConfiguration gives each widget its own Edit-Widget picker
+        // so the user can pin a specific saved city (or "My Location") per
+        // widget instance. This replaces the old StaticConfiguration, which
+        // forced every widget to follow whichever city the app was viewing.
+        AppIntentConfiguration(
+            kind: kind,
+            intent: WeatherWidgetIntent.self,
+            provider: WeatherWidgetProvider()
+        ) { entry in
             WeatherWidgetEntryView(entry: entry)
                 .containerBackground(for: .widget) {
                     WeatherGradients.gradient(
@@ -17,7 +25,7 @@ struct WeatherWidget: Widget {
                 }
         }
         .configurationDisplayName("The Damn Weather")
-        .description("Weather with attitude. Tap for a new phrase.")
+        .description("Weather with attitude. Press and hold to pick a location.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

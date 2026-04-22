@@ -31,9 +31,6 @@ public enum AppConstants {
         public static let seenPhrasesExplicit = "seenPhrases_explicit"
         public static let temperatureUnit = "temperatureUnit"
         public static let theme = "theme"
-        public static let lastLocationLat = "lastLocationLat"
-        public static let lastLocationLon = "lastLocationLon"
-        public static let lastLocationName = "lastLocationName"
         public static let morningForecastEnabled = "morningForecastEnabled"
         public static let morningForecastTime = "morningForecastTime"
         public static let severeWeatherAlertsEnabled = "severeWeatherAlertsEnabled"
@@ -43,17 +40,9 @@ public enum AppConstants {
         public static let distanceUnit = "distanceUnit"
         public static let lastShownClean = "lastShownPhrase_clean"
         public static let lastShownExplicit = "lastShownPhrase_explicit"
-        // Cached weather data for widget fallback
-        public static let cachedTemperature = "cachedTemperature"
-        public static let cachedConditionTag = "cachedConditionTag"
-        /// True when the widget should use the device's current GPS location.
-        /// False when the widget should use the saved lat/lon (user pinned a city in-app).
-        public static let lastLocationIsCurrentDevice = "lastLocationIsCurrentDevice"
-        public static let cachedConditionLabel = "cachedConditionLabel"
-        public static let cachedIsDay = "cachedIsDay"
-        public static let cachedFeelsLike = "cachedFeelsLike"
-        public static let cachedHigh = "cachedHigh"
-        public static let cachedLow = "cachedLow"
-        public static let currentPhrase = "currentPhrase"
+        // NOTE: `lastLocation*` and `cached*` UserDefaults keys were removed in
+        // the per-widget-configurable-location rewrite. Each widget now carries
+        // its own location via `WeatherWidgetIntent`, and cached weather lives
+        // in `widget-weather-multi.json` keyed by `LocationEntity.id`.
     }
 }

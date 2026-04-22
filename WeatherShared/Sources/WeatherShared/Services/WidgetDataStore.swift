@@ -129,6 +129,15 @@ public struct CachedWeatherData: Codable {
 /// processes with no cross-process sync uncertainty.
 public enum WidgetDataStore {
     private static let fileName = "widget-weather.json"
+    private static let multiFileName = "widget-weather-multi.json"
+
+    /// Serializes `saveEntry`'s load → mutate → save within this process so
+    /// two callers can't both read the same stale dict and clobber each
+    /// other's update. Cross-process races (app + widget writing at exactly
+    /// the same moment) still exist in theory, but the atomic write option
+    /// prevents corruption and the worst case is a single cache entry being
+    /// lost for one 15-minute cycle.
+    private static let multiLock = NSLock()
 
     private static var fileURL: URL? {
         guard let container = FileManager.default
@@ -142,6 +151,61 @@ public enum WidgetDataStore {
             ofItemAtPath: container.path
         )
         return container.appendingPathComponent(fileName)
+    }
+
+    private static var multiFileURL: URL? {
+        FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID)?
+            .appendingPathComponent(multiFileName)
+    }
+
+    // MARK: - Multi-location cache
+    //
+    // Keyed by `LocationEntity.id` so each widget can look up the weather for
+    // its configured location. Populated by `WeatherViewModel.prefetchAllLocations`
+    // (saved cities) and by the My Location fetch (keyed by the sentinel id).
+    // The widget provider reads an entry via `loadEntry(for:)`; if missing or
+    // older than `AppConstants.weatherCacheTTL` (15 min), the widget fetches
+    // fresh via WeatherKit itself.
+
+    public static func loadMulti() -> [String: CachedWeatherData] {
+        guard let url = multiFileURL,
+              FileManager.default.fileExists(atPath: url.path) else {
+            return [:]
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            return try JSONDecoder().decode([String: CachedWeatherData].self, from: data)
+        } catch {
+            widgetLog.error("loadMulti failed: \(error.localizedDescription)")
+            return [:]
+        }
+    }
+
+    public static func saveMulti(_ dict: [String: CachedWeatherData]) {
+        guard let url = multiFileURL else { return }
+        do {
+            let encoded = try JSONEncoder().encode(dict)
+            try encoded.write(to: url, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+            widgetLog.info("SAVE MULTI OK: \(dict.count) entries (\(encoded.count) bytes)")
+        } catch {
+            widgetLog.error("saveMulti failed: \(error.localizedDescription)")
+        }
+    }
+
+    public static func loadEntry(for id: String) -> CachedWeatherData? {
+        loadMulti()[id]
+    }
+
+    /// Upsert a single entry without rewriting the whole dict from the caller.
+    /// Guarded by `multiLock` so concurrent callers in the same process can't
+    /// race on the read-modify-write.
+    public static func saveEntry(_ data: CachedWeatherData, for id: String) {
+        multiLock.lock()
+        defer { multiLock.unlock() }
+        var dict = loadMulti()
+        dict[id] = data
+        saveMulti(dict)
     }
 
     /// Save weather data to the shared container. Called by the main app after every fetch.

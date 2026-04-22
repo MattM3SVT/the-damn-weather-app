@@ -160,8 +160,9 @@ struct WhatsNewView: View {
                         .font(.title2.bold())
 
                     VStack(alignment: .leading, spacing: 8) {
-                        ChangelogItem(icon: "square.and.arrow.up", color: .accentRed, text: "Share the damn weather — tap the share icon in the header to send a stylized card")
-                        ChangelogItem(icon: "antenna.radiowaves.left.and.right", color: .blue, text: "Observations cross-checked against NWS and METAR data sources for accuracy")
+                        ChangelogItem(icon: "square.and.arrow.up", color: .accentRed, text: "Share the damn weather. Tap the new share icon to send a stylized weather card to friends")
+                        ChangelogItem(icon: "antenna.radiowaves.left.and.right", color: .blue, text: "Observations now cross-checked against NWS and METAR airport data, so the forecast actually knows what's happening outside")
+                        ChangelogItem(icon: "widget.small", color: .green, text: "Widgets can now be set to any saved city. Long-press to pick. Existing widgets may need re-adding once.")
                         ChangelogItem(icon: "wrench.and.screwdriver.fill", color: .gray, text: "Bug fixes and polish")
                     }
                 }
@@ -174,7 +175,7 @@ struct WhatsNewView: View {
                         .font(.title2.bold())
 
                     VStack(alignment: .leading, spacing: 8) {
-                        ChangelogItem(icon: "iphone", color: .blue, text: "Now supports iOS 26.0 and later — no forced OS update required")
+                        ChangelogItem(icon: "iphone", color: .blue, text: "Now supports iOS 26.0 and later. No forced OS update required.")
                         ChangelogItem(icon: "sparkles", color: .yellow, text: "What's New now shows the full version history")
                     }
                 }
@@ -204,7 +205,7 @@ struct WhatsNewView: View {
 
                     VStack(alignment: .leading, spacing: 8) {
                         ChangelogItem(icon: "sun.max.fill", color: .yellow, text: "Real-time weather powered by Apple WeatherKit")
-                        ChangelogItem(icon: "quote.opening", color: .accentRed, text: "Sarcastic weather phrases — clean or explicit, your call")
+                        ChangelogItem(icon: "quote.opening", color: .accentRed, text: "Sarcastic weather phrases, clean or explicit, your call")
                         ChangelogItem(icon: "chart.xyaxis.line", color: .cyan, text: "Detailed charts for wind, temperature, humidity, and more")
                         ChangelogItem(icon: "location.fill", color: .blue, text: "Save multiple cities and swipe between them")
                         ChangelogItem(icon: "widget.small", color: .green, text: "Home screen widgets with attitude")

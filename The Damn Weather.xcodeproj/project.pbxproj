@@ -476,6 +476,7 @@
 				INFOPLIST_FILE = WeatherWidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WeatherWidgetExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The Damn Weather widget needs your location to show current conditions when set to My Location.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -507,6 +508,7 @@
 				INFOPLIST_FILE = WeatherWidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WeatherWidgetExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The Damn Weather widget needs your location to show current conditions when set to My Location.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

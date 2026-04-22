@@ -24,7 +24,7 @@ struct WeatherWidgetEntry: TimelineEntry {
     let locationName: String
     /// True when the widget is rendering weather for the device's current GPS
     /// location (arrow indicator should show). False when displaying a pinned
-    /// saved city the user selected in-app.
+    /// saved city the user selected via Edit Widget.
     let isDeviceLocation: Bool
 
     /// True when no real weather data is available (app hasn't been opened yet).
@@ -67,7 +67,10 @@ struct WeatherWidgetEntry: TimelineEntry {
     }
 }
 
-struct WeatherWidgetProvider: TimelineProvider {
+struct WeatherWidgetProvider: AppIntentTimelineProvider {
+    typealias Intent = WeatherWidgetIntent
+    typealias Entry = WeatherWidgetEntry
+
     private let phraseEngine = PhraseEngine(
         defaults: UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
     )
@@ -78,7 +81,178 @@ struct WeatherWidgetProvider: TimelineProvider {
     /// location changes (enabled via NSWidgetWantsLocation in Info.plist).
     private let locationProvider = WidgetLocationProvider()
 
-    // MARK: - Shared Conversion Helpers
+    /// Shared across all widget instances so we don't re-hydrate the
+    /// on-disk NWS/METAR cache on every refresh. The service is a pure
+    /// actor, so it's safe to share across concurrent invocations.
+    private static let crossCheck = ObservationCrossCheckService()
+
+    init() {
+        // Ensure App Group subdirectories exist — prevents CoreData sandbox errors
+        // from WidgetKit's internal bookkeeping on first widget extension launch.
+        if let groupURL = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: AppConstants.appGroupID
+        ) {
+            let appSupport = groupURL.appendingPathComponent("Library/Application Support")
+            if !FileManager.default.fileExists(atPath: appSupport.path) {
+                try? FileManager.default.createDirectory(at: appSupport, withIntermediateDirectories: true)
+            }
+        }
+    }
+
+    // MARK: - AppIntentTimelineProvider
+
+    func placeholder(in context: Context) -> WeatherWidgetEntry {
+        // WidgetKit calls this on a very tight budget — any disk I/O risks
+        // skipping the first render. Return the hardcoded placeholder only;
+        // real data is served from snapshot / timeline once a configuration
+        // is present.
+        widgetProviderLog.info("placeholder(in:) called")
+        return .placeholder
+    }
+
+    func snapshot(for configuration: WeatherWidgetIntent, in context: Context) async -> WeatherWidgetEntry {
+        widgetProviderLog.info("snapshot called, isPreview=\(context.isPreview) location=\(configuration.location.name, privacy: .public)")
+        if let cached = buildCachedEntry(for: configuration.location) {
+            return cached
+        }
+        // No cache hit — widget was just added and app hasn't prefetched yet.
+        // Fall back to a live fetch (may take a second but snapshot allows this).
+        if let fresh = try? await fetchFreshEntry(for: configuration.location) {
+            return fresh
+        }
+        return .placeholder
+    }
+
+    func timeline(for configuration: WeatherWidgetIntent, in context: Context) async -> Timeline<WeatherWidgetEntry> {
+        widgetProviderLog.info("timeline called, location=\(configuration.location.name, privacy: .public) id=\(configuration.location.id, privacy: .public)")
+
+        let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
+        let retryUpdate = Calendar.current.date(byAdding: .minute, value: 5, to: Date()) ?? Date()
+
+        // PATH 1 — App Group cache has fresh data for this city. Build a
+        // 4-entry rotating-phrase timeline and return.
+        //
+        // We do NOT kick off a background Task here. WidgetKit suspends the
+        // extension shortly after this function returns, so unstructured
+        // Tasks can be killed mid-flight. The natural cadence is: cache is
+        // considered fresh for `weatherCacheTTL` (15 min); the next timeline
+        // call falls through to PATH 2 and performs an awaited fresh fetch.
+        if let cached = loadCachedDataForLocation(configuration.location),
+           let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag),
+           !isMultiCacheStale(cached) {
+            widgetProviderLog.info("timeline PATH 1: multi-cache hit for id=\(configuration.location.id, privacy: .public) temp=\(cached.temperature) location=\(cached.locationName, privacy: .public)")
+
+            let entries = buildMultiEntryTimeline(
+                from: cached,
+                conditionTag: conditionTag,
+                entity: configuration.location
+            )
+            return Timeline(entries: entries, policy: .after(nextUpdate))
+        }
+
+        // PATH 2 — No multi-cache; try a live fetch. If that works, cache it
+        // and return a single entry. Otherwise short-retry with placeholder.
+        widgetProviderLog.warning("timeline PATH 2: multi-cache miss, trying live fetch for \(configuration.location.name, privacy: .public)")
+        if let entry = try? await fetchFreshEntry(for: configuration.location) {
+            saveFreshDataToMultiCache(entry, for: configuration.location)
+            return Timeline(entries: [entry], policy: .after(nextUpdate))
+        }
+
+        widgetProviderLog.error("timeline PATH 3: live fetch failed, returning placeholder with short retry")
+        return Timeline(entries: [.placeholder], policy: .after(retryUpdate))
+    }
+
+    // MARK: - Cached entry helpers
+
+    /// Read a cached entry keyed by the configured location's id. Falls back
+    /// to the legacy single-file cache when the multi-cache doesn't have this
+    /// entity yet (e.g. first launch after update before `prefetchAllLocations`
+    /// has run).
+    private func loadCachedDataForLocation(_ entity: LocationEntity) -> CachedWeatherData? {
+        if let multi = WidgetDataStore.loadEntry(for: entity.id) {
+            return multi
+        }
+        // Legacy fallback: only for My Location, read the old single-file
+        // cache since that's what existing app versions write there.
+        if entity.isMyLocation, let single = WidgetDataStore.load() {
+            return single
+        }
+        return nil
+    }
+
+    /// Build a widget entry from multi-cache data + live location overrides.
+    private func buildCachedEntry(for entity: LocationEntity) -> WeatherWidgetEntry? {
+        guard let cached = loadCachedDataForLocation(entity),
+              let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) else {
+            return nil
+        }
+        let forecast = Self.convertForecastPoints(from: cached)
+        return WeatherWidgetEntry(
+            date: Date(),
+            temperature: Int(cached.temperature.rounded()),
+            conditionTag: conditionTag,
+            conditionLabel: cached.conditionLabel,
+            isDay: cached.isDay,
+            phrase: cached.phrase,
+            smallPhrase: cached.smallPhrase ?? cached.phrase,
+            feelsLike: Int(cached.feelsLike.rounded()),
+            high: Int(cached.high.rounded()),
+            low: Int(cached.low.rounded()),
+            precipProbability: 0,
+            hourlyPreview: forecast.hourly,
+            dailyPreview: forecast.daily,
+            locationName: cached.locationName.isEmpty ? entity.name : cached.locationName,
+            isDeviceLocation: entity.isMyLocation
+        )
+    }
+
+    /// Multi-cache entries are considered stale after `weatherCacheTTL`
+    /// (15 minutes). Stale entries fall through to PATH 2 and trigger an
+    /// awaited fresh fetch; we never return stale data from the timeline
+    /// and rely on an unawaited background Task to refresh it.
+    private func isMultiCacheStale(_ cached: CachedWeatherData) -> Bool {
+        Date().timeIntervalSince(cached.updatedAt) > AppConstants.weatherCacheTTL
+    }
+
+    /// 4 entries at ~4-minute intervals rotating through the app's
+    /// pre-generated phrases, so the widget shows variety within a single
+    /// 15-min refresh window without needing PhraseEngine in the extension.
+    private func buildMultiEntryTimeline(
+        from cached: CachedWeatherData,
+        conditionTag: WeatherConditionTag,
+        entity: LocationEntity
+    ) -> [WeatherWidgetEntry] {
+        let allPhrases = cached.allPhrases
+        let forecast = Self.convertForecastPoints(from: cached)
+        let now = Date()
+        let smallFallback = cached.smallPhrase ?? cached.phrase
+        let displayName = cached.locationName.isEmpty ? entity.name : cached.locationName
+
+        return (0..<4).map { offset in
+            let entryDate = Calendar.current.date(byAdding: .minute, value: offset * 4, to: now) ?? now
+            let rotatedPhrase: String = {
+                guard !allPhrases.isEmpty else { return cached.phrase }
+                return allPhrases[offset % allPhrases.count]
+            }()
+            return WeatherWidgetEntry(
+                date: entryDate,
+                temperature: Int(cached.temperature.rounded()),
+                conditionTag: conditionTag,
+                conditionLabel: cached.conditionLabel,
+                isDay: cached.isDay,
+                phrase: rotatedPhrase,
+                smallPhrase: smallFallback,
+                feelsLike: Int(cached.feelsLike.rounded()),
+                high: Int(cached.high.rounded()),
+                low: Int(cached.low.rounded()),
+                precipProbability: 0,
+                hourlyPreview: forecast.hourly,
+                dailyPreview: forecast.daily,
+                locationName: displayName,
+                isDeviceLocation: entity.isMyLocation
+            )
+        }
+    }
 
     /// Convert cached hourly/daily forecast data to widget entry types.
     private static func convertForecastPoints(from cached: CachedWeatherData) -> (
@@ -96,253 +270,16 @@ struct WeatherWidgetProvider: TimelineProvider {
         return (hourly, daily)
     }
 
-    init() {
-        // Ensure App Group subdirectories exist — prevents CoreData sandbox errors
-        // from WidgetKit's internal bookkeeping on first widget extension launch.
-        if let groupURL = FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: AppConstants.appGroupID
-        ) {
-            let appSupport = groupURL.appendingPathComponent("Library/Application Support")
-            if !FileManager.default.fileExists(atPath: appSupport.path) {
-                try? FileManager.default.createDirectory(at: appSupport, withIntermediateDirectories: true)
-            }
-        }
-    }
+    // MARK: - Fresh-fetch cache write
 
-    func placeholder(in context: Context) -> WeatherWidgetEntry {
-        // WidgetKit calls this on a very tight budget — any disk I/O risks
-        // skipping the first render. Return the hardcoded placeholder only;
-        // real cached data is served from getSnapshot / getTimeline.
-        widgetProviderLog.info("placeholder(in:) called")
-        return .placeholder
-    }
-
-    func getSnapshot(in context: Context, completion: @escaping (WeatherWidgetEntry) -> Void) {
-        widgetProviderLog.info("getSnapshot called, isPreview=\(context.isPreview)")
-        // Try cached data first — pure file/UserDefaults reads, completes in milliseconds.
-        if let cached = buildCachedEntry() {
-            widgetProviderLog.info("getSnapshot: returning cached entry, temp=\(cached.temperature)")
-            completion(cached)
-            return
-        }
-
-        widgetProviderLog.warning("getSnapshot: no cached data, trying async fetch")
-        // No cached data (app never opened) — try live WeatherKit fetch
-        Task {
-            if let entry = try? await fetchWeatherEntry() {
-                widgetProviderLog.info("getSnapshot: async fetch succeeded")
-                completion(entry)
-                return
-            }
-            // Absolute last resort — hardcoded placeholder
-            widgetProviderLog.error("getSnapshot: ALL sources failed, returning placeholder")
-            completion(.placeholder)
-        }
-    }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherWidgetEntry>) -> Void) {
-        widgetProviderLog.info("getTimeline called")
-        widgetProviderLog.info("getTimeline: diagnose = \(WidgetDataStore.diagnose())")
-        // Call completion synchronously with cached data — WidgetKit kills extensions that go async.
-        if let cachedData = WidgetDataStore.load(),
-           let conditionTag = WeatherConditionTag(rawValue: cachedData.conditionTag),
-           !isCachedDataStale(cachedData: cachedData) {
-            widgetProviderLog.info("getTimeline PATH 1: JSON load succeeded, temp=\(cachedData.temperature) location=\(cachedData.locationName)")
-
-            // Build multi-entry timeline using the pre-generated phrases the app wrote.
-            // 4 entries at ~4-minute intervals give the user phrase variety without
-            // WidgetKit refetching; temperature/condition stay constant within the window.
-            let allPhrases = cachedData.allPhrases
-            let forecast = Self.convertForecastPoints(from: cachedData)
-            let now = Date()
-            let smallFallback = cachedData.smallPhrase ?? cachedData.phrase
-
-            let entries: [WeatherWidgetEntry] = (0..<4).map { offset in
-                let entryDate = Calendar.current.date(byAdding: .minute, value: offset * 4, to: now) ?? now
-                let rotatedPhrase: String = {
-                    guard !allPhrases.isEmpty else { return cachedData.phrase }
-                    return allPhrases[offset % allPhrases.count]
-                }()
-                return WeatherWidgetEntry(
-                    date: entryDate,
-                    temperature: Int(cachedData.temperature.rounded()),
-                    conditionTag: conditionTag,
-                    conditionLabel: cachedData.conditionLabel,
-                    isDay: cachedData.isDay,
-                    phrase: rotatedPhrase,
-                    smallPhrase: smallFallback,
-                    feelsLike: Int(cachedData.feelsLike.rounded()),
-                    high: Int(cachedData.high.rounded()),
-                    low: Int(cachedData.low.rounded()),
-                    precipProbability: 0,
-                    hourlyPreview: forecast.hourly,
-                    dailyPreview: forecast.daily,
-                    locationName: cachedData.locationName,
-                    isDeviceLocation: currentDeviceModeFlag()
-                )
-            }
-
-            // Request refresh in 15 minutes — matches industry standard for weather apps.
-            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-            completion(Timeline(entries: entries, policy: .after(nextUpdate)))
-
-            // Background: fetch fresh weather + new phrases and save for next cycle
-            Task { await refreshCachedData() }
-            return
-        }
-
-        // Fallback: try UserDefaults-based cached entry
-        widgetProviderLog.warning("getTimeline: JSON load failed, trying UserDefaults fallback")
-        if let cached = buildCachedEntry() {
-            widgetProviderLog.info("getTimeline PATH 2: UserDefaults fallback succeeded")
-            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-            completion(Timeline(entries: [cached], policy: .after(nextUpdate)))
-            Task { await refreshCachedData() }
-            return
-        }
-
-        // No cached data (app never opened) — try async fetch as last resort.
-        widgetProviderLog.error("getTimeline PATH 3: No cached data at all, trying async fetch")
-        Task {
-            if let entry = try? await fetchWeatherEntry() {
-                saveFreshDataToCache(entry)
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-                completion(Timeline(entries: [entry], policy: .after(nextUpdate)))
-            } else {
-                let nextUpdate = Calendar.current.date(byAdding: .minute, value: 5, to: Date()) ?? Date()
-                completion(Timeline(entries: [.placeholder], policy: .after(nextUpdate)))
-            }
-        }
-    }
-
-    /// Build an entry from cached weather data the main app wrote to the shared container.
-    /// Uses file-based sharing (reliable cross-process) with UserDefaults as fallback.
-    /// Returns nil if no cached data exists (app has never fetched weather).
-    private func buildCachedEntry() -> WeatherWidgetEntry? {
-        // PRIMARY: Read from shared JSON file — reliable cross-process on iPhone
-        if let cached = WidgetDataStore.load(),
-           let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) {
-            let forecast = Self.convertForecastPoints(from: cached)
-            return WeatherWidgetEntry(
-                date: Date(),
-                temperature: Int(cached.temperature.rounded()),
-                conditionTag: conditionTag,
-                conditionLabel: cached.conditionLabel,
-                isDay: cached.isDay,
-                phrase: cached.phrase,
-                smallPhrase: cached.smallPhrase ?? cached.phrase,
-                feelsLike: Int(cached.feelsLike.rounded()),
-                high: Int(cached.high.rounded()),
-                low: Int(cached.low.rounded()),
-                precipProbability: 0,
-                hourlyPreview: forecast.hourly,
-                dailyPreview: forecast.daily,
-                locationName: cached.locationName,
-                isDeviceLocation: currentDeviceModeFlag()
-            )
-        }
-
-        // FALLBACK: Try UserDefaults (may not have synced cross-process yet)
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        defaults.synchronize()
-
-        guard let conditionRaw = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionTag),
-              let conditionTag = WeatherConditionTag(rawValue: conditionRaw) else {
-            return nil
-        }
-
-        let cachedTemp = defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
-        let temperature = Int(cachedTemp.rounded())
-        let conditionLabel = defaults.string(forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel) ?? conditionTag.label
-        let isDay = defaults.bool(forKey: AppConstants.UserDefaultsKeys.cachedIsDay)
-        let feelsLike = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike).rounded())
-        let high = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedHigh).rounded())
-        let low = Int(defaults.double(forKey: AppConstants.UserDefaultsKeys.cachedLow).rounded())
-        let locationName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
-        let phrase = defaults.string(forKey: AppConstants.UserDefaultsKeys.currentPhrase) ?? "\(conditionLabel) and \(temperature)°."
-
-        return WeatherWidgetEntry(
-            date: Date(),
-            temperature: temperature,
-            conditionTag: conditionTag,
-            conditionLabel: conditionLabel,
-            isDay: isDay,
-            phrase: phrase,
-            smallPhrase: phrase,
-            feelsLike: feelsLike,
-            high: high,
-            low: low,
-            precipProbability: 0,
-            hourlyPreview: WeatherWidgetEntry.placeholder.hourlyPreview,
-            dailyPreview: WeatherWidgetEntry.placeholder.dailyPreview,
-            locationName: locationName,
-            isDeviceLocation: currentDeviceModeFlag()
-        )
-    }
-
-    /// Reads the app-set flag indicating whether the widget should show the
-    /// device's current GPS location (true) vs. a user-pinned city (false).
-    /// Defaults to true when absent so first-ever installs behave as
-    /// "current location" widgets — matches the Apple Weather default.
-    private func currentDeviceModeFlag() -> Bool {
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        defaults.synchronize()
-        if defaults.object(forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice) == nil {
-            return true
-        }
-        return defaults.bool(forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice)
-    }
-
-    /// Detect whether the JSON cache is out of date relative to UserDefaults.
-    /// If the app just cycled to a new city, `writeWidgetIdentity` updates
-    /// UserDefaults immediately but the JSON write is async and may lag. When
-    /// that happens, serving the stale JSON would display the wrong city —
-    /// so we skip PATH 1 and fall through to PATH 3 (fresh fetch) instead.
-    private func isCachedDataStale(cachedData: CachedWeatherData) -> Bool {
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        defaults.synchronize()
-        guard let expectedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName),
-              !expectedName.isEmpty else {
-            return false
-        }
-        let isStale = cachedData.locationName != expectedName
-        if isStale {
-            widgetProviderLog.info("getTimeline: cache stale — JSON=\(cachedData.locationName, privacy: .public) vs UserDefaults=\(expectedName, privacy: .public); skipping PATH 1")
-        }
-        return isStale
-    }
-
-    /// Fetch fresh weather + phrases in the background and save to cache.
-    /// The current widget cycle already has cached data displayed — this updates the
-    /// cache so the NEXT timeline cycle shows fresh data with new phrases.
-    private func refreshCachedData() async {
-        guard let entry = try? await fetchWeatherEntry() else { return }
-
-        // Pre-generate additional phrases for the next multi-entry timeline.
-        // selectPhrase() always generates a new phrase (has anti-repeat logic).
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
-        let mode = PhraseMode(rawValue: modeStr) ?? .clean
-
-        let extraPhrases = await phraseEngine.selectMultiplePhrases(
-            count: 3,
-            conditionTag: entry.conditionTag,
-            tempF: Double(entry.temperature),
-            mode: mode,
-            isDay: entry.isDay
-        )
-
-        saveFreshDataToCache(entry, additionalPhrases: extraPhrases)
-    }
-
-    /// Write a fresh entry's data to the shared container so buildCachedEntry() returns
-    /// updated values on the next timeline refresh.
-    private func saveFreshDataToCache(_ entry: WeatherWidgetEntry, additionalPhrases: [String] = []) {
-        // Write to shared JSON file (primary, reliable)
+    private func saveFreshDataToMultiCache(
+        _ entry: WeatherWidgetEntry,
+        additionalPhrases: [String] = [],
+        for entity: LocationEntity
+    ) {
         let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
 
-        // Convert entry's hourly/daily preview to cached format
         let cachedHourly = entry.hourlyPreview.map { h in
             CachedHourlyPoint(hour: h.hour, temp: h.temp, conditionTag: h.conditionTag.rawValue, isDay: h.isDay)
         }
@@ -350,90 +287,65 @@ struct WeatherWidgetProvider: TimelineProvider {
             CachedDailyPoint(day: d.day, high: d.high, low: d.low, conditionTag: d.conditionTag.rawValue)
         }
 
-        WidgetDataStore.save(CachedWeatherData(
-            temperature: Double(entry.temperature),
-            conditionTag: entry.conditionTag.rawValue,
-            conditionLabel: entry.conditionLabel,
-            isDay: entry.isDay,
-            feelsLike: Double(entry.feelsLike),
-            high: Double(entry.high),
-            low: Double(entry.low),
-            locationName: entry.locationName,
-            phrase: entry.phrase,
-            phraseMode: modeStr,
-            additionalPhrases: additionalPhrases,
-            smallPhrase: entry.smallPhrase,
-            hourlyPreview: cachedHourly,
-            dailyPreview: cachedDaily
-        ))
-
-        // Also write to UserDefaults as fallback
-        defaults.set(Double(entry.temperature), forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
-        defaults.set(entry.conditionTag.rawValue, forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
-        defaults.set(entry.conditionLabel, forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel)
-        defaults.set(entry.isDay, forKey: AppConstants.UserDefaultsKeys.cachedIsDay)
-        defaults.set(Double(entry.feelsLike), forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike)
-        defaults.set(Double(entry.high), forKey: AppConstants.UserDefaultsKeys.cachedHigh)
-        defaults.set(Double(entry.low), forKey: AppConstants.UserDefaultsKeys.cachedLow)
-        defaults.set(entry.phrase, forKey: AppConstants.UserDefaultsKeys.currentPhrase)
-        defaults.set(entry.locationName, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
-        defaults.synchronize()
+        WidgetDataStore.saveEntry(
+            CachedWeatherData(
+                temperature: Double(entry.temperature),
+                conditionTag: entry.conditionTag.rawValue,
+                conditionLabel: entry.conditionLabel,
+                isDay: entry.isDay,
+                feelsLike: Double(entry.feelsLike),
+                high: Double(entry.high),
+                low: Double(entry.low),
+                locationName: entry.locationName,
+                phrase: entry.phrase,
+                phraseMode: modeStr,
+                additionalPhrases: additionalPhrases,
+                smallPhrase: entry.smallPhrase,
+                hourlyPreview: cachedHourly,
+                dailyPreview: cachedDaily
+            ),
+            for: entity.id
+        )
     }
 
-    private func fetchWeatherEntry() async throws -> WeatherWidgetEntry {
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        // Force cross-process sync so we pick up data the main app just wrote
-        defaults.synchronize()
-        let savedLat = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
-        let savedLon = defaults.double(forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
-        let savedName = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastLocationName) ?? "Unknown"
-        let isCurrentDeviceMode = currentDeviceModeFlag()
+    // MARK: - Fresh WeatherKit fetch
 
-        // LOCATION RESOLUTION branches on the mode flag written by the main app:
-        //  - Current-location mode (user was on the "My Location" page): fetch
-        //    fresh device GPS so the widget auto-updates when the user travels
-        //    (via NSWidgetWantsLocation's significant-location-change reload).
-        //  - Pinned-city mode (user selected a saved city in-app): use exactly
-        //    the coords and name the app wrote. No GPS, no reverse-geocode —
-        //    the widget should stay on that city until the user changes it
-        //    in-app, matching Apple Weather's per-widget-pin behavior.
+    /// Resolve the configured `LocationEntity` into a `CLLocation`, fetch
+    /// WeatherKit + NWS/METAR consensus, and build a widget entry. Used both
+    /// when the multi-cache is cold AND for background refresh after a cache
+    /// hit. Each widget refresh does its own fetch; the `ObservationCrossCheckService`
+    /// persisted disk cache prevents duplicate NWS/METAR hits across processes.
+    private func fetchFreshEntry(for entity: LocationEntity) async throws -> WeatherWidgetEntry {
         let location: CLLocation
-        let locationName: String
-        if isCurrentDeviceMode, let fresh = await locationProvider.currentLocation() {
-            location = fresh
-            // If the user has moved far enough that the app-saved name is stale,
-            // reverse-geocode a fresh name. Otherwise keep the app-saved name.
-            let savedLocation = CLLocation(latitude: savedLat, longitude: savedLon)
-            let distance = (savedLat != 0 || savedLon != 0)
-                ? fresh.distance(from: savedLocation)
-                : .greatestFiniteMagnitude
-            if distance > 10_000 {
-                locationName = await reverseGeocodedCityName(for: fresh) ?? savedName
+        let displayName: String
+
+        if entity.isMyLocation {
+            if let fresh = await locationProvider.currentLocation() {
+                location = fresh
+                displayName = await reverseGeocodedCityName(for: fresh) ?? "Current Location"
+            } else if let cachedLocation = CLLocationManager().location {
+                // Last-resort: iOS-level cached location.
+                location = cachedLocation
+                displayName = await reverseGeocodedCityName(for: cachedLocation) ?? "Current Location"
             } else {
-                locationName = savedName
+                throw WidgetError.noLocation
             }
-        } else if savedLat != 0 || savedLon != 0 {
-            // Pinned-city mode OR GPS unavailable: trust the app-written coords+name.
-            location = CLLocation(latitude: savedLat, longitude: savedLon)
-            locationName = savedName
-        } else if isCurrentDeviceMode, let cachedLocation = CLLocationManager().location {
-            // Last-resort only in current-location mode: iOS-level cached location.
-            location = cachedLocation
-            locationName = await reverseGeocodedCityName(for: cachedLocation) ?? "Current Location"
+        } else if let lat = entity.latitude, let lon = entity.longitude {
+            location = CLLocation(latitude: lat, longitude: lon)
+            displayName = entity.name
         } else {
-            throw WidgetError.noLocation
+            // LocationEntity has no coords — typically the case when a saved
+            // city was deleted. Fall back to My Location.
+            widgetProviderLog.warning("entity has no coords, falling back to My Location: \(entity.id, privacy: .public)")
+            return try await fetchFreshEntry(for: .myLocation)
         }
 
-        // Fetch WeatherKit + NWS + METAR in parallel. The cross-check service is
-        // short-lived (one widget invocation) — no persistent cache across refreshes,
-        // but this fallback path only runs when the main-app cache is empty.
         let service = WeatherKit.WeatherService.shared
-        let crossCheck = ObservationCrossCheckService()
         async let wkTask = service.weather(
             for: location,
             including: .current, .hourly, .daily
         )
-        async let consensusTask = crossCheck.fetchSkyConsensus(for: location)
+        async let consensusTask = Self.crossCheck.fetchSkyConsensus(for: location)
 
         let weather = try await wkTask
         let consensus = await consensusTask
@@ -454,9 +366,7 @@ struct WeatherWidgetProvider: TimelineProvider {
             : current.condition.description
         let tempF = current.temperature.converted(to: .fahrenheit).value
 
-        // Always generate a fresh phrase. selectPhrase() calls loadIfNeeded() internally,
-        // so it handles PhraseEngine initialization. This runs after completion() has
-        // already been called, so taking a moment to load JSON is fine.
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
         let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
         let mode = PhraseMode(rawValue: modeStr) ?? .clean
 
@@ -509,7 +419,6 @@ struct WeatherWidgetProvider: TimelineProvider {
         let todayHigh = daily.first.map { Int($0.highTemperature.converted(to: .fahrenheit).value.rounded()) } ?? 0
         let todayLow = daily.first.map { Int($0.lowTemperature.converted(to: .fahrenheit).value.rounded()) } ?? 0
 
-        // Generate a shorter phrase for the small widget
         let smallPhrase = await phraseEngine.selectPhrase(
             conditionTag: conditionTag,
             tempF: tempF,
@@ -532,8 +441,8 @@ struct WeatherWidgetProvider: TimelineProvider {
             precipProbability: Int((daily.first?.precipitationChance ?? 0) * 100),
             hourlyPreview: hourlyPreview,
             dailyPreview: dailyPreview,
-            locationName: locationName,
-            isDeviceLocation: isCurrentDeviceMode
+            locationName: displayName,
+            isDeviceLocation: entity.isMyLocation
         )
     }
 
@@ -542,8 +451,7 @@ struct WeatherWidgetProvider: TimelineProvider {
     /// Critical: `MKMapItem.name` can return a street address, POI, or business —
     /// NOT the city. Prefer `addressRepresentations?.cityWithContext(.short)` for
     /// "City, ST" formatting, then `cityName`, and only fall through to `.name`
-    /// when nothing else is available. Caller treats a nil return as a soft-fail
-    /// and keeps whatever name it already had.
+    /// when nothing else is available.
     private func reverseGeocodedCityName(for location: CLLocation) async -> String? {
         guard let request = MKReverseGeocodingRequest(location: location),
               let items = try? await request.mapItems,

@@ -39,6 +39,12 @@ final class WeatherViewModel {
     var pageStates: [String: PageWeatherState] = [:]
     var activePageKey: String = "__currentLocation__"
 
+    /// Maps the in-memory `pageKey` (coordinate-based) to the `SavedLocation.uuid`
+    /// used as the widget cache key. Kept in sync by `MainView` on every change
+    /// to the saved-locations list so `updateWidget(for:)` can route weather
+    /// into the right per-location entry in the App Group multi-cache.
+    var savedLocationUUIDs: [String: String] = [:]
+
     // MARK: - Device current location state (for sidebar "My Location" card)
     var currentLocationWeather: WeatherSnapshot?
     var currentLocationName: String = ""
@@ -57,10 +63,6 @@ final class WeatherViewModel {
     let phraseEngine = PhraseEngine()
     private let appState: AppState
     private var timeTimer: Timer?
-
-    /// Manages the widget update Task for city swiping. Cancelled and replaced on each
-    /// swipe so only the most recent swipe's data reaches the widget.
-    private var widgetUpdateTask: Task<Void, Never>?
 
     init(locationService: LocationService, appState: AppState) {
         self.locationService = locationService
@@ -310,101 +312,213 @@ final class WeatherViewModel {
 
     // MARK: - Per-Page Pre-fetching (iPhone city swiping)
 
-    /// Pre-fetch weather for all saved cities in parallel so swiping is instant.
+    /// Maximum simultaneous WeatherKit fetches during prefetch. Caps the
+    /// burst when a user has many saved cities — Apple throttles parallel
+    /// WeatherKit requests, and staggering avoids quota spikes in the
+    /// 500k/month per-account budget.
+    private static let prefetchConcurrencyLimit = 4
+
+    private struct PrefetchResult {
+        let pageKey: String
+        let widgetID: String
+        let displayName: String
+        let state: PageWeatherState
+    }
+
+    /// Fetch weather + phrase for a single saved city. Returns nil if the
+    /// WeatherKit call fails (error is logged; caller treats as skipped).
+    private func prefetchOne(_ location: SavedLocation) async -> PrefetchResult? {
+        do {
+            let snapshot = try await weatherService.fetchWeather(for: location.clLocation)
+            let phrase = await phraseEngine.selectPhrase(
+                conditionTag: snapshot.current.conditionTag,
+                tempF: snapshot.current.temperature,
+                mode: appState.phraseMode,
+                isDay: snapshot.current.isDay
+            )
+            let timeStr = Date.currentTimeString(timezone: snapshot.timezone)
+            return PrefetchResult(
+                pageKey: pageKey(for: location),
+                widgetID: location.uuid,
+                displayName: location.displayName,
+                state: PageWeatherState(
+                    weather: snapshot,
+                    phrase: phrase,
+                    locationName: location.name,
+                    locationState: location.state,
+                    currentTime: timeStr
+                )
+            )
+        } catch {
+            vmLog.error("prefetch failed for \(location.name, privacy: .public): \(error.localizedDescription, privacy: .public)")
+            return nil
+        }
+    }
+
+    /// Pre-fetch weather for all saved cities (concurrency-capped) so swiping
+    /// is instant. Also persists each result to the App Group's multi-location
+    /// widget cache so widgets configured for any saved city can serve that
+    /// city's weather without hitting WeatherKit on every 15-min refresh.
     func prefetchAllLocations(_ savedLocations: [SavedLocation]) async {
-        await withTaskGroup(of: (String, PageWeatherState?).self) { group in
-            for location in savedLocations {
-                let key = pageKey(for: location)
-                // Skip if we already have fresh data
-                if let existing = pageStates[key], !existing.weather.isStale {
-                    continue
-                }
-                group.addTask { [self] in
-                    do {
-                        let snapshot = try await weatherService.fetchWeather(for: location.clLocation)
-                        let phrase = await phraseEngine.selectPhrase(
-                            conditionTag: snapshot.current.conditionTag,
-                            tempF: snapshot.current.temperature,
-                            mode: appState.phraseMode,
-                            isDay: snapshot.current.isDay
-                        )
-                        let timeStr = Date.currentTimeString(timezone: snapshot.timezone)
-                        return (key, PageWeatherState(
-                            weather: snapshot,
-                            phrase: phrase,
-                            locationName: location.name,
-                            locationState: location.state,
-                            currentTime: timeStr
-                        ))
-                    } catch {
-                        vmLog.error("prefetch failed for \(location.name, privacy: .public): \(error.localizedDescription, privacy: .public)")
-                        return (key, nil)
-                    }
-                }
+
+        // Filter work items up-front so the task group only handles actual
+        // fetches — keeps the concurrency gate accurate.
+        let work: [SavedLocation] = savedLocations.filter { location in
+            let key = pageKey(for: location)
+            let cachedEntry = WidgetDataStore.loadEntry(for: location.uuid)
+            let cacheStale = cachedEntry.map {
+                Date().timeIntervalSince($0.updatedAt) > AppConstants.weatherCacheTTL
+            } ?? true
+            if let existing = pageStates[key], !existing.weather.isStale, !cacheStale {
+                return false
             }
-            for await (key, state) in group {
-                if let state {
-                    pageStates[key] = state
+            return true
+        }
+
+        var results: [PrefetchResult] = []
+
+        await withTaskGroup(of: PrefetchResult?.self) { group in
+            var started = 0
+            // Prime the group with up to N tasks; each completion starts the
+            // next one so we never have more than N in flight.
+            for location in work.prefix(Self.prefetchConcurrencyLimit) {
+                group.addTask { [self] in await prefetchOne(location) }
+                started += 1
+            }
+            while let next = await group.next() {
+                if let r = next { results.append(r) }
+                if started < work.count {
+                    let location = work[started]
+                    started += 1
+                    group.addTask { [self] in await prefetchOne(location) }
                 }
             }
         }
+
+        // Commit in-memory state for the active-page / iPad display path.
+        for r in results {
+            pageStates[r.pageKey] = r.state
+        }
+
+        // Commit widget multi-cache. One JSON write for the whole batch.
+        if !results.isEmpty {
+            var multi = WidgetDataStore.loadMulti()
+            for r in results {
+                multi[r.widgetID] = await buildCachedWeatherData(
+                    from: r.state,
+                    displayName: r.displayName
+                )
+            }
+            WidgetDataStore.saveMulti(multi)
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
+
+    /// Also prefetch + persist the device's current-location weather to the
+    /// widget multi-cache under the `LocationEntity.myLocationID` key so
+    /// widgets configured for "My Location" can serve cached data instead of
+    /// doing a WeatherKit fetch on every 15-min refresh.
+    func persistCurrentLocationToWidgetCache() async {
+        guard let state = pageStates[Self.currentLocationKey] else { return }
+        let data = await buildCachedWeatherData(
+            from: state,
+            displayName: currentLocationDisplayName.isEmpty ? state.locationName : currentLocationDisplayName
+        )
+        WidgetDataStore.saveEntry(data, for: LocationEntity.myLocationID)
+    }
+
+    /// Build a `CachedWeatherData` from a loaded `PageWeatherState`, including
+    /// the large widget's hourly/daily preview arrays and a small/primary/extra
+    /// phrase set. Shared between the single-location `updateWidget` and the
+    /// multi-location `prefetchAllLocations` paths so both produce identical
+    /// widget-visible shapes.
+    private func buildCachedWeatherData(
+        from state: PageWeatherState,
+        displayName: String
+    ) async -> CachedWeatherData {
+        let snapshot = state.weather
+        let now = Date()
+        let currentHourStart = Calendar.current.dateInterval(of: .hour, for: now)?.start ?? now
+        let hourFormatter = Self.hourFormatter(for: snapshot.timezone)
+        let dayFormatter = Self.dayFormatter(for: snapshot.timezone)
+
+        let cachedHourly: [CachedHourlyPoint] = Array(
+            snapshot.hourly.filter { $0.time >= currentHourStart }.prefix(6)
+        ).enumerated().map { index, h in
+            CachedHourlyPoint(
+                hour: index == 0 ? "Now" : hourFormatter.string(from: h.time).replacingOccurrences(of: " ", with: ""),
+                temp: Int(h.temperature.rounded()),
+                conditionTag: h.conditionTag.rawValue,
+                isDay: h.isDay
+            )
+        }
+        let cachedDaily: [CachedDailyPoint] = Array(snapshot.daily.prefix(5)).enumerated().map { index, d in
+            CachedDailyPoint(
+                day: index == 0 ? "Today" : dayFormatter.string(from: d.date),
+                high: Int(d.high.rounded()),
+                low: Int(d.low.rounded()),
+                conditionTag: d.conditionTag.rawValue
+            )
+        }
+
+        let extraPhrases = await phraseEngine.selectMultiplePhrases(
+            count: 3,
+            conditionTag: snapshot.current.conditionTag,
+            tempF: snapshot.current.temperature,
+            mode: appState.phraseMode,
+            isDay: snapshot.current.isDay
+        )
+        let smallPhrase = await phraseEngine.selectPhrase(
+            conditionTag: snapshot.current.conditionTag,
+            tempF: snapshot.current.temperature,
+            mode: appState.phraseMode,
+            isDay: snapshot.current.isDay,
+            maxLength: 70
+        )
+
+        return CachedWeatherData(
+            temperature: snapshot.current.temperature,
+            conditionTag: snapshot.current.conditionTag.rawValue,
+            conditionLabel: snapshot.current.conditionLabel,
+            isDay: snapshot.current.isDay,
+            feelsLike: snapshot.current.feelsLike,
+            high: snapshot.daily.first?.high ?? 0,
+            low: snapshot.daily.first?.low ?? 0,
+            locationName: displayName,
+            phrase: state.phrase,
+            phraseMode: appState.phraseMode.rawValue,
+            additionalPhrases: extraPhrases,
+            smallPhrase: smallPhrase,
+            hourlyPreview: cachedHourly,
+            dailyPreview: cachedDaily
+        )
     }
 
     // MARK: - Widget Updates
-
-    /// Write the widget's "which city is the app showing right now" identity
-    /// IMMEDIATELY — before the async weather/phrase pipeline runs. Ensures the
-    /// widget always sees the current mode flag, coords, and name even if the
-    /// full `updateWidget` bails (e.g. pageStates hasn't loaded yet for the
-    /// cycled-to city). Follows with an immediate widget reload.
-    func writeWidgetIdentity(for pageKey: String) {
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        let isCurrentDevice = (pageKey == Self.currentLocationKey)
-        defaults.set(isCurrentDevice, forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice)
-
-        // If we have weather loaded for this page, also update coords + name so
-        // the widget can render the right city even if JSON cache is stale.
-        if let state = pageStates[pageKey] {
-            defaults.set(state.weather.location.coordinate.latitude,
-                         forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
-            defaults.set(state.weather.location.coordinate.longitude,
-                         forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
-            defaults.set(state.locationName,
-                         forKey: AppConstants.UserDefaultsKeys.lastLocationName)
-        }
-        WidgetCenter.shared.reloadAllTimelines()
-    }
-
-    /// Called from MainView when user swipes to a new city page.
-    /// Cancels any in-flight widget update from a previous swipe so only the
-    /// most recent swipe's data reaches the widget. The captured `pageKey` ensures
-    /// the correct city is written even if `activePageKey` changes before execution.
-    func scheduleWidgetUpdate(for pageKey: String) {
-        widgetUpdateTask?.cancel()
-        widgetUpdateTask = Task {
-            guard !Task.isCancelled else { return }
-            await updateWidget(for: pageKey)
-            guard !Task.isCancelled else { return }
-            await refreshPageIfStale(for: pageKey)
-        }
-    }
+    //
+    // As of the per-widget-location rewrite, widgets no longer follow the
+    // app's active page — each widget is configured for its own location via
+    // AppIntentConfiguration. `updateWidget(for:)` below is still called when
+    // weather or phrase data for a given page changes, and it routes that
+    // data into the App Group multi-cache keyed by the corresponding
+    // `LocationEntity.id` so the widget can find it.
 
     /// Write complete, consistent widget data for the specified page.
     /// Uses `pageKey` parameter (not `activePageKey`) to avoid stale reads from rapid swipes.
     /// Generates all widget phrases (primary + 3 extra for timeline rotation + small).
+    ///
+    /// Writes to:
+    /// - The App Group multi-cache (keyed by `LocationEntity.id`) — the
+    ///   primary source every widget reads.
+    /// - The legacy single-file `widget-weather.json` — only when this page IS
+    ///   My Location. Kept as a fallback for a widget that still has My
+    ///   Location configured but whose multi-cache entry was evicted.
+    /// - The `phraseMode` UserDefault — so a widget fetching fresh on cache
+    ///   miss generates phrases in the current mode.
     func updateWidget(for pageKey: String) async {
         guard !Task.isCancelled else { return }
         guard let state = pageStates[pageKey] else { return }
         let snapshot = state.weather
-
-        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
-        defaults.set(snapshot.location.coordinate.latitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLat)
-        defaults.set(snapshot.location.coordinate.longitude, forKey: AppConstants.UserDefaultsKeys.lastLocationLon)
-        defaults.set(state.locationName, forKey: AppConstants.UserDefaultsKeys.lastLocationName)
-        // Tell the widget which mode it's in: true = follow device GPS
-        // (user was on "My Location" page), false = honor the pinned city.
-        let isCurrentDevice = (pageKey == Self.currentLocationKey)
-        defaults.set(isCurrentDevice, forKey: AppConstants.UserDefaultsKeys.lastLocationIsCurrentDevice)
 
         // Build hourly/daily preview arrays for the large widget.
         // Formatters cached by timezone identifier so repeat widget updates
@@ -435,10 +549,14 @@ final class WeatherViewModel {
             )
         }
 
-        // ── Phase 1: Write JSON + UserDefaults IMMEDIATELY with main phrase ──
-        // This ensures the widget has real data right away, even before extra
-        // phrase generation (which is slow — loads 728KB JSON on first call).
-        WidgetDataStore.save(CachedWeatherData(
+        let entityID = widgetEntityID(for: pageKey)
+        let isMyLocationPage = (pageKey == Self.currentLocationKey)
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+
+        // ── Phase 1: Write multi-cache + single-file IMMEDIATELY with main phrase ──
+        // Ensures the widget has real data right away, even before extra
+        // phrase generation (slow — PhraseEngine loads 728KB JSON on first call).
+        let partialCached = CachedWeatherData(
             temperature: snapshot.current.temperature,
             conditionTag: snapshot.current.conditionTag.rawValue,
             conditionLabel: snapshot.current.conditionLabel,
@@ -451,24 +569,19 @@ final class WeatherViewModel {
             phraseMode: appState.phraseMode.rawValue,
             hourlyPreview: cachedHourly,
             dailyPreview: cachedDaily
-        ))
-
-        // UserDefaults fallback for weather values (widget provider uses these if JSON fails)
-        defaults.set(snapshot.current.temperature, forKey: AppConstants.UserDefaultsKeys.cachedTemperature)
-        defaults.set(snapshot.current.conditionTag.rawValue, forKey: AppConstants.UserDefaultsKeys.cachedConditionTag)
-        defaults.set(snapshot.current.conditionLabel, forKey: AppConstants.UserDefaultsKeys.cachedConditionLabel)
-        defaults.set(snapshot.current.isDay, forKey: AppConstants.UserDefaultsKeys.cachedIsDay)
-        defaults.set(snapshot.current.feelsLike, forKey: AppConstants.UserDefaultsKeys.cachedFeelsLike)
-        defaults.set(snapshot.daily.first?.high ?? 0, forKey: AppConstants.UserDefaultsKeys.cachedHigh)
-        defaults.set(snapshot.daily.first?.low ?? 0, forKey: AppConstants.UserDefaultsKeys.cachedLow)
-        defaults.set(state.phrase, forKey: AppConstants.UserDefaultsKeys.currentPhrase)
+        )
+        WidgetDataStore.saveEntry(partialCached, for: entityID)
+        if isMyLocationPage {
+            WidgetDataStore.save(partialCached)
+        }
+        // phraseMode is the only UserDefault the widget extension reads — its
+        // PhraseEngine uses it to generate fresh phrases on cache miss.
         defaults.set(appState.phraseMode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
-        defaults.synchronize()
 
         // Tell WidgetKit to refresh NOW — widget gets real weather data instantly
         WidgetCenter.shared.reloadAllTimelines()
 
-        // ── Phase 2: Generate extra phrases in background, then update JSON ──
+        // ── Phase 2: Generate extra phrases in background, then update cache ──
         // Additional phrases enable the widget to show variety across 15-min cycles.
         // This is slow (loads PhraseEngine JSON) but the widget already has data above.
         let extraPhrases = await phraseEngine.selectMultiplePhrases(
@@ -478,7 +591,6 @@ final class WeatherViewModel {
             mode: appState.phraseMode,
             isDay: snapshot.current.isDay
         )
-
         let smallPhrase = await phraseEngine.selectPhrase(
             conditionTag: snapshot.current.conditionTag,
             tempF: snapshot.current.temperature,
@@ -490,8 +602,7 @@ final class WeatherViewModel {
         // Bail if this task was superseded by a newer swipe while generating phrases
         guard !Task.isCancelled else { return }
 
-        // Update JSON with the full set of phrases for timeline rotation
-        WidgetDataStore.save(CachedWeatherData(
+        let fullCached = CachedWeatherData(
             temperature: snapshot.current.temperature,
             conditionTag: snapshot.current.conditionTag.rawValue,
             conditionLabel: snapshot.current.conditionLabel,
@@ -506,10 +617,24 @@ final class WeatherViewModel {
             smallPhrase: smallPhrase,
             hourlyPreview: cachedHourly,
             dailyPreview: cachedDaily
-        ))
-        defaults.synchronize()
+        )
+        WidgetDataStore.saveEntry(fullCached, for: entityID)
+        if isMyLocationPage {
+            WidgetDataStore.save(fullCached)
+        }
 
         WidgetCenter.shared.reloadAllTimelines()
+    }
+
+    /// Resolve a `pageKey` (current-location sentinel OR coordinate-string for
+    /// a saved city) into the widget multi-cache key. For coord-based keys we
+    /// look up `savedLocationUUIDs` maintained by `MainView`; if unmapped,
+    /// fall back to the pageKey itself so data still lands somewhere.
+    private func widgetEntityID(for pageKey: String) -> String {
+        if pageKey == Self.currentLocationKey {
+            return LocationEntity.myLocationID
+        }
+        return savedLocationUUIDs[pageKey] ?? pageKey
     }
 
     /// If the specified page's data is stale, refresh it in the background.
