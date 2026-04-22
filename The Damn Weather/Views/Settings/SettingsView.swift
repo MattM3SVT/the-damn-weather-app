@@ -156,6 +156,18 @@ struct WhatsNewView: View {
         List {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.3.1")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "aqi.medium", color: .mint, text: "Air quality now actually shows up. A build hiccup silently disabled it in 1.3. Fixed.")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.3")
                         .font(.title2.bold())
 
