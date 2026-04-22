@@ -74,8 +74,11 @@ struct HeroSection: View {
                 .opacity(1 - locationProgress)
             }
 
-            // Quick stats row
-            HStack(spacing: DesignTokens.spaceMD) {
+            // Quick stats row. Top-aligned so multi-line values (e.g. "Partly
+            // Cloudy" wrapping to two lines) extend downward rather than
+            // vertically centering each stat and pushing its label out of
+            // line with the rest.
+            HStack(alignment: .top, spacing: DesignTokens.spaceMD) {
                 StatItem(label: "Feels Like", value: unit.format(weather.feelsLike))
                 StatItem(label: "Condition", value: weather.conditionTag.label)
                 StatItem(label: "Wind", value: appState.windSpeedUnit.format(weather.windSpeed))
