@@ -129,6 +129,10 @@ struct WeatherSnapshot: @unchecked Sendable {
     let timezone: TimeZone
     let fetchedAt: Date
     let location: CLLocation  // CLLocation is thread-safe but not marked Sendable
+    /// US air quality from AirNow. Nil when the location is outside AirNow's
+    /// coverage, when the API key is not configured, or when the fetch failed.
+    /// The details grid hides the Air Quality card when this is nil.
+    let airQuality: AirQualityData?
 
     nonisolated var isStale: Bool {
         Date().timeIntervalSince(fetchedAt) > 15 * 60 // 15 minutes

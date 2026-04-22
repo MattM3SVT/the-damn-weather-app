@@ -161,6 +161,7 @@ struct WhatsNewView: View {
 
                     VStack(alignment: .leading, spacing: 8) {
                         ChangelogItem(icon: "square.and.arrow.up", color: .accentRed, text: "Share the damn weather. Tap the new share icon to send a stylized weather card to friends")
+                        ChangelogItem(icon: "aqi.medium", color: .mint, text: "Air quality for US locations. Tap the new AQI card for per-pollutant readings, health guidance, and how today compares to yesterday. Powered by EPA AirNow.")
                         ChangelogItem(icon: "antenna.radiowaves.left.and.right", color: .blue, text: "Observations now cross-checked against NWS and METAR airport data, so the forecast actually knows what's happening outside")
                         ChangelogItem(icon: "widget.small", color: .green, text: "Widgets can now be set to any saved city. Long-press to pick. Existing widgets may need re-adding once.")
                         ChangelogItem(icon: "wrench.and.screwdriver.fill", color: .gray, text: "Bug fixes and polish")

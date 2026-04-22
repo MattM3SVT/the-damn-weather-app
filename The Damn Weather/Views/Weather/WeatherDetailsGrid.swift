@@ -3,8 +3,8 @@ import WeatherShared
 
 /// Detail page types that can be opened from cards
 enum WeatherDetailType: Identifiable {
-    case temperature, wind, uvIndex, pressure, sun, precipitation
-    case visibility, cloudCover, moon, humidity
+    case temperature, wind, uvIndex, sun, precipitation
+    case visibility, cloudCover, moon, humidity, airQuality
 
     var id: String { String(describing: self) }
 }
@@ -66,17 +66,21 @@ struct WeatherDetailsGrid: View {
                 .accessibilityHint("Double tap for details")
                 .onTapGesture { HapticsService.lightTap(); selectedDetail = .uvIndex }
 
-                // Pressure
-                DetailCard(
-                    icon: "gauge.medium",
-                    label: "Pressure",
-                    value: appState.pressureUnit.format(weather.current.pressure),
-                    extra: nil,
-                    tappable: true
-                )
-                .accessibilityLabel("Pressure, \(appState.pressureUnit.format(weather.current.pressure))")
-                .accessibilityHint("Double tap for details")
-                .onTapGesture { HapticsService.lightTap(); selectedDetail = .pressure }
+                // Air Quality — conditional on AirNow returning data (US-only
+                // coverage, requires a configured API key). When nil, the card
+                // silently absent rather than shown with an error state.
+                if let aqi = weather.airQuality {
+                    DetailCard(
+                        icon: "aqi.medium",
+                        label: "Air Quality",
+                        value: "\(aqi.aqi)",
+                        extra: aqi.category.label,
+                        tappable: true
+                    )
+                    .accessibilityLabel("Air Quality, \(aqi.aqi), \(aqi.category.label)")
+                    .accessibilityHint("Double tap for details")
+                    .onTapGesture { HapticsService.lightTap(); selectedDetail = .airQuality }
+                }
 
                 // Sunrise/Sunset
                 if let today = weather.daily.first {
@@ -171,8 +175,6 @@ struct WeatherDetailsGrid: View {
             WindDetailView(weather: weather)
         case .uvIndex:
             UVIndexDetailView(weather: weather)
-        case .pressure:
-            PressureDetailView(weather: weather)
         case .sun:
             SunDetailView(weather: weather)
         case .precipitation:
@@ -185,6 +187,10 @@ struct WeatherDetailsGrid: View {
             CloudCoverDetailView(weather: weather)
         case .moon:
             MoonDetailView(weather: weather)
+        case .airQuality:
+            if let aqi = weather.airQuality {
+                AirQualityDetailView(data: aqi)
+            }
         }
     }
 }

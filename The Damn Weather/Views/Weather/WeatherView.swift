@@ -59,7 +59,8 @@ struct WeatherView: View {
                         onRefreshPhrase?()
                     },
                     phraseTapEnabled: !sidebarOpen,
-                    collapseProgress: collapseProgress
+                    collapseProgress: collapseProgress,
+                    airQuality: weather.airQuality
                 )
 
                 // Minute-by-minute precipitation summary

@@ -17,6 +17,24 @@ public enum AppConstants {
     public static let crossCheckCacheMaxEntries = 200                     // LRU cap per dict
     public static let nwsSupportEmail = "support@hivewerks.com"
 
+    // Air quality (AirNow / EPA) supplemental data
+    public static let airQualityCacheTTL: TimeInterval = 30 * 60          // 30 min
+    // Negative cache is deliberately short. AirNow returns an empty body for
+    // both "permanently outside coverage" (non-US) and "temporarily no
+    // nearby monitor reporting" (US rural, monitor maintenance, data gap).
+    // We can't tell them apart, so 4h balances not hammering AirNow with
+    // not blocking a real recovery for a full day.
+    public static let airQualityNoCoverageTTL: TimeInterval = 4 * 3600    // 4h
+    public static let airNowHTTPTimeout: TimeInterval = 15                // per request (cold-start safe)
+    public static let airNowOuterTimeout: TimeInterval = 18               // whole-fetch budget
+    // Gates concurrent AirNow requests within the process. Prefetch of 7
+    // saved locations fires 14 requests (current + historical per location).
+    // A 0.2s inter-request interval caps peak throughput at ~300/min, well
+    // under AirNow's 500/hr limit while keeping the worst-case prefetch wait
+    // under 3s.
+    public static let airNowMinInterRequestInterval: TimeInterval = 0.2
+    public static let airQualityCacheMaxEntries = 200                     // LRU cap
+
     // Cross-check confidence thresholds. Used by applyConsensusOverride to
     // block a ground-station override when WK's own cloud-cover reading
     // strongly confirms its base tag. Protects against microclimate mismatch

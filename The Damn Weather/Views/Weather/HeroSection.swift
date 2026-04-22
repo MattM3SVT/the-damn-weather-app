@@ -14,6 +14,10 @@ struct HeroSection: View {
     let onRefreshPhrase: () -> Void
     var phraseTapEnabled: Bool = true
     var collapseProgress: CGFloat = 0
+    /// Optional AQI stat appended to the quick-stats row. Nil when the
+    /// location has no AirNow coverage or the service is disabled; in that
+    /// case the row renders with the standard four stats.
+    var airQuality: AirQualityData? = nil
 
     @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(AppState.self) private var appState
@@ -76,6 +80,9 @@ struct HeroSection: View {
                 StatItem(label: "Condition", value: weather.conditionTag.label)
                 StatItem(label: "Wind", value: appState.windSpeedUnit.format(weather.windSpeed))
                 StatItem(label: "UV Index", value: "\(weather.uvIndex)")
+                if let airQuality {
+                    StatItem(label: "Air Quality", value: "\(airQuality.aqi)")
+                }
             }
             .frame(maxWidth: 500)
             .padding(.top, DesignTokens.spaceSM)

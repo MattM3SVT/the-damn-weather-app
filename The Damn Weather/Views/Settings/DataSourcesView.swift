@@ -52,7 +52,25 @@ struct DataSourcesView: View {
             } header: {
                 Text("METAR (Aviation Weather Center)")
             } footer: {
-                Text("We only cross-check the current sky condition. Forecasts, alerts, and every other piece of data come from WeatherKit.")
+                Text("We only cross-check the current sky condition against NWS and METAR. Forecasts, alerts, and every other piece of data come from WeatherKit.")
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: DesignTokens.spaceSM) {
+                    Text("US air quality index and pollutant readings from the U.S. EPA AirNow network of state, local, tribal, and federal monitoring stations. Covers the contiguous US, Alaska, Hawaii, and Puerto Rico. When you're outside AirNow's coverage, the Air Quality card is hidden.")
+                        .font(.system(size: DesignTokens.bodySize))
+                    if let url = URL(string: "https://www.airnow.gov/") {
+                        Link(destination: url) {
+                            Label("airnow.gov", systemImage: "arrow.up.right.square")
+                                .font(.system(size: DesignTokens.smallSize, weight: .medium))
+                        }
+                    }
+                }
+                .padding(.vertical, 4)
+            } header: {
+                Text("AirNow (U.S. EPA)")
+            } footer: {
+                Text("Air quality is supplemental and US-only. When no nearby monitor is reporting, we hide the card rather than guess.")
             }
         }
         .navigationTitle("About Our Data")

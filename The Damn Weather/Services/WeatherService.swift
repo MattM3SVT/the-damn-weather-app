@@ -17,6 +17,7 @@ actor WeatherService {
     private var timezoneIdentifierCache: [String: String] = [:]
     private var cachedAttribution: WeatherAttribution?
     private let crossCheck = ObservationCrossCheckService()
+    private let airQuality = AirQualityService()
 
     private func cacheKey(for location: CLLocation) -> String {
         String(format: "%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude)
@@ -30,17 +31,19 @@ actor WeatherService {
             return cached
         }
 
-        // Fetch WeatherKit + NWS + METAR in parallel. The cross-check internally
-        // fans out to NWS and METAR via its own async let — all three sources run
-        // concurrently, with the cross-check non-throwing (empty on failure).
+        // Fetch WeatherKit + NWS + METAR + AirNow in parallel. Each supplemental
+        // source is non-throwing (cross-check returns empty, air-quality returns
+        // nil) so one supplemental failure never cascades into the primary flow.
         async let wkTask = service.weather(
             for: location,
             including: .current, .hourly, .daily, .minute, .alerts
         )
         async let consensusTask = crossCheck.fetchSkyConsensus(for: location)
+        async let airQualityTask = airQuality.fetchAirQuality(for: location)
 
         let weather = try await wkTask
         let consensus = await consensusTask
+        let airQualityData = await airQualityTask
 
         let current = weather.0
         let hourly = weather.1
@@ -224,7 +227,8 @@ actor WeatherService {
             moonPhase: moonPhase,
             timezone: locationTimezone,
             fetchedAt: Date(),
-            location: location
+            location: location,
+            airQuality: airQualityData
         )
 
         cache[key] = snapshot
@@ -245,6 +249,7 @@ actor WeatherService {
     func clearCache() async {
         cache.removeAll()
         await crossCheck.clearCache()
+        await airQuality.clearCache()
     }
 
     /// Get the correct timezone for a location via reverse geocoding.
