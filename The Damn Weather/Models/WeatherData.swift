@@ -133,6 +133,12 @@ struct WeatherSnapshot: @unchecked Sendable {
     /// coverage, when the API key is not configured, or when the fetch failed.
     /// The details grid hides the Air Quality card when this is nil.
     let airQuality: AirQualityData?
+    /// True when this snapshot was hydrated from the widget's compact cache and
+    /// is missing detail fields (wind, UV, visibility, cloud cover, pressure,
+    /// humidity, dew point). Views that would render those as "0" must hide
+    /// them when this is true. Replaced by a full snapshot as soon as the
+    /// network fetch lands.
+    var isPartial: Bool = false
 
     nonisolated var isStale: Bool {
         Date().timeIntervalSince(fetchedAt) > 15 * 60 // 15 minutes

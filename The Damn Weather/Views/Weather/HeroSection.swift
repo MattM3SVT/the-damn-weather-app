@@ -18,6 +18,9 @@ struct HeroSection: View {
     /// location has no AirNow coverage or the service is disabled; in that
     /// case the row renders with the standard four stats.
     var airQuality: AirQualityData? = nil
+    /// When true, the snapshot was hydrated from the widget cache and has no
+    /// real values for Wind or UV Index — hide those stats rather than show 0.
+    var isPartial: Bool = false
 
     @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(AppState.self) private var appState
@@ -81,8 +84,10 @@ struct HeroSection: View {
             HStack(alignment: .top, spacing: DesignTokens.spaceMD) {
                 StatItem(label: "Feels Like", value: unit.format(weather.feelsLike))
                 StatItem(label: "Condition", value: weather.conditionTag.label)
-                StatItem(label: "Wind", value: appState.windSpeedUnit.format(weather.windSpeed))
-                StatItem(label: "UV Index", value: "\(weather.uvIndex)")
+                if !isPartial {
+                    StatItem(label: "Wind", value: appState.windSpeedUnit.format(weather.windSpeed))
+                    StatItem(label: "UV Index", value: "\(weather.uvIndex)")
+                }
                 if let airQuality {
                     StatItem(label: "Air Quality", value: "\(airQuality.aqi)")
                 }

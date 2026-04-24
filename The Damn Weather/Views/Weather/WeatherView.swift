@@ -60,7 +60,8 @@ struct WeatherView: View {
                     },
                     phraseTapEnabled: !sidebarOpen,
                     collapseProgress: collapseProgress,
-                    airQuality: weather.airQuality
+                    airQuality: weather.airQuality,
+                    isPartial: weather.isPartial
                 )
 
                 // Minute-by-minute precipitation summary
@@ -82,11 +83,16 @@ struct WeatherView: View {
                     unit: temperatureUnit
                 )
 
-                // Weather details grid
-                WeatherDetailsGrid(
-                    weather: weather,
-                    unit: temperatureUnit
-                )
+                // Weather details grid — hidden when the snapshot is a
+                // cache-hydrated partial (wind, UV, visibility, cloud cover,
+                // pressure, humidity, dew point are all 0). Fresh fetch will
+                // replace the snapshot and the grid will appear in place.
+                if !weather.isPartial {
+                    WeatherDetailsGrid(
+                        weather: weather,
+                        unit: temperatureUnit
+                    )
+                }
 
                 // Apple Weather attribution
                 WeatherAttributionView(attribution: attribution)

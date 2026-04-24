@@ -156,6 +156,18 @@ struct WhatsNewView: View {
         List {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.3.2")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "wrench.and.screwdriver.fill", color: .gray, text: "Bug fixes. A few things were being dramatic. They've been talked to.")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.3.1")
                         .font(.title2.bold())
 

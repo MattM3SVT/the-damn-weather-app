@@ -7,7 +7,10 @@ import WeatherShared
 /// iPad sidebar — always-visible list of saved locations with weather + phrases.
 /// Matches Apple Weather's iPad sidebar pattern.
 struct LocationSidebar: View {
-    @Query(sort: \SavedLocation.sortOrder, animation: .smooth) private var locations: [SavedLocation]
+    // No `animation:` parameter — List handles its own row insert/delete/move
+    // animations on a @Query-backed ForEach. Adding a query-level animation
+    // double-animates during reorder and causes rows to overlap mid-drag.
+    @Query(sort: \SavedLocation.sortOrder) private var locations: [SavedLocation]
     @Environment(\.modelContext) private var modelContext
     @Environment(AppState.self) private var appState
 
@@ -275,10 +278,8 @@ struct LocationSidebar: View {
                 .onMove { source, destination in
                     var reordered = locations
                     reordered.move(fromOffsets: source, toOffset: destination)
-                    withAnimation(.none) {
-                        for (index, loc) in reordered.enumerated() {
-                            loc.sortOrder = index
-                        }
+                    for (index, loc) in reordered.enumerated() {
+                        loc.sortOrder = index
                     }
                     try? modelContext.save()
                 }

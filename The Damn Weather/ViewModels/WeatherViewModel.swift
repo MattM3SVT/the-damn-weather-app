@@ -84,6 +84,174 @@ final class WeatherViewModel {
 
     // MARK: - Public API
 
+    /// Populate `pageStates` from the widget's persistent App Group cache so
+    /// cold-launch renders real data instantly instead of a skeleton. The
+    /// cached snapshots are marked `isPartial` — HeroSection hides Wind/UV
+    /// Index and WeatherView hides the detail grid until a fresh fetch lands.
+    ///
+    /// Requires `savedLocationUUIDs` to already be synced (MainView does this
+    /// before calling us). Safe to call repeatedly — skips keys that already
+    /// have a non-partial pageState populated.
+    func hydrateFromWidgetCache(savedLocations: [SavedLocation]) {
+        let multi = WidgetDataStore.loadMulti()
+        guard !multi.isEmpty else { return }
+
+        // My Location entry — use a placeholder CLLocation(0,0); `refresh()`
+        // and `refreshOnForeground()` route through `loadWeatherForCurrentLocation()`
+        // when `isShowingDeviceLocation` is true, so the placeholder coord is
+        // never used for a real fetch.
+        if let cached = multi[LocationEntity.myLocationID],
+           pageStates[Self.currentLocationKey]?.weather.isPartial != false {
+            let snapshot = Self.syntheticSnapshot(
+                from: cached,
+                location: CLLocation(latitude: 0, longitude: 0)
+            )
+            let (name, state) = Self.splitCachedLocationName(cached.locationName)
+            pageStates[Self.currentLocationKey] = PageWeatherState(
+                weather: snapshot,
+                phrase: cached.phrase,
+                locationName: name,
+                locationState: state,
+                currentTime: Date.currentTimeString(timezone: snapshot.timezone)
+            )
+            // Seed the sidebar's device-location projection too so the iPad
+            // sidebar and the "My Location" chip aren't blank on first render.
+            currentLocationWeather = snapshot
+            currentLocationName = name
+            currentLocationState = state
+            currentLocationPhrase = cached.phrase
+            // Mark the device-location path so `refresh()` routes through
+            // `loadWeatherForCurrentLocation()` if a pull-to-refresh fires
+            // before the initial fetch sets this flag itself.
+            isShowingDeviceLocation = true
+            // Seed the iPad stored-property projection for the active page.
+            if activePageKey == Self.currentLocationKey {
+                weather = snapshot
+                locationName = name
+                locationState = state
+                currentPhrase = cached.phrase
+            }
+        }
+
+        // Saved cities — we have real coords, so synthetic snapshots can carry
+        // the correct `location` and refresh paths work normally.
+        for saved in savedLocations {
+            guard let cached = multi[saved.uuid] else { continue }
+            let key = pageKey(for: saved)
+            // Skip if a real (non-partial) snapshot is already loaded
+            if let existing = pageStates[key], !existing.weather.isPartial { continue }
+            let snapshot = Self.syntheticSnapshot(
+                from: cached,
+                location: saved.clLocation
+            )
+            pageStates[key] = PageWeatherState(
+                weather: snapshot,
+                phrase: cached.phrase,
+                locationName: saved.name,
+                locationState: saved.state,
+                currentTime: Date.currentTimeString(timezone: snapshot.timezone)
+            )
+        }
+    }
+
+    /// Build a minimal but renderable `WeatherSnapshot` from a widget cache
+    /// entry. Detail fields (pressure, wind, UV, visibility, cloud cover,
+    /// humidity, dew point) are zeroed; `isPartial = true` signals to the
+    /// views to hide widgets that would render those zeros.
+    private static func syntheticSnapshot(
+        from cached: CachedWeatherData,
+        location: CLLocation
+    ) -> WeatherSnapshot {
+        let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) ?? .clear
+        let current = CurrentWeatherData(
+            temperature: cached.temperature,
+            feelsLike: cached.feelsLike,
+            humidity: 0,
+            isDay: cached.isDay,
+            precipitation: 0,
+            conditionTag: conditionTag,
+            conditionLabel: cached.conditionLabel,
+            pressure: 0,
+            windSpeed: 0,
+            windDirection: 0,
+            windGusts: 0,
+            cloudCover: 0,
+            uvIndex: 0,
+            visibility: 0,
+            dewPoint: 0
+        )
+
+        // Expand cached preview points to the app's richer forecast types.
+        // The hourly strip renders temp + condition + isDay only; the daily
+        // strip renders high/low + condition only. Zeros are invisible.
+        let now = Date()
+        let calendar = Calendar.current
+        let currentHourStart = calendar.dateInterval(of: .hour, for: now)?.start ?? now
+        let hourly = cached.hourlyPreview.enumerated().map { index, h -> HourlyForecastPoint in
+            let time = calendar.date(byAdding: .hour, value: index, to: currentHourStart) ?? now
+            return HourlyForecastPoint(
+                time: time,
+                temperature: Double(h.temp),
+                feelsLike: Double(h.temp),
+                precipitationProbability: 0,
+                conditionTag: WeatherConditionTag(rawValue: h.conditionTag) ?? .clear,
+                windSpeed: 0,
+                windDirection: 0,
+                windGusts: 0,
+                isDay: h.isDay,
+                humidity: 0,
+                pressure: 0,
+                visibility: 0,
+                uvIndex: 0,
+                dewPoint: 0,
+                cloudCover: 0,
+                precipitationAmount: 0
+            )
+        }
+        let startOfDay = calendar.startOfDay(for: now)
+        let daily = cached.dailyPreview.enumerated().map { index, d -> DailyForecastPoint in
+            let date = calendar.date(byAdding: .day, value: index, to: startOfDay) ?? now
+            return DailyForecastPoint(
+                date: date,
+                high: Double(d.high),
+                low: Double(d.low),
+                conditionTag: WeatherConditionTag(rawValue: d.conditionTag) ?? .clear,
+                conditionLabel: "",
+                sunrise: date,
+                sunset: date,
+                precipitationSum: 0,
+                precipitationProbability: 0,
+                windMax: 0,
+                uvIndexMax: 0,
+                moonPhase: nil,
+                moonIllumination: 0
+            )
+        }
+
+        return WeatherSnapshot(
+            current: current,
+            hourly: hourly,
+            daily: daily,
+            minutePrecipitation: [],
+            alerts: [],
+            moonPhase: nil,
+            timezone: .current,
+            fetchedAt: cached.updatedAt,
+            location: location,
+            airQuality: nil,
+            isPartial: true
+        )
+    }
+
+    /// Cache stores a combined display name like "Seattle, WA" — split back
+    /// into (name, state) so the view model's projections match the fresh
+    /// fetch shape (which keeps them separate).
+    private static func splitCachedLocationName(_ combined: String) -> (name: String, state: String) {
+        let parts = combined.split(separator: ",", maxSplits: 1).map { $0.trimmingCharacters(in: .whitespaces) }
+        if parts.count == 2 { return (parts[0], parts[1]) }
+        return (combined, "")
+    }
+
     func loadWeatherForCurrentLocation() async {
         guard !isLoading else { return }  // Prevent concurrent location requests
         isShowingDeviceLocation = true
@@ -236,7 +404,15 @@ final class WeatherViewModel {
             return
         }
         await weatherService.clearCache()
-        await loadWeather(for: weather.location)
+        // When the active page is the device's current location, refresh via
+        // GPS — the snapshot's `location` may be a placeholder (e.g. when the
+        // snapshot was hydrated from the widget cache, which stores no coords
+        // for My Location).
+        if isShowingDeviceLocation {
+            await loadWeatherForCurrentLocation()
+        } else {
+            await loadWeather(for: weather.location)
+        }
     }
 
     /// Auto-refresh when app returns to foreground.

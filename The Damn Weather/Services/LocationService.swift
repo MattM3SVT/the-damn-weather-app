@@ -25,6 +25,17 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()
     }
 
+    /// Maximum time to wait for `CLLocationManager.requestLocation()` before
+    /// falling back to the system's last-known fix. Keeps cold launch bounded:
+    /// on poor GPS signal, `requestLocation()` alone can hang for 10+ seconds.
+    private static let locationRequestTimeout: TimeInterval = 5
+
+    /// Maximum age of a system-cached `CLLocationManager.location` we'll accept
+    /// as a fallback when the fresh request times out. Ten minutes is long
+    /// enough to cover a brief GPS cold-start slump but short enough that
+    /// we're not showing weather from a previous trip.
+    private static let lastKnownMaxAge: TimeInterval = 10 * 60
+
     func requestLocation() async throws -> CLLocation {
         // Wait for permission if not yet determined
         if authorizationStatus == .notDetermined {
@@ -38,12 +49,45 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             throw LocationError.permissionDenied
         }
 
-        return try await withCheckedThrowingContinuation { continuation in
-            // Cancel any pending continuation to prevent it from hanging forever
-            locationContinuation?.resume(throwing: LocationError.cancelled)
-            locationContinuation = continuation
-            manager.requestLocation()
+        // Race the real GPS request against a timeout. If the timeout wins,
+        // fall back to the system's last-known fix (if recent enough).
+        // The GPS task is explicitly @MainActor because `locationContinuation`
+        // and `manager` are main-actor-isolated properties of this @Observable
+        // class; the timeout task just sleeps and is fine off-actor.
+        let result: CLLocation? = await withTaskGroup(of: CLLocation?.self) { group in
+            group.addTask { @MainActor [weak self] in
+                guard let self else { return nil }
+                return try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<CLLocation, Error>) in
+                    // Cancel any pending continuation so it can't hang forever.
+                    self.locationContinuation?.resume(throwing: LocationError.cancelled)
+                    self.locationContinuation = continuation
+                    self.manager.requestLocation()
+                }
+            }
+            group.addTask {
+                try? await Task.sleep(for: .seconds(Self.locationRequestTimeout))
+                return nil // timeout sentinel
+            }
+            for await next in group {
+                group.cancelAll()
+                return next
+            }
+            return nil
         }
+
+        if let result {
+            return result
+        }
+
+        // Timeout — try the system's last-known fix before giving up.
+        if let cached = manager.location,
+           Date().timeIntervalSince(cached.timestamp) < Self.lastKnownMaxAge {
+            locationLog.info("requestLocation timed out after \(Self.locationRequestTimeout)s; using last-known fix from \(cached.timestamp, privacy: .public)")
+            return cached
+        }
+
+        locationLog.error("requestLocation timed out with no usable last-known fix")
+        throw LocationError.timeout
     }
 
     /// Waits for the user to respond to the location permission dialog
@@ -64,6 +108,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     enum LocationError: LocalizedError {
         case permissionDenied
         case cancelled
+        case timeout
 
         var errorDescription: String? {
             switch self {
@@ -71,6 +116,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 return "Location request was superseded by a newer request."
             case .permissionDenied:
                 return "Location permission was denied. Enable it in Settings."
+            case .timeout:
+                return "Couldn't get a location fix. Check your GPS signal or try again."
             }
         }
     }

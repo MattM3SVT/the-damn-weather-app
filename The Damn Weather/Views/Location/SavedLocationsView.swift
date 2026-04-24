@@ -7,7 +7,10 @@ import WeatherShared
 /// Apple Weather-style locations list with weather cards and sarcastic phrases.
 /// Search is inline — tap the search bar to type, results replace cards.
 struct SavedLocationsView: View {
-    @Query(sort: \SavedLocation.sortOrder, animation: .smooth) private var locations: [SavedLocation]
+    // No `animation:` parameter — List handles its own row insert/delete/move
+    // animations on a @Query-backed ForEach. Adding a query-level animation
+    // double-animates during reorder and causes rows to overlap mid-drag.
+    @Query(sort: \SavedLocation.sortOrder) private var locations: [SavedLocation]
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
@@ -290,12 +293,8 @@ struct SavedLocationsView: View {
                 .onMove { source, destination in
                     var reordered = locations
                     reordered.move(fromOffsets: source, toOffset: destination)
-                    // Suppress @Query's .smooth animation during the rewrite —
-                    // List already animates the row move; double-animating flickers.
-                    withAnimation(.none) {
-                        for (index, loc) in reordered.enumerated() {
-                            loc.sortOrder = index
-                        }
+                    for (index, loc) in reordered.enumerated() {
+                        loc.sortOrder = index
                     }
                     try? modelContext.save()
                 }

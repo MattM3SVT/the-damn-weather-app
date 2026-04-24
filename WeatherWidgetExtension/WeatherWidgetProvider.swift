@@ -102,11 +102,23 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
     // MARK: - AppIntentTimelineProvider
 
     func placeholder(in context: Context) -> WeatherWidgetEntry {
-        // WidgetKit calls this on a very tight budget — any disk I/O risks
-        // skipping the first render. Return the hardcoded placeholder only;
-        // real data is served from snapshot / timeline once a configuration
-        // is present.
+        // iOS calls this in several transient circumstances (gallery previews,
+        // timeline transitions, OOM recovery, scroll re-renders). Historically
+        // this returned hardcoded "Open the app" text even when the multi-cache
+        // held real data — the exact string the user reported flashing on the
+        // home screen. Prefer cached data (My Location first, any other cached
+        // city second) and fall back to the hardcoded entry only when the
+        // cache is genuinely empty. The JSON read is small and atomic.
         widgetProviderLog.info("placeholder(in:) called")
+        if let entry = buildCachedEntry(for: .myLocation) {
+            return entry
+        }
+        if let (id, _) = WidgetDataStore.loadMulti().first {
+            if let entity = SavedLocationsStore.load().first(where: { $0.id == id }),
+               let entry = buildCachedEntry(for: entity) {
+                return entry
+            }
+        }
         return .placeholder
     }
 
@@ -127,7 +139,15 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         widgetProviderLog.info("timeline called, location=\(configuration.location.name, privacy: .public) id=\(configuration.location.id, privacy: .public)")
 
         let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-        let retryUpdate = Calendar.current.date(byAdding: .minute, value: 5, to: Date()) ?? Date()
+        // Tightened from 5 min to 2 min so a transient failure (poor network,
+        // WeatherKit hiccup, widget-location denied) recovers roughly 2.5×
+        // faster once the underlying condition clears.
+        let retryUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: Date()) ?? Date()
+
+        // Load cached data up-front so we can use it either as PATH 1 (fresh)
+        // or PATH 1.5 (stale fallback when the live fetch fails).
+        let cached = loadCachedDataForLocation(configuration.location)
+        let cachedTag = cached.flatMap { WeatherConditionTag(rawValue: $0.conditionTag) }
 
         // PATH 1 — App Group cache has fresh data for this city. Build a
         // 4-entry rotating-phrase timeline and return.
@@ -137,28 +157,39 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         // Tasks can be killed mid-flight. The natural cadence is: cache is
         // considered fresh for `weatherCacheTTL` (15 min); the next timeline
         // call falls through to PATH 2 and performs an awaited fresh fetch.
-        if let cached = loadCachedDataForLocation(configuration.location),
-           let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag),
-           !isMultiCacheStale(cached) {
+        if let cached, let cachedTag, !isMultiCacheStale(cached) {
             widgetProviderLog.info("timeline PATH 1: multi-cache hit for id=\(configuration.location.id, privacy: .public) temp=\(cached.temperature) location=\(cached.locationName, privacy: .public)")
 
             let entries = buildMultiEntryTimeline(
                 from: cached,
-                conditionTag: conditionTag,
+                conditionTag: cachedTag,
                 entity: configuration.location
             )
             return Timeline(entries: entries, policy: .after(nextUpdate))
         }
 
-        // PATH 2 — No multi-cache; try a live fetch. If that works, cache it
-        // and return a single entry. Otherwise short-retry with placeholder.
-        widgetProviderLog.warning("timeline PATH 2: multi-cache miss, trying live fetch for \(configuration.location.name, privacy: .public)")
+        // PATH 2 — Cache missing or stale; try a live fetch. If that works,
+        // cache it and return a single entry.
+        widgetProviderLog.warning("timeline PATH 2: multi-cache miss or stale, trying live fetch for \(configuration.location.name, privacy: .public)")
         if let entry = try? await fetchFreshEntry(for: configuration.location) {
             saveFreshDataToMultiCache(entry, for: configuration.location)
             return Timeline(entries: [entry], policy: .after(nextUpdate))
         }
 
-        widgetProviderLog.error("timeline PATH 3: live fetch failed, returning placeholder with short retry")
+        // PATH 1.5 — Live fetch failed but we have stale cached data. Show
+        // the last-known weather (up to a day old) instead of the hardcoded
+        // "Open the app" placeholder, and ask iOS to retry in 2 min.
+        if let cached, let cachedTag {
+            widgetProviderLog.info("timeline PATH 1.5: serving stale cache, retry in 2m for \(configuration.location.name, privacy: .public)")
+            let entries = buildMultiEntryTimeline(
+                from: cached,
+                conditionTag: cachedTag,
+                entity: configuration.location
+            )
+            return Timeline(entries: entries, policy: .after(retryUpdate))
+        }
+
+        widgetProviderLog.error("timeline PATH 3: no cache and live fetch failed, returning placeholder with 2m retry")
         return Timeline(entries: [.placeholder], policy: .after(retryUpdate))
     }
 

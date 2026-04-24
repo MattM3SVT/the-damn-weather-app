@@ -34,17 +34,27 @@ struct MainView: View {
         _settingsVM = State(initialValue: SettingsViewModel(appState: appState))
     }
 
-    private var isRegular: Bool { sizeClass == .regular }
+    /// Minimum width to use the iPad sidebar layout. iPad Mini portrait is
+    /// 744pt — too narrow for a 320pt sidebar plus a usable weather pane —
+    /// so it falls back to the iPhone TabView layout. Matches Apple Weather's
+    /// behavior: sidebar appears only on regular-width iPads.
+    private let iPadLayoutWidthThreshold: CGFloat = 768
+
+    private func shouldUseIPadLayout(width: CGFloat) -> Bool {
+        sizeClass == .regular && width >= iPadLayoutWidthThreshold
+    }
 
     /// Total pages: current location (page 0) + saved locations
     private var pageCount: Int { 1 + savedLocations.count }
 
     var body: some View {
-        Group {
-            if isRegular {
-                iPadLayout
-            } else {
-                iPhoneLayout
+        GeometryReader { geometry in
+            Group {
+                if shouldUseIPadLayout(width: geometry.size.width) {
+                    iPadLayout
+                } else {
+                    iPhoneLayout
+                }
             }
         }
         .task {
@@ -61,10 +71,13 @@ struct MainView: View {
             backfillSavedLocationUUIDs()
             SavedLocationsStore.save(widgetLocationEntities())
             syncSavedLocationUUIDMap()
-            // Only auto-fetch if we already have location permission.
-            // Otherwise show the "Where the hell are you?" empty state immediately.
+            // Hydrate pageStates from the widget's persistent App Group cache
+            // synchronously so the skeleton is replaced with real (if stale)
+            // data before we kick off the network fetch. The fresh fetch below
+            // overwrites these partials as soon as it returns.
             let status = locationService.authorizationStatus
             if status == .authorizedWhenInUse || status == .authorizedAlways {
+                weatherVM.hydrateFromWidgetCache(savedLocations: savedLocations)
                 await weatherVM.loadWeatherForCurrentLocation()
                 // Pre-fetch all saved cities in background for instant swiping
                 await weatherVM.prefetchAllLocations(savedLocations)
