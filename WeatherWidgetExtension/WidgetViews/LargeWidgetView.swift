@@ -7,6 +7,24 @@ import WeatherShared
 struct LargeWidgetView: View {
     let entry: WeatherWidgetEntry
 
+    /// Hourly slot label, computed at render time from the slot's date so that
+    /// a slightly-stale cache shows accurate hours instead of the labels that
+    /// were frozen when the cache was written. Falls back to the cached `hour`
+    /// string for legacy cache records that pre-date the `date` field.
+    private func label(for hour: WeatherWidgetEntry.HourlyWidgetPoint) -> String {
+        guard let slotDate = hour.date else { return hour.hour }
+        let calendar = Calendar.current
+        let nowHourStart = calendar.dateInterval(of: .hour, for: Date())?.start
+        let slotHourStart = calendar.dateInterval(of: .hour, for: slotDate)?.start
+        if let nowHourStart, let slotHourStart, nowHourStart == slotHourStart {
+            return "Now"
+        }
+        // Strip the space "9 PM" → "9PM" to match the widget's existing
+        // tight-spaced layout (the strip has six slots in a narrow row).
+        return slotDate.hourLabel(timezone: entry.displayTimezone)
+            .replacingOccurrences(of: " ", with: "")
+    }
+
     var body: some View {
         GeometryReader { geo in
             let scale = min(1.3, max(0.95, geo.size.width / 338))
@@ -68,7 +86,7 @@ struct LargeWidgetView: View {
                     HStack(spacing: 0) {
                         ForEach(entry.hourlyPreview) { hour in
                             VStack(spacing: 3 * scale) {
-                                Text(hour.hour)
+                                Text(label(for: hour))
                                     .font(.system(size: 11 * scale))
                                     .foregroundStyle(.white.opacity(0.6))
                                 Image(systemName: hour.conditionTag.sfSymbol(isDay: hour.isDay))

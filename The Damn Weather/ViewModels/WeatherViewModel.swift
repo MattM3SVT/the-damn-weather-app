@@ -329,10 +329,14 @@ final class WeatherViewModel {
                 currentTime: timeStr
             )
 
-            // Only update widget data if this city IS the currently active page.
-            // This prevents non-active city loads (prefetch, foreground refresh of
-            // GPS location while viewing a saved city) from overwriting widget data.
-            if activePageKey == pageKey {
+            // For saved cities, only update widget data when this city IS the
+            // active page — prevents a prefetch of city X from overwriting
+            // city Y's widget cache. For the device's current location there
+            // is only one cache entry (`__myLocation__`), so always refresh
+            // it when device-location data lands; otherwise a user who left
+            // the app on a saved city would never see their My Location
+            // widget recover from a stale state.
+            if isDeviceLocation || activePageKey == pageKey {
                 await updateWidget(for: pageKey)
             }
 
@@ -432,7 +436,57 @@ final class WeatherViewModel {
         if isShowingDeviceLocation {
             await loadWeatherForCurrentLocation()
         } else {
+            // User is on a saved-city page. Refresh that city for the visible
+            // UI, AND silently refresh device location so the My Location
+            // widget cache doesn't go stale just because the user happens to
+            // be viewing a different city.
             await loadWeather(for: weather.location)
+            await refreshDeviceLocationCacheSilently()
+        }
+    }
+
+    /// Fetch device-location weather and persist to the widget cache for
+    /// `myLocationID`, without touching `isShowingDeviceLocation`,
+    /// `activePageKey`, `weather`, or `isLoading`. Used at foreground when
+    /// the user is on a saved-city page so a widget configured for My
+    /// Location still gets refreshed. Silent on failure — the existing
+    /// cached entry is left alone.
+    private func refreshDeviceLocationCacheSilently() async {
+        let auth = locationService.authorizationStatus
+        guard auth == .authorizedWhenInUse || auth == .authorizedAlways else { return }
+
+        do {
+            let location = try await locationService.requestLocation()
+            let snapshot = try await weatherService.fetchWeather(for: location)
+            let geocode = await locationService.reverseGeocode(location)
+            let displayName = geocode.name.isEmpty ? "Current Location" : geocode.name
+            let phrase = await phraseEngine.selectPhrase(
+                conditionTag: snapshot.current.conditionTag,
+                tempF: snapshot.current.temperature,
+                mode: appState.phraseMode,
+                isDay: snapshot.current.isDay
+            )
+
+            // Update sidebar projections (iPad sidebar reads these); these
+            // don't change which page is active.
+            currentLocationWeather = snapshot
+            currentLocationName = displayName
+            currentLocationState = geocode.state
+            currentLocationPhrase = phrase
+
+            // Populate pageStates[currentLocationKey] so updateWidget can
+            // build a CachedWeatherData from it.
+            pageStates[Self.currentLocationKey] = PageWeatherState(
+                weather: snapshot,
+                phrase: phrase,
+                locationName: displayName,
+                locationState: geocode.state,
+                currentTime: Date.currentTimeString(timezone: snapshot.timezone)
+            )
+
+            await updateWidget(for: Self.currentLocationKey)
+        } catch {
+            vmLog.error("silent device-location refresh failed: \(String(describing: error), privacy: .public)")
         }
     }
 
@@ -590,19 +644,6 @@ final class WeatherViewModel {
         }
     }
 
-    /// Also prefetch + persist the device's current-location weather to the
-    /// widget multi-cache under the `LocationEntity.myLocationID` key so
-    /// widgets configured for "My Location" can serve cached data instead of
-    /// doing a WeatherKit fetch on every 15-min refresh.
-    func persistCurrentLocationToWidgetCache() async {
-        guard let state = pageStates[Self.currentLocationKey] else { return }
-        let data = await buildCachedWeatherData(
-            from: state,
-            displayName: currentLocationDisplayName.isEmpty ? state.locationName : currentLocationDisplayName
-        )
-        WidgetDataStore.saveEntry(data, for: LocationEntity.myLocationID)
-    }
-
     /// Build a `CachedWeatherData` from a loaded `PageWeatherState`, including
     /// the large widget's hourly/daily preview arrays and a small/primary/extra
     /// phrase set. Shared between the single-location `updateWidget` and the
@@ -625,7 +666,8 @@ final class WeatherViewModel {
                 hour: index == 0 ? "Now" : hourFormatter.string(from: h.time).replacingOccurrences(of: " ", with: ""),
                 temp: Int(h.temperature.rounded()),
                 conditionTag: h.conditionTag.rawValue,
-                isDay: h.isDay
+                isDay: h.isDay,
+                date: h.time
             )
         }
         let cachedDaily: [CachedDailyPoint] = Array(snapshot.daily.prefix(5)).enumerated().map { index, d in
@@ -666,7 +708,8 @@ final class WeatherViewModel {
             additionalPhrases: extraPhrases,
             smallPhrase: smallPhrase,
             hourlyPreview: cachedHourly,
-            dailyPreview: cachedDaily
+            dailyPreview: cachedDaily,
+            timezoneIdentifier: snapshot.timezone.identifier
         )
     }
 
@@ -710,7 +753,8 @@ final class WeatherViewModel {
                 hour: index == 0 ? "Now" : hourFormatter.string(from: h.time).replacingOccurrences(of: " ", with: ""),
                 temp: Int(h.temperature.rounded()),
                 conditionTag: h.conditionTag.rawValue,
-                isDay: h.isDay
+                isDay: h.isDay,
+                date: h.time
             )
         }
         let cachedDaily: [CachedDailyPoint] = Array(
@@ -744,7 +788,8 @@ final class WeatherViewModel {
             phrase: state.phrase,
             phraseMode: appState.phraseMode.rawValue,
             hourlyPreview: cachedHourly,
-            dailyPreview: cachedDaily
+            dailyPreview: cachedDaily,
+            timezoneIdentifier: snapshot.timezone.identifier
         )
         WidgetDataStore.saveEntry(partialCached, for: entityID)
         if isMyLocationPage {
@@ -792,7 +837,8 @@ final class WeatherViewModel {
             additionalPhrases: extraPhrases,
             smallPhrase: smallPhrase,
             hourlyPreview: cachedHourly,
-            dailyPreview: cachedDaily
+            dailyPreview: cachedDaily,
+            timezoneIdentifier: snapshot.timezone.identifier
         )
         WidgetDataStore.saveEntry(fullCached, for: entityID)
         if isMyLocationPage {

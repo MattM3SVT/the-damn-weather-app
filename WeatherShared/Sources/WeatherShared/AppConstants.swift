@@ -3,6 +3,11 @@ import Foundation
 public enum AppConstants {
     public static let appGroupID = "group.DamnWeather.The-Damn-Weather"
     public static let weatherCacheTTL: TimeInterval = 15 * 60  // 15 minutes
+    /// Upper bound on how old a cache entry can be while still being served by
+    /// PATH 1.5 (live-fetch failed, fall back to cached). Beyond this the
+    /// widget renders a placeholder asking the user to open the app rather
+    /// than displaying obviously-stale labels.
+    public static let widgetMaxStaleServeAge: TimeInterval = 6 * 3600  // 6 hours
     public static let maxSeenPhrases = 300
     public static let windOverrideThreshold: Double = 25.0  // mph
 

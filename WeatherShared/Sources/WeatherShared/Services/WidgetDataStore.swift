@@ -4,17 +4,26 @@ import os.log
 private let widgetLog = Logger(subsystem: "DamnWeather", category: "WidgetDataStore")
 
 /// Lightweight hourly forecast point for widget display.
+///
+/// `date` is the hour-aligned start of the slot (e.g., 8 PM hour start). The
+/// widget formats it dynamically at render time so a slightly-stale cache
+/// shows accurate hour labels rather than the labels frozen at write time.
+/// `hour` is kept as a fallback for cache records written before `date` was
+/// added, and is populated even on fresh writes so older app builds reading
+/// the same shared cache continue to work.
 public struct CachedHourlyPoint: Codable, Sendable {
-    public let hour: String          // "Now", "3 PM"
+    public let hour: String
     public let temp: Int
     public let conditionTag: String  // WeatherConditionTag raw value
     public let isDay: Bool
+    public let date: Date?
 
-    public init(hour: String, temp: Int, conditionTag: String, isDay: Bool) {
+    public init(hour: String, temp: Int, conditionTag: String, isDay: Bool, date: Date? = nil) {
         self.hour = hour
         self.temp = temp
         self.conditionTag = conditionTag
         self.isDay = isDay
+        self.date = date
     }
 }
 
@@ -63,6 +72,12 @@ public struct CachedWeatherData: Codable {
     /// Daily forecast preview for large widget (5 points).
     public let dailyPreview: [CachedDailyPoint]
 
+    /// IANA timezone identifier for the cached location (e.g. "America/Los_Angeles").
+    /// Used to format hourly labels at render time so they reflect the location's
+    /// wall clock even when the user's device is in a different timezone.
+    /// Optional for back-compat with cache records written before this field existed.
+    public let timezoneIdentifier: String?
+
     public init(
         temperature: Double,
         conditionTag: String,
@@ -78,7 +93,8 @@ public struct CachedWeatherData: Codable {
         additionalPhrases: [String] = [],
         smallPhrase: String? = nil,
         hourlyPreview: [CachedHourlyPoint] = [],
-        dailyPreview: [CachedDailyPoint] = []
+        dailyPreview: [CachedDailyPoint] = [],
+        timezoneIdentifier: String? = nil
     ) {
         self.temperature = temperature
         self.conditionTag = conditionTag
@@ -95,6 +111,7 @@ public struct CachedWeatherData: Codable {
         self.smallPhrase = smallPhrase
         self.hourlyPreview = hourlyPreview
         self.dailyPreview = dailyPreview
+        self.timezoneIdentifier = timezoneIdentifier
     }
 
     /// All phrases in order: primary phrase first, then additional.
@@ -121,6 +138,7 @@ public struct CachedWeatherData: Codable {
         smallPhrase = try container.decodeIfPresent(String.self, forKey: .smallPhrase)
         hourlyPreview = try container.decodeIfPresent([CachedHourlyPoint].self, forKey: .hourlyPreview) ?? []
         dailyPreview = try container.decodeIfPresent([CachedDailyPoint].self, forKey: .dailyPreview) ?? []
+        timezoneIdentifier = try container.decodeIfPresent(String.self, forKey: .timezoneIdentifier)
     }
 }
 

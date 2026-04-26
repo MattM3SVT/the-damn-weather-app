@@ -22,6 +22,10 @@ struct WeatherWidgetEntry: TimelineEntry {
     let hourlyPreview: [HourlyWidgetPoint]
     let dailyPreview: [DailyWidgetPoint]
     let locationName: String
+    /// IANA identifier for the cached location's timezone. Used by views to
+    /// format hourly labels in the location's wall-clock time. Falls back to
+    /// the device's current timezone when missing (legacy cache).
+    let timezoneIdentifier: String?
     /// True when the widget is rendering weather for the device's current GPS
     /// location (arrow indicator should show). False when displaying a pinned
     /// saved city the user selected via Edit Widget.
@@ -30,12 +34,19 @@ struct WeatherWidgetEntry: TimelineEntry {
     /// True when no real weather data is available (app hasn't been opened yet).
     var isPlaceholder: Bool { conditionTag == .any && temperature == 0 }
 
+    var displayTimezone: TimeZone {
+        timezoneIdentifier.flatMap(TimeZone.init(identifier:)) ?? .current
+    }
+
     struct HourlyWidgetPoint: Identifiable {
         let id = UUID()
         let hour: String
         let temp: Int
         let conditionTag: WeatherConditionTag
         let isDay: Bool
+        /// Hour-aligned start of this slot (e.g., 8:00 PM). Optional so legacy
+        /// cache records (written before this field existed) still decode.
+        let date: Date?
     }
 
     struct DailyWidgetPoint: Identifiable {
@@ -62,6 +73,7 @@ struct WeatherWidgetEntry: TimelineEntry {
             hourlyPreview: [],
             dailyPreview: [],
             locationName: "",
+            timezoneIdentifier: nil,
             isDeviceLocation: false
         )
     }
@@ -107,19 +119,32 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         // this returned hardcoded "Open the app" text even when the multi-cache
         // held real data — the exact string the user reported flashing on the
         // home screen. Prefer cached data (My Location first, any other cached
-        // city second) and fall back to the hardcoded entry only when the
-        // cache is genuinely empty. The JSON read is small and atomic.
+        // city second), but skip caches that are too old to serve, and fall
+        // back to the hardcoded entry only when nothing fresh enough is on
+        // disk. The JSON read is small and atomic.
         widgetProviderLog.info("placeholder(in:) called")
-        if let entry = buildCachedEntry(for: .myLocation) {
+        if let entry = buildCachedEntryIfFreshEnough(for: .myLocation) {
             return entry
         }
-        if let (id, _) = WidgetDataStore.loadMulti().first {
+        for (id, cached) in WidgetDataStore.loadMulti() {
+            guard !isCacheTooStaleToServe(cached) else { continue }
             if let entity = SavedLocationsStore.load().first(where: { $0.id == id }),
                let entry = buildCachedEntry(for: entity) {
                 return entry
             }
         }
         return .placeholder
+    }
+
+    /// Like `buildCachedEntry` but returns nil when the cache record is older
+    /// than `widgetMaxStaleServeAge`, so callers that have no other fallback
+    /// (placeholder/snapshot) don't end up displaying obviously-stale data.
+    private func buildCachedEntryIfFreshEnough(for entity: LocationEntity) -> WeatherWidgetEntry? {
+        guard let cached = loadCachedDataForLocation(entity),
+              !isCacheTooStaleToServe(cached) else {
+            return nil
+        }
+        return buildCachedEntry(for: entity)
     }
 
     func snapshot(for configuration: WeatherWidgetIntent, in context: Context) async -> WeatherWidgetEntry {
@@ -177,9 +202,11 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         }
 
         // PATH 1.5 — Live fetch failed but we have stale cached data. Show
-        // the last-known weather (up to a day old) instead of the hardcoded
-        // "Open the app" placeholder, and ask iOS to retry in 2 min.
-        if let cached, let cachedTag {
+        // the last-known weather instead of the hardcoded "Open the app"
+        // placeholder, but only while it's recent enough that the labels
+        // remain plausibly current (`widgetMaxStaleServeAge`). Older than
+        // that and we'd rather show a placeholder than visibly-wrong hours.
+        if let cached, let cachedTag, !isCacheTooStaleToServe(cached) {
             widgetProviderLog.info("timeline PATH 1.5: serving stale cache, retry in 2m for \(configuration.location.name, privacy: .public)")
             let entries = buildMultiEntryTimeline(
                 from: cached,
@@ -189,7 +216,11 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             return Timeline(entries: entries, policy: .after(retryUpdate))
         }
 
-        widgetProviderLog.error("timeline PATH 3: no cache and live fetch failed, returning placeholder with 2m retry")
+        if cached != nil {
+            widgetProviderLog.error("timeline PATH 3: cache too stale to serve and live fetch failed, returning placeholder with 2m retry")
+        } else {
+            widgetProviderLog.error("timeline PATH 3: no cache and live fetch failed, returning placeholder with 2m retry")
+        }
         return Timeline(entries: [.placeholder], policy: .after(retryUpdate))
     }
 
@@ -233,6 +264,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             hourlyPreview: forecast.hourly,
             dailyPreview: forecast.daily,
             locationName: cached.locationName.isEmpty ? entity.name : cached.locationName,
+            timezoneIdentifier: cached.timezoneIdentifier,
             isDeviceLocation: entity.isMyLocation
         )
     }
@@ -243,6 +275,14 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
     /// and rely on an unawaited background Task to refresh it.
     private func isMultiCacheStale(_ cached: CachedWeatherData) -> Bool {
         Date().timeIntervalSince(cached.updatedAt) > AppConstants.weatherCacheTTL
+    }
+
+    /// PATH 1.5 (live-fetch failed → serve cache anyway) only serves cache
+    /// younger than `widgetMaxStaleServeAge`. Beyond that, the labels would
+    /// be visibly hours off the wall clock (e.g., "9PM" hourly slots showing
+    /// at 11 AM the next morning) and a placeholder is more honest.
+    private func isCacheTooStaleToServe(_ cached: CachedWeatherData) -> Bool {
+        Date().timeIntervalSince(cached.updatedAt) > AppConstants.widgetMaxStaleServeAge
     }
 
     /// 4 entries at ~4-minute intervals rotating through the app's
@@ -280,6 +320,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                 hourlyPreview: forecast.hourly,
                 dailyPreview: forecast.daily,
                 locationName: displayName,
+                timezoneIdentifier: cached.timezoneIdentifier,
                 isDeviceLocation: entity.isMyLocation
             )
         }
@@ -292,7 +333,13 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
     ) {
         let hourly = cached.hourlyPreview.compactMap { point -> WeatherWidgetEntry.HourlyWidgetPoint? in
             guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
-            return WeatherWidgetEntry.HourlyWidgetPoint(hour: point.hour, temp: point.temp, conditionTag: tag, isDay: point.isDay)
+            return WeatherWidgetEntry.HourlyWidgetPoint(
+                hour: point.hour,
+                temp: point.temp,
+                conditionTag: tag,
+                isDay: point.isDay,
+                date: point.date
+            )
         }
         let daily = cached.dailyPreview.compactMap { point -> WeatherWidgetEntry.DailyWidgetPoint? in
             guard let tag = WeatherConditionTag(rawValue: point.conditionTag) else { return nil }
@@ -312,7 +359,13 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
 
         let cachedHourly = entry.hourlyPreview.map { h in
-            CachedHourlyPoint(hour: h.hour, temp: h.temp, conditionTag: h.conditionTag.rawValue, isDay: h.isDay)
+            CachedHourlyPoint(
+                hour: h.hour,
+                temp: h.temp,
+                conditionTag: h.conditionTag.rawValue,
+                isDay: h.isDay,
+                date: h.date
+            )
         }
         let cachedDaily = entry.dailyPreview.map { d in
             CachedDailyPoint(day: d.day, high: d.high, low: d.low, conditionTag: d.conditionTag.rawValue)
@@ -333,7 +386,8 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                 additionalPhrases: additionalPhrases,
                 smallPhrase: entry.smallPhrase,
                 hourlyPreview: cachedHourly,
-                dailyPreview: cachedDaily
+                dailyPreview: cachedDaily,
+                timezoneIdentifier: entry.timezoneIdentifier
             ),
             for: entity.id
         )
@@ -434,7 +488,8 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                 hour: index == 0 ? "Now" : h.date.hourLabel(timezone: locationTimezone),
                 temp: Int(h.temperature.converted(to: .fahrenheit).value.rounded()),
                 conditionTag: WeatherConditionTag.from(h.condition),
-                isDay: h.isDaylight
+                isDay: h.isDaylight,
+                date: h.date
             )
         }
 
@@ -473,6 +528,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             hourlyPreview: hourlyPreview,
             dailyPreview: dailyPreview,
             locationName: displayName,
+            timezoneIdentifier: locationTimezone.identifier,
             isDeviceLocation: entity.isMyLocation
         )
     }
