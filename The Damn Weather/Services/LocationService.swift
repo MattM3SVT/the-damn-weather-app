@@ -25,16 +25,26 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         manager.requestWhenInUseAuthorization()
     }
 
-    /// Maximum time to wait for `CLLocationManager.requestLocation()` before
-    /// falling back to the system's last-known fix. Keeps cold launch bounded:
-    /// on poor GPS signal, `requestLocation()` alone can hang for 10+ seconds.
-    private static let locationRequestTimeout: TimeInterval = 5
+    /// Maximum time to wait for a fresh GPS fix before giving up.
+    /// Slightly longer than the previous 5 s because the new "reject stale,
+    /// wait for fresh" path can need a moment for GPS warmup beyond the
+    /// initial cached delivery from CoreLocation.
+    private static let locationRequestTimeout: TimeInterval = 8
 
-    /// Maximum age of a system-cached `CLLocationManager.location` we'll accept
-    /// as a fallback when the fresh request times out. Ten minutes is long
-    /// enough to cover a brief GPS cold-start slump but short enough that
-    /// we're not showing weather from a previous trip.
-    private static let lastKnownMaxAge: TimeInterval = 10 * 60
+    /// Maximum age of a delivered location we'll accept as "current".
+    /// CoreLocation can deliver an arbitrarily-old cached fix as the first
+    /// callback when it considers the cache "good enough" for the requested
+    /// accuracy. That manifested as: drive an hour, return, app still thinks
+    /// you're at the origin. Anything older than this is rejected and we
+    /// wait for the next callback (a fresh fix).
+    private static let staleFixThreshold: TimeInterval = 30
+
+    /// Maximum age of `CLLocationManager.location` we'll accept as a fallback
+    /// when our fresh-fix attempt times out. Tightened from 10 min to 60 s —
+    /// the old window let a 9-minute-old "previous city" fix slip through
+    /// after a long drive. If the GPS hasn't produced a fix in the last
+    /// minute, prefer throwing over silently showing wrong-city weather.
+    private static let lastKnownMaxAge: TimeInterval = 60
 
     func requestLocation() async throws -> CLLocation {
         // Wait for permission if not yet determined
@@ -49,8 +59,12 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             throw LocationError.permissionDenied
         }
 
-        // Race the real GPS request against a timeout. If the timeout wins,
-        // fall back to the system's last-known fix (if recent enough).
+        // Use `startUpdatingLocation` rather than `requestLocation`:
+        // `requestLocation` only delivers a single callback, so if that
+        // first callback is a stale cached fix (which CoreLocation routinely
+        // serves when desiredAccuracy is met by the cache), we have no way
+        // to wait for a fresher one. `startUpdatingLocation` streams updates,
+        // and the delegate filters by timestamp until a fresh fix arrives.
         // The GPS task is explicitly @MainActor because `locationContinuation`
         // and `manager` are main-actor-isolated properties of this @Observable
         // class; the timeout task just sleeps and is fine off-actor.
@@ -61,7 +75,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                     // Cancel any pending continuation so it can't hang forever.
                     self.locationContinuation?.resume(throwing: LocationError.cancelled)
                     self.locationContinuation = continuation
-                    self.manager.requestLocation()
+                    self.manager.startUpdatingLocation()
                 }
             }
             group.addTask {
@@ -75,11 +89,17 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             return nil
         }
 
+        // `startUpdatingLocation` runs continuously; always stop once we're
+        // done (success, timeout, or cancellation) so the GPS chip can power
+        // down. Calling `stop` when not started is a no-op, so this is safe.
+        manager.stopUpdatingLocation()
+
         if let result {
             return result
         }
 
-        // Timeout — try the system's last-known fix before giving up.
+        // Timeout — try the system's last-known fix only if it's recent
+        // enough that it's plausibly current.
         if let cached = manager.location,
            Date().timeIntervalSince(cached.timestamp) < Self.lastKnownMaxAge {
             locationLog.info("requestLocation timed out after \(Self.locationRequestTimeout)s; using last-known fix from \(cached.timestamp, privacy: .public)")
@@ -214,7 +234,20 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     // MARK: - CLLocationManagerDelegate
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
+        // `locations.last` is the newest in batched updates per Apple's docs.
+        guard let location = locations.last else { return }
+
+        // Reject stale cached fixes. CoreLocation often delivers an old cache
+        // entry as the first update; ignoring it lets us wait for the next
+        // callback (which will be the fresh GPS fix). Without this filter,
+        // returning home from a long drive shows the previous city's weather
+        // until the user manually refreshes a few times.
+        let age = Date().timeIntervalSince(location.timestamp)
+        guard age <= Self.staleFixThreshold else {
+            locationLog.debug("rejected stale fix: age=\(age, privacy: .public)s")
+            return
+        }
+
         locationContinuation?.resume(returning: location)
         locationContinuation = nil
     }
