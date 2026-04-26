@@ -78,10 +78,27 @@ struct MinutePrecipitationPoint: Identifiable, Sendable {
 struct WeatherAlertData: Identifiable, Sendable {
     let id = UUID()
     let headline: String
-    let description: String
+    /// WeatherKit's web page with the issuing authority's full alert text.
+    /// Used as a rendering fallback in the alert sheet when no NWS-sourced
+    /// `description` is available (non-US locations, NWS API unavailable).
+    let detailsURL: URL?
     let severity: AlertSeverity
     let source: String
     let expiresAt: Date?
+
+    /// Full NWS-issued body text (the `* WHAT * WHERE * WHEN * IMPACTS`
+    /// block). Nil when the alert wasn't issued by NWS or the NWS lookup
+    /// didn't find a match — UI then falls back to the embedded web view.
+    let description: String?
+    /// Recommended actions, separate from the description in NWS alerts.
+    let instruction: String?
+    /// Affected counties / zones description.
+    let areaDesc: String?
+    /// When the alert begins. May differ from `issued`.
+    let onset: Date?
+    /// When the actual hazardous conditions are expected to end.
+    /// Distinct from `expiresAt`, which is when the alert message itself expires.
+    let ends: Date?
 
     enum AlertSeverity: String, Sendable {
         case extreme, severe, moderate, minor, unknown

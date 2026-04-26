@@ -18,6 +18,7 @@ actor WeatherService {
     private var cachedAttribution: WeatherAttribution?
     private let crossCheck = ObservationCrossCheckService()
     private let airQuality = AirQualityService()
+    private let nwsAlerts = NWSAlertsService()
 
     private func cacheKey(for location: CLLocation) -> String {
         String(format: "%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude)
@@ -40,10 +41,14 @@ actor WeatherService {
         )
         async let consensusTask = crossCheck.fetchSkyConsensus(for: location)
         async let airQualityTask = airQuality.fetchAirQuality(for: location)
+        // NWS alert details for richer in-app rendering. Empty array on
+        // non-US locations or any failure — UI falls back to web view.
+        async let nwsAlertsTask = nwsAlerts.fetchActiveAlerts(for: location)
 
         let weather = try await wkTask
         let consensus = await consensusTask
         let airQualityData = await airQualityTask
+        let nwsAlertDetails = await nwsAlertsTask
 
         let current = weather.0
         let hourly = weather.1
@@ -189,12 +194,24 @@ actor WeatherService {
         } ?? []
 
         let alertData: [WeatherAlertData] = alerts.map { (alert: WeatherAlert) in
-            WeatherAlertData(
+            // Enrich with NWS data when available so the sheet can render the
+            // full alert body natively. Match by event name (case-insensitive,
+            // trimmed) — WeatherKit uses NWS as its US source so the event
+            // strings line up. First match wins on the rare collision.
+            let nwsMatch = nwsAlertDetails.first { detail in
+                detail.event.caseInsensitiveCompare(alert.summary) == .orderedSame
+            }
+            return WeatherAlertData(
                 headline: alert.summary,
-                description: alert.detailsURL.absoluteString,
+                detailsURL: alert.detailsURL,
                 severity: mapSeverity(alert.severity),
                 source: alert.source,
-                expiresAt: alert.metadata.expirationDate
+                expiresAt: alert.metadata.expirationDate,
+                description: nwsMatch?.description,
+                instruction: nwsMatch?.instruction,
+                areaDesc: nwsMatch?.areaDesc,
+                onset: nwsMatch?.onset,
+                ends: nwsMatch?.ends
             )
         }
 
@@ -250,6 +267,7 @@ actor WeatherService {
         cache.removeAll()
         await crossCheck.clearCache()
         await airQuality.clearCache()
+        await nwsAlerts.clearCache()
     }
 
     /// Get the correct timezone for a location via reverse geocoding.
