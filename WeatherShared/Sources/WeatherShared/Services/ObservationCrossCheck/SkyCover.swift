@@ -60,6 +60,15 @@ public struct SkyConsensus: Sendable, Codable {
 
     /// Empty consensus — no source data available. Override always passes through.
     public static let empty = SkyConsensus(nws: nil, metar: nil)
+
+    /// True when both sources reported usable cover (non-nil and not obscured),
+    /// i.e. the consensus is rich enough to participate in `applyConsensusOverride`.
+    /// Used by the sticky-fallback path to decide whether a cached entry is
+    /// still worth returning when a fresh fetch fails.
+    public var hasUsableData: Bool {
+        guard let nws, let metar else { return false }
+        return nws != .obscured && metar != .obscured
+    }
 }
 
 /// Apply the NWS+METAR consensus override to a base WeatherConditionTag.

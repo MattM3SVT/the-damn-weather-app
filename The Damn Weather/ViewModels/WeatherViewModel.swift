@@ -62,11 +62,24 @@ final class WeatherViewModel {
     /// so they don't create redundant instances that pollute the seen-phrase tracking.
     let phraseEngine = PhraseEngine()
     private let appState: AppState
+    /// Tracks engagement signals (successful non-partial fetch count, days
+    /// since install, "have we already asked") so MainView can decide when
+    /// to call the OS `requestReview()` prompt at most one time, ever.
+    private let reviewPrompt: ReviewPromptCoordinator
     private var timeTimer: Timer?
 
-    init(locationService: LocationService, appState: AppState) {
+    init(locationService: LocationService, appState: AppState, reviewPrompt: ReviewPromptCoordinator) {
         self.locationService = locationService
         self.appState = appState
+        self.reviewPrompt = reviewPrompt
+        // Warm the phrase JSON in parallel with hydration / network fetch so
+        // the first `refreshPhrase()` after a fresh WeatherKit response doesn't
+        // pay the ~728KB decode cost serially. The actor's loadIfNeeded() is
+        // idempotent, so the eventual selectPhrase call is a no-op if this
+        // already finished.
+        Task.detached(priority: .utility) { [phraseEngine] in
+            await phraseEngine.warmUp()
+        }
     }
 
     // MARK: - Page Key Helpers
@@ -93,8 +106,26 @@ final class WeatherViewModel {
     /// before calling us). Safe to call repeatedly — skips keys that already
     /// have a non-partial pageState populated.
     func hydrateFromWidgetCache(savedLocations: [SavedLocation]) {
-        let multi = WidgetDataStore.loadMulti()
-        guard !multi.isEmpty else { return }
+        var multi = WidgetDataStore.loadMulti()
+
+        // Fall back to the legacy single-entry cache for the My Location slot
+        // when the multi-cache is missing. `updateWidget` still maintains both
+        // files, so users coming from a pre-multi-cache build (or whose multi
+        // file was wiped) still get a non-empty hero on cold launch.
+        if multi[LocationEntity.myLocationID] == nil,
+           let legacy = WidgetDataStore.load() {
+            multi[LocationEntity.myLocationID] = legacy
+            vmLog.info("hydrate: multi missing My Location; using legacy single-entry cache")
+        }
+
+        guard !multi.isEmpty else {
+            vmLog.info("hydrate: cache empty — nothing to hydrate (saved=\(savedLocations.count))")
+            return
+        }
+
+        let hasMyLocation = multi[LocationEntity.myLocationID] != nil
+        let savedHits = savedLocations.filter { multi[$0.uuid] != nil }.count
+        vmLog.info("hydrate: multi=\(multi.count) entries, myLocation=\(hasMyLocation), savedHits=\(savedHits)/\(savedLocations.count), activeKey=\(self.activePageKey, privacy: .public)")
 
         // My Location entry — use a placeholder CLLocation(0,0); `refresh()`
         // and `refreshOnForeground()` route through `loadWeatherForCurrentLocation()`
@@ -131,15 +162,21 @@ final class WeatherViewModel {
                 locationState = state
                 currentPhrase = cached.phrase
             }
+            vmLog.info("hydrate: filled My Location — temp=\(cached.temperature), phrase=\"\(cached.phrase.prefix(40), privacy: .public)\"")
         }
 
         // Saved cities — we have real coords, so synthetic snapshots can carry
         // the correct `location` and refresh paths work normally.
+        var filledSaved = 0
+        var skippedFresh = 0
         for saved in savedLocations {
             guard let cached = multi[saved.uuid] else { continue }
             let key = pageKey(for: saved)
             // Skip if a real (non-partial) snapshot is already loaded
-            if let existing = pageStates[key], !existing.weather.isPartial { continue }
+            if let existing = pageStates[key], !existing.weather.isPartial {
+                skippedFresh += 1
+                continue
+            }
             let snapshot = Self.syntheticSnapshot(
                 from: cached,
                 location: saved.clLocation
@@ -151,6 +188,10 @@ final class WeatherViewModel {
                 locationState: saved.state,
                 currentTime: Date.currentTimeString(timezone: snapshot.timezone)
             )
+            filledSaved += 1
+        }
+        if filledSaved > 0 || skippedFresh > 0 {
+            vmLog.info("hydrate: saved cities — filled=\(filledSaved), skippedFresh=\(skippedFresh)")
         }
     }
 
@@ -238,7 +279,7 @@ final class WeatherViewModel {
             timezone: .current,
             fetchedAt: cached.updatedAt,
             location: location,
-            airQuality: nil,
+            airQuality: cached.airQuality,
             isPartial: true
         )
     }
@@ -344,6 +385,13 @@ final class WeatherViewModel {
             startTimeUpdates(timezone: snapshot.timezone)
 
             isLoading = false
+
+            // Engagement signal for the review prompt — counted only on
+            // non-partial loads (the user just saw real, full weather), and
+            // capped/no-op once we've already prompted.
+            if !snapshot.isPartial {
+                reviewPrompt.recordSuccessfulFetch()
+            }
         } catch {
             let errorDesc = String(describing: error)
             vmLog.error("WeatherKit error: \(errorDesc, privacy: .public)")
@@ -592,14 +640,21 @@ final class WeatherViewModel {
     func prefetchAllLocations(_ savedLocations: [SavedLocation]) async {
 
         // Filter work items up-front so the task group only handles actual
-        // fetches — keeps the concurrency gate accurate.
+        // fetches — keeps the concurrency gate accurate. A hydrated partial
+        // snapshot has a recent `fetchedAt` from the widget cache but zeroed
+        // detail fields (wind, UV, etc.), so it must NOT count as fresh —
+        // otherwise saved cities would render the partial render forever
+        // because hydration always runs before prefetch on cold launch.
         let work: [SavedLocation] = savedLocations.filter { location in
             let key = pageKey(for: location)
             let cachedEntry = WidgetDataStore.loadEntry(for: location.uuid)
             let cacheStale = cachedEntry.map {
                 Date().timeIntervalSince($0.updatedAt) > AppConstants.weatherCacheTTL
             } ?? true
-            if let existing = pageStates[key], !existing.weather.isStale, !cacheStale {
+            if let existing = pageStates[key],
+               !existing.weather.isPartial,
+               !existing.weather.isStale,
+               !cacheStale {
                 return false
             }
             return true
@@ -709,7 +764,8 @@ final class WeatherViewModel {
             smallPhrase: smallPhrase,
             hourlyPreview: cachedHourly,
             dailyPreview: cachedDaily,
-            timezoneIdentifier: snapshot.timezone.identifier
+            timezoneIdentifier: snapshot.timezone.identifier,
+            airQuality: snapshot.airQuality
         )
     }
 
@@ -789,7 +845,8 @@ final class WeatherViewModel {
             phraseMode: appState.phraseMode.rawValue,
             hourlyPreview: cachedHourly,
             dailyPreview: cachedDaily,
-            timezoneIdentifier: snapshot.timezone.identifier
+            timezoneIdentifier: snapshot.timezone.identifier,
+            airQuality: snapshot.airQuality
         )
         WidgetDataStore.saveEntry(partialCached, for: entityID)
         if isMyLocationPage {
@@ -838,7 +895,8 @@ final class WeatherViewModel {
             smallPhrase: smallPhrase,
             hourlyPreview: cachedHourly,
             dailyPreview: cachedDaily,
-            timezoneIdentifier: snapshot.timezone.identifier
+            timezoneIdentifier: snapshot.timezone.identifier,
+            airQuality: snapshot.airQuality
         )
         WidgetDataStore.saveEntry(fullCached, for: entityID)
         if isMyLocationPage {

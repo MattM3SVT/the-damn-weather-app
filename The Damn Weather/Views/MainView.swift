@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import CoreLocation
+import StoreKit
 import WeatherShared
 import WidgetKit
 import os.log
@@ -10,10 +11,12 @@ struct MainView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.requestReview) private var requestReview
     @Query(sort: \SavedLocation.sortOrder) private var savedLocations: [SavedLocation]
 
     @State private var weatherVM: WeatherViewModel
     @State private var settingsVM: SettingsViewModel
+    @State private var reviewPrompt: ReviewPromptCoordinator
     @State private var showSavedLocations = false
     @State private var showSidebar = false
     @State private var sidebarSearchActive = false
@@ -27,11 +30,21 @@ struct MainView: View {
 
     init(locationService: LocationService, appState: AppState) {
         self.locationService = locationService
+        // Single coordinator instance shared between the weather VM (which
+        // increments the engagement counter on each successful fetch), the
+        // settings VM (DEBUG reset only), and MainView itself (decides when
+        // to call `requestReview()`).
+        let reviewPrompt = ReviewPromptCoordinator()
+        _reviewPrompt = State(initialValue: reviewPrompt)
         _weatherVM = State(initialValue: WeatherViewModel(
             locationService: locationService,
-            appState: appState
+            appState: appState,
+            reviewPrompt: reviewPrompt
         ))
-        _settingsVM = State(initialValue: SettingsViewModel(appState: appState))
+        _settingsVM = State(initialValue: SettingsViewModel(
+            appState: appState,
+            reviewPrompt: reviewPrompt
+        ))
     }
 
     /// Minimum width to use the iPad sidebar layout. iPad Mini portrait is
@@ -74,10 +87,13 @@ struct MainView: View {
             // Hydrate pageStates from the widget's persistent App Group cache
             // synchronously so the skeleton is replaced with real (if stale)
             // data before we kick off the network fetch. The fresh fetch below
-            // overwrites these partials as soon as it returns.
+            // overwrites these partials as soon as it returns. Hydration is
+            // independent of GPS permission — the cache is just a JSON file —
+            // so it always runs, even when location is denied or pending.
+            weatherVM.hydrateFromWidgetCache(savedLocations: savedLocations)
+
             let status = locationService.authorizationStatus
             if status == .authorizedWhenInUse || status == .authorizedAlways {
-                weatherVM.hydrateFromWidgetCache(savedLocations: savedLocations)
                 await weatherVM.loadWeatherForCurrentLocation()
                 // Pre-fetch all saved cities in background for instant swiping
                 await weatherVM.prefetchAllLocations(savedLocations)
@@ -92,11 +108,27 @@ struct MainView: View {
                 }
             }
         }
+        // Once a fetch finishes (isLoading flips false), check whether the
+        // engagement gates have been crossed and call the OS review prompt.
+        // The coordinator handles the "one time ever" guarantee — even if
+        // iOS suppresses the sheet (TestFlight, user disabled in-app
+        // reviews, Apple's 365-day budget), we still mark hasPrompted so we
+        // never re-attempt.
+        .onChange(of: weatherVM.isLoading) { _, isLoading in
+            guard !isLoading else { return }
+            maybeRequestReview()
+        }
         .onChange(of: savedLocations.count) { oldCount, newCount in
             // Clamp selectedPage when a location is deleted to prevent out-of-bounds
             if selectedPage >= pageCount {
                 selectedPage = max(0, pageCount - 1)
             }
+            // Re-hydrate from the widget cache so saved-city pages whose @Query
+            // row arrived after `.task` already ran still get their cached
+            // synthetic snapshot before the network prefetch lands. The call is
+            // idempotent — slots already holding a non-partial snapshot are
+            // skipped inside the view model.
+            weatherVM.hydrateFromWidgetCache(savedLocations: savedLocations)
             // Prefetch weather for newly-added cities so swiping to them is instant.
             // Skips on delete (newCount < oldCount) to avoid redundant work.
             if newCount > oldCount {
@@ -407,6 +439,30 @@ struct MainView: View {
                     }
                 }
             )
+        }
+    }
+
+    // MARK: - Review prompt
+
+    /// Called whenever a fetch completes. If every engagement gate has been
+    /// crossed, schedule the OS review sheet on a 2-second delay so the user
+    /// has a moment to register the fresh weather before being interrupted.
+    /// The coordinator marks `hasPrompted = true` immediately on call so we
+    /// can't accidentally fire twice from rapid back-to-back fetches.
+    private func maybeRequestReview() {
+        let activeKey = weatherVM.activePageKey
+        let activeState = weatherVM.pageStates[activeKey]
+        let snapshotIsPartial = activeState?.weather.isPartial ?? true
+        let hasActiveAlert = activeState?.weather.alerts.isEmpty == false
+        guard reviewPrompt.shouldRequestReview(
+            isLoading: weatherVM.isLoading,
+            snapshotIsPartial: snapshotIsPartial,
+            hasActiveAlert: hasActiveAlert
+        ) else { return }
+        reviewPrompt.markPrompted()
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(2))
+            requestReview()
         }
     }
 

@@ -37,11 +37,6 @@ struct WeatherView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: DesignTokens.spaceLG) {
-                // Top spacer accounts for the floating header overlay
-                if topInset > 0 {
-                    Color.clear.frame(height: topInset)
-                }
-
                 // Severe weather alert banner
                 if !weather.alerts.isEmpty {
                     SevereAlertBanner(alerts: weather.alerts, timezone: weather.timezone)
@@ -104,6 +99,12 @@ struct WeatherView: View {
             .frame(maxWidth: .infinity)
         }
         .scrollIndicators(.never)
+        .safeAreaInset(edge: .top, spacing: 0) {
+            // Reserve space for the floating header overlay so content (and
+            // the system pull-to-refresh spinner) start below it instead of
+            // landing behind the "thedamnweather / Explicit" bar.
+            Color.clear.frame(height: topInset)
+        }
         .safeAreaInset(edge: .bottom) {
             // Reserve space for the floating bottom bar so content scrolls fully past it
             Color.clear.frame(height: 56)

@@ -5,6 +5,7 @@ import WeatherShared
 final class SettingsViewModel {
     let appState: AppState
     private let notificationService = NotificationService()
+    let reviewPrompt: ReviewPromptCoordinator
 
     var showAgeVerification = false
     var morningForecastEnabled: Bool {
@@ -25,8 +26,9 @@ final class SettingsViewModel {
         }
     }
 
-    init(appState: AppState) {
+    init(appState: AppState, reviewPrompt: ReviewPromptCoordinator) {
         self.appState = appState
+        self.reviewPrompt = reviewPrompt
         let defaults = UserDefaults.standard
         morningForecastEnabled = defaults.bool(forKey: AppConstants.UserDefaultsKeys.morningForecastEnabled)
         morningForecastHour = defaults.object(forKey: AppConstants.UserDefaultsKeys.morningForecastTime) as? Int ?? 7

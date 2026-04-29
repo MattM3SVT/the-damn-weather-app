@@ -30,13 +30,18 @@ public actor ObservationCrossCheckService {
         self.noCoverageCache  = CrossCheckCacheStore.loadNoCoverage()
     }
 
-    /// Public entry point. Never throws. Returns empty consensus on any failure,
-    /// when the location is outside NWS coverage, or when the outer budget expires.
+    /// Public entry point. Never throws. Returns empty consensus when the
+    /// location is genuinely outside NWS coverage. On transient failures
+    /// (network blip, NWS 5xx, METAR timeout, outer budget expiring) returns
+    /// the most recent cached consensus if it's still young enough — see
+    /// `stickyFallback`. This keeps the sky-cover override stable across
+    /// pull-to-refresh under flaky networks instead of flipping the hero
+    /// condition every time a supplemental fetch fails.
     public func fetchSkyConsensus(for location: CLLocation) async -> SkyConsensus {
         // Outer budget guard: race the real work against a timeout racer so that
         // pathological network conditions (DNS blackhole, serial HTTP timeouts,
         // the NWS token wait stacking) can't keep a caller waiting indefinitely.
-        await withTaskGroup(of: SkyConsensus?.self) { group in
+        let raw: SkyConsensus? = await withTaskGroup(of: SkyConsensus?.self) { group in
             group.addTask { [weak self] in
                 guard let self else { return nil }
                 return await self.fetchSkyConsensusUnbounded(for: location)
@@ -47,10 +52,43 @@ public actor ObservationCrossCheckService {
             }
             defer { group.cancelAll() }
             for await result in group {
-                return result ?? .empty
+                return result
             }
-            return .empty
+            return nil
         }
+
+        // Outer timeout fired — try sticky fallback.
+        guard let result = raw else {
+            return stickyFallback(for: location, reason: "outerTimeout") ?? .empty
+        }
+        // Inner returned, but with no useful data — try sticky fallback only
+        // when this isn't a known-no-coverage spot. If we recently learned
+        // the location is outside NWS coverage, an empty consensus is the
+        // honest answer; don't paper over it with old data.
+        if !result.hasUsableData {
+            let coverageKey = coverageCacheKey(for: location)
+            let isKnownNoCoverage = noCoverageCache[coverageKey].map {
+                Date().timeIntervalSince($0) < AppConstants.noNWSCoverageCacheTTL
+            } ?? false
+            if !isKnownNoCoverage,
+               let sticky = stickyFallback(for: location, reason: "transient") {
+                return sticky
+            }
+        }
+        return result
+    }
+
+    /// Returns the most recent cached consensus for this location if it has
+    /// usable data and is younger than `crossCheckStickyMaxAge`. Used to keep
+    /// the sky-cover override stable across transient supplemental failures.
+    private func stickyFallback(for location: CLLocation, reason: String) -> SkyConsensus? {
+        let key = observationCacheKey(for: location)
+        guard let entry = observationCache[key],
+              entry.consensus.hasUsableData else { return nil }
+        let age = Date().timeIntervalSince(entry.fetchedAt)
+        guard age < AppConstants.crossCheckStickyMaxAge else { return nil }
+        log.info("CrossCheck sticky fallback (\(reason, privacy: .public), age=\(Int(age))s) for \(key, privacy: .public)")
+        return entry.consensus
     }
 
     /// Inner implementation — same logic as before, but caller enforces a timeout.

@@ -135,6 +135,31 @@ struct SettingsView: View {
                 } header: {
                     Text("About")
                 }
+
+                #if DEBUG
+                Section {
+                    Button("Reset review prompt state", role: .destructive) {
+                        viewModel.reviewPrompt.resetForDebug()
+                    }
+                    HStack {
+                        Text("Successful fetches")
+                        Spacer()
+                        Text("\(viewModel.reviewPrompt.successfulFetchCount)")
+                            .foregroundStyle(.secondary)
+                            .monospacedDigit()
+                    }
+                    HStack {
+                        Text("Has prompted")
+                        Spacer()
+                        Text(viewModel.reviewPrompt.hasPrompted ? "yes" : "no")
+                            .foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("Debug")
+                } footer: {
+                    Text("Visible in DEBUG builds only. The OS shows the review sheet on every Simulator/dev call so you can re-test the trigger after resetting state.")
+                }
+                #endif
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
@@ -154,6 +179,22 @@ struct SettingsView: View {
 struct WhatsNewView: View {
     var body: some View {
         List {
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.3.3")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "quote.opening", color: .accentRed, text: "1,000 new phrases. The damn weather has more to say.")
+                        ChangelogItem(icon: "bolt.horizontal.fill", color: .yellow, text: "Saved cities now show real data on launch instead of pretending to load forever")
+                        ChangelogItem(icon: "arrow.clockwise", color: .cyan, text: "The pull to refresh spinner no longer hides behind the header bar like it owes someone money")
+                        ChangelogItem(icon: "star.fill", color: .yellow, text: "Long time users may get politely asked for a rating after the app earns it")
+                        ChangelogItem(icon: "wrench.and.screwdriver.fill", color: .gray, text: "Bug fixes. Less broken than yesterday.")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
             Section {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.3.2")

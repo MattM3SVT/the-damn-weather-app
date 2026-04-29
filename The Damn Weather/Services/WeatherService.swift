@@ -263,11 +263,15 @@ actor WeatherService {
         }
     }
 
+    /// Drop only the WeatherKit in-memory snapshot cache so the next
+    /// `fetchWeather` call hits Apple. Supplemental services (cross-check,
+    /// air quality, NWS alerts) each have their own TTLs and sticky fallback,
+    /// so wiping them on every routine refresh would force re-fetches that
+    /// can transiently fail and leave the user with no AQI / suppressed
+    /// consensus override / etc. Foreground refresh and pull-to-refresh
+    /// route through here.
     func clearCache() async {
         cache.removeAll()
-        await crossCheck.clearCache()
-        await airQuality.clearCache()
-        await nwsAlerts.clearCache()
     }
 
     /// Get the correct timezone for a location via reverse geocoding.

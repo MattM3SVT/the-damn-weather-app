@@ -2486,8 +2486,8 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": true,
-    "nightOnly": false
+    "dayOnly": false,
+    "nightOnly": true
   },
   {
     "text": "Heavy snow. Schools are closed. Your little shits are home all day. God help you.",
@@ -2840,7 +2840,7 @@
     "tempRange": null,
     "priority": 2,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "Thunderstorm. The transformer just blew. Your freezer full of food is on borrowed fucking time.",
@@ -3029,7 +3029,7 @@
     ],
     "tempRange": null,
     "priority": 2,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -3325,7 +3325,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -3920,7 +3920,7 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13091,7 +13091,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13104,7 +13104,7 @@
       78
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13143,7 +13143,7 @@
       75
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13156,7 +13156,7 @@
       75
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13299,7 +13299,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13338,7 +13338,7 @@
       68
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13403,7 +13403,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13546,7 +13546,7 @@
       60
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13741,7 +13741,7 @@
       60
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -14600,7 +14600,7 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "[temp] degrees and snowing. Your car's defrost setting is optimistic as shit.",
@@ -15611,7 +15611,7 @@
       58
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16286,7 +16286,7 @@
       78
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16338,7 +16338,7 @@
       60
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -17178,7 +17178,7 @@
       50
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -17321,7 +17321,7 @@
       78
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -17685,6 +17685,5574 @@
     "tempRange": [
       72,
       88
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder mid-Zoom. Your boss heard it. You both pretended you didn't. Corporate Stockholm syndrome.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right as the WiFi finally cooperated. The router had a moment of clarity and immediately fucking died.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm hit mid-mow. The lawn is half a buzz cut and half a middle finger.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder mid-drive-thru. The order taker can't hear you. You can't hear them. We're all just guessing.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the grocery run. The walk from the cart to the trunk is a goddamn dash.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the dog walk. The dog wants to keep going. The dog is voting alone, you weirdo.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when the pizza arrived. Tip in cash. Tip well. That dude is a fucking legend.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the school dismissal. Every parent is white-knuckling the wheel. Trauma bonding through goddamn weather.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the lunch run. Your sandwich is fine. Your shoes are fucking history.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were taking out the trash. The bin lid is somewhere. The trash is fucked.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when the Amazon driver pulled up. The package is technically on the porch. He earned a goddamn medal.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the morning commute. Every car is doing twenty under and frankly, fuck it, you respect that.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you stepped onto the porch. Back inside it fucking is.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while the roofer was on the ladder. He got off the ladder real fucking fast.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm right after you washed the car this morning. The universe has a fucking sense of humor.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were getting gas. The pump handle and the rain agreed on a meeting time. Goddamn timing.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right as you parked. The umbrella is in the trunk. You are fucking not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the afternoon errands. Your list is half-done and double-soaked. Net fucking loss.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right after you said 'doesn't look that bad.' You did this, asshole.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while the dog was outside. The dog is now glued to your leg until further fucking notice.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm right when the AC tech showed up. He's wearing flip-flops. Whose fucking idea was that.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the school pickup. Every minivan window has a tense fucking face behind it.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning at the office window. The whole floor just stopped pretending to fucking work.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the patio brunch. Your eggs benedict are now eggs aquatic. Fucking shame.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were on the phone. The other end heard fucking everything.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning as you opened the front door. You're closing the front fucking door.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the run to the mailbox. Mail can wait. Mail is fucking waiting.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the patio coffee. The barista is bringing your latte indoors. Permission was assumed and frankly, fuck it.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning over the parking lot. Every car is suddenly the wrong fucking distance from the door.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm while the kids were in the backyard. They're inside now. Both of them. Eventually. Fucking herding cats.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you sat down for lunch outside. Inside it fucking is.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the coffee shop window seat. The view is free entertainment. The WiFi is fucking hostage.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm hit while you were unloading groceries. Eggs are inside. Paper towels are fucked.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the porch sit. The porch was the chill zone. Now it's a fucking liability.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while the contractor was outside. He's inside now. The estimate is somehow fucking larger.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the afternoon walk. The umbrella is not a real umbrella. You found out the hard fucking way.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were at the gym. The treadmill belt is slowing in goddamn solidarity.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning at the bus stop. The shelter is not a shelter. It is a polite fucking suggestion of a roof.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the morning run. The sneakers will be drying in the laundry room for a goddamn week.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when the lawn care guys showed up. They left. They will return tomorrow. Smart fucks.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning over the highway. Every billboard is briefly a fucking art installation.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm while you were grilling. The brats are saved. The lawn is fucking forfeit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the drive home. Your podcast is louder than usual. The wipers are louder fucking still.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when you opened the garage. The garage is open. You are fucking frozen in place.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the lunch break walk. The walk has been canceled by goddamn management.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were on the patio. The patio is no longer a fucking feature.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when the kid asked to play outside. The conversation just got real fucking short.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm at [temp] degrees. The pavement is steaming and the lightning is showing off. Fucking dramatic.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      70,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm at [temp]. The gutter is overflowing onto the basement window. Tomorrow's fucking problem.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storming at [temp]. Your morning errands are tomorrow's morning fucking errands.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder at [temp] degrees. The barometric pressure is doing a fucking nosedive.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while you were watering the plants. The plants have been fucking watered.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm right when the kid's birthday party started. Forty cupcakes and zero outdoor time. Fucking pivot.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the post office line. Everyone in the building just glanced up at the same goddamn time.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the bank drive-up. The teller is behind glass. You are fucking not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the porch package delivery. Your Amazon driver has earned fucking sainthood.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you walked the dog one block. The block became three. Fucking comedy.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the lawn mowing. You're inside. The mower is outside. Tomorrow's mower fucking problem.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the school carpool. The wipers are at maximum and still fucking negotiating.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were at the doctor's. The waiting room is suddenly the cozy fucking spot.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when you stepped out for the mail. The mail can wait. Forever, if needed. Fuck the mail.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the trash truck route. The driver is unfazed. Built fucking different.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you got out of the car. The car is dry. You are fucking not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the morning meeting. The whole team just paused mid-sentence. Goddamn theatrics.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the lunch hour. Every restaurant patio is a ghost town. Every interior is a fucking cage match.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you opened the back door for the dog. The dog reconsidered. Smart fucking dog.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the porch package check. The package is fine. You are dramatically fucking not fine.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the bus stop wait. The kids are unfazed. The parents are doing storm-odds math with shaking fucking hands.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the gas pump wait. Two minutes left. Two long fucking minutes.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the school bus loading. The driver is patient. You are fucking not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the run to the car. The thirty feet just got really fucking educational.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the office window-watching. Productivity is gone. Replaced by free goddamn weather TV.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when you committed to the back patio. The patio said no, you fucking optimist.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. Your hat is in another county. Don't even chase it, you sentimental fool.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. The trampoline you swore you'd anchor is now your neighbor's fucking problem.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The drive-thru menu is flapping like it's having a fucking seizure.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Every restaurant patio just lost three salt shakers, two umbrellas, and one customer's last shred of fucking dignity.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty as hell. Your AirPod made a strategic exit. It's gone forever and you know it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. Every privacy fence on the block is doing the goddamn wave.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Every umbrella at the bus stop is inside-out. None of them realize they're fucking finished.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts at coffee. The lid stayed. The steam took a goddamn sabbatical.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Every porch chair migrated to the next yard. Free seating, you cheap bastards.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The patio umbrella you forgot to close is doing pirouettes in the goddamn pool.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. Every receipt in your car has staged a coordinated fucking mutiny.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The yard signs from last election season are finally on the fucking move.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The car dealership's inflatable wacky-arm guy is making real-time goddamn art.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts knocked the inflatable Halloween skeleton flat. It's June. Nobody is fucking discussing it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Every flag in town is doing the absolute fucking most.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The sandwich board sign at the cafe is on its fourth fucking location of the morning.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty day. Your sunglasses are gone. Don't fucking look. Acceptance is faster.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The lawn chair migration is in progress. It's biblical fucking shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up at school drop-off. Every minivan door is fighting back like it's been waiting all goddamn year.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty morning. The trash can lids are gone. The trash is gone in a different fucking direction.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Outdoor brunch was a goddamn mistake. Your french toast is gritty as hell.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The bird feeder is empty. The seeds are in the next yard. The birds are fucking pissed.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty. The 'open' flag at the diner is doing more cardio than anyone in the goddamn building.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Every contractor's measurement is now a personal fucking philosophy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The beach towels are folding themselves whether you wanted that or not. Nature's a control freak.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts in the grocery store parking lot. Every loose plastic bag is a goddamn projectile.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The bike rack outside the office is doing a metallic fucking concerto.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The roof guy bailed. Smart fucking roof guy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty. The stroller cover is now a parachute attempting fucking takeoff.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Whatever you laid down on the patio is no longer on the patio. It's somewhere fucked.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The crossing guard is using their stop sign as a goddamn wind shield.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts at the gas station. Every pump receipt is gone. Every tax preparer just felt a chill in their fucking soul.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The kid's plastic playhouse is in the wrong yard. Everyone fucking watched it leave.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The 'cars only' lane at the bank drive-up is doing a fucking wave.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. Your bangs are in the next state. They are fucking gone.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at the dog park. The chuck-it has chucked its goddamn self.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. Your screen door has earned a name. The name is Goddamn Asshole.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty morning. The lawn ornaments are now somebody else's fucking problem.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The leaves you raked yesterday are doing wind sprints down the sidewalk like they're training for something fucked up.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The patio tablecloth is now in the neighbor's yard. It wanted out, you boring fuck.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts at lunch. The deck umbrella tried hard. The deck umbrella is in the pool. RIP, you fucking warrior.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Every door slam in the office is involuntary. Every coworker just got fucking startled.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The scaffolding tarps are doing interpretive fucking dance.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty day. The dryer vent on the side of the house is doing the fucking talking now.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The bird bath is empty and somebody's about to write a strongly worded fucking review.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The new fence panel is auditioning for a role as a former fucking fence panel.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts in the backyard. Every loose toy has migrated somewhere fucking new.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The lid of your iced coffee just exited. The straw followed on principle. The drink is fucked.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The flagpole at the post office is making sounds nobody fucking asked for.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. The grocery cart corral is having an absolute fucking meltdown.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Every patio menu is a paper airplane in development. Aviation fucking hour.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The garbage truck route just became everyone's fucking responsibility. Trash is communal.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. Every toddler at the park is now a kite. One of them is genuinely fucking concerned.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The hammock is a parachute. Physics is a goddamn pain in the ass.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up while you walked the kid to the bus stop. The kid arrived a different fucking shape.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty. The for-sale sign sold itself to the wind. Efficient fucking market.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The pool noodle is in the neighbor's pool. Free fucking noodle for them.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. Every loose paper on every desk is a suspect. The whole office is on fucking edge.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty morning. The jogger's wireless earbud took a permanent fucking vacation.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The scaffolding fabric downtown is making the loudest sound in the city. Tourists fucking hate it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The patio umbrella you finally got level yesterday is now a structural fucking question mark.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts on the bike trail. Every cyclist is leaning thirty degrees and not fucking moving. Pure comedy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. The patio heater is irrelevant. The patio is irrelevant. Your plans are fucked.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. Every dog walker just had their route fucking deleted by physics.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty as hell. The recycling bin tipped. Everyone's cardboard is now everyone's fucking problem.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Every loose hairdo in the parking lot is now a former fucking hairdo.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up at the playground. The kid's helium balloon is now an experimental fucking aircraft.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Every drive-thru line is twice as long because cars are pulling forward six fucking inches at a time.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The carpool line is moving like nobody fucking knew this was on the forecast.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the park. The picnic tables are sad as shit and totally abandoned.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-bike commute. Brake pads are praying. Tires are skating. You're a goddamn idiot.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Every coffee shop is at 200% capacity and the WiFi is filing for fucking hospice.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain on the porch package check. The package is fine. Your slippers are fucked.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The contractor's drop cloths are doing more goddamn work than the contractor.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The drive-thru line is unmoved. Those people are committed as fuck.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. Hood up. Wallet wet. Mood completely fucked.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-run. Every step is squelchy. Tomorrow is a laundry day whether you wanted it or fucking not.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The Costco parking lot is a slip-and-slide and the carts are doing whatever the fuck they want.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. Your delivery driver wrapped your package in a plastic bag because the company doesn't give a shit, but he does.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Your neighbor mowing in this is making a personal choice you are silently fucking judging.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The corner where they're paving the road is a fucking swamp. Drive around it.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The bus stop is a forest of small umbrellas, none of which are fucking working.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-grocery run. The eggs are fine. The cardboard cereal boxes are absolutely fucked.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining today. The crossing guard is in a school-bus-yellow poncho and earning every goddamn dollar.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the airport curb. Every greeter is waving from inside the doors. Smart fucking greeter.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The dog refuses to pee. The dog is an artist and a fucking tyrant.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The deck furniture you didn't put away is fucked. You knew this would happen.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The Amazon driver just earned a fucking saint candle and a hot shower.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the playground. Every kid is doing puddle science. Every parent is doing damage control with a goddamn sigh.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The library is suddenly full of teenagers who 'remembered they had a project.' Goddamn liars.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. Every hardware store is having its best fucking week. Tarps are flying off the shelves.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain and [temp] degrees. The coat that was perfect yesterday is a soaked fucking sponge today.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain right when you tried to start the grill. The grill is no longer the fucking plan.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The gym parking lot is a kingdom of close-spot betrayals. Fuck everyone with a covered space.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the park bench. Every dog walker has the same thousand-yard fucking stare.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The 'I'm fine without an umbrella' guy is now soaked. We see you, asshole.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The commute is twenty minutes longer for no goddamn reason. Welcome to it.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The kid's poster-board project is becoming a watercolor against its fucking will.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain right when you went to take out the trash. The bag is fucking heavier on the way back.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The drive-up at the bank is the most popular it's been since fucking 1998.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The cardboard moving boxes you saved 'for next time' are now fucked. Should've thrown them out.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The downtown lunch crowd just discovered the fucking food court.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The 'covered drop-off' lane at every drugstore is suddenly the most popular fucking spot in town.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining mid-stretch on the porch. The mat is a pond. Namaste, motherfucker.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain on the way to work. The sock-shoe crime scene at the office is going to be fucking unforgettable.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain and [temp]. The dog's enthusiasm for the walk is dropping by the goddamn second.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The patio brunch is an indoor brunch and the wait is forty-five fucking minutes.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Your favorite outdoor café table is gone and so is your fucking joy.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-day at [temp]. Car windows fogged. Defroster auditioning. AC working harder than your manager.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at school dismissal. The pickup line is a stage and every parent is auditioning for patience. Half are fucking failing.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. Every gardener is celebrating quietly and you are not fucking invited.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Every storm drain is doing the work of three storm drains. Tax dollars at fucking work.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain right when the kid wanted to ride the bike. The bike is staying in the goddamn garage.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The hardware store has a tarp aisle that's three carts wide. We are fucking thriving.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at lunch. The sandwich shop's outdoor chairs have been rescued. Heroic shit.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The flower delivery driver just earned fucking hazard pay.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The valet stand is full of patient employees and impatient assholes.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The hat that wasn't waterproof is still not fucking waterproof.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-dog park. Every dog is either thrilled or refusing. There is no fucking middle ground.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The car wash is closed for some goddamn reason. The universe has jokes.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the mall entrance. Every umbrella stand is empty. Every customer is doing the goddamn rain dash.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The bus driver is a hero. The bus is a fucking refuge. Tip in your heart, you cheap bastard.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The driveway is officially a fucking river.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain today. The basement sump pump is doing its life's fucking work.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The storm drain is clogged and a goddamn lake is forming.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour mid-commute. Wipers at max. Still fucking losing.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The roof gutters are overflowing in places gutters should not fucking overflow.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. The puddle in the parking lot has its own goddamn ecosystem.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The downspout finally fucking quit and the side of the house is taking the hit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The intersection where you turn left is now a swimming pool. Fuck this commute.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The cracks in your driveway are getting tested. They fucking fail.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring today. The kid at the bus stop is the wettest he has ever fucking been and the day just started.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp]. The garage floor has gained a feature: a small fucking lake.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The car ahead of you on the highway is invisible from forty feet. Fucking terrifying.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every hardware store is selling out of sandbags in real fucking time.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The kids are inside. They're going to be inside for a goddamn while. Plan accordingly.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain mid-day. The coffee shop's outdoor seating is now a goddamn zen pond.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The hose you forgot to roll up is a goddamn water snake. You did this.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. Every umbrella in town is fucking inverted. Every person is committed to the bit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The grocery store parking lot is a fucking slip-and-slide and the carts are racing.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. Your wipers have two settings: insufficient and very fucking insufficient.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The mulch you laid yesterday is now in the next yard. Fucking great.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every overpass has cars stopped under it like they're fucking strategic. They are.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The 'no flooding here' spot on your route is, in fact, fucking flooding.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The local news is showing your neighborhood. Not a goddamn flex.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at lunch. Every restaurant entrance is a wet fucking welcome mat museum.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The mail carrier just walked by with a poncho and the most exhausted fucking expression on Earth.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain mid-school dismissal. Tempers are short. Patience is fucking shorter.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every window in the office has someone looking out with the same defeated fucking face.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp]. The parking lot speed bump is now a fucking dam.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The 'flood zone' sign on your street is finally getting some goddamn respect.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The drain at the end of your driveway is gurgling and you should be concerned. Real fucking concerned.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The radar looks like a Jackson Pollock and we're in the worst fucking part.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every kid's backpack is a sponge. Every textbook inside is fucked.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The scheduled outdoor inspection just got rescheduled. Fucking twice.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp]. The wipers are squeaking like they're filing a goddamn grievance.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The garage door opening sound is followed by a small fucking wave.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The bus stop has migrated under a tree. The tree is fucking failing.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The trash bins on the curb are floating fucking bins on the curb now.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The rain barrels are full. They've been full. They are now goddamn lawn art.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The roof seam you've been ignoring is finally getting your fucking attention.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. The street is a river. The river is the street. Fuck taxonomy.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The car detailing place just had its busiest no-show day on fucking record.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The downtown square fountain is the same fucking level as the sidewalk now.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. Your covered porch is no longer covered enough. Fuck.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp]. The dog walked twelve feet and is done. Smart fucking dog.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The school bus driver is doing miracles and the kids are unimpressed assholes.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. Every patio plant is overwatered for a goddamn month with no remedy.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The flash flood alert just upgraded. Your route home is fucked.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at the highway exit ramp. Hydroplaning is a fucking certainty, not a maybe.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The local meteorologist has pulled out the bigger graphics. Fucking bad sign.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. The garage you parked in is charging extra for the fucking privilege.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Not enough to commit to an umbrella. Enough to fuck up your hair.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The intermittent wiper button is going to wear out before the goddamn day does.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at the bus stop. Every coat is getting that 'damp around the shoulders' look. Fucking gross.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. Your sunglasses have water spots and your sweater is doing its best, you cheap bastard.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The car windshield refuses to commit. You'll hit the wiper button thirty fucking times before noon.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty out at [temp]. Every windshield in the parking lot is fogged from the goddamn inside.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The kind of weather that requires a quarter-zip and a fucking attitude.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The 'is it actually raining' debate is happening at every fucking bus stop.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. Your hood is up but only because you don't trust this fucking weather.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The newspaper guy hit the porch dead-on. Hero of the goddamn morning.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The dog is doing the slow blink at the open door. Smart fucking dog.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The roof guy keeps glancing at the sky and pretending he fucking doesn't.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The crosswalk button is wet, your sleeve is wet, the morning is fucking committed.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at the strip mall. Every awning has someone hiding under it pretending to wait for somebody. Goddamn liars.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The 'will it rain harder' debate has been going twenty minutes and nobody fucking knows.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty out. The morning runners are committing to the bit. The walkers are not. The dogs are confused as fuck.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every patio is open and every patio is fucking empty. Nobody asked for this.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling at [temp]. Your hair has frizzed on principle. There's nothing you can fucking do.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every lawn looks fancy. Every fucking shoe is wet.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The car interior is at 80% humidity and the windshield is mocking you.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The neighbor is still mowing because the neighbor is a goddamn psycho with principles.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every umbrella is being half-opened, half-closed, all-the-fucking-way considered.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The crossing guard is unfazed because their poncho is a fucking miracle.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The intermittent wipers were invented for this exact bullshit moment.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The grass is glittering and you are mildly fucking damp.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The patio chairs are dotted with water and the cat is fucking judging.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every mailbox flag in the neighborhood is up. The mail carrier is fucking unimpressed.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The kind of weather where everyone says 'is it actually raining' twice and shrugs.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The mailbox flag is up. The mailbox does not give a fuck.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle right when you walked the groceries to the car. Every bread bag is fucking contraband now.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The school field is technically playable. Nobody wants it to fucking be.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The morning fog and the drizzle are conspiring against your goddamn coffee.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty out. Every windshield in the office lot is dotted but not wet enough to fucking wipe.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The patio brunch is just barely happening and everyone's calling it fucking romantic.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Your shoes were a stylistic choice. They're a damp goddamn choice now.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at the school garden. The kids think it's magical. The teachers think it's a fucking cleanup.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The 'I'll just take the dog out for a minute' is now a fifteen-fucking-minute event.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling at [temp]. The dog wants to go out. The dog will regret it in three fucking minutes.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The grocery cart corral wheels are squeaking the song of their fucking people.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The 'umbrella required' debate is the most active group chat in the goddamn building.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The runner ahead of you is doing this on purpose. Fucking respect.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every car is in the wash queue tomorrow. Today is fucking wasted.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The sidewalk is just slick enough to rethink your shoe choices, you cheap fuck.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The 'I'll just go without' people are being regretted in real fucking time.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The forecast said clear. The forecast lied. The forecast is a fucking liar.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The driveway is glass and the trash cans are on a fucking tour.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm. Every step is a goddamn negotiation with physics. Walk like you mean it.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain today. The mailbox is a popsicle and the door knob is its frozen fucking cousin.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The car hood is a skating rink. The roof is fucking worse.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice forming everywhere at [temp]. Your driveway looks fine. Your driveway is a goddamn trap.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain advisory. The city's salt budget is having a fucking meltdown.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain today. School delays are stacking like flights at goddamn O'Hare.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice glaze everywhere. The trees are sparkling. The branches are absolutely fucked.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain mid-morning. Every car door is sealed shut with a goddamn ice handshake.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. Your salt bag is empty and your patience is right fucking behind it.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice on every surface. The mail truck is moving like it's tap-dancing on goddamn purpose.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The school called five fucking minutes ago. Your kid is still asleep. Score.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet and freezing rain today. The morning routine just gained forty fucking minutes.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The driveway sand is gone. The rock salt is gone. Your hope is fucking next.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice morning at [temp]. The car alarm went off because the ice did. Your patience went off because of all of this fucking ice.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain advisory. The plows are out. They are losing badly. Like, embarrassingly fucking badly.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The sidewalks are a goddamn death pact. Walk like a penguin and own the bullshit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice everywhere today. The grocery curbside pickup is the most popular it's been in fucking years.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain mid-day. The power flickered three times. Get the goddamn candles, asshole.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice glaze at [temp]. The steps to the porch are now an extreme fucking sport.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain today. Every parked car is wearing a goddamn ice helmet.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet outside. The roads are frosted and every car is doing fifteen under like their fucking life depends on it.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Whatever is on the lawn is now frozen to the lawn. That includes the goddamn rake.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice morning. The dog walked once. The dog is fucking done with this shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The newspaper is glued to the porch. Pry, don't tug, asshole.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm today. The branch on the maple is bowing politely toward the goddamn ground.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Every gas station pump handle is welded to its holster like they're fucking soulmates.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice everywhere at [temp]. The school bus is running on optimism, chains, and a fucking prayer.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain advisory. Every parking lot is a bumper-car arena. Drive accordingly, asshole.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet and ice. The morning meeting is now virtual. Smart fucking move.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain today. The neighbor's mail-day moment of joy just got iced fucking over.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice glaze on the windshield. Your scraper is thirteen years old and finally fucking relevant.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The city is asking residents to please stay the fuck off the roads. Most are listening.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice morning. The school bus driver is doing the work of three people and a goddamn saint.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Every commute is a rolling negotiation between you, the road, and goddamn gravity.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet outside. The porch furniture is cemented in fucking place. It's there until spring.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain today. The salt truck is being followed by every car in town like a goddamn parade.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice everywhere. The shopping carts are skating in the parking lot like they finally fucking escaped.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The school's late-arrival policy got fucking tested today. The policy lost.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice on the back deck. Your barbecue is hibernating until fucking further notice.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The driveway you cleared an hour ago has filed for fucking restoration.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling at [temp]. The commute is a slow-motion painting of nobody fucking making it on time.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The kid is in five layers and still pretending it's not fucking enough.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing during the school day. The window is the most-watched view in the goddamn building.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The car is buried. The car alarm is fucking unfazed.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. Every grocery aisle for bread, milk, and eggs is a goddamn war zone.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The school bus is late and parents are doing math on shoveling like hostages.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling. The cardinals at the feeder look like a fucking Christmas card. Don't pretend you don't see it.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today at [temp]. The plow truck made one pass and left a goddamn wall at your driveway. Classic.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. The kids are outside doing snow angels. Their gloves are fucked by minute three.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow this morning. The thermos game is strong in your house. Big fucking energy.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The snow blower has not started in two seasons. Today is the goddamn test.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The front porch is now an art piece called 'Untitled, In Fucking White.'",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The morning commute is a slow polite goddamn suggestion. Drive accordingly.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The mail carrier earned every dollar and a hot beverage you didn't fucking offer.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing during the school pickup. Every parent is white-knuckling the wheel and the goddamn radio.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling. The dog is doing big bounces and you're impressed and slightly fucking alarmed.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowy day at [temp]. The driveway-to-mailbox path is a small fucking expedition.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The kids' school is still open. The kids are absolutely fucking livid.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The mid-morning Costco run is now a winter triumph story you'll fucking tell forever.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The dog walker is bundled like an astronaut. Dogs do not give a fuck.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. Every car at the stop sign is doing a soft skid like it's a slow fucking dance.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow this morning. The grocery list is short. The weather list is fucking long.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing today. The snowman in the front yard is going to be there for a goddamn month.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at the playground. The slide is faster than usual and the kids are fucking delighted.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The school bus is the loudest popular vehicle on the goddamn street.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. Every coffee shop has a window full of people pretending to fucking work.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The shovel is finally where you remembered putting it. Good for goddamn you.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      20,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The neighbor's roof is doing the slow drama of avalanche. Stand the fuck back.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowy outside. The parking lot pile is approaching iconic fucking status.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling. The cars in the office lot are getting buried during the morning fucking meeting.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing today. The kid's snow boots are still in last winter's bin. Today is a goddamn problem.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The heat in the bus is set to 'fucking tropical.' Everyone's overdressed.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The morning runners are pretending it's fine. It is not fucking fine.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. The garbage truck is working with weather and goddamn dignity in mind.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The grocery store cart corral looks like a snowy art installation. Fucking artisanal.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing at [temp]. Every car windshield in the office lot has a fucking personality now.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow this morning. The driveway has a one-foot-tall hat. Wear it well, asshole.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The school's two-hour delay is a celebration in twenty fucking group chats.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling at the bus stop. Every parent is pretending to be a tree. The kids are not fucking fooled.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees outside. The steering wheel is a personal injury fucking lawsuit waiting to happen.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] degrees. The metal seatbelt buckle is a small medieval fucking torture device.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Your iced coffee was iced when you bought it. It is not anymore. Fucking RIP.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      86,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The asphalt is soft. Your shoe prints are forensic fucking evidence.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp] and the dog refuses to go outside. The dog is fucking right.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every car parked in the sun is a small oven with leather goddamn seats.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The sunscreen you forgot is now a fucking Sunday problem.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] outside. Walking from the car to the front door is a workout you didn't fucking sign up for.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kid's plastic slide at the playground is a registered hot fucking surface.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The grocery store automatic doors are working triple fucking time.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The shade tree in the parking lot is the most contested goddamn real estate in town.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      86,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. Your sunglasses are now permanently part of your fucking face.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The pavement near the gas station is fucking mirage territory.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The grocery cart corral metal is hot enough to brand goddamn cattle.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kid's water bottle was cold this morning. The kid is fucking pissed.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      86,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. Every coffee shop is a fucking refugee zone for the heat-averse.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The HOA pool is at capacity. The backup pool is a goddamn blow-up in someone's yard.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The school crossing guard is in three layers of sunscreen and a hat the size of fucking Texas.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      86,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The construction crew is calling for water breaks every ten goddamn minutes.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] outside. The dog walked twelve feet and demanded shade like a small ungrateful fucking king.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The ice cream truck has formed a permanent fucking line by the splash pad.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      86,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The neighbor mowing in this is auditioning for the heat exhaustion hall of fucking fame.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every gas station is selling out of cold drinks like it's a fucking doomsday vault.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The dashboard plastic is starting to show fucking feelings.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. The lawn is a memory. The sprinkler is doing its goddamn best.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The mall food court is at full capacity by 11:30. AC is the new luxury, you cheap fuck.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The water hose has hot water for the first thirty seconds. Plan accordingly, asshole.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your phone is heat-throttling and so are you. Both of you are fucking failing.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      92,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] outside. Every dog park session is now a fifteen-minute fucking event.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The crosswalk concrete is doing the heat shimmer thing and you fucking notice.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The errand list is now a sunset list. Adapt accordingly, you sweaty fuck.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The pool deck is the new lava floor. Do not fucking step.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The grass crunches when you step on it. That's a goddamn vibe.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The library is a popular destination for reasons unrelated to fucking books.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. Every package on every porch is melting. Sorry, chocolate-shipper, you fucked up.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The crossing-guard sign is hot enough to fry a goddamn egg. Don't try it, dumbass.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. The mid-afternoon walk is now a mid-evening event. Time-shift the fucking plans.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The car AC takes ten minutes to do the goddamn job. Plan your departures.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp] outside. The kid's juice box just expanded and it's a sticky fucking situation.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The bus stop bench is hot to the touch. Do not lean on the goddamn metal.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The houseplants near the window are filing complaints with fucking management.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every restaurant patio is empty and every restaurant interior is at fucking war.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The bumper sticker on your neighbor's car is starting to peel from the goddamn heat.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The deck is too hot for bare feet. So is the porch. So is the patio. Fuck it, stay inside.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. The community pool's snack bar is having its best fucking week of the year.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The mid-day errand list is now a sunset errand list. Adapt, you sweaty fuck.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The bumper-sticker collection on the back of your car is bonding with the paint. Permanently.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The drinking fountain at the park is the most popular fucking site in the entire city.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The lifeguards are on rotation every twenty minutes. The pool is the entire goddamn neighborhood.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The trash bin smell is having a goddamn renaissance. Take it out tonight, asshole.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp] degrees. The mailman is in shorts. Weather makes friends of us all, even fucking him.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. Every public garden is on a 'water it twice' schedule. Every plant is fucking thirsty.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The ceiling fan is at maximum and it's still not enough. Goddamn coworker.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every dog at the dog park is in the kiddie pool. Order has been negotiated and it is fucking law.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The car interior is at 130. The kid's car seat is a fucking roast in waiting.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The sidewalk chalk just melted. The kids are not fucking amused.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] degrees. The lemonade stand on the corner is doing record fucking numbers.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. Every air-conditioning repair company has a six-day fucking waiting list.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The metal slide at the park has a 'do not touch' force fucking field.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The home improvement store is selling a lot of pool-related impulse buys. We get it, you're fucking hot.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The houseplants are getting daily attention you usually only give to the fucking pets.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The mid-afternoon yard work is canceled. The yard fucking understands.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The sprinkler in the front yard is the new neighborhood social hub. Bring drinks, fuckers.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The pool day is now a Plan A, B, and C of the entire goddamn weekend.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The car door handle is a warning. The seat is a fucking betrayal.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp] outside. The library AC is the most beloved municipal service of the goddamn year.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear tonight at [temp]. The streetlights are doing all the goddamn work and you respect it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      40,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Calm and clear tonight. The neighborhood dog walk is the most peaceful event of the goddamn day.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight. The streetlights have halos and the porch lights are doing their fucking best.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain tonight at [temp]. Every porch light is a haze and every passing car is a goddamn wave.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy tonight. The headlights are useless and the hazards are fucking gestural.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight. The street is silent and the world feels like a postcard. Beautiful, fucking cold.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear and [temp] tonight. The patio chairs are calling. Bring a goddamn sweater anyway.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle tonight. The streetlight halos look like a movie poster you didn't ask for. Moody as fuck.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind picked up tonight. Every loose object outside is now a fucking noisemaker.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cool and clear tonight at [temp]. The porch is the perfect IQ test for whether to grab a goddamn blanket.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain tonight. The wipers are intermittent and the radio is doing the heavy fucking lifting.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight at [temp]. The patio is for soft conversations and hard goddamn decisions.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog tonight. Every car ahead of you is a vague fucking suggestion. Drive accordingly.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain tonight at [temp]. The rooftop on your apartment is putting on a goddamn percussion show.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight at [temp]. The streetlight glow over the snow is the only ambient light fucking required.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight. The walk to the car after dinner is shockingly fucking pleasant.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight. The porch swing is somehow exactly the right fucking answer.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle tonight at [temp]. The night-walk crowd looks like a black-and-white film. Cinematic shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind tonight. The houseplants near the window are wobbling. The cat is fucking concerned.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder rolling tonight. The lightning is briefly making your bedroom a goddamn stage.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight at [temp]. The night air is doing more for your nervous system than your therapist did this fucking week.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain tonight. Every porch light has its own little goddamn weather system.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy tonight at [temp]. The street feels like a film set with a smaller budget than usual. Spooky as fuck.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cool tonight at [temp]. The patio dining patrons are pretending they're not freezing. Fucking brave.",
+    "conditions": [
+      "clear",
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain tonight. The dog refuses to even consider leaving the couch. Smart fucking dog.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear and calm tonight. The crickets are running the social fucking hour.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight at [temp]. Every shovel sitting against every garage door is having an early goddamn bedtime.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle tonight. The bartender on the patio is wiping the same fucking table for the fifth time.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight. The neighborhood is the quietest it has been all goddamn week.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight. The mosquitoes are taking a break. The night-walkers fucking noticed.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog this morning at [temp]. The school bus driver is doing the work of a goddamn emergency vehicle.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy day. Every traffic light is a soft fucking suggestion until you're right on top of it.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The sky can't decide and your goddamn wardrobe is paying the price.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at the school crosswalk. The crossing guard is doing extra fucking waves.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy day. The shade and sun are trading shifts every six fucking minutes.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy commute. Every taillight ahead of you is the most important fucking taillight of your life.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp] today. The picnic plans are technically on. Bring a goddamn backup.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog this morning. The school bus is moving like it has a fucking secret.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and breezy at [temp]. The kind of day where your morning walk feels like a small fucking victory.",
+    "conditions": [
+      "cloudy",
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy at lunch. The takeout container is as visible as your future fucking plans.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. The afternoon sky is a slideshow with low fucking resolution.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and damp at [temp]. The morning runners are wearing more than they need and they fucking know it.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog rolled in. The bridge over the river is a goddamn rumor.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Every kid's outdoor activity is a fifty-fifty fucking gamble with the weather.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy out. The house across the street is a vague fucking suggestion of architecture.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy day at [temp]. The afternoon is doing the most while contributing absolutely fucking nothing.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. The 'will it rain' debate at the office is in its third fucking hour.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog this morning. The morning commute is one long string of brake lights and goddamn faith.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The sun visor is going up and down so much it's earning fucking overtime.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog and drizzle today. The double feature nobody fucking asked for.",
+    "conditions": [
+      "fog",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp] today. The 'I should go for a walk' debate has been postponed five fucking times.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy day. The garden looks like an oil painting and the dog is fucking unimpressed.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. The patio at lunch is a rotating shade situation. Pick a goddamn seat.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog this afternoon at [temp]. The skyline is a rumor. The freeway is a goddamn faith exercise.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and quiet today. The kind of day that doesn't ask shit of you. Fucking lovely.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind tonight at [temp]. The wind chimes have been going for a fucking hour and the cat is having a moment.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy snow tonight. The plow trucks have lights flashing and the streets look like a goddamn snow globe.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain tonight at [temp]. The sound of branches creaking is the only fucking night noise.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder tonight. The window is a flashbulb. The dog is in your bed whether you fucking wanted that or not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy tonight. The moon is doing peek-a-boo and the porch light is doing the goddamn rest.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight at [temp]. The streetlight on your block is the brightest fucking thing in the world right now.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain tonight at [temp]. The sound is ridiculous and your couch is the safest fucking place on earth.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog tonight at [temp]. Every car parked on the street has a halo. Free fucking art.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind tonight. The screen door is doing percussion and you're past fucking caring.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight at [temp]. The neighborhood is having one of its rare fucking quiet evenings. Enjoy it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      45,
+      65
     ],
     "priority": 1,
     "dayOnly": false,

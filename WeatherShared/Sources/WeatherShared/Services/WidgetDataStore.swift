@@ -78,6 +78,13 @@ public struct CachedWeatherData: Codable {
     /// Optional for back-compat with cache records written before this field existed.
     public let timezoneIdentifier: String?
 
+    /// Last-seen air quality at this location. Persisted so cold-launch
+    /// hydration restores the AQI hero stat instead of leaving it blank
+    /// until the next live AirNow fetch lands. Optional for back-compat
+    /// with cache records written before this field existed and for
+    /// locations outside AirNow coverage.
+    public let airQuality: AirQualityData?
+
     public init(
         temperature: Double,
         conditionTag: String,
@@ -94,7 +101,8 @@ public struct CachedWeatherData: Codable {
         smallPhrase: String? = nil,
         hourlyPreview: [CachedHourlyPoint] = [],
         dailyPreview: [CachedDailyPoint] = [],
-        timezoneIdentifier: String? = nil
+        timezoneIdentifier: String? = nil,
+        airQuality: AirQualityData? = nil
     ) {
         self.temperature = temperature
         self.conditionTag = conditionTag
@@ -112,6 +120,7 @@ public struct CachedWeatherData: Codable {
         self.hourlyPreview = hourlyPreview
         self.dailyPreview = dailyPreview
         self.timezoneIdentifier = timezoneIdentifier
+        self.airQuality = airQuality
     }
 
     /// All phrases in order: primary phrase first, then additional.
@@ -139,6 +148,7 @@ public struct CachedWeatherData: Codable {
         hourlyPreview = try container.decodeIfPresent([CachedHourlyPoint].self, forKey: .hourlyPreview) ?? []
         dailyPreview = try container.decodeIfPresent([CachedDailyPoint].self, forKey: .dailyPreview) ?? []
         timezoneIdentifier = try container.decodeIfPresent(String.self, forKey: .timezoneIdentifier)
+        airQuality = try container.decodeIfPresent(AirQualityData.self, forKey: .airQuality)
     }
 }
 
@@ -195,7 +205,14 @@ public enum WidgetDataStore {
             let data = try Data(contentsOf: url)
             return try JSONDecoder().decode([String: CachedWeatherData].self, from: data)
         } catch {
-            widgetLog.error("loadMulti failed: \(error.localizedDescription)")
+            // Surface enough detail to pinpoint cache corruption from a sysdiagnose:
+            // file size and the leading bytes (truncated) help spot a partial
+            // write, schema drift, or empty file masquerading as JSON.
+            let size = (try? Data(contentsOf: url).count) ?? -1
+            let head = (try? Data(contentsOf: url))
+                .flatMap { String(data: $0.prefix(200), encoding: .utf8) }?
+                .replacingOccurrences(of: "\n", with: "\\n") ?? "<unreadable>"
+            widgetLog.error("loadMulti failed: \(error.localizedDescription) (size=\(size) head=\(head, privacy: .public))")
             return [:]
         }
     }

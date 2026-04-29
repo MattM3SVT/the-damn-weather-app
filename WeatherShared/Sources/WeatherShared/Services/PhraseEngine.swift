@@ -148,16 +148,16 @@ public actor PhraseEngine {
             }
         }
 
-        // Step 5: Last resort -- any phrase that matches day/night
+        // Step 5: Last resort -- any phrase that matches day/night.
+        // We deliberately stop here rather than falling through to the whole
+        // pool so a `dayOnly` phrase can never fire at midnight. If even step
+        // 5 yields nothing (impossible in practice given hundreds of ungated
+        // candidates, but defended), the deterministic guard string below
+        // takes over.
         if matches.isEmpty {
             matches = pool.filter { p in
                 p.matchesTimeOfDay(isDay: isDay)
             }
-        }
-
-        // Step 6: Absolute last resort -- whole pool
-        if matches.isEmpty {
-            matches = pool
         }
 
         // Always exclude the last-shown phrase to prevent back-to-back repeats

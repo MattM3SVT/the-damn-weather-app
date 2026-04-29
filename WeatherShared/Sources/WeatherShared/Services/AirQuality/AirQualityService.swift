@@ -36,10 +36,13 @@ public actor AirQualityService {
         self.noCoverageCache  = AirQualityCacheStore.loadNoCoverage()
     }
 
-    /// Public entry point. Never throws. Returns nil on any failure, outside
-    /// coverage, missing/invalid key, or outer-timeout.
+    /// Public entry point. Never throws. Returns nil on permanent failures
+    /// (missing/invalid key, outside coverage). On transient failures
+    /// (network blip, 5xx, outer timeout) returns the most recent cached
+    /// value if it's still young enough to be plausible — see
+    /// `stickyFallback`.
     public func fetchAirQuality(for location: CLLocation) async -> AirQualityData? {
-        await withTaskGroup(of: AirQualityData??.self) { group in
+        let raced: AirQualityData?? = await withTaskGroup(of: AirQualityData??.self) { group in
             group.addTask { [weak self] in
                 guard let self else { return nil as AirQualityData?? }
                 return await self.fetchUnbounded(for: location)
@@ -50,15 +53,18 @@ public actor AirQualityService {
             }
             defer { group.cancelAll() }
             for await result in group {
-                // First task to complete wins; double-optional disambiguates
-                // timeout (`nil`) from success-but-no-data (`.some(nil)`).
-                if let unwrapped = result {
-                    return unwrapped
-                }
-                return nil
+                // First task to complete wins. Double-optional disambiguates
+                // timeout (`nil`) from real-result (`.some(...)`).
+                return result
             }
             return nil
         }
+
+        if let real = raced {
+            return real
+        }
+        // Outer timeout fired. Treat as transient and try sticky fallback.
+        return stickyFallback(obsKey: observationCacheKey(for: location), reason: "outerTimeout")
     }
 
     public func clearCache() {
@@ -110,13 +116,15 @@ public actor AirQualityService {
                 log.error("AirNow rejected the API key (401/403). Verify the key at docs.airnowapi.org.")
                 hasLoggedUnauthorized = true
             }
-            return nil
+            return stickyFallback(obsKey: obsKey, reason: "unauthorized")
         case .outsideCoverage:
             setNoCoverage(coverageKey: coverageKey)
             log.info("AirNow outside coverage for \(coverageKey, privacy: .public), cached \(Int(AppConstants.airQualityNoCoverageTTL / 3600))h")
+            // Outside-coverage is a real "no data here" signal, not a transient
+            // failure — don't paper over it with a sticky old reading.
             return nil
         case .failure:
-            return nil
+            return stickyFallback(obsKey: obsKey, reason: "transient")
         case .success(let currentReadings):
             let historicalReadings = await fetchHistorical(
                 lat: location.coordinate.latitude,
@@ -132,6 +140,21 @@ public actor AirQualityService {
             setObservation(key: obsKey, data: aggregated)
             return aggregated
         }
+    }
+
+    /// Returns the most recent cached AQI for this location if it's young
+    /// enough to be plausible (within `airQualityStickyMaxAge`). Used when a
+    /// fresh fetch fails so a single transient AirNow blip doesn't make the
+    /// hero stat disappear after every pull-to-refresh. Distinct from the
+    /// 30-min positive cache, which is read first and gates the fetch
+    /// entirely; this is reached only after that cache missed AND the live
+    /// fetch failed.
+    private func stickyFallback(obsKey: String, reason: String) -> AirQualityData? {
+        guard let entry = observationCache[obsKey] else { return nil }
+        let age = Date().timeIntervalSince(entry.fetchedAt)
+        guard age < AppConstants.airQualityStickyMaxAge else { return nil }
+        log.info("AirNow sticky fallback (\(reason, privacy: .public), age=\(Int(age))s) for \(obsKey, privacy: .public)")
+        return entry.data
     }
 
     // MARK: - Fetch helpers

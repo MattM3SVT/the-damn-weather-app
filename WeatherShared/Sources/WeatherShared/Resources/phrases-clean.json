@@ -1156,8 +1156,8 @@
     ],
     "tempRange": null,
     "priority": 1,
-    "dayOnly": true,
-    "nightOnly": false
+    "dayOnly": false,
+    "nightOnly": true
   },
   {
     "text": "Sunny enough that your sunglasses tan line is coming back.",
@@ -5164,7 +5164,7 @@
       45.0
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12698,7 +12698,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12711,7 +12711,7 @@
       78
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12737,7 +12737,7 @@
       80
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12750,7 +12750,7 @@
       75
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12763,7 +12763,7 @@
       75
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12906,7 +12906,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -12958,7 +12958,7 @@
       68
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -13218,7 +13218,7 @@
       60
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15242,7 +15242,7 @@
       58
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -15973,7 +15973,7 @@
       60
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16025,7 +16025,7 @@
       62
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16064,7 +16064,7 @@
       72
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16924,7 +16924,7 @@
       60
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -16950,7 +16950,7 @@
       65
     ],
     "priority": 1,
-    "dayOnly": false,
+    "dayOnly": true,
     "nightOnly": false
   },
   {
@@ -17297,6 +17297,5605 @@
     "tempRange": [
       40,
       55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder mid-Zoom. Your boss heard it. Your boss is pretending they didn't.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when the WiFi was finally cooperating. The router had a moment of clarity and immediately died.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm rolling in. The grill cover just filed for unemployment.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when you committed to the highway on-ramp. The wipers know what's coming.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm hit mid-mow. The lawn is now a portrait of two states of being.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder mid-drive-thru. The order taker can no longer hear you, and you can no longer hear them.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the grocery run. The walk from the cart to the trunk is a dash now.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm hit during the dog walk. The dog wants to keep going. The dog is voting alone.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when the pizza arrived. The driver is a saint. Tip well.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the school dismissal. Every parent is white-knuckling the wheel.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the lunch run. Your sandwich is fine. Your shoes are not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were taking out the trash. The bin lid is somewhere now.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when the Amazon driver pulled up. The package is technically on the porch.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the morning commute. Every car is doing twenty under. You respect it.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you stepped onto the porch. Back inside it is.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while the roofer was on the ladder. He's no longer on the ladder.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm right after you washed the car this morning. The universe has a sense of humor.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were getting gas. The pump handle and the rain agreed on a meeting time.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right as you parked. The umbrella is in the trunk. You are not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the afternoon errands. Your list is half-done and double-soaked.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right after you said 'doesn't look that bad.' You did this.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while the dog was outside. The dog is now glued to your leg until further notice.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm right when the AC tech showed up. He's wearing flip-flops. This is on someone.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the school pickup. Every minivan window has a tense face behind it.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning at the office window. The whole floor just stopped pretending to work.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the patio brunch. Your eggs benedict are now eggs aquatic.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were on the phone. The other end heard everything.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning as you opened the front door. You're closing the front door.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the run to the mailbox. Mail can wait. Mail is waiting.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the patio coffee. The barista is bringing your latte indoors. Permission was assumed.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning over the parking lot. Every car is suddenly the wrong distance from the door.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm while the kids were in the backyard. They're inside. Both of them. Eventually.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you sat down for lunch outside. Inside it is.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the coffee shop window seat. The view is free entertainment. The WiFi is hostage.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm hit while you were unloading groceries. The eggs are inside. The paper towels are not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the porch sit. The porch was the chill zone. Now it's a liability.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while the contractor was outside. He's inside now. The estimate is somehow larger.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the afternoon walk. The umbrella is not a real umbrella. You found out.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were at the gym. The treadmill belt is slowing in solidarity.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning at the bus stop. The shelter is not a shelter. It is a polite suggestion of a roof.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the morning run. The sneakers will be drying in the laundry room for a week.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when the lawn care guys arrived. They left. They will return tomorrow.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning over the highway. Every billboard is briefly an art installation.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm while you were grilling. The brats are saved. The lawn is forfeit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the drive home. Your podcast is louder than usual. The wipers are louder still.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when you opened the garage. The garage is open. You are not moving.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the lunch break walk. The walk has been canceled by management.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were on the patio. The patio is no longer a feature.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when the kid asked to play outside. The conversation just got shorter.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm at [temp] degrees. The pavement is steaming and the lightning is showing off.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      70,
+      90
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunderstorm at [temp]. The gutter is overflowing onto the basement window. Tomorrow's problem.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storming at [temp]. Your morning errand list is now tomorrow's morning errand list.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      55,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder at [temp] degrees. The barometer is going feral.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": [
+      60,
+      85
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning while you were watering the plants. The plants have been watered.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm right when the kids' birthday party started. Forty cupcakes and zero outdoor time.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the post office line. Everyone in the building just glanced up at the same time.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the bank drive-up. The teller is behind glass. You are not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the porch package delivery. Your Amazon driver has earned sainthood.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you walked the dog one block. The block became three.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the lawn mowing. You're inside. The mower is outside. Tomorrow's mower problem.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the school carpool. The wipers are at maximum and still negotiating.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder while you were at the doctor's. The waiting room is suddenly the cozy spot.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when you stepped out for the mail. The mail can wait. Forever, if needed.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the trash truck route. The driver is unfazed. Built different.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you got out of the car. The car is dry. You are not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the morning meeting. The whole team just paused mid-sentence.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the lunch hour. Every restaurant patio is empty. Every interior is at war.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder right when you opened the back door for the dog. The dog reconsidered.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the porch package check. The package is fine. You are dramatically not fine.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the bus stop wait. The kids are unfazed. The parents are doing storm-odds math.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the gas pump wait. Two minutes left. Two long minutes.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning during the school bus loading. The driver is patient. You are not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm during the run to the car. The thirty feet just got really educational.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder during the office window-watching. Productivity is gone. Replaced by weather TV.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning right when you committed to the back patio. The patio said no.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up. The trampoline you swore you'd anchor is now civic property.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. The drive-thru menu board is doing aerobics.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. Every restaurant patio just lost three salt shakers and a small dog's dignity.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts strong enough that your AirPod just resigned.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Your hat is no longer your hat. Don't go after it. Let go.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. Every umbrella at the bus stop is inverted. None of them know.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up mid-coffee. The lid stayed. The steam took a vacation.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty afternoon. The recycling bin tipped. The paper is everyone's now.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp] degrees. Every porch chair has migrated. Free seating for the next yard.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The patio umbrella you forgot to close is doing pirouettes in the pool.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. Every receipt in your car has staged a coordinated departure.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The yard signs from last campaign season are finally on the move.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The car dealership's inflatable wacky-arm guy is making real-time art.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts knocked the inflatable Halloween skeleton flat. It's June. We will not address it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Every flag in town is doing the absolute most.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The sandwich board sign at the cafe is on its fourth location of the morning.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty day. Your sunglasses are gone. Don't look. Acceptance is faster.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The lawn chair migration is in progress. Update your maps.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up at school drop-off. Every minivan door is fighting back. Solidarity through hinges.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty morning. The trash can lids are gone. The trash is also gone, in a different direction.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Outdoor brunch was a misjudgment. Your french toast has now been seasoned with grit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The bird feeder is empty. The seeds are next door. The birds are filing complaints.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty. The 'open' flag at the diner is doing more cardio than anyone in the building.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Every contractor's measurement is now a personal philosophy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The beach towels are folding themselves. Nature has standards.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts in the produce aisle parking lot. Every loose grocery bag is now a projectile.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The bike rack outside the office is doing a metallic concerto.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The roof guy just rescheduled. Wisdom can be hourly.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty. The stroller cover is now a parachute attempting to take off.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. Whatever you laid down on the patio is no longer on the patio. RIP.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The crossing guard is using their stop sign as a wind shield.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts at the gas station. Every pump receipt is gone. Every tax preparer just felt a chill.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The kid's plastic playhouse is in the wrong yard. Everyone watched it leave.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The 'cars only' lane at the bank drive-up is doing the wave.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. Your bangs are in another zip code. Please file a missing report.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at the dog park. The chuck-it has chucked itself.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. Your screen door has earned a name. Today's name is Karen.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty morning. The lawn ornaments are now landscape architecture in someone else's yard.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The leaves you raked yesterday are doing wind sprints down the sidewalk. They're training for something.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The patio tablecloth is in the neighbor's yard. It wanted out.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts at lunch. The deck umbrella tried. The deck umbrella is in the pool.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp] degrees. Every door in the office slams itself for free.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      50,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The scaffolding tarps downtown are putting on a free show.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty day. The dryer vent is doing the talking now.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The bird bath is empty. Someone is writing a strongly worded review.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The new fence panel is auditioning for a role as a former fence panel.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts in the backyard. Every loose toy has migrated somewhere new.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The lid of your iced coffee just made a break for it. The straw followed on principle.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The flagpole at the post office is making sounds nobody asked for.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. The grocery cart corral wheels are squeaking the song of their people.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. Every patio menu is a paper airplane in development.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      60,
+      80
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The garbage truck route is now everyone's responsibility. Trash is communal.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty out. Every toddler at the park is now a kite. One of them is genuinely concerned.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The hammock is a parachute. Physics has opinions.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up while you walked the kid to the bus stop. The kid arrived a different shape.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty. The for-sale sign sold itself to the wind. Efficient market.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The pool noodle is in the neighbor's pool. They have inherited a noodle.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. Every loose paper on every desk in the office is a suspect.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty morning. The jogger's wireless earbud took a permanent vacation.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy. The scaffolding fabric on that downtown tower is making the loudest noise in the city.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind advisory. The patio umbrella you finally got level yesterday is now structurally a question.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts on the bike trail. Every cyclist is leaning thirty degrees and not moving forward. Comedy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy at [temp]. The patio heater is irrelevant. The patio is irrelevant.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind today. The dog walker just had their planned route deleted by physics.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusty. Every loose hairstyle in the parking lot is now a former hairstyle.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind picked up at the playground. The kid's helium balloon is now an experimental aircraft.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Every drive-thru line is twice as long because cars are pulling forward six inches at a time.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The carpool line is moving like everyone forgot rain was a thing.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the park. The picnic tables are sad and abandoned.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain on the bike commute. Every brake squeal is a small prayer.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Every coffee shop is at 200% capacity and the WiFi is filing for hospice.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain on the porch package check. The package is fine. Your slippers are not.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The contractor's drop cloths are doing more work than the contractor.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The drive-thru line is unmoved. Those people are committed.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. Hood up, wallet wet, day at twenty percent.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-run. Every step is squelchy. The shoes are tomorrow's problem.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The Costco parking lot is a slip-and-slide and the carts are doing as they please.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. Your delivery driver wrapped your package in a plastic bag. You're going to tip extra.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Your neighbor mowing in this is making a personal choice and you have notes.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The corner where they're paving the road is a swamp. Drive around it.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The bus stop is a forest of small umbrellas, none of them functional.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-grocery run. The eggs are fine. The cardboard cereal boxes have given up.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining today. The crossing guard is in a school-bus-yellow poncho and earning every dollar.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the airport curb. Every greeter is waving from inside the doors. Smart greeter.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The dog refuses to pee. The dog is an artist and a tyrant.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The deck furniture you didn't put away looks fine. Spoiler: it isn't.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The Amazon driver just earned a saint candle and a hot shower.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the playground. Every kid is doing puddle science. Every parent is doing damage control.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The library is suddenly full of teenagers who just remembered they had a project.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. Every hardware store is having its best week of the quarter. Tarps are flying.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain and [temp] degrees. The coat that was perfect yesterday is a sponge today.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      42,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain right when you tried to start the grill. The grill is no longer the plan.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The gym parking lot is a kingdom of close-spot betrayals.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the park bench. Every dog walker has the same thousand-yard stare.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The 'I'm fine without an umbrella' guy is now soaked. We see you.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The commute is twenty minutes longer for no reason and that's the deal.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The kid's poster-board project is becoming a watercolor against its will.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain right when you went to take out the trash. The bag is heavier on the way back.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The drive-up at the bank is the most popular it's been since 1998.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The cardboard moving boxes you saved 'for next time' are not surviving.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The downtown lunch crowd just discovered the food court.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The 'covered drop-off' lane at every drugstore is suddenly the most popular spot in town.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining mid-stretch on the porch. The mat is a pond. Namaste, soggy.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain on the way to work. The sock-shoe situation will be discussed at length.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain and [temp]. The dog's enthusiasm for the walk is dropping by the second.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      40,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The patio brunch is now an indoor brunch. The wait is forty-five minutes.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Your favorite outdoor café table is gone and so is your good mood.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-day at [temp]. The car windows are fogged and the defroster is auditioning.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining at school dismissal. The pickup line is a stage and every parent is auditioning for patience.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. Every gardener is celebrating quietly and you are not invited.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. Every storm drain is doing the work of three storm drains.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain right when the kid wanted to ride the bike. The bike is staying in the garage.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The hardware store has a tarp aisle that's three carts wide.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at lunch. The sandwich shop's outdoor chairs have been rescued. Heroic.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The flower delivery driver just earned hazard pay.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The valet stand is full of patient employees and impatient customers.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at [temp]. The hat that wasn't waterproof is, in fact, still not waterproof.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain mid-dog park. Every dog is either thrilled or refusing. There is no middle.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The car wash is closed for some reason. The universe has jokes.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain at the mall entrance. Every umbrella stand is empty and every customer is doing the rain dash.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Raining. The bus driver is a hero. The bus is a refuge. Tip in your heart.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain today. The kids are inside. The kids will be inside the rest of the day. Plan accordingly.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The driveway has officially been promoted to tributary.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain today. The basement sump pump is doing its life's work.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The storm drain on your street is clogged and a small lake has applied for naming rights.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour mid-commute. Every wiper is at maximum and still losing.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The roof gutters are overflowing in places gutters shouldn't even know about.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. The puddle in the parking lot has its own ecosystem.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The downspout finally gave up and the side of the house is taking the hit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The intersection where you turn left is now a swimming pool.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The cracks in the driveway are getting tested. They fail.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring today. The kid at the bus stop is the wettest he's ever been and breakfast was an hour ago.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp]. The garage floor has gained a feature: a small lake.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The car ahead of you on the highway is a vague suggestion.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every hardware store is selling out of sandbags in real time.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The kids are inside. They're going to be inside for a while. Plan accordingly.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain mid-day. The coffee shop's outdoor seating is now a zen pond.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The hose you forgot to roll up is now a water snake.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. Every umbrella in town is inverted. Every person is fully committed to the bit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The grocery store parking lot is a slip-and-slide and the carts are racing.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. Your wipers have two settings: insufficient and very insufficient.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The mulch you laid yesterday is now mulch in the next yard.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every overpass has cars stopped under it like it's strategic. It is.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The 'no flooding here' spot on your usual route is, in fact, flooding.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The local news is showing your neighborhood. Not a flex.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at lunch. Every restaurant entrance is a wet welcome mat museum.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The mail carrier just walked by with a poncho and a deeply tired expression.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain mid-school dismissal. Tempers are short. Patience is shorter.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every window in the office building has a person looking out with the same defeated face.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at [temp]. The parking lot speed bump is now a small dam.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The 'flood zone' sign on your street is finally getting respect.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The drain at the end of your driveway is gurgling and you are concerned.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The radar looks like a Jackson Pollock and we're in the worst part.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. Every kid's backpack is now a sponge. Every textbook is a casualty.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The scheduled outdoor inspection just got rescheduled. Twice.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp]. The wipers are squeaking like they're filing a grievance.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The garage door opening sound is followed by a small wave.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The bus stop has migrated under a tree. The tree is failing.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The trash bins on the curb are floating bins on the curb now.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The rain barrels are full. They've been full. They are now lawn art.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The roof seam you've been ignoring is finally getting your attention.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. The street is a river. The river is the street. Taxonomy is broken.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. The car detailing place just had its busiest no-show day on record.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The downtown square fountain is the same level as the sidewalk.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. Your covered porch is no longer covered enough.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour at [temp]. The dog walked twelve feet and is done. Smart dog.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The school bus driver is doing miracles and the kids are unimpressed.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain. Every patio plant is overwatered for the next month and there's nothing to be done.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring. The flash flood alert just upgraded. Your route home should too.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy rain at the highway exit ramp. Hydroplaning is a guarantee, not a maybe.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. The local meteorologist has pulled out the bigger graphics. Bad sign.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring at [temp]. The garage you parked in is charging extra for the privilege.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Not enough to commit to an umbrella. Enough to ruin your hair.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The intermittent wiper button is going to wear out before the day does.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at the bus stop. Every coat is getting that 'damp around the shoulders' look.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. Your sunglasses have water spots and your sweater is doing its best.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The car windshield refuses to commit. You'll use the wiper button thirty times before noon.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty out at [temp]. Every windshield in the parking lot is fogged from the inside.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The kind of weather that requires a quarter-zip and a mood.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The 'is it actually raining' debate is happening at every bus stop in town.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. Your hood is up but only because you don't trust this weather.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The newspaper guy hit the porch dead-on. Hero of the morning.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The dog is doing the slow blink at the open door.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The roof guy keeps glancing at the sky and pretending he doesn't.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The crosswalk button is wet, your sleeve is wet, the morning is committed.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at the strip mall. Every awning has someone hiding under it pretending to wait for someone.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The 'will it rain harder' debate has been ongoing for twenty minutes.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty out. The morning runners are committing to the bit. The walkers are not.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every patio is open and every patio is empty.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling at [temp]. Your hair has frizzed on principle.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every lawn looks fancy and every shoe is wet.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The car interior is at 80% humidity and the windshield knows.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The neighbor is still mowing because the neighbor has principles.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every umbrella is being half-opened, half-closed, fully considered.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The crossing guard is unfazed. Their poncho is doing real work.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The intermittent wipers were invented for this exact moment.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The grass is glittering and you are mildly damp.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The patio chairs are dotted with water and the cat is judging.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every mailbox flag in the neighborhood is up. The mail carrier is unimpressed.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The kind of weather where everyone says 'is it actually raining' twice.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The mailbox flag is up. The mailbox is unimpressed.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle right when you walked the groceries to the car. Every bread bag is now slightly soggy contraband.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The school field is technically playable. Nobody wants it to be.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The morning fog and the drizzle are conspiring against your coffee.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty out. Every windshield in the office lot is dotted but not wet enough to wipe.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The patio brunch is just barely happening and everyone's calling it romantic.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Your shoes were a stylistic choice. They're a damp choice now.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at the school garden. The kids think it's magical. The teachers think it's cleanup.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The 'I'll just take the dog out for a minute' is now a fifteen-minute event.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling at [temp]. The dog wants to go out. The dog will regret it in three minutes.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The grocery cart corral wheels are squeaking the song of their people.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The 'umbrella required' debate is the most active group chat in the building.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Misty drizzle. The runner ahead of you is doing this on purpose. You respect it.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every car is in the wash queue tomorrow. Today is wasted.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle at [temp]. The sidewalk is just slick enough to rethink your shoes.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzling. The 'I'll just go without' people are being regretted in real time.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. The forecast said clear. The forecast lied. The forecast does this on purpose.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle. Every photo from the outdoor event has a slight haze and you're calling it a vibe.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The driveway is glass. The trash cans are on tour.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm. Every step is a negotiation with physics.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The mailbox is a popsicle. The door knob is its frozen cousin.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The car hood is a skating rink. The roof is worse.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice forming everywhere at [temp]. Your driveway looks fine. Your driveway is a trap.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      25,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain advisory. The city's salt budget is having a moment.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. School delays are stacking like flights at O'Hare.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice glaze. The trees are sparkling. The branches are negotiating with gravity.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Every car door is sealed shut by an ice handshake.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. Your salt bag is empty. Your patience is right behind it.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice on every surface. The mail truck is moving like it's tap-dancing.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The school called five minutes ago. Your kid is still asleep. Score.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet and freezing rain. The morning routine just gained forty minutes.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The driveway sand is gone. The rock salt is gone. Your hope is next.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice morning at [temp]. The car alarm went off because the ice did. So did your patience.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain advisory. The plows are out. They are losing.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The sidewalks are a death pact. Walk like a penguin and own it.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice everywhere. The grocery store curbside pickup is the most popular it's been in years.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The power flickered three times. Get the candles.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice glaze at [temp]. The steps to the porch are now an extreme sport.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Every parked car is wearing an ice helmet.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet outside. The roads are frosted and every car is doing fifteen under.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Whatever was on the lawn is now frozen to the lawn. That includes the rake.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice morning. The dog walked once. The dog is done.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The newspaper is glued to the porch. Pry, don't tug.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm. The branch on the maple is bowing politely toward the ground.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Every gas station pump handle is welded to its holster.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice everywhere at [temp]. The school bus is running on optimism and chains.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      20,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain advisory. Every parking lot is a bumper-car arena. Drive accordingly.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet and ice. The morning meeting went virtual. Smart morning meeting.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The neighbor's mail-day moment of joy just got iced over. Literally.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice glaze on the windshield. Your scraper is thirteen years old and finally relevant.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The city is asking residents to stay off the roads. Most are listening.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice morning. The school bus driver is doing the work of three people and a saint.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Every commute is a rolling negotiation between you, the road, and gravity.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sleet. The porch furniture is cemented in place. Forever, apparently.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The salt truck is being followed by every car in town like a parade.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice everywhere. The shopping carts are skating in the lot like they finally escaped.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain at [temp]. The school's late-arrival policy just got tested. The policy lost.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      33
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice on the back deck. Your barbecue is hibernating until further notice.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The driveway you cleared an hour ago has filed for restoration.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling at [temp]. The commute is a slow-motion painting of nobody making it on time.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The kid is in five layers and still pretending it's not enough.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing during the school day. The window is the most-watched view in the building.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The car is buried. The car alarm is unfazed by your existence.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. Every grocery aisle for bread, milk, and eggs is a war zone.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The school bus is late and the parents are doing math on shoveling.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling. The cardinals at the feeder look like a Christmas card and you know it.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today at [temp]. The plow truck made one pass and left a wall at your driveway. Classic.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. The kids are outside doing snow angels. Their gloves are wet by minute three.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow this morning. The thermos game is strong in your house today.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The snow blower has not started in two seasons. Today is the test.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The front porch is now an art piece called 'Untitled, In White.'",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The morning commute is a slow polite suggestion. Drive accordingly.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The mail carrier earned every dollar and a hot beverage you should've offered.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing during the school pickup. Every parent is white-knuckling the wheel and the radio.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling. The dog is doing big bounces and you're impressed and slightly alarmed.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowy day at [temp]. The driveway-to-mailbox path is a small expedition.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The kids' school is still open. The kids are unimpressed.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing outside. The mid-morning Costco run is now a winter triumph story.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The dog walker is bundled like an astronaut. Dogs don't care.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. Every car at the stop sign is doing a soft skid like it's a slow dance.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      28
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow this morning. The grocery list is short. The weather list is long.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing today. The snowman in the front yard is going to be there for a while.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at the playground. The slide is faster than usual. The kids found out.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The school bus is the loudest popular vehicle on the street.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. Every coffee shop has a window full of people pretending to work.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The shovel is finally where you remembered putting it. Good for you.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      20,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The neighbor's roof is doing the slow drama of avalanche. Stand back.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowy outside. The parking lot pile is approaching iconic status.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling. The cars in the office lot are getting buried during the morning meeting.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing today. The kid's snow boots are still in last winter's bin. Today is a problem.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow at [temp]. The heat in the bus is set to 'tropical.' Everyone's overdressed.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The morning runners are pretending it's fine. It's fine.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing. The garbage truck is working with weather and dignity in mind.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The grocery store roof rack of carts looks like a snowy art installation.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing at [temp]. Every car windshield in the office lot has a personality now.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow this morning. The driveway has a one-foot-tall hat. Wear it well.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow today. The school's two-hour delay is a celebration in twenty different group chats.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling at the bus stop. Every parent is pretending to be a tree. The kids are not fooled.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The steering wheel is a personal injury lawsuit waiting to happen.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The metal seatbelt buckle is a small medieval torture device.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. Your iced coffee was iced when you bought it. It is no longer iced anything.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      86,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The asphalt is soft. Your shoe prints are forensic evidence.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp] and the dog refuses to go outside. The dog is right.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every car parked in the sun is a small oven with leather seats.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The sunscreen you forgot at home is now a tomorrow problem.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. Walking from the car to the front door is a workout you didn't sign up for.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] out. The plastic slide at the playground is a registered hot surface.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The grocery store automatic doors are working triple shifts.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] out. The shade tree in the parking lot is the most contested real estate in town.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      86,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. Your sunglasses are now permanently part of your face.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The pavement near the gas station is mirage territory.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The grocery cart corral metal is hot enough to brand cattle.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The kid's water bottle was cold this morning. The kid is not happy now.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      86,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. Every coffee shop is a refugee zone for the heat-averse.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The HOA pool is at capacity. The backup is a blow-up in someone's yard.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The crossing guard is in three layers of sunscreen and a hat the size of Texas.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      86,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The construction crew is calling for water breaks every ten minutes.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The dog walked twelve feet and demanded shade like a small ungrateful king.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The ice cream truck has formed a permanent line by the splash pad.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      86,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The neighbor mowing in this is auditioning for the heat exhaustion hall of fame.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every gas station is selling out of cold drinks like it's a doomsday vault.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The dashboard plastic is starting to show feelings.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The lawn is a memory. The sprinkler is doing its best.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The mall food court is at full capacity by 11:30. AC is the new luxury.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The water hose has hot water for the first thirty seconds. Plan accordingly.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Your phone is heat-throttling and so are you.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      92,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. Every dog park session is now a fifteen-minute event.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The crosswalk concrete is doing the heat shimmer thing.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The errand list is now a sunset list. Adapt accordingly.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The pool deck is the new lava floor.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The grass crunches when you step on it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The library is a popular destination for reasons unrelated to books.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. Every package on every porch is melting. Sorry, chocolate-shipper.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The crossing-guard sign is hot enough to fry an egg. Don't try it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The mid-afternoon walk is now a sunset event.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The car AC takes ten minutes to do the job. Plan your departures.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The kid's juice box just expanded. Sticky situation incoming.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The bus stop bench is hot to the touch. Do not lean on the metal.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The houseplants near the window are filing complaints with management.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every restaurant patio is empty. Every interior is at war.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The bumper sticker on your neighbor's car is starting to peel from heat.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The deck is too hot for bare feet. So is the porch. So is the patio.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The community pool's snack bar is having its best week of the year.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The mid-day errand list is now a sunset errand list. Adapt.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The bumper-sticker collection on your car is bonding with the paint. Permanently.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The drinking fountain at the park is the most popular site in the entire city.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The lifeguards are on rotation every twenty minutes.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The trash bin smell is having a renaissance. Take it out tonight.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The mailman is in shorts. Weather makes friends of us all.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. Every public garden is on a 'water it twice' schedule.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The ceiling fan is at maximum. The ceiling fan is a coworker.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. Every dog at the dog park is in the kiddie pool. Order has been negotiated.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The car interior is at 130. The kid's car seat is a roast in waiting.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The sidewalk chalk just melted. The kids are not amused.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      95,
+      115
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The lemonade stand on the corner is doing record numbers.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. Every air-conditioning repair company has a six-day waiting list.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's [temp]. The metal slide at the park has a 'do not touch' force field.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The home improvement store is selling a lot of pool-related impulse buys.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The houseplants are getting daily attention you usually save for the pets.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] outside. The mid-afternoon yard work is canceled. The yard understands.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It is [temp]. The sprinkler in the front yard is the new neighborhood social hub.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] degrees. The pool day is now a Plan A, B, and C of the entire weekend.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      88,
+      100
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "[temp] today. The car door handle is a warning. The seat is a betrayal.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      92,
+      110
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Currently [temp]. The library AC is the most beloved municipal service of the year.",
+    "conditions": [
+      "clear",
+      "any"
+    ],
+    "tempRange": [
+      90,
+      105
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear tonight at [temp]. The streetlights are doing all the work and you respect it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      40,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Calm and clear tonight. The neighborhood dog walk is the most peaceful event of the day.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight. The streetlights have halos and the porch lights are doing their best.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain tonight at [temp]. Every porch light is a haze and every passing car is a wave.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy tonight. The headlights are useless and the hazards are gestural.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight. The street is silent and the world feels like a postcard.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear and [temp] tonight. The patio chairs are calling. Bring a sweater anyway.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle tonight. The streetlight halos look like a movie poster you didn't ask for.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind picked up tonight. Every loose object outside is now a noisemaker.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cool and clear tonight at [temp]. The porch is the perfect IQ test for whether to grab a blanket.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      50,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain tonight. The wipers are intermittent and the radio is doing the heavy lifting.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight at [temp]. The patio is for soft conversations and harder decisions.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog tonight. Every car ahead of you is a vague suggestion. Drive accordingly.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain tonight at [temp]. The rooftop on your apartment is putting on a percussion show.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight at [temp]. The streetlight glow over the snow is the only ambient light required.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": [
+      15,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight. The walk to the car after dinner is shockingly pleasant.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight. The porch swing is somehow exactly the right answer.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle tonight at [temp]. The night-walk crowd looks like a black-and-white film.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": [
+      45,
+      65
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind tonight. The houseplants near the window are wobbling. The cat is concerned.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder rolling tonight. The lightning is briefly making your bedroom a stage.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight at [temp]. The night air is doing more for your nervous system than your therapist did this week.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain tonight. Every porch light has its own little weather system.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy tonight at [temp]. The street feels like a film set with a smaller budget than usual.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cool tonight at [temp]. The patio dining patrons are pretending they're not freezing. Brave.",
+    "conditions": [
+      "clear",
+      "cloudy"
+    ],
+    "tempRange": [
+      42,
+      58
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain tonight. The dog refuses to even consider leaving the couch.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear and calm tonight. The crickets are running the social hour.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight at [temp]. Every shovel sitting against every garage door is having an early bedtime.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle tonight. The bartender on the patio is wiping the same table for the fifth time.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudy tonight. The neighborhood is the quietest it has been all week.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight. The mosquitoes are taking a break. The night-walkers have noticed.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog this morning at [temp]. The school bus driver is doing the work of an emergency vehicle.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy day. Every traffic light is a soft suggestion until you're right on top of it.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The sky can't decide and your wardrobe is paying the price.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      55,
+      75
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog at the school crosswalk. The crossing guard is doing extra waves.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy day. The shade and sun are trading shifts every six minutes.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy commute. Every taillight ahead of you is the most important taillight of your life.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy and [temp] today. The picnic plans are technically on. Bring a backup.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog this morning. The school bus is moving like it has a secret.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and breezy at [temp]. The kind of day where your morning walk feels like a small victory.",
+    "conditions": [
+      "cloudy",
+      "wind"
+    ],
+    "tempRange": [
+      55,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy at lunch. The takeout container is as visible as your future plans.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. The afternoon sky is a slideshow with low resolution.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and damp at [temp]. The morning runners are wearing more than they need and they know it.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      48,
+      62
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog rolled in. The bridge over the river is a rumor.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. Every kid's outdoor activity is a fifty-fifty with the weather.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy out. The house across the street is a vague suggestion of architecture.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy day at [temp]. The afternoon is doing the most despite contributing nothing.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      72
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. The 'will it rain' debate at the office is in its third hour.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog this morning. The morning commute is one long string of brake lights and faith.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy at [temp]. The sun visor is going up and down so much it's earning overtime.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": [
+      60,
+      78
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog and drizzle today. The double feature nobody asked for.",
+    "conditions": [
+      "fog",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy at [temp] today. The 'I should go for a walk' debate has been postponed five times.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": [
+      55,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Foggy day. The garden looks like an oil painting and the dog isn't impressed.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. The patio at lunch is a rotating shade situation.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog this afternoon at [temp]. The skyline is a rumor and the freeway is a faith exercise.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      45,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy and quiet today. The kind of day that doesn't ask anything of you.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wind tonight at [temp]. The wind chimes have been going for an hour and the cat has feelings.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": [
+      40,
+      60
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy snow tonight. The plow trucks have lights flashing and the streets look like a snow globe.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain tonight at [temp]. The sound of branches creaking is the only night noise.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": [
+      22,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder tonight. The window is a flashbulb. The dog is in your bed now whether you wanted that or not.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Partly cloudy tonight. The moon is doing peek-a-boo and the porch light is doing the rest.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow tonight at [temp]. The streetlight on your block is the brightest thing in the world right now.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": [
+      20,
+      30
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy rain tonight at [temp]. The sound is ridiculous and your couch is the safest place on earth.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": [
+      50,
+      70
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog tonight at [temp]. Every car parked on the street has a halo. Free art.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": [
+      38,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind tonight. The screen door is doing percussion and you're past caring.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear tonight at [temp]. The neighborhood is having one of its rare quiet evenings. Enjoy it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      45,
+      65
     ],
     "priority": 1,
     "dayOnly": false,

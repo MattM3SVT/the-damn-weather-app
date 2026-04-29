@@ -371,6 +371,12 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             CachedDailyPoint(day: d.day, high: d.high, low: d.low, conditionTag: d.conditionTag.rawValue)
         }
 
+        // Carry forward the last-known AQI so a 15-min widget refresh doesn't
+        // erase what the app fetched from AirNow. The widget process doesn't
+        // hit AirNow itself; only the app does. Without this merge the hero's
+        // AQI stat would disappear every time the widget timeline refreshes.
+        let previousAQI = WidgetDataStore.loadEntry(for: entity.id)?.airQuality
+
         WidgetDataStore.saveEntry(
             CachedWeatherData(
                 temperature: Double(entry.temperature),
@@ -387,7 +393,8 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                 smallPhrase: entry.smallPhrase,
                 hourlyPreview: cachedHourly,
                 dailyPreview: cachedDaily,
-                timezoneIdentifier: entry.timezoneIdentifier
+                timezoneIdentifier: entry.timezoneIdentifier,
+                airQuality: previousAQI
             ),
             for: entity.id
         )
