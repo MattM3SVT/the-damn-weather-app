@@ -18198,16 +18198,6 @@
     "nightOnly": false
   },
   {
-    "text": "Gusts knocked the inflatable Halloween skeleton flat. It's June. We will not address it.",
-    "conditions": [
-      "wind"
-    ],
-    "tempRange": null,
-    "priority": 1,
-    "dayOnly": true,
-    "nightOnly": false
-  },
-  {
     "text": "Windy. Every flag in town is doing the absolute most.",
     "conditions": [
       "wind"
@@ -20906,16 +20896,6 @@
   },
   {
     "text": "Snowing outside. The school bus is late and the parents are doing math on shoveling.",
-    "conditions": [
-      "snow"
-    ],
-    "tempRange": null,
-    "priority": 1,
-    "dayOnly": true,
-    "nightOnly": false
-  },
-  {
-    "text": "Snow falling. The cardinals at the feeder look like a Christmas card and you know it.",
     "conditions": [
       "snow"
     ],

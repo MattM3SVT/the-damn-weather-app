@@ -19,12 +19,14 @@ public enum WeatherConditionTag: String, Codable, CaseIterable, Sendable {
     case any
 
     /// Map a WeatherKit condition to our internal tag, with wind override.
-    /// Wind speeds > 25 mph override clear/partly-cloudy/cloudy to "wind".
+    /// Wind speeds > 30 mph override clear/partly-cloudy/cloudy to "wind".
     nonisolated public static func from(_ condition: WeatherCondition, windSpeed: Double = 0) -> WeatherConditionTag {
         let base = mapCondition(condition)
 
-        // Wind override: >25 mph overrides calm conditions
-        if windSpeed > 25, [.clear, .partlyCloudy, .cloudy].contains(base) {
+        // Wind override: >30 mph overrides calm conditions.
+        // 30 mph is the strong-breeze / near-gale boundary on the Beaufort
+        // scale — large branches sway, umbrellas invert, your hat is at risk.
+        if windSpeed > 30, [.clear, .partlyCloudy, .cloudy].contains(base) {
             return .wind
         }
 
