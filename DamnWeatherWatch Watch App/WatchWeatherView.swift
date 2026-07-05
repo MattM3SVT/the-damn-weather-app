@@ -216,7 +216,7 @@ private struct DetailsPage: View {
                     Image(systemName: "arrow.clockwise")
                         .font(.system(size: 10, weight: .semibold))
                         .foregroundStyle(Color.accentRed)
-                    (Text("Updated ") + Text(state.fetchedAt, style: .relative) + Text(" ago"))
+                    Text("Updated \(Text(state.fetchedAt, style: .relative)) ago")
                         .font(.system(size: 11, design: .rounded))
                         .foregroundStyle(.white.opacity(0.7))
                 }

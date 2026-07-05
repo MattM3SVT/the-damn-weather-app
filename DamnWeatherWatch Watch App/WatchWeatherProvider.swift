@@ -1,5 +1,6 @@
 import CoreLocation
 import Foundation
+import MapKit
 import WeatherKit
 import WeatherShared
 import os.log
@@ -190,8 +191,9 @@ final class WatchWeatherProvider: NSObject, CLLocationManagerDelegate {
     }
 
     private func cityName(for location: CLLocation) async -> String? {
-        let placemarks = try? await CLGeocoder().reverseGeocodeLocation(location)
-        return placemarks?.first?.locality
+        guard let request = MKReverseGeocodingRequest(location: location),
+              let item = try? await request.mapItems.first else { return nil }
+        return item.addressRepresentations?.cityName ?? item.name
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
