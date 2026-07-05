@@ -299,11 +299,22 @@ private struct ForecastPage: View {
 
             Spacer(minLength: 2)
 
-            Text("thedamnweather")
-                .font(.system(size: 9, weight: .semibold, design: .rounded))
-                .tracking(1)
+            // WeatherKit terms require the Apple Weather mark wherever its
+            // data is shown (the iOS app was once rejected under 5.2.5 for
+            // missing it). Same treatment the widgets use.
+            HStack {
+                Text("thedamnweather")
+                    .font(.system(size: 9, weight: .semibold, design: .rounded))
+                    .tracking(1)
+                    .foregroundStyle(.white.opacity(0.35))
+                Spacer()
+                HStack(spacing: 2) {
+                    Image(systemName: "apple.logo")
+                    Text("Weather")
+                }
+                .font(.system(size: 8))
                 .foregroundStyle(.white.opacity(0.35))
-                .frame(maxWidth: .infinity, alignment: .center)
+            }
         }
     }
 }
