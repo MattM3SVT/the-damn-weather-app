@@ -44,7 +44,6 @@
 		D980127D2F7F75F60045A847 /* WeatherWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WeatherWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D980127F2F7F75F60045A847 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D98012812F7F75F60045A847 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		D98012A52F7F770D0045A847 /* WeatherWidgetExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherWidgetExtensionExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -55,11 +54,21 @@
 			);
 			target = D980127C2F7F75F60045A847 /* WeatherWidgetExtensionExtension */;
 		};
+		D9F00A11B22C33D44E55F601 /* Exceptions for "The Damn Weather" folder in "The Damn Weather" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D980116E2F7F61240045A847 /* The Damn Weather */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D98011712F7F61240045A847 /* The Damn Weather */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D9F00A11B22C33D44E55F601 /* Exceptions for "The Damn Weather" folder in "The Damn Weather" target */,
+			);
 			path = "The Damn Weather";
 			sourceTree = "<group>";
 		};
@@ -99,7 +108,6 @@
 		D98011662F7F61240045A847 = {
 			isa = PBXGroup;
 			children = (
-				D98012A52F7F770D0045A847 /* WeatherWidgetExtensionExtension.entitlements */,
 				D98011712F7F61240045A847 /* The Damn Weather */,
 				D98012832F7F75F60045A847 /* WeatherWidgetExtension */,
 				D980127E2F7F75F60045A847 /* Frameworks */,
@@ -393,10 +401,11 @@
 				CODE_SIGN_ENTITLEMENTS = "The Damn Weather/The Damn Weather.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = WSRDLBHK5B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "The Damn Weather/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "The Damn Weather";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The Damn Weather needs your location to tell you what the damn weather is.";
@@ -410,7 +419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "DamnWeather.The-Damn-Weather";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -432,10 +441,11 @@
 				CODE_SIGN_ENTITLEMENTS = "The Damn Weather/The Damn Weather.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = WSRDLBHK5B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "The Damn Weather/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "The Damn Weather";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The Damn Weather needs your location to tell you what the damn weather is.";
@@ -449,7 +459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "DamnWeather.The-Damn-Weather";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -468,9 +478,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WeatherWidgetExtensionExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeatherWidgetExtension/WeatherWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = WSRDLBHK5B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherWidgetExtension/Info.plist;
@@ -482,7 +492,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "DamnWeather.The-Damn-Weather.WeatherWidgetExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -500,9 +510,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WeatherWidgetExtensionExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeatherWidgetExtension/WeatherWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = WSRDLBHK5B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherWidgetExtension/Info.plist;
@@ -514,7 +524,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "DamnWeather.The-Damn-Weather.WeatherWidgetExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

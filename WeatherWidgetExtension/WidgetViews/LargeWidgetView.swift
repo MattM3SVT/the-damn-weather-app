@@ -1,3 +1,4 @@
+import AppIntents
 import SwiftUI
 import WidgetKit
 import WeatherShared
@@ -71,12 +72,17 @@ struct LargeWidgetView: View {
 
                     Spacer(minLength: 0)
 
-                    // THE PHRASE — bold, wraps up to 3 lines, auto-shrinks for longest phrases
-                    Text(entry.phrase)
-                        .font(.system(size: 17 * scale, weight: .bold))
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.85)
-                        .foregroundStyle(.white)
+                    // THE PHRASE — bold, wraps up to 3 lines, auto-shrinks for
+                    // longest phrases. Tapping it fires RefreshPhraseIntent.
+                    Button(intent: RefreshPhraseIntent()) {
+                        Text(entry.phrase)
+                            .font(.system(size: 17 * scale, weight: .bold))
+                            .lineLimit(3)
+                            .minimumScaleFactor(0.85)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .buttonStyle(.plain)
 
                     Spacer(minLength: 0)
 

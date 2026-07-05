@@ -1,3 +1,4 @@
+import AppIntents
 import SwiftUI
 import WidgetKit
 import WeatherShared
@@ -10,13 +11,18 @@ struct MediumWidgetView: View {
         VStack(alignment: .leading, spacing: 6) {
             Spacer(minLength: 0)
 
-            // THE PHRASE — big, bold, front and center
-            Text(entry.phrase)
-                .font(.system(size: 20, weight: .bold))
-                .lineLimit(3)
-                .minimumScaleFactor(0.8)
-                .foregroundStyle(.white)
-                .fixedSize(horizontal: false, vertical: true)
+            // THE PHRASE — big, bold, front and center. Tapping it fires
+            // RefreshPhraseIntent for a fresh one without opening the app.
+            Button(intent: RefreshPhraseIntent()) {
+                Text(entry.phrase)
+                    .font(.system(size: 20, weight: .bold))
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.8)
+                    .foregroundStyle(.white)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .buttonStyle(.plain)
 
             Spacer(minLength: 0)
 

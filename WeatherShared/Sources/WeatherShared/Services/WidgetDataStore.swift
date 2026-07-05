@@ -66,6 +66,11 @@ public struct CachedWeatherData: Codable {
     /// Shorter phrase for the small widget (≤70 chars). Falls back to main phrase if nil.
     public let smallPhrase: String?
 
+    /// Shortest phrase, for lock-screen accessory widgets (≤60 chars — see
+    /// `AppConstants.accessoryPhraseMaxLength`). Falls back to `smallPhrase`.
+    /// Optional for back-compat with cache records written before it existed.
+    public let tinyPhrase: String?
+
     /// Hourly forecast preview for large widget (6 points).
     public let hourlyPreview: [CachedHourlyPoint]
 
@@ -99,6 +104,7 @@ public struct CachedWeatherData: Codable {
         updatedAt: Date = Date(),
         additionalPhrases: [String] = [],
         smallPhrase: String? = nil,
+        tinyPhrase: String? = nil,
         hourlyPreview: [CachedHourlyPoint] = [],
         dailyPreview: [CachedDailyPoint] = [],
         timezoneIdentifier: String? = nil,
@@ -117,6 +123,7 @@ public struct CachedWeatherData: Codable {
         self.updatedAt = updatedAt
         self.additionalPhrases = additionalPhrases
         self.smallPhrase = smallPhrase
+        self.tinyPhrase = tinyPhrase
         self.hourlyPreview = hourlyPreview
         self.dailyPreview = dailyPreview
         self.timezoneIdentifier = timezoneIdentifier
@@ -145,6 +152,7 @@ public struct CachedWeatherData: Codable {
         updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt) ?? Date.distantPast
         additionalPhrases = try container.decodeIfPresent([String].self, forKey: .additionalPhrases) ?? []
         smallPhrase = try container.decodeIfPresent(String.self, forKey: .smallPhrase)
+        tinyPhrase = try container.decodeIfPresent(String.self, forKey: .tinyPhrase)
         hourlyPreview = try container.decodeIfPresent([CachedHourlyPoint].self, forKey: .hourlyPreview) ?? []
         dailyPreview = try container.decodeIfPresent([CachedDailyPoint].self, forKey: .dailyPreview) ?? []
         timezoneIdentifier = try container.decodeIfPresent(String.self, forKey: .timezoneIdentifier)

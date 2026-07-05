@@ -51,4 +51,12 @@ extension Date {
     public static func currentTimeString(timezone: TimeZone = .current) -> String {
         Date().timeString(timezone: timezone)
     }
+
+    /// Hour of day (0–23) in the given timezone. Used to gate time-bucketed
+    /// phrases to the *location's* wall clock, not the device's.
+    public func localHour(timezone: TimeZone = .current) -> Int {
+        var calendar = Calendar.current
+        calendar.timeZone = timezone
+        return calendar.component(.hour, from: self)
+    }
 }

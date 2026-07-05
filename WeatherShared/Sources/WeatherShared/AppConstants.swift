@@ -8,8 +8,6 @@ public enum AppConstants {
     /// widget renders a placeholder asking the user to open the app rather
     /// than displaying obviously-stale labels.
     public static let widgetMaxStaleServeAge: TimeInterval = 6 * 3600  // 6 hours
-    public static let maxSeenPhrases = 300
-    public static let windOverrideThreshold: Double = 25.0  // mph
 
     // Observation cross-check (NWS + METAR supplemental current-condition correction)
     public static let observationCacheTTL: TimeInterval = 30 * 60        // 30 min
@@ -28,6 +26,12 @@ public enum AppConstants {
     /// than flip the displayed condition to WeatherKit's raw tag.
     public static let crossCheckStickyMaxAge: TimeInterval = 2 * 3600     // 2h
     public static let nwsSupportEmail = "support@hivewerks.com"
+
+    /// Phrase budget for lock-screen (accessory) widgets. The rectangular
+    /// family fits ~2 lines of ~28 characters at its system size; 60 with a
+    /// small minimumScaleFactor renders fully, where the small-widget 70-char
+    /// budget visibly truncates.
+    public static let accessoryPhraseMaxLength = 60
 
     // Air quality (AirNow / EPA) supplemental data
     public static let airQualityCacheTTL: TimeInterval = 30 * 60          // 30 min
@@ -52,6 +56,13 @@ public enum AppConstants {
     /// show data that's misleading. 2h matches AirNow's hourly update
     /// cadence so the worst-case staleness is two reporting cycles.
     public static let airQualityStickyMaxAge: TimeInterval = 2 * 3600     // 2h
+    /// Oldest observation (by `observedAt`) that cold-launch hydration and
+    /// the widget's forward-carry are allowed to keep displaying. AQI can
+    /// swing from 18 to 200+ within hours (fireworks, wildfire plumes), so
+    /// replaying an old reading isn't harmless the way replaying an old
+    /// temperature is. Beyond this age the stat is hidden until a fresh
+    /// AirNow fetch lands.
+    public static let airQualityMaxCarryAge: TimeInterval = 3 * 3600      // 3h
 
     // Cross-check confidence thresholds. Used by applyConsensusOverride to
     // block a ground-station override when WK's own cloud-cover reading
@@ -63,13 +74,27 @@ public enum AppConstants {
     public enum UserDefaultsKeys {
         public static let phraseMode = "phraseMode"
         public static let explicitConfirmed = "explicitConfirmed"
+        /// When true, widget-bound phrases are always generated in clean mode
+        /// even if the in-app mode is explicit. Defaults off — explicit mode
+        /// is already an opt-in — but gives users a way to keep the home and
+        /// lock screens family friendly.
+        public static let widgetsAlwaysClean = "widgetsAlwaysClean"
         public static let seenPhrasesClean = "seenPhrases_clean"
         public static let seenPhrasesExplicit = "seenPhrases_explicit"
         public static let temperatureUnit = "temperatureUnit"
         public static let theme = "theme"
         public static let morningForecastEnabled = "morningForecastEnabled"
         public static let morningForecastTime = "morningForecastTime"
-        public static let severeWeatherAlertsEnabled = "severeWeatherAlertsEnabled"
+        /// The forecast high recorded at the last notification scheduling
+        /// (with its yyyy-MM-dd date), so the next morning's notification can
+        /// say "12° colder than yesterday" — WeatherKit doesn't serve past days.
+        public static let morningForecastLastHighDate = "morningForecast_lastHighDate"
+        public static let morningForecastLastHigh = "morningForecast_lastHigh"
+        /// Last successful device-location fix (App Group). Written by the
+        /// app's device-location fetches; read by the morning-forecast
+        /// background task, which runs without GPS access.
+        public static let lastKnownLatitude = "lastKnownLatitude"
+        public static let lastKnownLongitude = "lastKnownLongitude"
         public static let windSpeedUnit = "windSpeedUnit"
         public static let pressureUnit = "pressureUnit"
         public static let precipitationUnit = "precipitationUnit"

@@ -168,7 +168,10 @@ public struct AirNowClient: Sendable {
     /// Silently skips rows that don't parse rather than throwing, because a
     /// single malformed row from AirNow shouldn't nuke the entire fetch.
     static func parseCSV(_ text: String) -> [AirNowReading] {
-        let lines = text.split(separator: "\n", omittingEmptySubsequences: true)
+        // Split on any newline style. NOT `split(separator: "\n")` — Swift
+        // treats "\r\n" as a single grapheme cluster, so that call would see
+        // a CRLF response as one giant line and parse zero rows.
+        let lines = text.split(omittingEmptySubsequences: true, whereSeparator: \.isNewline)
         guard lines.count > 1 else { return [] }
 
         var readings: [AirNowReading] = []

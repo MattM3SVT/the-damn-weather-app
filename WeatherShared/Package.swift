@@ -3,7 +3,9 @@ import PackageDescription
 
 let package = Package(
     name: "WeatherShared",
-    platforms: [.iOS(.v18)],
+    // Match the app targets' IPHONEOS_DEPLOYMENT_TARGET so availability
+    // checking inside the package reflects what actually ships.
+    platforms: [.iOS("26.0")],
     products: [
         .library(name: "WeatherShared", targets: ["WeatherShared"]),
     ],
@@ -14,6 +16,10 @@ let package = Package(
                 .process("Resources/phrases-clean.json"),
                 .process("Resources/phrases-explicit.json"),
             ]
+        ),
+        .testTarget(
+            name: "WeatherSharedTests",
+            dependencies: ["WeatherShared"]
         ),
     ]
 )

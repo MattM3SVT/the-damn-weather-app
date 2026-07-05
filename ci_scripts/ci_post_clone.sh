@@ -32,7 +32,10 @@ if [ -n "$AIRNOW_API_KEY" ]; then
     # Using | as sed delimiter so we don't have to escape forward slashes.
     # The value is a UUID (no sed-special chars) so no further escaping needed.
     sed -i '' "s|hardcodedKey: String? = nil|hardcodedKey: String? = \"$AIRNOW_API_KEY\"|" "$SECRETS_FILE"
-    if grep -q 'hardcodedKey: String? = "' "$SECRETS_FILE"; then
+    # Verify the exact env-var value landed. A grep for any quoted string
+    # would false-pass if a key were accidentally committed in the source,
+    # masking a sed no-op and shipping the stale committed key.
+    if grep -qF "hardcodedKey: String? = \"$AIRNOW_API_KEY\"" "$SECRETS_FILE"; then
         echo "AirNow API key injected into AirNowSecrets.swift"
     else
         echo "ERROR: AirNow API key injection failed (sed pattern did not match)"
@@ -40,6 +43,15 @@ if [ -n "$AIRNOW_API_KEY" ]; then
     fi
 else
     echo "WARNING: AIRNOW_API_KEY not set. Air Quality will be disabled in this build."
+fi
+
+# Fail the build on phrase-data schema errors (duplicate texts, unknown
+# tags, contradictory day/night flags, malformed [temp] tokens). Heuristic
+# day/night hints print as warnings only.
+if command -v python3 >/dev/null 2>&1; then
+    python3 "$REPO_ROOT/ci_scripts/lint_phrases.py"
+else
+    echo "WARNING: python3 not found; skipping phrase lint."
 fi
 
 echo "Post-clone script completed successfully."

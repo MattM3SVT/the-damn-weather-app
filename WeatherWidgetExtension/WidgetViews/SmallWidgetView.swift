@@ -1,3 +1,4 @@
+import AppIntents
 import SwiftUI
 import WidgetKit
 import WeatherShared
@@ -53,12 +54,15 @@ struct SmallWidgetView: View {
                 // phrases up to ~70 chars fit in the ~40pt vertical budget that's left after
                 // the city row, temp row, and attribution. PhraseEngine additionally hard-caps
                 // maxLength and truncates at word boundaries as a safety net.
-                Text(entry.smallPhrase)
-                    .font(.system(size: 17, weight: .bold))
-                    .lineLimit(4)
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(.white.opacity(0.9))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                Button(intent: RefreshPhraseIntent()) {
+                    Text(entry.smallPhrase)
+                        .font(.system(size: 17, weight: .bold))
+                        .lineLimit(4)
+                        .minimumScaleFactor(0.5)
+                        .foregroundStyle(.white.opacity(0.9))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                }
+                .buttonStyle(.plain)
 
                 HStack(spacing: 2) {
                     Image(systemName: "apple.logo")

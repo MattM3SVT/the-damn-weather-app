@@ -158,7 +158,7 @@ struct WeatherSnapshot: @unchecked Sendable {
     var isPartial: Bool = false
 
     nonisolated var isStale: Bool {
-        Date().timeIntervalSince(fetchedAt) > 15 * 60 // 15 minutes
+        Date().timeIntervalSince(fetchedAt) > AppConstants.weatherCacheTTL
     }
 
 }

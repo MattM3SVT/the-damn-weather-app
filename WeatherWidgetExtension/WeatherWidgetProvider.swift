@@ -15,6 +15,7 @@ struct WeatherWidgetEntry: TimelineEntry {
     let isDay: Bool
     let phrase: String
     let smallPhrase: String   // Shorter phrase for small widget (≤70 chars)
+    let tinyPhrase: String    // Shortest phrase for lock-screen widgets (≤60 chars)
     let feelsLike: Int
     let high: Int
     let low: Int
@@ -66,6 +67,7 @@ struct WeatherWidgetEntry: TimelineEntry {
             isDay: true,
             phrase: "Open The Damn Weather app to get started.",
             smallPhrase: "Open the app to get started.",
+            tinyPhrase: "Open the app to get started.",
             feelsLike: 0,
             high: 0,
             low: 0,
@@ -149,7 +151,9 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
 
     func snapshot(for configuration: WeatherWidgetIntent, in context: Context) async -> WeatherWidgetEntry {
         widgetProviderLog.info("snapshot called, isPreview=\(context.isPreview) location=\(configuration.location.name, privacy: .public)")
-        if let cached = buildCachedEntry(for: configuration.location) {
+        // Same staleness gate as placeholder(in:) — an unbounded cache read
+        // here could flash days-old data in the gallery or during transitions.
+        if let cached = buildCachedEntryIfFreshEnough(for: configuration.location) {
             return cached
         }
         // No cache hit — widget was just added and app hasn't prefetched yet.
@@ -185,7 +189,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         if let cached, let cachedTag, !isMultiCacheStale(cached) {
             widgetProviderLog.info("timeline PATH 1: multi-cache hit for id=\(configuration.location.id, privacy: .public) temp=\(cached.temperature) location=\(cached.locationName, privacy: .public)")
 
-            let entries = buildMultiEntryTimeline(
+            let entries = await buildMultiEntryTimeline(
                 from: cached,
                 conditionTag: cachedTag,
                 entity: configuration.location
@@ -208,7 +212,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         // that and we'd rather show a placeholder than visibly-wrong hours.
         if let cached, let cachedTag, !isCacheTooStaleToServe(cached) {
             widgetProviderLog.info("timeline PATH 1.5: serving stale cache, retry in 2m for \(configuration.location.name, privacy: .public)")
-            let entries = buildMultiEntryTimeline(
+            let entries = await buildMultiEntryTimeline(
                 from: cached,
                 conditionTag: cachedTag,
                 entity: configuration.location
@@ -243,20 +247,26 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
     }
 
     /// Build a widget entry from multi-cache data + live location overrides.
+    /// Synchronous (placeholder/snapshot can't await), so it derives current
+    /// temp/condition/isDay from the cached hourly slots but keeps the cached
+    /// phrase as-is — these entries are transient and replaced by a real
+    /// timeline moments later.
     private func buildCachedEntry(for entity: LocationEntity) -> WeatherWidgetEntry? {
         guard let cached = loadCachedDataForLocation(entity),
               let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) else {
             return nil
         }
+        let derived = deriveConditions(from: cached, cachedTag: conditionTag, at: Date())
         let forecast = Self.convertForecastPoints(from: cached)
         return WeatherWidgetEntry(
             date: Date(),
-            temperature: Int(cached.temperature.rounded()),
-            conditionTag: conditionTag,
-            conditionLabel: cached.conditionLabel,
-            isDay: cached.isDay,
+            temperature: derived.temperature,
+            conditionTag: derived.tag,
+            conditionLabel: derived.label,
+            isDay: derived.isDay,
             phrase: cached.phrase,
             smallPhrase: cached.smallPhrase ?? cached.phrase,
+            tinyPhrase: PhraseFormatting.truncated(cached.tinyPhrase ?? cached.smallPhrase ?? cached.phrase, to: 72),
             feelsLike: Int(cached.feelsLike.rounded()),
             high: Int(cached.high.rounded()),
             low: Int(cached.low.rounded()),
@@ -285,34 +295,128 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         Date().timeIntervalSince(cached.updatedAt) > AppConstants.widgetMaxStaleServeAge
     }
 
+    /// Best-available conditions from a cache record at a given render time.
+    /// A fresh cache uses the observation captured at write time. A stale one
+    /// (PATH 1.5 serves up to 6h old) switches to the hourly forecast slot
+    /// covering `date` — the cached `hourlyPreview` carries temp, condition,
+    /// and `isDaylight` per hour, so a widget written at 3 PM stops claiming
+    /// afternoon sun at 8:30 PM.
+    private struct DerivedConditions {
+        let temperature: Int
+        let tag: WeatherConditionTag
+        let label: String
+        let isDay: Bool
+    }
+
+    private func deriveConditions(
+        from cached: CachedWeatherData,
+        cachedTag: WeatherConditionTag,
+        at date: Date
+    ) -> DerivedConditions {
+        let observation = DerivedConditions(
+            temperature: Int(cached.temperature.rounded()),
+            tag: cachedTag,
+            label: cached.conditionLabel,
+            isDay: cached.isDay
+        )
+        // Same hour the cache was written → the observation is still the
+        // richest truth (matches the app's hero exactly).
+        if Calendar.current.isDate(cached.updatedAt, equalTo: date, toGranularity: .hour) {
+            return observation
+        }
+        // Otherwise prefer the forecast slot covering `date`. Legacy cache
+        // records without slot dates fall back to the stale observation.
+        guard let slot = cached.hourlyPreview
+                .filter({ $0.date != nil })
+                .last(where: { $0.date! <= date }),
+              let slotTag = WeatherConditionTag(rawValue: slot.conditionTag) else {
+            return observation
+        }
+        return DerivedConditions(
+            temperature: slot.temp,
+            tag: slotTag,
+            label: slotTag.label,
+            isDay: slot.isDay
+        )
+    }
+
     /// 4 entries at ~4-minute intervals rotating through the app's
     /// pre-generated phrases, so the widget shows variety within a single
     /// 15-min refresh window without needing PhraseEngine in the extension.
+    /// When an entry's derived day/night half or condition no longer matches
+    /// what the cached phrases were generated for, the phrase is regenerated
+    /// locally — the extension bundles PhraseEngine for exactly this.
     private func buildMultiEntryTimeline(
         from cached: CachedWeatherData,
         conditionTag: WeatherConditionTag,
         entity: LocationEntity
-    ) -> [WeatherWidgetEntry] {
+    ) async -> [WeatherWidgetEntry] {
         let allPhrases = cached.allPhrases
         let forecast = Self.convertForecastPoints(from: cached)
         let now = Date()
         let smallFallback = cached.smallPhrase ?? cached.phrase
         let displayName = cached.locationName.isEmpty ? entity.name : cached.locationName
 
-        return (0..<4).map { offset in
+        let defaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        let mode = PhraseMode(rawValue: defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean") ?? .clean
+
+        var entries: [WeatherWidgetEntry] = []
+        for offset in 0..<4 {
             let entryDate = Calendar.current.date(byAdding: .minute, value: offset * 4, to: now) ?? now
-            let rotatedPhrase: String = {
-                guard !allPhrases.isEmpty else { return cached.phrase }
-                return allPhrases[offset % allPhrases.count]
-            }()
-            return WeatherWidgetEntry(
+            let derived = deriveConditions(from: cached, cachedTag: conditionTag, at: entryDate)
+
+            let rotatedPhrase: String
+            let smallPhrase: String
+            let tinyPhrase: String
+            if derived.isDay == cached.isDay && derived.tag == conditionTag && cached.phraseMode == mode.rawValue {
+                rotatedPhrase = allPhrases.isEmpty ? cached.phrase : allPhrases[offset % allPhrases.count]
+                smallPhrase = smallFallback
+                tinyPhrase = PhraseFormatting.truncated(cached.tinyPhrase ?? smallFallback, to: 72)
+            } else {
+                // Cached phrases were written for the other half of the day,
+                // a different condition, or a different phrase mode (the
+                // "keep widgets clean" toggle flipped). Regenerate rather
+                // than show a "sun's out" line under the moon or an explicit
+                // line on a lock screen. Not tracked as seen — the app's
+                // dedup shouldn't fill with timeline filler.
+                let entryTZ = cached.timezoneIdentifier.flatMap(TimeZone.init(identifier:)) ?? .current
+                rotatedPhrase = await phraseEngine.selectPhrase(
+                    conditionTag: derived.tag,
+                    tempF: Double(derived.temperature),
+                    mode: mode,
+                    isDay: derived.isDay,
+                    localHour: entryDate.localHour(timezone: entryTZ),
+                    trackAsSeen: false
+                )
+                smallPhrase = await phraseEngine.selectPhrase(
+                    conditionTag: derived.tag,
+                    tempF: Double(derived.temperature),
+                    mode: mode,
+                    isDay: derived.isDay,
+                    localHour: entryDate.localHour(timezone: entryTZ),
+                    maxLength: 70,
+                    trackAsSeen: false
+                )
+                tinyPhrase = await phraseEngine.selectPhrase(
+                    conditionTag: derived.tag,
+                    tempF: Double(derived.temperature),
+                    mode: mode,
+                    isDay: derived.isDay,
+                    localHour: entryDate.localHour(timezone: entryTZ),
+                    maxLength: AppConstants.accessoryPhraseMaxLength,
+                    trackAsSeen: false
+                )
+            }
+
+            entries.append(WeatherWidgetEntry(
                 date: entryDate,
-                temperature: Int(cached.temperature.rounded()),
-                conditionTag: conditionTag,
-                conditionLabel: cached.conditionLabel,
-                isDay: cached.isDay,
+                temperature: derived.temperature,
+                conditionTag: derived.tag,
+                conditionLabel: derived.label,
+                isDay: derived.isDay,
                 phrase: rotatedPhrase,
-                smallPhrase: smallFallback,
+                smallPhrase: smallPhrase,
+                tinyPhrase: tinyPhrase,
                 feelsLike: Int(cached.feelsLike.rounded()),
                 high: Int(cached.high.rounded()),
                 low: Int(cached.low.rounded()),
@@ -322,8 +426,9 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                 locationName: displayName,
                 timezoneIdentifier: cached.timezoneIdentifier,
                 isDeviceLocation: entity.isMyLocation
-            )
+            ))
         }
+        return entries
     }
 
     /// Convert cached hourly/daily forecast data to widget entry types.
@@ -375,7 +480,11 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         // erase what the app fetched from AirNow. The widget process doesn't
         // hit AirNow itself; only the app does. Without this merge the hero's
         // AQI stat would disappear every time the widget timeline refreshes.
-        let previousAQI = WidgetDataStore.loadEntry(for: entity.id)?.airQuality
+        // Age-gated: without the cutoff this carry-forward never expires, so
+        // a one-night PM2.5 spike could haunt the cache for days.
+        let previousAQI = WidgetDataStore.loadEntry(for: entity.id)?.airQuality.flatMap { aqi in
+            Date().timeIntervalSince(aqi.observedAt) <= AppConstants.airQualityMaxCarryAge ? aqi : nil
+        }
 
         WidgetDataStore.saveEntry(
             CachedWeatherData(
@@ -391,6 +500,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                 phraseMode: modeStr,
                 additionalPhrases: additionalPhrases,
                 smallPhrase: entry.smallPhrase,
+                tinyPhrase: entry.tinyPhrase,
                 hourlyPreview: cachedHourly,
                 dailyPreview: cachedDaily,
                 timezoneIdentifier: entry.timezoneIdentifier,
@@ -462,14 +572,8 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
         let modeStr = defaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
         let mode = PhraseMode(rawValue: modeStr) ?? .clean
 
-        let phrase = await phraseEngine.selectPhrase(
-            conditionTag: conditionTag,
-            tempF: tempF,
-            mode: mode,
-            isDay: current.isDaylight
-        )
-
-        // Get DST-aware timezone via reverse geocoding
+        // Get DST-aware timezone via reverse geocoding (before phrase
+        // selection — time-bucketed phrases gate on the location-local hour)
         let locationTimezone: TimeZone
         if #available(iOS 26, *) {
             if let request = MKReverseGeocodingRequest(location: location),
@@ -485,6 +589,14 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                 locationTimezone = .current
             }
         }
+
+        let phrase = await phraseEngine.selectPhrase(
+            conditionTag: conditionTag,
+            tempF: tempF,
+            mode: mode,
+            isDay: current.isDaylight,
+            localHour: Date().localHour(timezone: locationTimezone)
+        )
 
         // Filter to current hour and forward — WeatherKit returns past hours too
         let currentHourStart = Calendar.current.dateInterval(of: .hour, for: Date())?.start ?? Date()
@@ -517,7 +629,17 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             tempF: tempF,
             mode: mode,
             isDay: current.isDaylight,
+            localHour: Date().localHour(timezone: locationTimezone),
             maxLength: 70
+        )
+        let tinyPhrase = await phraseEngine.selectPhrase(
+            conditionTag: conditionTag,
+            tempF: tempF,
+            mode: mode,
+            isDay: current.isDaylight,
+            localHour: Date().localHour(timezone: locationTimezone),
+            maxLength: AppConstants.accessoryPhraseMaxLength,
+            trackAsSeen: false
         )
 
         return WeatherWidgetEntry(
@@ -528,6 +650,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             isDay: current.isDaylight,
             phrase: phrase,
             smallPhrase: smallPhrase,
+            tinyPhrase: tinyPhrase,
             feelsLike: Int(current.apparentTemperature.converted(to: .fahrenheit).value.rounded()),
             high: todayHigh,
             low: todayLow,

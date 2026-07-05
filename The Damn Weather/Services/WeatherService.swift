@@ -73,8 +73,9 @@ actor WeatherService {
             ? conditionTag.label
             : current.condition.description
 
-        // precipitationIntensity — get raw value and convert
-        let precipInPerHour = current.precipitationIntensity.value * 0.0393701  // mm to inches approx
+        // precipitationIntensity is a Measurement<UnitSpeed>; convert through
+        // the unit system rather than assuming the native unit is mm/hr.
+        let precipInPerHour = current.precipitationIntensity.converted(to: .inchesPerHour).value
 
         var currentData = CurrentWeatherData(
             temperature: current.temperature.converted(to: .fahrenheit).value,
@@ -188,18 +189,30 @@ actor WeatherService {
         let minuteData: [MinutePrecipitationPoint] = minute?.map { m in
             return MinutePrecipitationPoint(
                 time: m.date,
-                intensity: m.precipitationIntensity.value * 0.0393701,  // mm to inches
+                intensity: m.precipitationIntensity.converted(to: .inchesPerHour).value,
                 probability: m.precipitationChance * 100
             )
         } ?? []
 
         let alertData: [WeatherAlertData] = alerts.map { (alert: WeatherAlert) in
             // Enrich with NWS data when available so the sheet can render the
-            // full alert body natively. Match by event name (case-insensitive,
-            // trimmed) — WeatherKit uses NWS as its US source so the event
-            // strings line up. First match wins on the rare collision.
-            let nwsMatch = nwsAlertDetails.first { detail in
+            // full alert body natively. Match by event name (case-insensitive)
+            // — WeatherKit uses NWS as its US source so the event strings line
+            // up. Two active alerts can share an event name (e.g. two Flood
+            // Warnings for adjacent zones), so break ties by whichever NWS
+            // record's expiration is closest to the WeatherKit alert's.
+            let candidates = nwsAlertDetails.filter { detail in
                 detail.event.caseInsensitiveCompare(alert.summary) == .orderedSame
+            }
+            let nwsMatch: NWSAlertDetail?
+            if candidates.count > 1, let wkExpiration = alert.metadata.expirationDate as Date? {
+                nwsMatch = candidates.min { lhs, rhs in
+                    let lhsDelta = abs((lhs.ends ?? lhs.expires ?? .distantPast).timeIntervalSince(wkExpiration))
+                    let rhsDelta = abs((rhs.ends ?? rhs.expires ?? .distantPast).timeIntervalSince(wkExpiration))
+                    return lhsDelta < rhsDelta
+                }
+            } else {
+                nwsMatch = candidates.first
             }
             return WeatherAlertData(
                 headline: alert.summary,
@@ -339,4 +352,18 @@ actor WeatherService {
         @unknown default: return .newMoon
         }
     }
+}
+
+private extension UnitSpeed {
+    /// Precipitation intensity as inches per hour. Foundation has no built-in
+    /// unit for this; 1 in/hr = 0.0254 m ÷ 3600 s in the base unit (m/s).
+    ///
+    /// `nonisolated`: the project's default MainActor isolation would
+    /// otherwise pin this to the main actor, but `WeatherService` (its only
+    /// user) is a separate actor. `UnitSpeed` is Sendable, so an opt-out of
+    /// isolation is all that's needed for cross-actor reads.
+    nonisolated static let inchesPerHour = UnitSpeed(
+        symbol: "in/hr",
+        converter: UnitConverterLinear(coefficient: 0.0254 / 3600)
+    )
 }

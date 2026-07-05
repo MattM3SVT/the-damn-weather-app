@@ -21,6 +21,14 @@ struct AirQualityDetailView: View {
 
     private var accentColor: Color { data.category.accentColor }
 
+    /// "25 minutes ago" formatter for the observation timestamp. Relative
+    /// phrasing sidesteps the location-vs-device timezone question entirely.
+    private static let relativeFormatter: RelativeDateTimeFormatter = {
+        let f = RelativeDateTimeFormatter()
+        f.unitsStyle = .full
+        return f
+    }()
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -71,6 +79,13 @@ struct AirQualityDetailView: View {
             Text(data.category.label)
                 .font(.system(size: DesignTokens.bodySize, weight: .medium))
                 .foregroundStyle(.secondary)
+
+            // Which pollutant is driving the number and how fresh it is.
+            // Surprising values (fireworks smoke, wildfire plumes) read as
+            // app bugs without this line.
+            Text("\(data.primaryPollutant.shortSymbol) · Updated \(Self.relativeFormatter.localizedString(for: data.observedAt, relativeTo: Date()))")
+                .font(.system(size: DesignTokens.captionSize))
+                .foregroundStyle(.white.opacity(0.5))
 
             if let area = data.reportingArea, !area.isEmpty {
                 Text(area)

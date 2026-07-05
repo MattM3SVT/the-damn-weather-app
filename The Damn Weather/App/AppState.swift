@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import WeatherShared
+import WidgetKit
 
 @Observable
 final class AppState {
@@ -11,9 +12,35 @@ final class AppState {
     var distanceUnit: DistanceUnit = .miles
     var phraseMode: PhraseMode = .clean
     var explicitConfirmed: Bool = false
+    /// Keep widget phrases clean regardless of the in-app mode. Defaults OFF:
+    /// explicit mode is an intentional opt-in already, so widgets follow the
+    /// in-app mode unless the user asks for the clean-widgets guard.
+    var widgetsAlwaysClean: Bool = false
+
+    /// The mode every widget-bound phrase generation must use. The in-app
+    /// experience keeps `phraseMode`; the widgets only follow it when the
+    /// user has explicitly turned the clean-widgets guard off.
+    var effectiveWidgetPhraseMode: PhraseMode {
+        widgetsAlwaysClean ? .clean : phraseMode
+    }
 
     init() {
         loadFromDefaults()
+        // Make sure the App Group copy of the widget mode exists and matches
+        // current settings — the widget extension generates its own phrases
+        // (fresh fetches, stale-serve regeneration, tap-to-refresh) and this
+        // key is the only mode signal it sees.
+        syncWidgetPhraseMode(reloadWidgets: false)
+    }
+
+    /// Write the effective widget mode to the App Group and optionally nudge
+    /// WidgetKit so already-rendered timelines regenerate their phrases.
+    private func syncWidgetPhraseMode(reloadWidgets: Bool = true) {
+        let group = UserDefaults(suiteName: AppConstants.appGroupID)
+        group?.set(effectiveWidgetPhraseMode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
+        if reloadWidgets {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 
     private func loadFromDefaults() {
@@ -37,11 +64,19 @@ final class AppState {
         if let unit = defaults.string(forKey: AppConstants.UserDefaultsKeys.distanceUnit) {
             distanceUnit = DistanceUnit(rawValue: unit) ?? .miles
         }
+        widgetsAlwaysClean = defaults.object(forKey: AppConstants.UserDefaultsKeys.widgetsAlwaysClean) as? Bool ?? false
     }
 
     func savePhraseMode(_ mode: PhraseMode) {
         phraseMode = mode
         UserDefaults.standard.set(mode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
+        syncWidgetPhraseMode()
+    }
+
+    func saveWidgetsAlwaysClean(_ enabled: Bool) {
+        widgetsAlwaysClean = enabled
+        UserDefaults.standard.set(enabled, forKey: AppConstants.UserDefaultsKeys.widgetsAlwaysClean)
+        syncWidgetPhraseMode()
     }
 
     func confirmExplicit() {

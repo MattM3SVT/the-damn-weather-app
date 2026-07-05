@@ -59,6 +59,16 @@ struct WeatherView: View {
                     isPartial: weather.isPartial
                 )
 
+                // "Starting soon" callout — only when dry now but precipitation
+                // is expected within the hour.
+                if let minutes = PrecipitationSoonBanner.minutesUntilStart(weather.minutePrecipitation) {
+                    PrecipitationSoonBanner(
+                        minutes: minutes,
+                        isSnow: [.snow, .heavySnow, .freezingRain].contains(weather.current.conditionTag)
+                            || weather.current.temperature <= 34
+                    )
+                }
+
                 // Minute-by-minute precipitation summary
                 if weather.minutePrecipitation.contains(where: { $0.intensity > 0 }) {
                     PrecipitationCard(data: weather.minutePrecipitation)

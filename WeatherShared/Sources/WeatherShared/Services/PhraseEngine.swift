@@ -3,6 +3,26 @@ import os.log
 
 private let phraseLog = Logger(subsystem: "DamnWeather", category: "PhraseEngine")
 
+/// Phrase display helpers usable from any target and isolation context.
+public enum PhraseFormatting {
+    /// If `maxLength` is set and the string exceeds it, truncate at the last
+    /// word boundary within the budget and append an ellipsis. Preserves
+    /// whole-word integrity so "Lazy bastard." never becomes "Lazy". Display
+    /// layers (widget fallback paths) use this to defensively cut cached
+    /// phrases that predate the shorter tiers — a word-boundary "…" beats
+    /// iOS clipping a phrase mid-word.
+    public static func truncated(_ text: String, to maxLength: Int?) -> String {
+        guard let maxLength, text.count > maxLength else { return text }
+        // Reserve room for the ellipsis glyph itself.
+        let budget = max(1, maxLength - 1)
+        let prefix = String(text.prefix(budget))
+        if let lastSpace = prefix.lastIndex(of: " ") {
+            return String(prefix[..<lastSpace]).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
+        }
+        return prefix + "…"
+    }
+}
+
 /// Thread-safe wrapper so `isReady` can be read outside the actor without `await`.
 private final class ReadyFlag: @unchecked Sendable {
     private let lock = NSLock()
@@ -62,6 +82,28 @@ public actor PhraseEngine {
         lastShownExplicit = defaults.string(forKey: AppConstants.UserDefaultsKeys.lastShownExplicit)
     }
 
+    /// One-time migration of seen-phrase state from `.standard` (where the
+    /// app's engine historically kept it) into the App Group suite that the
+    /// widget's engine already uses. Sharing one dedup domain means the
+    /// widget stops repeating phrases the app just showed. Keys already
+    /// present in the group (widget got there first) are left alone — losing
+    /// a little dedup history is harmless, silently overwriting isn't.
+    nonisolated public static func migrateSeenStateToAppGroup() {
+        guard let group = UserDefaults(suiteName: AppConstants.appGroupID) else { return }
+        let standard = UserDefaults.standard
+        let keys = [
+            AppConstants.UserDefaultsKeys.seenPhrasesClean,
+            AppConstants.UserDefaultsKeys.seenPhrasesExplicit,
+            AppConstants.UserDefaultsKeys.lastShownClean,
+            AppConstants.UserDefaultsKeys.lastShownExplicit,
+        ]
+        for key in keys where group.object(forKey: key) == nil {
+            if let value = standard.object(forKey: key) {
+                group.set(value, forKey: key)
+            }
+        }
+    }
+
     /// Load phrase bundles from the package's Resources
     public func loadIfNeeded() {
         guard !isLoaded else { return }
@@ -111,6 +153,7 @@ public actor PhraseEngine {
         tempF: Double,
         mode: PhraseMode = .clean,
         isDay: Bool = true,
+        localHour: Int? = nil,
         maxLength: Int? = nil,
         trackAsSeen: Bool = true
     ) -> String {
@@ -123,13 +166,13 @@ public actor PhraseEngine {
 
         // Step 1: Filter by condition AND temperature range AND day/night
         var matches = pool.filter { p in
-            p.matchesCondition(conditionTag) && p.matchesTemp(tempF) && p.matchesTimeOfDay(isDay: isDay)
+            p.matchesCondition(conditionTag) && p.matchesTemp(tempF) && p.matchesTime(isDay: isDay, localHour: localHour)
         }
 
         // Step 2: If no matches, relax to condition-only (still respecting day/night)
         if matches.isEmpty {
             matches = pool.filter { p in
-                p.matchesCondition(conditionTag) && p.matchesTimeOfDay(isDay: isDay)
+                p.matchesCondition(conditionTag) && p.matchesTime(isDay: isDay, localHour: localHour)
             }
         }
 
@@ -137,14 +180,14 @@ public actor PhraseEngine {
         if matches.isEmpty {
             matches = pool.filter { p in
                 guard p.tempRange != nil else { return false }
-                return p.matchesTemp(tempF) && p.matchesTimeOfDay(isDay: isDay)
+                return p.matchesTemp(tempF) && p.matchesTime(isDay: isDay, localHour: localHour)
             }
         }
 
         // Step 4: If still nothing, use generic phrases (respecting day/night)
         if matches.isEmpty {
             matches = pool.filter { p in
-                p.conditions.contains("any") && p.matchesTimeOfDay(isDay: isDay)
+                p.conditions.contains("any") && p.matchesTime(isDay: isDay, localHour: localHour)
             }
         }
 
@@ -156,7 +199,7 @@ public actor PhraseEngine {
         // takes over.
         if matches.isEmpty {
             matches = pool.filter { p in
-                p.matchesTimeOfDay(isDay: isDay)
+                p.matchesTime(isDay: isDay, localHour: localHour)
             }
         }
 
@@ -221,18 +264,8 @@ public actor PhraseEngine {
         return truncate(text, to: maxLength)
     }
 
-    /// If `maxLength` is set and the string exceeds it, truncate at the last word
-    /// boundary within the budget and append an ellipsis. Preserves whole-word
-    /// integrity so a phrase like "Lazy bastard." never becomes "Lazy".
     private func truncate(_ text: String, to maxLength: Int?) -> String {
-        guard let maxLength, text.count > maxLength else { return text }
-        // Reserve room for the ellipsis glyph itself.
-        let budget = max(1, maxLength - 1)
-        let prefix = String(text.prefix(budget))
-        if let lastSpace = prefix.lastIndex(of: " ") {
-            return String(prefix[..<lastSpace]).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
-        }
-        return prefix + "…"
+        PhraseFormatting.truncated(text, to: maxLength)
     }
 
     /// Generate multiple unique phrases for widget timeline entries.
@@ -244,7 +277,8 @@ public actor PhraseEngine {
         conditionTag: WeatherConditionTag,
         tempF: Double,
         mode: PhraseMode = .clean,
-        isDay: Bool = true
+        isDay: Bool = true,
+        localHour: Int? = nil
     ) -> [String] {
         var phrases: [String] = []
         var seen = Set<String>()
@@ -259,6 +293,7 @@ public actor PhraseEngine {
                 tempF: tempF,
                 mode: mode,
                 isDay: isDay,
+                localHour: localHour,
                 trackAsSeen: false  // Only primary phrase selection tracks
             )
             if seen.insert(phrase).inserted {

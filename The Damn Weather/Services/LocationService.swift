@@ -9,6 +9,10 @@ nonisolated private let locationLog = Logger(subsystem: "DamnWeather", category:
 final class LocationService: NSObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     private var locationContinuation: CheckedContinuation<CLLocation, Error>?
+    /// Timeout for the in-flight `requestLocation` call. Tracked so a newer
+    /// request can cancel the previous request's timer — otherwise a stale
+    /// timer could fire and spuriously fail the newer continuation.
+    private var locationTimeoutTask: Task<Void, Never>?
 
     var authorizationStatus: CLAuthorizationStatus = .notDetermined
     var currentLocationName: String = ""
@@ -65,49 +69,58 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         // serves when desiredAccuracy is met by the cache), we have no way
         // to wait for a fresher one. `startUpdatingLocation` streams updates,
         // and the delegate filters by timestamp until a fresh fix arrives.
-        // The GPS task is explicitly @MainActor because `locationContinuation`
-        // and `manager` are main-actor-isolated properties of this @Observable
-        // class; the timeout task just sleeps and is fine off-actor.
-        let result: CLLocation? = await withTaskGroup(of: CLLocation?.self) { group in
-            group.addTask { @MainActor [weak self] in
-                guard let self else { return nil }
-                return try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<CLLocation, Error>) in
-                    // Cancel any pending continuation so it can't hang forever.
-                    self.locationContinuation?.resume(throwing: LocationError.cancelled)
-                    self.locationContinuation = continuation
-                    self.manager.startUpdatingLocation()
-                }
-            }
-            group.addTask {
-                try? await Task.sleep(for: .seconds(Self.locationRequestTimeout))
-                return nil // timeout sentinel
-            }
-            for await next in group {
-                group.cancelAll()
-                return next
-            }
-            return nil
+        //
+        // The timeout resumes the pending continuation directly rather than
+        // racing in a task group: a group would implicitly await the GPS
+        // child on exit, and a CheckedContinuation ignores cancellation, so
+        // the "timeout" would silently wait for CoreLocation anyway (with
+        // the GPS left running the whole time).
+        locationTimeoutTask?.cancel()
+        let timeoutTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(Self.locationRequestTimeout))
+            guard !Task.isCancelled else { return }
+            self?.finishLocationRequest(with: .failure(LocationError.timeout))
         }
+        locationTimeoutTask = timeoutTask
 
         // `startUpdatingLocation` runs continuously; always stop once we're
-        // done (success, timeout, or cancellation) so the GPS chip can power
+        // done (success, timeout, or supersession) so the GPS chip can power
         // down. Calling `stop` when not started is a no-op, so this is safe.
-        manager.stopUpdatingLocation()
-
-        if let result {
-            return result
+        defer {
+            timeoutTask.cancel()
+            manager.stopUpdatingLocation()
         }
 
-        // Timeout — try the system's last-known fix only if it's recent
-        // enough that it's plausibly current.
-        if let cached = manager.location,
-           Date().timeIntervalSince(cached.timestamp) < Self.lastKnownMaxAge {
-            locationLog.info("requestLocation timed out after \(Self.locationRequestTimeout)s; using last-known fix from \(cached.timestamp, privacy: .public)")
-            return cached
+        do {
+            return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<CLLocation, Error>) in
+                // Cancel any pending continuation so it can't hang forever.
+                locationContinuation?.resume(throwing: LocationError.cancelled)
+                locationContinuation = continuation
+                manager.startUpdatingLocation()
+            }
+        } catch LocationError.timeout {
+            // Timeout — try the system's last-known fix only if it's recent
+            // enough that it's plausibly current.
+            if let cached = manager.location,
+               Date().timeIntervalSince(cached.timestamp) < Self.lastKnownMaxAge {
+                locationLog.info("requestLocation timed out after \(Self.locationRequestTimeout)s; using last-known fix from \(cached.timestamp, privacy: .public)")
+                return cached
+            }
+            locationLog.error("requestLocation timed out with no usable last-known fix")
+            throw LocationError.timeout
         }
+    }
 
-        locationLog.error("requestLocation timed out with no usable last-known fix")
-        throw LocationError.timeout
+    /// Resume and clear the pending continuation exactly once. Every
+    /// completion path (fresh fix, CL error, timeout) funnels through here so
+    /// a late delegate callback after the timeout already fired is a no-op.
+    private func finishLocationRequest(with result: Result<CLLocation, Error>) {
+        guard let continuation = locationContinuation else { return }
+        locationContinuation = nil
+        switch result {
+        case .success(let location): continuation.resume(returning: location)
+        case .failure(let error): continuation.resume(throwing: error)
+        }
     }
 
     /// Waits for the user to respond to the location permission dialog
@@ -248,13 +261,11 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        locationContinuation?.resume(returning: location)
-        locationContinuation = nil
+        finishLocationRequest(with: .success(location))
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        locationContinuation?.resume(throwing: error)
-        locationContinuation = nil
+        finishLocationRequest(with: .failure(error))
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

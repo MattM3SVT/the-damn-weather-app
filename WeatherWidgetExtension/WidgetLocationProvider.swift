@@ -56,21 +56,18 @@ final class WidgetLocationProvider: NSObject, CLLocationManagerDelegate, @unchec
             return cached
         }
 
-        // Slow path: ask for a fresh fix with a time budget.
-        return await withTaskGroup(of: CLLocation?.self) { group in
-            group.addTask { [weak self] in
-                await self?.requestLocationAsync()
-            }
-            group.addTask {
-                try? await Task.sleep(nanoseconds: 8 * 1_000_000_000)
-                return nil // timeout sentinel
-            }
-            for await result in group {
-                group.cancelAll()
-                return result
-            }
-            return nil
+        // Slow path: ask for a fresh fix with a time budget. The timeout
+        // resumes the pending continuation directly — racing in a task group
+        // wouldn't work because the group implicitly awaits the continuation
+        // child on exit and CheckedContinuation ignores cancellation, so the
+        // budget would silently stretch to however long CoreLocation takes.
+        let timeoutTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 8 * 1_000_000_000)
+            guard !Task.isCancelled else { return }
+            self?.swapContinuation(nil)?.resume(returning: nil)
         }
+        defer { timeoutTask.cancel() }
+        return await requestLocationAsync()
     }
 
     private func requestLocationAsync() async -> CLLocation? {

@@ -349,7 +349,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "A pleasant [temp] degrees. Just kidding, nothing about this bitch of a day is pleasant.",
@@ -541,7 +544,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "It's [temp] degrees. Your pet is sprawled on the floor looking at you like 'fix this shit.'",
@@ -877,7 +883,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Clear skies and sunshine. The universe is obviously about to fuck you over.",
@@ -1707,7 +1716,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Coming down hard as fuck out there. Your plans? Dead. Murdered by rain.",
@@ -1956,7 +1969,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Pouring. The leak in your ceiling is back. Surprise, asshole.",
@@ -2195,7 +2211,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snowing. Your car is buried under a metric fuckton of bullshit.",
@@ -2228,7 +2247,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Coming down heavy. The snowplow isn't fucking coming for your street. It never does.",
@@ -2647,7 +2670,7 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "Thunderstorm rolling in. The sky is about to lose its fucking mind.",
@@ -2965,7 +2988,7 @@
   {
     "text": "Cloudy and depressing. Perfect weather to question your whole fucking existence.",
     "conditions": [
-      "thunderstorm"
+      "cloudy"
     ],
     "tempRange": null,
     "priority": 1,
@@ -2980,7 +3003,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
   },
   {
     "text": "Lightning just fried the modem. No internet, no peace. Fuck everything.",
@@ -3462,7 +3488,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Dense fog. If you crash into something, at least you won't see the shit coming.",
@@ -3565,7 +3594,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "High winds. Your recycling bin is three streets over. Not your problem anymore. Fuck it.",
@@ -3738,7 +3770,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Windy as fuck. Your trash cans are in the next goddamn zip code.",
@@ -3798,7 +3833,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Gusty as hell. Every loose item you own is now in someone else's fucking yard.",
@@ -3876,7 +3914,7 @@
   {
     "text": "Partly cloudy and boring as fuck. The weather couldn't even commit to being bad.",
     "conditions": [
-      "wind"
+      "partly-cloudy"
     ],
     "tempRange": null,
     "priority": 2,
@@ -4334,7 +4372,11 @@
     ],
     "priority": 2,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "It's raining sideways. Your umbrella is useless, you fool. Fucking useless.",
@@ -4729,11 +4771,11 @@
   {
     "text": "Sunny day. Your sunburn from last weekend hasn't even healed yet, you dumb shit.",
     "conditions": [
-      "any"
+      "clear"
     ],
     "tempRange": [
-      -50.0,
-      0.0
+      60,
+      130
     ],
     "priority": 1,
     "dayOnly": true,
@@ -4872,7 +4914,7 @@
   {
     "text": "It's [temp] degrees. The wind makes it feel like negative-fuck-you. Stay home.",
     "conditions": [
-      "any"
+      "wind"
     ],
     "tempRange": [
       -50.0,
@@ -5321,7 +5363,11 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Heavy rain and [temp] degrees. Perfect fucking storm for calling in sick.",
@@ -5361,7 +5407,11 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Thunderstorm at [temp] degrees. The humidity alone could drown you. Add the rain and you're fucked.",
@@ -5508,7 +5558,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Rain and [temp] degrees. The grocery bags are going to be soaked before you reach the goddamn door.",
@@ -5568,8 +5621,7 @@
   {
     "text": "Cloudy at [temp]. The kind of day where you just stare out the window like a depressed piece of shit.",
     "conditions": [
-      "rain",
-      "wind"
+      "cloudy"
     ],
     "tempRange": [
       40.0,
@@ -5603,7 +5655,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Cloudy, windy, and [temp] degrees. A shit sandwich with no redeeming goddamn qualities.",
@@ -5987,7 +6042,7 @@
   {
     "text": "Cloudy night at [temp]. Can't see the moon, can't see the stars, can't see a fucking point to going outside.",
     "conditions": [
-      "clear"
+      "cloudy"
     ],
     "tempRange": null,
     "priority": 2,
@@ -6165,7 +6220,8 @@
   {
     "text": "Snowy night. Peaceful and quiet. Until the goddamn snowplow comes through at 3 AM. Fuck that truck.",
     "conditions": [
-      "cloudy"
+      "snow",
+      "heavy-snow"
     ],
     "tempRange": [
       28.0,
@@ -6507,8 +6563,7 @@
   {
     "text": "Drizzly night. Perfect sleeping weather if your neighbors would shut the fuck up.",
     "conditions": [
-      "snow",
-      "heavy-snow"
+      "drizzle"
     ],
     "tempRange": null,
     "priority": 2,
@@ -6641,7 +6696,7 @@
   {
     "text": "Overcast night. Dark as fuck. Stepped in a puddle you couldn't see. Night is bullshit.",
     "conditions": [
-      "thunderstorm"
+      "cloudy"
     ],
     "tempRange": null,
     "priority": 1,
@@ -6910,10 +6965,13 @@
     "conditions": [
       "any"
     ],
-    "tempRange": null,
+    "tempRange": [
+      -50,
+      45
+    ],
     "priority": 2,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "Currently [temp] degrees. Adjust your bitching accordingly.",
@@ -7005,7 +7063,7 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": true
   },
   {
     "text": "It's [temp] degrees. Your joints predicted this. Your joints are a bunch of pessimistic bastards.",
@@ -7113,7 +7171,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "[temp] degrees. Shorts people and pants people are both out there looking equally fucking dumb.",
@@ -8025,7 +8087,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "It's raining and the trash cans are overflowing with water. Everything is soup. Shitty soup.",
@@ -8279,7 +8345,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Raining at [temp] degrees. This weather is personally fucking you over and it knows it.",
@@ -8923,7 +8992,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Thunderstorm. Your pet is hiding in a place you didn't know existed. Scared little bastard.",
@@ -9350,7 +9423,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Cloudy. You wore your nice outfit for nothing. Nobody can see you in this gray-ass light.",
@@ -9479,7 +9556,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Overcast and humid. The air feels like breathing through a damp washcloth. Absolute shit.",
@@ -9581,7 +9662,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Fog. Your morning walk feels like entering the goddamn void. Existential and damp.",
@@ -9591,7 +9675,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Foggy. Planes are grounded, roads are sketchy, and your patience is at fucking zero.",
@@ -9690,7 +9777,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Fog so dense the deer are invisible. Pray for your bumper, you unlucky shit.",
@@ -10211,7 +10301,10 @@
     ],
     "priority": 2,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Sleet turning to freezing rain. Every surface is conspiring against your ass.",
@@ -11372,7 +11465,11 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Freezing rain turning to snow at [temp] degrees. A layer cake of frozen bullshit on the roads.",
@@ -14070,7 +14167,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
   },
   {
     "text": "Rain at [temp]. Your umbrella is at home. You are not at home. This shit is a pattern.",
@@ -15083,7 +15183,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Freezing rain at [temp]. School's canceled. Kids are thrilled. Parents are fucking trapped.",
@@ -15356,7 +15459,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Fog at [temp] degrees. The world loaded at 20%. Buffering. Fuck this connection.",
@@ -15421,7 +15527,11 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Dense fog at [temp]. Car headlights are just decorative bullshit at this point.",
@@ -15473,7 +15583,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Fog at [temp]. Step outside and the world ends at the property line. Fuck everything past that.",
@@ -15675,7 +15788,10 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "It's [temp] outside. Transitioning from car heat to outside air is a personal fucking betrayal.",
@@ -15858,7 +15974,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snow at [temp]. Kids are refreshing the school website every three seconds. Little shits want a snow day.",
@@ -17783,7 +17902,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Thunder right when you stepped onto the porch. Back inside it fucking is.",
@@ -18053,7 +18175,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Thunder right when the lawn care guys showed up. They left. They will return tomorrow. Smart fucks.",
@@ -18172,7 +18297,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Thunder at [temp] degrees. The barometric pressure is doing a fucking nosedive.",
@@ -18315,7 +18443,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Storm during the lunch hour. Every restaurant patio is a ghost town. Every interior is a fucking cage match.",
@@ -18558,7 +18689,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Gusty day. Your sunglasses are gone. Don't fucking look. Acceptance is faster.",
@@ -18598,7 +18732,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Windy at [temp]. Outdoor brunch was a goddamn mistake. Your french toast is gritty as hell.",
@@ -18781,7 +18918,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Windy. The leaves you raked yesterday are doing wind sprints down the sidewalk like they're training for something fucked up.",
@@ -18811,7 +18951,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Windy at [temp]. Every door slam in the office is involuntary. Every coworker just got fucking startled.",
@@ -18997,7 +19140,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Windy. The scaffolding fabric downtown is making the loudest sound in the city. Tourists fucking hate it.",
@@ -19125,7 +19271,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Raining. Every coffee shop is at 200% capacity and the WiFi is filing for fucking hospice.",
@@ -19433,7 +19583,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Raining. The kid's poster-board project is becoming a watercolor against its fucking will.",
@@ -19580,7 +19734,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Raining at school dismissal. The pickup line is a stage and every parent is auditioning for patience. Half are fucking failing.",
@@ -19650,7 +19807,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Raining. The flower delivery driver just earned fucking hazard pay.",
@@ -19774,7 +19934,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Heavy rain. The roof gutters are overflowing in places gutters should not fucking overflow.",
@@ -19817,7 +19981,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Heavy rain. The cracks in your driveway are getting tested. They fucking fail.",
@@ -19890,7 +20058,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Pouring. The hose you forgot to roll up is a goddamn water snake. You did this.",
@@ -19983,7 +20154,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Heavy rain. The mail carrier just walked by with a poncho and the most exhausted fucking expression on Earth.",
@@ -20364,7 +20538,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Misty drizzle. The dog is doing the slow blink at the open door. Smart fucking dog.",
@@ -20394,7 +20571,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Drizzle at the strip mall. Every awning has someone hiding under it pretending to wait for somebody. Goddamn liars.",
@@ -20424,7 +20604,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Drizzle. Every patio is open and every patio is fucking empty. Nobody asked for this.",
@@ -20593,7 +20776,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Misty out. Every windshield in the office lot is dotted but not wet enough to fucking wipe.",
@@ -20825,7 +21011,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Freezing rain at [temp]. Your salt bag is empty and your patience is right fucking behind it.",
@@ -20868,7 +21057,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Freezing rain. The driveway sand is gone. The rock salt is gone. Your hope is fucking next.",
@@ -20891,7 +21083,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Freezing rain advisory. The plows are out. They are losing badly. Like, embarrassingly fucking badly.",
@@ -20931,7 +21126,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Ice glaze at [temp]. The steps to the porch are now an extreme fucking sport.",
@@ -20984,7 +21182,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Freezing rain at [temp]. The newspaper is glued to the porch. Pry, don't tug, asshole.",
@@ -21050,7 +21251,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Freezing rain today. The neighbor's mail-day moment of joy just got iced fucking over.",
@@ -21093,7 +21297,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Freezing rain. Every commute is a rolling negotiation between you, the road, and goddamn gravity.",
@@ -21103,7 +21310,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Sleet outside. The porch furniture is cemented in fucking place. It's there until spring.",
@@ -21179,7 +21390,11 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Snow today. The kid is in five layers and still pretending it's not fucking enough.",
@@ -21268,7 +21483,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snow today. The snow blower has not started in two seasons. Today is the goddamn test.",
@@ -21302,7 +21520,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snow today. The mail carrier earned every dollar and a hot beverage you didn't fucking offer.",
@@ -21368,7 +21589,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snow today. The dog walker is bundled like an astronaut. Dogs do not give a fuck.",
@@ -21403,7 +21627,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snowing today. The snowman in the front yard is going to be there for a goddamn month.",
@@ -21490,7 +21717,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snowing today. The kid's snow boots are still in last winter's bin. Today is a goddamn problem.",
@@ -21523,7 +21753,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snowing. The garbage truck is working with weather and goddamn dignity in mind.",
@@ -21568,7 +21801,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Snow today. The school's two-hour delay is a celebration in twenty fucking group chats.",
@@ -22203,7 +22439,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "It's [temp]. The bumper-sticker collection on the back of your car is bonding with the paint. Permanently.",
@@ -22824,7 +23063,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Foggy day. Every traffic light is a soft fucking suggestion until you're right on top of it.",
@@ -22877,7 +23119,11 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning",
+      "evening"
+    ]
   },
   {
     "text": "Partly cloudy and [temp] today. The picnic plans are technically on. Bring a goddamn backup.",
@@ -22900,7 +23146,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Cloudy and breezy at [temp]. The kind of day where your morning walk feels like a small fucking victory.",
@@ -22914,7 +23163,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Foggy at lunch. The takeout container is as visible as your future fucking plans.",
@@ -22924,7 +23176,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Partly cloudy. The afternoon sky is a slideshow with low fucking resolution.",
@@ -22947,7 +23202,10 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Fog rolled in. The bridge over the river is a goddamn rumor.",
@@ -23013,7 +23271,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
   },
   {
     "text": "Partly cloudy at [temp]. The sun visor is going up and down so much it's earning fucking overtime.",
@@ -23070,7 +23331,10 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "timeBuckets": [
+      "afternoon"
+    ]
   },
   {
     "text": "Fog this afternoon at [temp]. The skyline is a rumor. The freeway is a goddamn faith exercise.",

@@ -23,6 +23,14 @@ struct The_Damn_WeatherApp: App {
         // (it recovers, but the logs are noisy and indicate a race condition).
         Self.ensureAppGroupDirectories()
 
+        // Move seen-phrase dedup state into the App Group so app + widget
+        // share one domain. No-op after the first launch that runs it.
+        PhraseEngine.migrateSeenStateToAppGroup()
+
+        // BGTaskScheduler launch handlers must be registered before the app
+        // finishes launching.
+        MorningForecastService.register()
+
         // Create model container — falls back to in-memory store if persistent storage fails
         do {
             modelContainer = try ModelContainer(for: SavedLocation.self)

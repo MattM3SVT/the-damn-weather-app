@@ -26,7 +26,10 @@ struct WeatherWidget: Widget {
         }
         .configurationDisplayName("The Damn Weather")
         .description("Weather with attitude. Press and hold to pick a location.")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([
+            .systemSmall, .systemMedium, .systemLarge,
+            .accessoryInline, .accessoryCircular, .accessoryRectangular,
+        ])
     }
 }
 
@@ -42,6 +45,12 @@ struct WeatherWidgetEntryView: View {
             MediumWidgetView(entry: entry)
         case .systemLarge:
             LargeWidgetView(entry: entry)
+        case .accessoryInline:
+            AccessoryInlineView(entry: entry)
+        case .accessoryCircular:
+            AccessoryCircularView(entry: entry)
+        case .accessoryRectangular:
+            AccessoryRectangularView(entry: entry)
         default:
             SmallWidgetView(entry: entry)
         }

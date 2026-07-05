@@ -60,7 +60,11 @@ final class WeatherViewModel {
     private let locationService: LocationService
     /// Shared phrase engine — also passed to SavedLocationsView/LocationSidebar
     /// so they don't create redundant instances that pollute the seen-phrase tracking.
-    let phraseEngine = PhraseEngine()
+    /// Backed by the App Group defaults so the app and the widget share one
+    /// seen/last-shown domain (the widget's engine already lives there).
+    let phraseEngine = PhraseEngine(
+        defaults: UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+    )
     private let appState: AppState
     /// Tracks engagement signals (successful non-partial fetch count, days
     /// since install, "have we already asked") so MainView can decide when
@@ -127,6 +131,12 @@ final class WeatherViewModel {
         let savedHits = savedLocations.filter { multi[$0.uuid] != nil }.count
         vmLog.info("hydrate: multi=\(multi.count) entries, myLocation=\(hasMyLocation), savedHits=\(savedHits)/\(savedLocations.count), activeKey=\(self.activePageKey, privacy: .public)")
 
+        // Pages whose cached phrase was generated for the other half of the
+        // day (cache written in daylight, launched after dark, or vice
+        // versa). Their phrases are regenerated asynchronously below so a
+        // "sun's blasting" line never greets a 9 PM cold launch.
+        var phraseFixups: [(key: String, tag: WeatherConditionTag, temp: Double, isDay: Bool)] = []
+
         // My Location entry — use a placeholder CLLocation(0,0); `refresh()`
         // and `refreshOnForeground()` route through `loadWeatherForCurrentLocation()`
         // when `isShowingDeviceLocation` is true, so the placeholder coord is
@@ -163,6 +173,14 @@ final class WeatherViewModel {
                 currentPhrase = cached.phrase
             }
             vmLog.info("hydrate: filled My Location — temp=\(cached.temperature), phrase=\"\(cached.phrase.prefix(40), privacy: .public)\"")
+            if snapshot.current.isDay != cached.isDay {
+                phraseFixups.append((
+                    key: Self.currentLocationKey,
+                    tag: snapshot.current.conditionTag,
+                    temp: snapshot.current.temperature,
+                    isDay: snapshot.current.isDay
+                ))
+            }
         }
 
         // Saved cities — we have real coords, so synthetic snapshots can carry
@@ -189,9 +207,40 @@ final class WeatherViewModel {
                 currentTime: Date.currentTimeString(timezone: snapshot.timezone)
             )
             filledSaved += 1
+            if snapshot.current.isDay != cached.isDay {
+                phraseFixups.append((
+                    key: key,
+                    tag: snapshot.current.conditionTag,
+                    temp: snapshot.current.temperature,
+                    isDay: snapshot.current.isDay
+                ))
+            }
         }
         if filledSaved > 0 || skippedFresh > 0 {
             vmLog.info("hydrate: saved cities — filled=\(filledSaved), skippedFresh=\(skippedFresh)")
+        }
+
+        // Regenerate mismatched phrases once the engine is warm. Applied only
+        // while the page is still showing the hydrated partial — a fresh
+        // fetch that lands first wins and this becomes a no-op.
+        if !phraseFixups.isEmpty {
+            vmLog.info("hydrate: regenerating \(phraseFixups.count) phrase(s) whose day/night no longer matches")
+            Task {
+                for fixup in phraseFixups {
+                    let phrase = await phraseEngine.selectPhrase(
+                        conditionTag: fixup.tag,
+                        tempF: fixup.temp,
+                        mode: appState.phraseMode,
+                        isDay: fixup.isDay,
+                        localHour: pageStates[fixup.key].map { Date().localHour(timezone: $0.weather.timezone) },
+                        trackAsSeen: false
+                    )
+                    guard pageStates[fixup.key]?.weather.isPartial == true else { continue }
+                    pageStates[fixup.key]?.phrase = phrase
+                    if fixup.key == Self.currentLocationKey { currentLocationPhrase = phrase }
+                    if activePageKey == fixup.key { currentPhrase = phrase }
+                }
+            }
         }
     }
 
@@ -199,19 +248,43 @@ final class WeatherViewModel {
     /// entry. Detail fields (pressure, wind, UV, visibility, cloud cover,
     /// humidity, dew point) are zeroed; `isPartial = true` signals to the
     /// views to hide widgets that would render those zeros.
+    /// Best-available "current" reading from a cache record. When the cache
+    /// was written in an earlier hour, prefer the hourly forecast slot
+    /// covering now — its temp/condition/isDaylight keep a stale hydration
+    /// honest (a cache written at 3 PM shouldn't paint a daytime hero, a
+    /// daytime phrase, and an afternoon temperature at 9 PM).
+    private static func derivedCurrent(
+        from cached: CachedWeatherData
+    ) -> (temp: Double, tag: WeatherConditionTag, label: String, isDay: Bool) {
+        let cachedTag = WeatherConditionTag(rawValue: cached.conditionTag) ?? .clear
+        let fallback = (cached.temperature, cachedTag, cached.conditionLabel, cached.isDay)
+        let now = Date()
+        if Calendar.current.isDate(cached.updatedAt, equalTo: now, toGranularity: .hour) {
+            return fallback
+        }
+        guard let slot = cached.hourlyPreview
+                .filter({ $0.date != nil })
+                .last(where: { $0.date! <= now }),
+              let slotTag = WeatherConditionTag(rawValue: slot.conditionTag) else {
+            return fallback
+        }
+        return (Double(slot.temp), slotTag, slotTag.label, slot.isDay)
+    }
+
     private static func syntheticSnapshot(
         from cached: CachedWeatherData,
         location: CLLocation
     ) -> WeatherSnapshot {
-        let conditionTag = WeatherConditionTag(rawValue: cached.conditionTag) ?? .clear
+        let derived = derivedCurrent(from: cached)
+        let conditionTag = derived.tag
         let current = CurrentWeatherData(
-            temperature: cached.temperature,
-            feelsLike: cached.feelsLike,
+            temperature: derived.temp,
+            feelsLike: derived.temp == cached.temperature ? cached.feelsLike : derived.temp,
             humidity: 0,
-            isDay: cached.isDay,
+            isDay: derived.isDay,
             precipitation: 0,
             conditionTag: conditionTag,
-            conditionLabel: cached.conditionLabel,
+            conditionLabel: derived.label,
             pressure: 0,
             windSpeed: 0,
             windDirection: 0,
@@ -269,6 +342,13 @@ final class WeatherViewModel {
             )
         }
 
+        // AQI is only restored while the observation is recent. A reading
+        // from last night's fireworks spike replayed the next morning would
+        // be worse than showing nothing until the live fetch lands.
+        let carriedAQI = cached.airQuality.flatMap { aqi in
+            Date().timeIntervalSince(aqi.observedAt) <= AppConstants.airQualityMaxCarryAge ? aqi : nil
+        }
+
         return WeatherSnapshot(
             current: current,
             hourly: hourly,
@@ -276,10 +356,10 @@ final class WeatherViewModel {
             minutePrecipitation: [],
             alerts: [],
             moonPhase: nil,
-            timezone: .current,
+            timezone: cached.timezoneIdentifier.flatMap(TimeZone.init(identifier:)) ?? .current,
             fetchedAt: cached.updatedAt,
             location: location,
-            airQuality: cached.airQuality,
+            airQuality: carriedAQI,
             isPartial: true
         )
     }
@@ -348,6 +428,8 @@ final class WeatherViewModel {
                 currentLocationWeather = snapshot
                 currentLocationName = displayName
                 currentLocationState = displayState
+                Self.persistLastKnownLocation(location)
+                await MorningForecastService.shared.scheduleFromSnapshot(snapshot)
             }
 
             // Generate phrase BEFORE storing into pageStates (fixes stale phrase flash).
@@ -446,7 +528,8 @@ final class WeatherViewModel {
             conditionTag: weather.current.conditionTag,
             tempF: weather.current.temperature,
             mode: appState.phraseMode,
-            isDay: weather.current.isDay
+            isDay: weather.current.isDay,
+            localHour: Date().localHour(timezone: weather.timezone)
         )
     }
 
@@ -512,7 +595,8 @@ final class WeatherViewModel {
                 conditionTag: snapshot.current.conditionTag,
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
-                isDay: snapshot.current.isDay
+                isDay: snapshot.current.isDay,
+                localHour: Date().localHour(timezone: snapshot.timezone)
             )
 
             // Update sidebar projections (iPad sidebar reads these); these
@@ -533,9 +617,20 @@ final class WeatherViewModel {
             )
 
             await updateWidget(for: Self.currentLocationKey)
+            Self.persistLastKnownLocation(location)
+            await MorningForecastService.shared.scheduleFromSnapshot(snapshot)
         } catch {
             vmLog.error("silent device-location refresh failed: \(String(describing: error), privacy: .public)")
         }
+    }
+
+    /// Store the last good device fix in the App Group so the morning
+    /// forecast's background task (which has no GPS access) knows where to
+    /// fetch weather for.
+    private static func persistLastKnownLocation(_ location: CLLocation) {
+        let group = UserDefaults(suiteName: AppConstants.appGroupID)
+        group?.set(location.coordinate.latitude, forKey: AppConstants.UserDefaultsKeys.lastKnownLatitude)
+        group?.set(location.coordinate.longitude, forKey: AppConstants.UserDefaultsKeys.lastKnownLongitude)
     }
 
     // MARK: - Computed Properties
@@ -582,6 +677,21 @@ final class WeatherViewModel {
         if let tz = weather?.timezone {
             currentTime = Date.currentTimeString(timezone: tz)
         }
+
+        // An app left open (iPad on a stand, iPhone on a desk) never crosses
+        // a scenePhase boundary, so without this the visible snapshot — temp,
+        // phrase, isDay, background gradient — freezes at fetch time and
+        // sails straight through sunset. Piggyback on the 60s clock tick:
+        // once the active snapshot exceeds the cache TTL, refresh it.
+        // Partial snapshots are excluded (cold-launch hydration already has
+        // a fetch in flight for those).
+        if let state = pageStates[activePageKey],
+           state.weather.isStale,
+           !state.weather.isPartial,
+           !isRefreshing,
+           !isLoading {
+            Task { await refreshOnForeground() }
+        }
     }
 
     deinit {
@@ -612,7 +722,8 @@ final class WeatherViewModel {
                 conditionTag: snapshot.current.conditionTag,
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
-                isDay: snapshot.current.isDay
+                isDay: snapshot.current.isDay,
+                localHour: Date().localHour(timezone: snapshot.timezone)
             )
             let timeStr = Date.currentTimeString(timezone: snapshot.timezone)
             return PrefetchResult(
@@ -699,15 +810,18 @@ final class WeatherViewModel {
         }
     }
 
-    /// Build a `CachedWeatherData` from a loaded `PageWeatherState`, including
-    /// the large widget's hourly/daily preview arrays and a small/primary/extra
-    /// phrase set. Shared between the single-location `updateWidget` and the
-    /// multi-location `prefetchAllLocations` paths so both produce identical
-    /// widget-visible shapes.
-    private func buildCachedWeatherData(
+    /// Build a `CachedWeatherData` from a loaded `PageWeatherState` WITHOUT
+    /// generating extra/small phrases (those require the PhraseEngine's slow
+    /// first-load). Used directly for the fast Phase-1 widget write and as
+    /// the base for `buildCachedWeatherData`.
+    private func makeCachedWeatherData(
         from state: PageWeatherState,
-        displayName: String
-    ) async -> CachedWeatherData {
+        displayName: String,
+        phraseOverride: String? = nil,
+        additionalPhrases: [String] = [],
+        smallPhrase: String? = nil,
+        tinyPhrase: String? = nil
+    ) -> CachedWeatherData {
         let snapshot = state.weather
         let now = Date()
         let currentHourStart = Calendar.current.dateInterval(of: .hour, for: now)?.start ?? now
@@ -734,21 +848,6 @@ final class WeatherViewModel {
             )
         }
 
-        let extraPhrases = await phraseEngine.selectMultiplePhrases(
-            count: 3,
-            conditionTag: snapshot.current.conditionTag,
-            tempF: snapshot.current.temperature,
-            mode: appState.phraseMode,
-            isDay: snapshot.current.isDay
-        )
-        let smallPhrase = await phraseEngine.selectPhrase(
-            conditionTag: snapshot.current.conditionTag,
-            tempF: snapshot.current.temperature,
-            mode: appState.phraseMode,
-            isDay: snapshot.current.isDay,
-            maxLength: 70
-        )
-
         return CachedWeatherData(
             temperature: snapshot.current.temperature,
             conditionTag: snapshot.current.conditionTag.rawValue,
@@ -758,14 +857,77 @@ final class WeatherViewModel {
             high: snapshot.daily.first?.high ?? 0,
             low: snapshot.daily.first?.low ?? 0,
             locationName: displayName,
-            phrase: state.phrase,
-            phraseMode: appState.phraseMode.rawValue,
-            additionalPhrases: extraPhrases,
+            phrase: phraseOverride ?? state.phrase,
+            phraseMode: appState.effectiveWidgetPhraseMode.rawValue,
+            additionalPhrases: additionalPhrases,
             smallPhrase: smallPhrase,
+            tinyPhrase: tinyPhrase,
             hourlyPreview: cachedHourly,
             dailyPreview: cachedDaily,
             timezoneIdentifier: snapshot.timezone.identifier,
             airQuality: snapshot.airQuality
+        )
+    }
+
+    /// Build a complete `CachedWeatherData`, including the large widget's
+    /// hourly/daily preview arrays and a small/primary/extra phrase set.
+    /// Shared between the single-location `updateWidget` and the
+    /// multi-location `prefetchAllLocations` paths so both produce identical
+    /// widget-visible shapes.
+    private func buildCachedWeatherData(
+        from state: PageWeatherState,
+        displayName: String
+    ) async -> CachedWeatherData {
+        let snapshot = state.weather
+        let localHour = Date().localHour(timezone: snapshot.timezone)
+        let widgetMode = appState.effectiveWidgetPhraseMode
+        let extraPhrases = await phraseEngine.selectMultiplePhrases(
+            count: 3,
+            conditionTag: snapshot.current.conditionTag,
+            tempF: snapshot.current.temperature,
+            mode: widgetMode,
+            isDay: snapshot.current.isDay,
+            localHour: localHour
+        )
+        let smallPhrase = await phraseEngine.selectPhrase(
+            conditionTag: snapshot.current.conditionTag,
+            tempF: snapshot.current.temperature,
+            mode: widgetMode,
+            isDay: snapshot.current.isDay,
+            localHour: localHour,
+            maxLength: 70
+        )
+        let tinyPhrase = await phraseEngine.selectPhrase(
+            conditionTag: snapshot.current.conditionTag,
+            tempF: snapshot.current.temperature,
+            mode: widgetMode,
+            isDay: snapshot.current.isDay,
+            localHour: localHour,
+            maxLength: AppConstants.accessoryPhraseMaxLength,
+            trackAsSeen: false
+        )
+        return makeCachedWeatherData(
+            from: state,
+            displayName: displayName,
+            phraseOverride: await widgetPhraseOverride(for: state, localHour: localHour),
+            additionalPhrases: extraPhrases,
+            smallPhrase: smallPhrase,
+            tinyPhrase: tinyPhrase
+        )
+    }
+
+    /// The widget cache's primary phrase is normally the one on screen
+    /// (`state.phrase`). When "keep widgets clean" forces a different mode
+    /// than the in-app one, generate a widget-only replacement instead.
+    private func widgetPhraseOverride(for state: PageWeatherState, localHour: Int?) async -> String? {
+        guard appState.effectiveWidgetPhraseMode != appState.phraseMode else { return nil }
+        return await phraseEngine.selectPhrase(
+            conditionTag: state.weather.current.conditionTag,
+            tempF: state.weather.current.temperature,
+            mode: appState.effectiveWidgetPhraseMode,
+            isDay: state.weather.current.isDay,
+            localHour: localHour,
+            trackAsSeen: false
         )
     }
 
@@ -793,37 +955,6 @@ final class WeatherViewModel {
     func updateWidget(for pageKey: String) async {
         guard !Task.isCancelled else { return }
         guard let state = pageStates[pageKey] else { return }
-        let snapshot = state.weather
-
-        // Build hourly/daily preview arrays for the large widget.
-        // Formatters cached by timezone identifier so repeat widget updates
-        // don't reallocate on every page swipe (previously: N allocations per call).
-        let now = Date()
-        let currentHourStart = Calendar.current.dateInterval(of: .hour, for: now)?.start ?? now
-        let hourFormatter = Self.hourFormatter(for: snapshot.timezone)
-        let dayFormatter = Self.dayFormatter(for: snapshot.timezone)
-        let cachedHourly: [CachedHourlyPoint] = Array(
-            snapshot.hourly.filter { $0.time >= currentHourStart }.prefix(6)
-        ).enumerated().map { index, h in
-            CachedHourlyPoint(
-                hour: index == 0 ? "Now" : hourFormatter.string(from: h.time).replacingOccurrences(of: " ", with: ""),
-                temp: Int(h.temperature.rounded()),
-                conditionTag: h.conditionTag.rawValue,
-                isDay: h.isDay,
-                date: h.time
-            )
-        }
-        let cachedDaily: [CachedDailyPoint] = Array(
-            snapshot.daily.prefix(5)
-        ).enumerated().map { index, d in
-            let dayStr: String = (index == 0) ? "Today" : dayFormatter.string(from: d.date)
-            return CachedDailyPoint(
-                day: dayStr,
-                high: Int(d.high.rounded()),
-                low: Int(d.low.rounded()),
-                conditionTag: d.conditionTag.rawValue
-            )
-        }
 
         let entityID = widgetEntityID(for: pageKey)
         let isMyLocationPage = (pageKey == Self.currentLocationKey)
@@ -832,21 +963,16 @@ final class WeatherViewModel {
         // ── Phase 1: Write multi-cache + single-file IMMEDIATELY with main phrase ──
         // Ensures the widget has real data right away, even before extra
         // phrase generation (slow — PhraseEngine loads 728KB JSON on first call).
-        let partialCached = CachedWeatherData(
-            temperature: snapshot.current.temperature,
-            conditionTag: snapshot.current.conditionTag.rawValue,
-            conditionLabel: snapshot.current.conditionLabel,
-            isDay: snapshot.current.isDay,
-            feelsLike: snapshot.current.feelsLike,
-            high: snapshot.daily.first?.high ?? 0,
-            low: snapshot.daily.first?.low ?? 0,
-            locationName: state.locationName,
-            phrase: state.phrase,
-            phraseMode: appState.phraseMode.rawValue,
-            hourlyPreview: cachedHourly,
-            dailyPreview: cachedDaily,
-            timezoneIdentifier: snapshot.timezone.identifier,
-            airQuality: snapshot.airQuality
+        // `state.displayName` includes the state suffix ("Seattle, WA"),
+        // matching what `prefetchAllLocations` and the widget's own fresh
+        // fetch write for the same entry.
+        let partialCached = makeCachedWeatherData(
+            from: state,
+            displayName: state.displayName,
+            phraseOverride: await widgetPhraseOverride(
+                for: state,
+                localHour: Date().localHour(timezone: state.weather.timezone)
+            )
         )
         WidgetDataStore.saveEntry(partialCached, for: entityID)
         if isMyLocationPage {
@@ -854,7 +980,7 @@ final class WeatherViewModel {
         }
         // phraseMode is the only UserDefault the widget extension reads — its
         // PhraseEngine uses it to generate fresh phrases on cache miss.
-        defaults.set(appState.phraseMode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
+        defaults.set(appState.effectiveWidgetPhraseMode.rawValue, forKey: AppConstants.UserDefaultsKeys.phraseMode)
 
         // Tell WidgetKit to refresh NOW — widget gets real weather data instantly
         WidgetCenter.shared.reloadAllTimelines()
@@ -862,42 +988,11 @@ final class WeatherViewModel {
         // ── Phase 2: Generate extra phrases in background, then update cache ──
         // Additional phrases enable the widget to show variety across 15-min cycles.
         // This is slow (loads PhraseEngine JSON) but the widget already has data above.
-        let extraPhrases = await phraseEngine.selectMultiplePhrases(
-            count: 3,
-            conditionTag: snapshot.current.conditionTag,
-            tempF: snapshot.current.temperature,
-            mode: appState.phraseMode,
-            isDay: snapshot.current.isDay
-        )
-        let smallPhrase = await phraseEngine.selectPhrase(
-            conditionTag: snapshot.current.conditionTag,
-            tempF: snapshot.current.temperature,
-            mode: appState.phraseMode,
-            isDay: snapshot.current.isDay,
-            maxLength: 70
-        )
+        let fullCached = await buildCachedWeatherData(from: state, displayName: state.displayName)
 
         // Bail if this task was superseded by a newer swipe while generating phrases
         guard !Task.isCancelled else { return }
 
-        let fullCached = CachedWeatherData(
-            temperature: snapshot.current.temperature,
-            conditionTag: snapshot.current.conditionTag.rawValue,
-            conditionLabel: snapshot.current.conditionLabel,
-            isDay: snapshot.current.isDay,
-            feelsLike: snapshot.current.feelsLike,
-            high: snapshot.daily.first?.high ?? 0,
-            low: snapshot.daily.first?.low ?? 0,
-            locationName: state.locationName,
-            phrase: state.phrase,
-            phraseMode: appState.phraseMode.rawValue,
-            additionalPhrases: extraPhrases,
-            smallPhrase: smallPhrase,
-            hourlyPreview: cachedHourly,
-            dailyPreview: cachedDaily,
-            timezoneIdentifier: snapshot.timezone.identifier,
-            airQuality: snapshot.airQuality
-        )
         WidgetDataStore.saveEntry(fullCached, for: entityID)
         if isMyLocationPage {
             WidgetDataStore.save(fullCached)
@@ -928,7 +1023,8 @@ final class WeatherViewModel {
                 conditionTag: snapshot.current.conditionTag,
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
-                isDay: snapshot.current.isDay
+                isDay: snapshot.current.isDay,
+                localHour: Date().localHour(timezone: snapshot.timezone)
             )
             pageStates[pageKey] = PageWeatherState(
                 weather: snapshot,
@@ -959,7 +1055,8 @@ final class WeatherViewModel {
                 conditionTag: snapshot.current.conditionTag,
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
-                isDay: snapshot.current.isDay
+                isDay: snapshot.current.isDay,
+                localHour: Date().localHour(timezone: snapshot.timezone)
             )
             pageStates[key] = PageWeatherState(
                 weather: snapshot,
@@ -989,7 +1086,8 @@ final class WeatherViewModel {
             conditionTag: state.weather.current.conditionTag,
             tempF: state.weather.current.temperature,
             mode: appState.phraseMode,
-            isDay: state.weather.current.isDay
+            isDay: state.weather.current.isDay,
+            localHour: Date().localHour(timezone: state.weather.timezone)
         )
         state.phrase = newPhrase
         pageStates[key] = state
@@ -1009,7 +1107,8 @@ final class WeatherViewModel {
                 conditionTag: state.weather.current.conditionTag,
                 tempF: state.weather.current.temperature,
                 mode: appState.phraseMode,
-                isDay: state.weather.current.isDay
+                isDay: state.weather.current.isDay,
+                localHour: Date().localHour(timezone: state.weather.timezone)
             )
             pageStates[key]?.phrase = newPhrase
         }

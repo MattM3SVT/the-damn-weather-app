@@ -30,8 +30,55 @@ struct SettingsView: View {
                         ))
                         .tint(.accentRed)
                     }
+
+                    if viewModel.appState.phraseMode == .explicit {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Keep Widgets Clean")
+                                    .font(.body)
+                                Text("Home and lock screen widgets stay family friendly even in Explicit Mode")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Toggle("", isOn: Binding(
+                                get: { viewModel.appState.widgetsAlwaysClean },
+                                set: { enabled in
+                                    viewModel.appState.saveWidgetsAlwaysClean(enabled)
+                                    onPhraseModeChanged()
+                                }
+                            ))
+                            .tint(.accentRed)
+                        }
+                    }
                 } header: {
                     Text("Phrases")
+                }
+
+                // Notifications
+                Section {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Morning Forecast")
+                                .font(.body)
+                            Text("One notification with the day's damn weather")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Toggle("", isOn: $viewModel.morningForecastEnabled)
+                            .tint(.accentRed)
+                    }
+
+                    if viewModel.morningForecastEnabled {
+                        Picker("Delivery Time", selection: $viewModel.morningForecastHour) {
+                            ForEach(5...10, id: \.self) { hour in
+                                Text("\(hour):00 AM").tag(hour)
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Notifications")
                 }
 
                 // Units
@@ -179,6 +226,25 @@ struct SettingsView: View {
 struct WhatsNewView: View {
     var body: some View {
         List {
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.4")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "sunrise.fill", color: .orange, text: "Morning Forecast notification. One damn notification with the day's real forecast: rain timing, big temperature swings, and air quality warnings when it matters. Turn it on in Settings.")
+                        ChangelogItem(icon: "lock.iphone", color: .green, text: "Lock screen widgets. The damn weather without unlocking your damn phone.")
+                        ChangelogItem(icon: "hand.tap.fill", color: .accentRed, text: "Tap the phrase on any home screen widget for a fresh one. No app required.")
+                        ChangelogItem(icon: "mic.fill", color: .purple, text: "Ask Siri: \"What's The Damn Weather\" and hear it with attitude.")
+                        ChangelogItem(icon: "moon.stars.fill", color: .indigo, text: "Phrases now respect the clock. Sunshine jokes stay out of midnight and commute jokes stay in the commute, on widgets and everywhere else.")
+                        ChangelogItem(icon: "quote.bubble.fill", color: .mint, text: "Explicit Mode users can keep widgets family friendly with the new Keep Widgets Clean setting.")
+                        ChangelogItem(icon: "aqi.medium", color: .yellow, text: "Air quality now shows which pollutant is to blame and how fresh the reading is.")
+                        ChangelogItem(icon: "wrench.and.screwdriver.fill", color: .gray, text: "Bug fixes. The app left open overnight now notices the sun came up.")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
             Section {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.3.3")
