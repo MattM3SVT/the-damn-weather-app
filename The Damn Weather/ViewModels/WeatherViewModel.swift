@@ -233,6 +233,7 @@ final class WeatherViewModel {
                         mode: appState.phraseMode,
                         isDay: fixup.isDay,
                         localHour: pageStates[fixup.key].map { Date().localHour(timezone: $0.weather.timezone) },
+                        localMonthDay: pageStates[fixup.key].map { Date().localMonthDay(timezone: $0.weather.timezone) },
                         trackAsSeen: false
                     )
                     guard pageStates[fixup.key]?.weather.isPartial == true else { continue }
@@ -429,7 +430,7 @@ final class WeatherViewModel {
                 currentLocationName = displayName
                 currentLocationState = displayState
                 Self.persistLastKnownLocation(location)
-                await MorningForecastService.shared.scheduleFromSnapshot(snapshot)
+                await ForecastNotificationService.shared.scheduleFromSnapshot(snapshot)
             }
 
             // Generate phrase BEFORE storing into pageStates (fixes stale phrase flash).
@@ -529,7 +530,8 @@ final class WeatherViewModel {
             tempF: weather.current.temperature,
             mode: appState.phraseMode,
             isDay: weather.current.isDay,
-            localHour: Date().localHour(timezone: weather.timezone)
+            localHour: Date().localHour(timezone: weather.timezone),
+                localMonthDay: Date().localMonthDay(timezone: weather.timezone)
         )
     }
 
@@ -596,7 +598,8 @@ final class WeatherViewModel {
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
                 isDay: snapshot.current.isDay,
-                localHour: Date().localHour(timezone: snapshot.timezone)
+                localHour: Date().localHour(timezone: snapshot.timezone),
+                localMonthDay: Date().localMonthDay(timezone: snapshot.timezone)
             )
 
             // Update sidebar projections (iPad sidebar reads these); these
@@ -618,7 +621,7 @@ final class WeatherViewModel {
 
             await updateWidget(for: Self.currentLocationKey)
             Self.persistLastKnownLocation(location)
-            await MorningForecastService.shared.scheduleFromSnapshot(snapshot)
+            await ForecastNotificationService.shared.scheduleFromSnapshot(snapshot)
         } catch {
             vmLog.error("silent device-location refresh failed: \(String(describing: error), privacy: .public)")
         }
@@ -723,7 +726,8 @@ final class WeatherViewModel {
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
                 isDay: snapshot.current.isDay,
-                localHour: Date().localHour(timezone: snapshot.timezone)
+                localHour: Date().localHour(timezone: snapshot.timezone),
+                localMonthDay: Date().localMonthDay(timezone: snapshot.timezone)
             )
             let timeStr = Date.currentTimeString(timezone: snapshot.timezone)
             return PrefetchResult(
@@ -880,6 +884,7 @@ final class WeatherViewModel {
     ) async -> CachedWeatherData {
         let snapshot = state.weather
         let localHour = Date().localHour(timezone: snapshot.timezone)
+        let localMonthDay = Date().localMonthDay(timezone: snapshot.timezone)
         let widgetMode = appState.effectiveWidgetPhraseMode
         let extraPhrases = await phraseEngine.selectMultiplePhrases(
             count: 3,
@@ -887,7 +892,8 @@ final class WeatherViewModel {
             tempF: snapshot.current.temperature,
             mode: widgetMode,
             isDay: snapshot.current.isDay,
-            localHour: localHour
+            localHour: localHour,
+            localMonthDay: localMonthDay
         )
         let smallPhrase = await phraseEngine.selectPhrase(
             conditionTag: snapshot.current.conditionTag,
@@ -895,6 +901,7 @@ final class WeatherViewModel {
             mode: widgetMode,
             isDay: snapshot.current.isDay,
             localHour: localHour,
+            localMonthDay: localMonthDay,
             maxLength: 70
         )
         let tinyPhrase = await phraseEngine.selectPhrase(
@@ -903,13 +910,14 @@ final class WeatherViewModel {
             mode: widgetMode,
             isDay: snapshot.current.isDay,
             localHour: localHour,
+            localMonthDay: localMonthDay,
             maxLength: AppConstants.accessoryPhraseMaxLength,
             trackAsSeen: false
         )
         return makeCachedWeatherData(
             from: state,
             displayName: displayName,
-            phraseOverride: await widgetPhraseOverride(for: state, localHour: localHour),
+            phraseOverride: await widgetPhraseOverride(for: state, localHour: localHour, localMonthDay: localMonthDay),
             additionalPhrases: extraPhrases,
             smallPhrase: smallPhrase,
             tinyPhrase: tinyPhrase
@@ -919,7 +927,7 @@ final class WeatherViewModel {
     /// The widget cache's primary phrase is normally the one on screen
     /// (`state.phrase`). When "keep widgets clean" forces a different mode
     /// than the in-app one, generate a widget-only replacement instead.
-    private func widgetPhraseOverride(for state: PageWeatherState, localHour: Int?) async -> String? {
+    private func widgetPhraseOverride(for state: PageWeatherState, localHour: Int?, localMonthDay: String?) async -> String? {
         guard appState.effectiveWidgetPhraseMode != appState.phraseMode else { return nil }
         return await phraseEngine.selectPhrase(
             conditionTag: state.weather.current.conditionTag,
@@ -927,6 +935,7 @@ final class WeatherViewModel {
             mode: appState.effectiveWidgetPhraseMode,
             isDay: state.weather.current.isDay,
             localHour: localHour,
+            localMonthDay: localMonthDay,
             trackAsSeen: false
         )
     }
@@ -971,7 +980,8 @@ final class WeatherViewModel {
             displayName: state.displayName,
             phraseOverride: await widgetPhraseOverride(
                 for: state,
-                localHour: Date().localHour(timezone: state.weather.timezone)
+                localHour: Date().localHour(timezone: state.weather.timezone),
+                localMonthDay: Date().localMonthDay(timezone: state.weather.timezone)
             )
         )
         WidgetDataStore.saveEntry(partialCached, for: entityID)
@@ -1024,7 +1034,8 @@ final class WeatherViewModel {
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
                 isDay: snapshot.current.isDay,
-                localHour: Date().localHour(timezone: snapshot.timezone)
+                localHour: Date().localHour(timezone: snapshot.timezone),
+                localMonthDay: Date().localMonthDay(timezone: snapshot.timezone)
             )
             pageStates[pageKey] = PageWeatherState(
                 weather: snapshot,
@@ -1056,7 +1067,8 @@ final class WeatherViewModel {
                 tempF: snapshot.current.temperature,
                 mode: appState.phraseMode,
                 isDay: snapshot.current.isDay,
-                localHour: Date().localHour(timezone: snapshot.timezone)
+                localHour: Date().localHour(timezone: snapshot.timezone),
+                localMonthDay: Date().localMonthDay(timezone: snapshot.timezone)
             )
             pageStates[key] = PageWeatherState(
                 weather: snapshot,
@@ -1087,7 +1099,8 @@ final class WeatherViewModel {
             tempF: state.weather.current.temperature,
             mode: appState.phraseMode,
             isDay: state.weather.current.isDay,
-            localHour: Date().localHour(timezone: state.weather.timezone)
+            localHour: Date().localHour(timezone: state.weather.timezone),
+                localMonthDay: Date().localMonthDay(timezone: state.weather.timezone)
         )
         state.phrase = newPhrase
         pageStates[key] = state
@@ -1108,7 +1121,8 @@ final class WeatherViewModel {
                 tempF: state.weather.current.temperature,
                 mode: appState.phraseMode,
                 isDay: state.weather.current.isDay,
-                localHour: Date().localHour(timezone: state.weather.timezone)
+                localHour: Date().localHour(timezone: state.weather.timezone),
+                localMonthDay: Date().localMonthDay(timezone: state.weather.timezone)
             )
             pageStates[key]?.phrase = newPhrase
         }

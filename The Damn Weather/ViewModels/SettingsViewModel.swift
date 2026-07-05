@@ -11,13 +11,25 @@ final class SettingsViewModel {
     var morningForecastEnabled: Bool {
         didSet {
             UserDefaults.standard.set(morningForecastEnabled, forKey: AppConstants.UserDefaultsKeys.morningForecastEnabled)
-            Task { await MorningForecastService.shared.updateSchedule() }
+            Task { await ForecastNotificationService.shared.updateSchedule() }
         }
     }
     var morningForecastHour: Int {
         didSet {
             UserDefaults.standard.set(morningForecastHour, forKey: AppConstants.UserDefaultsKeys.morningForecastTime)
-            Task { await MorningForecastService.shared.updateSchedule() }
+            Task { await ForecastNotificationService.shared.updateSchedule() }
+        }
+    }
+    var eveningOutlookEnabled: Bool {
+        didSet {
+            UserDefaults.standard.set(eveningOutlookEnabled, forKey: AppConstants.UserDefaultsKeys.eveningOutlookEnabled)
+            Task { await ForecastNotificationService.shared.updateSchedule() }
+        }
+    }
+    var eveningOutlookHour: Int {
+        didSet {
+            UserDefaults.standard.set(eveningOutlookHour, forKey: AppConstants.UserDefaultsKeys.eveningOutlookTime)
+            Task { await ForecastNotificationService.shared.updateSchedule() }
         }
     }
 
@@ -27,6 +39,8 @@ final class SettingsViewModel {
         let defaults = UserDefaults.standard
         morningForecastEnabled = defaults.bool(forKey: AppConstants.UserDefaultsKeys.morningForecastEnabled)
         morningForecastHour = defaults.object(forKey: AppConstants.UserDefaultsKeys.morningForecastTime) as? Int ?? 7
+        eveningOutlookEnabled = defaults.bool(forKey: AppConstants.UserDefaultsKeys.eveningOutlookEnabled)
+        eveningOutlookHour = defaults.object(forKey: AppConstants.UserDefaultsKeys.eveningOutlookTime) as? Int ?? 21
     }
 
     func toggleExplicitMode() {

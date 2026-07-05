@@ -386,6 +386,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                     mode: mode,
                     isDay: derived.isDay,
                     localHour: entryDate.localHour(timezone: entryTZ),
+                    localMonthDay: entryDate.localMonthDay(timezone: entryTZ),
                     trackAsSeen: false
                 )
                 smallPhrase = await phraseEngine.selectPhrase(
@@ -394,6 +395,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                     mode: mode,
                     isDay: derived.isDay,
                     localHour: entryDate.localHour(timezone: entryTZ),
+                    localMonthDay: entryDate.localMonthDay(timezone: entryTZ),
                     maxLength: 70,
                     trackAsSeen: false
                 )
@@ -403,6 +405,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                     mode: mode,
                     isDay: derived.isDay,
                     localHour: entryDate.localHour(timezone: entryTZ),
+                    localMonthDay: entryDate.localMonthDay(timezone: entryTZ),
                     maxLength: AppConstants.accessoryPhraseMaxLength,
                     trackAsSeen: false
                 )
@@ -595,7 +598,8 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             tempF: tempF,
             mode: mode,
             isDay: current.isDaylight,
-            localHour: Date().localHour(timezone: locationTimezone)
+            localHour: Date().localHour(timezone: locationTimezone),
+            localMonthDay: Date().localMonthDay(timezone: locationTimezone)
         )
 
         // Filter to current hour and forward — WeatherKit returns past hours too
@@ -630,6 +634,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             mode: mode,
             isDay: current.isDaylight,
             localHour: Date().localHour(timezone: locationTimezone),
+            localMonthDay: Date().localMonthDay(timezone: locationTimezone),
             maxLength: 70
         )
         let tinyPhrase = await phraseEngine.selectPhrase(
@@ -638,6 +643,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             mode: mode,
             isDay: current.isDaylight,
             localHour: Date().localHour(timezone: locationTimezone),
+            localMonthDay: Date().localMonthDay(timezone: locationTimezone),
             maxLength: AppConstants.accessoryPhraseMaxLength,
             trackAsSeen: false
         )

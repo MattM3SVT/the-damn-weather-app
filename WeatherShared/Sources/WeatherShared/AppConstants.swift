@@ -85,6 +85,8 @@ public enum AppConstants {
         public static let theme = "theme"
         public static let morningForecastEnabled = "morningForecastEnabled"
         public static let morningForecastTime = "morningForecastTime"
+        public static let eveningOutlookEnabled = "eveningOutlookEnabled"
+        public static let eveningOutlookTime = "eveningOutlookTime"
         /// The forecast high recorded at the last notification scheduling
         /// (with its yyyy-MM-dd date), so the next morning's notification can
         /// say "12° colder than yesterday" — WeatherKit doesn't serve past days.

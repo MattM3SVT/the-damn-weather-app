@@ -29,7 +29,7 @@ struct The_Damn_WeatherApp: App {
 
         // BGTaskScheduler launch handlers must be registered before the app
         // finishes launching.
-        MorningForecastService.register()
+        ForecastNotificationService.register()
 
         // Create model container — falls back to in-memory store if persistent storage fails
         do {

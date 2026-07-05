@@ -77,6 +77,27 @@ struct SettingsView: View {
                             }
                         }
                     }
+
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Evening Outlook")
+                                .font(.body)
+                            Text("Tomorrow's damn weather, tonight")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Toggle("", isOn: $viewModel.eveningOutlookEnabled)
+                            .tint(.accentRed)
+                    }
+
+                    if viewModel.eveningOutlookEnabled {
+                        Picker("Delivery Time", selection: $viewModel.eveningOutlookHour) {
+                            ForEach(19...22, id: \.self) { hour in
+                                Text("\(hour - 12):00 PM").tag(hour)
+                            }
+                        }
+                    }
                 } header: {
                     Text("Notifications")
                 }
@@ -233,6 +254,8 @@ struct WhatsNewView: View {
 
                     VStack(alignment: .leading, spacing: 8) {
                         ChangelogItem(icon: "sunrise.fill", color: .orange, text: "Morning Forecast notification. One damn notification with the day's real forecast: rain timing, big temperature swings, and air quality warnings when it matters. Turn it on in Settings.")
+                        ChangelogItem(icon: "moon.haze.fill", color: .teal, text: "Evening Outlook notification. Tomorrow's damn weather, tonight, so you can dread it in advance.")
+                        ChangelogItem(icon: "quote.opening", color: .accentRed, text: "400 new phrases, including holiday specials. Yes, the app knows when it's Christmas. It has opinions.")
                         ChangelogItem(icon: "lock.iphone", color: .green, text: "Lock screen widgets. The damn weather without unlocking your damn phone.")
                         ChangelogItem(icon: "hand.tap.fill", color: .accentRed, text: "Tap the phrase on any home screen widget for a fresh one. No app required.")
                         ChangelogItem(icon: "mic.fill", color: .purple, text: "Ask Siri: \"What's The Damn Weather\" and hear it with attitude.")

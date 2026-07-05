@@ -5,27 +5,28 @@ import UserNotifications
 import WeatherShared
 import os.log
 
-nonisolated private let morningLog = Logger(subsystem: "DamnWeather", category: "MorningForecast")
+nonisolated private let morningLog = Logger(subsystem: "DamnWeather", category: "ForecastNotifications")
 
-/// Schedules the "Good morning, here's the damn weather" notification with
-/// real forecast numbers instead of a canned string.
+/// Schedules the Morning Forecast and Evening Outlook notifications with
+/// real forecast numbers instead of canned strings.
 ///
 /// Freshness model (no push backend):
 ///  1. Whenever the app has a fresh device-location snapshot (launch,
 ///     foreground, silent refresh), `scheduleFromSnapshot` rewrites the
-///     pending notification with that data.
-///  2. A `BGAppRefreshTask` asks iOS to wake the app shortly before delivery
-///     to re-fetch. iOS treats the request as advisory — if it never runs,
-///     the notification still fires with the most recent data from (1),
+///     pending notifications with that data.
+///  2. A `BGAppRefreshTask` asks iOS to wake the app shortly before the next
+///     delivery to re-fetch. iOS treats the request as advisory — if it never
+///     runs, the notifications still fire with the most recent data from (1),
 ///     which is at worst "since you last used the app".
 ///
-/// The notification body describes the *delivery-hour* forecast (pulled from
-/// the hourly array), not "right now at scheduling time", so content written
-/// at 10 PM still reads correctly at 7 AM.
-final class MorningForecastService {
-    static let shared = MorningForecastService()
+/// Both bodies describe the *delivery-relevant* forecast: the morning one
+/// uses the delivery-hour point (content written at 10 PM reads correctly at
+/// 7 AM); the evening one describes tomorrow.
+final class ForecastNotificationService {
+    static let shared = ForecastNotificationService()
     static let backgroundTaskID = "com.damnweather.morning-forecast-refresh"
     private static let notificationID = "morning-forecast"
+    private static let eveningNotificationID = "evening-outlook"
 
     private let weatherService = WeatherService()
     private let phraseEngine = PhraseEngine(
@@ -40,6 +41,14 @@ final class MorningForecastService {
         UserDefaults.standard.object(forKey: AppConstants.UserDefaultsKeys.morningForecastTime) as? Int ?? 7
     }
 
+    private var isEveningEnabled: Bool {
+        UserDefaults.standard.bool(forKey: AppConstants.UserDefaultsKeys.eveningOutlookEnabled)
+    }
+
+    private var eveningDeliveryHour: Int {
+        UserDefaults.standard.object(forKey: AppConstants.UserDefaultsKeys.eveningOutlookTime) as? Int ?? 21
+    }
+
     // MARK: - Registration (must run before the app finishes launching)
 
     static func register() {
@@ -49,7 +58,7 @@ final class MorningForecastService {
                 return
             }
             let work = Task { @MainActor in
-                let success = await MorningForecastService.shared.backgroundRefresh()
+                let success = await ForecastNotificationService.shared.backgroundRefresh()
                 refreshTask.setTaskCompleted(success: success)
             }
             refreshTask.expirationHandler = {
@@ -60,18 +69,24 @@ final class MorningForecastService {
 
     // MARK: - Settings entry points
 
-    /// Called when the user toggles the feature or changes the time.
+    /// Called when the user toggles either feature or changes a time.
     func updateSchedule() async {
-        guard isEnabled else {
+        if !isEnabled {
             UNUserNotificationCenter.current()
                 .removePendingNotificationRequests(withIdentifiers: [Self.notificationID])
+        }
+        if !isEveningEnabled {
+            UNUserNotificationCenter.current()
+                .removePendingNotificationRequests(withIdentifiers: [Self.eveningNotificationID])
+        }
+        guard isEnabled || isEveningEnabled else {
             BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.backgroundTaskID)
             return
         }
         let granted = (try? await UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound])) ?? false
         guard granted else {
-            morningLog.info("notification permission denied; morning forecast stays unscheduled")
+            morningLog.info("notification permission denied; forecast notifications stay unscheduled")
             return
         }
         _ = await backgroundRefresh()
@@ -80,18 +95,23 @@ final class MorningForecastService {
     // MARK: - Content refresh paths
 
     /// Cheap path: the app just fetched a device-location snapshot anyway —
-    /// reuse it for the notification content. No-op when disabled.
+    /// reuse it for the notification content. No-op when both are disabled.
     func scheduleFromSnapshot(_ snapshot: WeatherSnapshot) async {
-        guard isEnabled, !snapshot.isPartial else { return }
-        await scheduleNotification(from: snapshot)
+        guard isEnabled || isEveningEnabled, !snapshot.isPartial else { return }
+        if isEnabled {
+            await scheduleNotification(from: snapshot)
+        }
+        if isEveningEnabled {
+            await scheduleEveningNotification(from: snapshot)
+        }
         scheduleNextBackgroundRefresh()
     }
 
     /// BG-task path: fetch fresh weather for the last-known device location.
     /// Returns false when disabled, no stored coordinate, or the fetch fails
-    /// (the previously scheduled notification is left in place).
+    /// (the previously scheduled notifications are left in place).
     func backgroundRefresh() async -> Bool {
-        guard isEnabled else { return false }
+        guard isEnabled || isEveningEnabled else { return false }
         // Always re-arm the next wake-up first — a transient failure below
         // shouldn't silence tomorrow's refresh.
         scheduleNextBackgroundRefresh()
@@ -106,7 +126,12 @@ final class MorningForecastService {
             let snapshot = try await weatherService.fetchWeather(
                 for: CLLocation(latitude: lat, longitude: lon)
             )
-            await scheduleNotification(from: snapshot)
+            if isEnabled {
+                await scheduleNotification(from: snapshot)
+            }
+            if isEveningEnabled {
+                await scheduleEveningNotification(from: snapshot)
+            }
             return true
         } catch {
             morningLog.error("background fetch failed: \(String(describing: error), privacy: .public)")
@@ -116,12 +141,11 @@ final class MorningForecastService {
 
     // MARK: - Private
 
-    /// Next occurrence of the configured delivery time in the location's
-    /// timezone-agnostic device clock (the user picks "7 AM" meaning their
-    /// device's 7 AM).
-    private func nextDeliveryDate() -> Date {
+    /// Next occurrence of the given hour on the device clock (the user picks
+    /// "7 AM" meaning their device's 7 AM).
+    private func nextDeliveryDate(hour: Int) -> Date {
         var components = DateComponents()
-        components.hour = deliveryHour
+        components.hour = hour
         components.minute = 0
         return Calendar.current.nextDate(
             after: Date(), matching: components, matchingPolicy: .nextTime
@@ -129,7 +153,7 @@ final class MorningForecastService {
     }
 
     private func scheduleNotification(from snapshot: WeatherSnapshot) async {
-        let delivery = nextDeliveryDate()
+        let delivery = nextDeliveryDate(hour: deliveryHour)
         let calendar = Calendar.current
 
         // Forecast at the delivery hour; fall back to current conditions when
@@ -190,6 +214,7 @@ final class MorningForecastService {
             mode: mode,
             isDay: hourPoint?.isDay ?? true,
             localHour: deliveryHour,
+            localMonthDay: delivery.localMonthDay(),
             maxLength: extras.isEmpty ? 100 : 80,
             trackAsSeen: false
         )
@@ -275,11 +300,91 @@ final class MorningForecastService {
         return formatter.string(from: date)
     }
 
-    /// Ask iOS to wake us ~45 minutes before delivery so the content is
-    /// fresh. Advisory only — iOS decides if/when it actually runs.
+    /// The Evening Outlook: tomorrow's forecast, delivered tonight. Facts
+    /// come from tomorrow's daily entry; the phrase describes conditions at
+    /// the delivery hour (what the user actually sees out the window when
+    /// the notification lands), so it can never contradict reality.
+    private func scheduleEveningNotification(from snapshot: WeatherSnapshot) async {
+        let delivery = nextDeliveryDate(hour: eveningDeliveryHour)
+        let calendar = Calendar.current
+
+        guard let tomorrowDate = calendar.date(byAdding: .day, value: 1, to: delivery),
+              let tomorrow = snapshot.daily.first(where: {
+                  calendar.isDate($0.date, equalTo: tomorrowDate, toGranularity: .day)
+              }) else {
+            morningLog.info("no daily entry for tomorrow; skipping evening outlook")
+            return
+        }
+
+        let high = Int(tomorrow.high.rounded())
+        let low = Int(tomorrow.low.rounded())
+        var body = "Tomorrow: \(tomorrow.conditionTag.label.lowercased()) with a high of \(high)° and a low of \(low)°."
+
+        // Rain heads-up for tomorrow. Prefer an hourly onset time when the
+        // 24h hourly array reaches into tomorrow; fall back to the daily
+        // probability when it doesn't.
+        let tomorrowStart = calendar.startOfDay(for: tomorrowDate)
+        if let onset = snapshot.hourly.first(where: {
+            $0.time >= tomorrowStart.addingTimeInterval(5 * 3600) && $0.precipitationProbability >= 50
+        }) {
+            let isSnow = [.snow, .heavySnow, .freezingRain].contains(onset.conditionTag)
+            body += " \(isSnow ? "Snow" : "Rain") around \(onset.time.hourLabel(timezone: snapshot.timezone))."
+        } else if tomorrow.precipitationProbability >= 50 {
+            body += " \(tomorrow.conditionTag == .snow || tomorrow.conditionTag == .heavySnow ? "Snow" : "Rain") likely."
+        }
+
+        // Phrase for what's outside right now at delivery (evening bucket
+        // eligible, correct isDay), same clean-mode rule as other lock-screen
+        // surfaces.
+        let hourPoint = snapshot.hourly.first {
+            calendar.isDate($0.time, equalTo: delivery, toGranularity: .hour)
+        }
+        let groupDefaults = UserDefaults(suiteName: AppConstants.appGroupID) ?? .standard
+        let mode = PhraseMode(
+            rawValue: groupDefaults.string(forKey: AppConstants.UserDefaultsKeys.phraseMode) ?? "clean"
+        ) ?? .clean
+        let phrase = await phraseEngine.selectPhrase(
+            conditionTag: hourPoint?.conditionTag ?? snapshot.current.conditionTag,
+            tempF: hourPoint?.temperature ?? snapshot.current.temperature,
+            mode: mode,
+            isDay: hourPoint?.isDay ?? false,
+            localHour: eveningDeliveryHour,
+            localMonthDay: delivery.localMonthDay(),
+            maxLength: 80,
+            trackAsSeen: false
+        )
+
+        let content = UNMutableNotificationContent()
+        content.title = "Tomorrow's damn weather"
+        content.body = "\(body) \(phrase)"
+        content.sound = .default
+
+        var trigger = DateComponents()
+        trigger.hour = eveningDeliveryHour
+        trigger.minute = 0
+        let request = UNNotificationRequest(
+            identifier: Self.eveningNotificationID,
+            content: content,
+            trigger: UNCalendarNotificationTrigger(dateMatching: trigger, repeats: false)
+        )
+        do {
+            try await UNUserNotificationCenter.current().add(request)
+            morningLog.info("scheduled evening outlook for \(delivery, privacy: .public): \(content.body.prefix(60), privacy: .public)")
+        } catch {
+            morningLog.error("failed to schedule evening outlook: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    /// Ask iOS to wake us ~45 minutes before the next enabled delivery so
+    /// the content is fresh. Advisory only — iOS decides if/when it runs.
     private func scheduleNextBackgroundRefresh() {
+        var candidates: [Date] = []
+        if isEnabled { candidates.append(nextDeliveryDate(hour: deliveryHour)) }
+        if isEveningEnabled { candidates.append(nextDeliveryDate(hour: eveningDeliveryHour)) }
+        guard let next = candidates.min() else { return }
+
         let request = BGAppRefreshTaskRequest(identifier: Self.backgroundTaskID)
-        request.earliestBeginDate = nextDeliveryDate().addingTimeInterval(-45 * 60)
+        request.earliestBeginDate = next.addingTimeInterval(-45 * 60)
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {

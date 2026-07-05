@@ -130,9 +130,26 @@ struct TimeBucketTests {
         #expect(TimeBucket.from(hour: 4) == .lateNight)
     }
 
-    private func phrase(dayOnly: Bool = false, nightOnly: Bool = false, buckets: [TimeBucket]? = nil) -> Phrase {
+    private func phrase(dayOnly: Bool = false, nightOnly: Bool = false, buckets: [TimeBucket]? = nil, dates: [String]? = nil) -> Phrase {
         Phrase(text: "t", conditions: ["any"], tempRange: nil, priority: 1,
-               dayOnly: dayOnly, nightOnly: nightOnly, timeBuckets: buckets)
+               dayOnly: dayOnly, nightOnly: nightOnly, timeBuckets: buckets, dates: dates)
+    }
+
+    @Test("date gate requires a matching local month-day")
+    func dateGating() {
+        let julyFourth = phrase(dates: ["07-04"])
+        #expect(julyFourth.matchesDate("07-04"))
+        #expect(!julyFourth.matchesDate("07-05"))
+        // Date-gated phrases require a known local date.
+        #expect(!julyFourth.matchesDate(nil))
+
+        let ungated = phrase()
+        #expect(ungated.matchesDate(nil))
+        #expect(ungated.matchesDate("01-01"))
+
+        let christmas = phrase(dates: ["12-24", "12-25"])
+        #expect(christmas.matchesDate("12-25"))
+        #expect(!christmas.matchesDate("12-26"))
     }
 
     @Test("bucket gating layers on top of day/night booleans")

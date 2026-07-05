@@ -81,6 +81,10 @@ def lint(path: Path) -> tuple[int, int]:
         for b in p.get("timeBuckets") or []:
             if b not in VALID_TIME_BUCKETS:
                 errors.append(f"unknown timeBucket '{b}': {label}")
+        for d in p.get("dates") or []:
+            m = re.fullmatch(r"(\d{2})-(\d{2})", str(d))
+            if not m or not (1 <= int(m.group(1)) <= 12) or not (1 <= int(m.group(2)) <= 31):
+                errors.append(f"bad date '{d}' (want MM-dd): {label}")
         # "[temp" without the closing bracket renders literally in the UI.
         if "[temp" in text and "[temp]" not in text:
             errors.append(f"malformed [temp] token: {label}")

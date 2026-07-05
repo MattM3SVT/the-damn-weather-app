@@ -638,7 +638,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. The only thing colder than this is your ex's heart — and that bitch set the thermostat.",
+    "text": "[temp] degrees. The only thing colder than this is your ex's heart. Bundle the hell up.",
     "conditions": [
       "any"
     ],
@@ -1017,7 +1017,7 @@
     "nightOnly": false
   },
   {
-    "text": "The sun is absolutely going off today. SPF or skin cancer, pick one, dipshit.",
+    "text": "The sun is absolutely going off today. SPF or regret, pick one, dipshit.",
     "conditions": [
       "clear"
     ],
@@ -3564,19 +3564,6 @@
     "nightOnly": false
   },
   {
-    "text": "Foggy and [temp] degrees. You can't see shit and you can't feel your face. Fan-fucking-tastic.",
-    "conditions": [
-      "fog"
-    ],
-    "tempRange": [
-      28.0,
-      42.0
-    ],
-    "priority": 1,
-    "dayOnly": false,
-    "nightOnly": false
-  },
-  {
     "text": "Fog so thick your headlights are doing absolutely fucking nothing.",
     "conditions": [
       "fog"
@@ -4377,17 +4364,6 @@
       "morning",
       "evening"
     ]
-  },
-  {
-    "text": "It's raining sideways. Your umbrella is useless, you fool. Fucking useless.",
-    "conditions": [
-      "rain",
-      "heavy-rain"
-    ],
-    "tempRange": null,
-    "priority": 1,
-    "dayOnly": false,
-    "nightOnly": false
   },
   {
     "text": "It's [temp] fucking degrees. The sun can go fuck itself.",
@@ -13557,7 +13533,7 @@
     "nightOnly": false
   },
   {
-    "text": "Cloudy and [temp]. No shadows today. You and the sun have that in common — fucking invisible.",
+    "text": "Cloudy and [temp]. No shadows today. You and the sun have that in common. Fucking invisible.",
     "conditions": [
       "cloudy"
     ],
@@ -13570,7 +13546,7 @@
     "nightOnly": false
   },
   {
-    "text": "Gray skies at [temp] degrees. The lighting outside is like a shitty office — fluorescent and depressing.",
+    "text": "Gray skies at [temp] degrees. The lighting outside is like a shitty office. Fluorescent and depressing.",
     "conditions": [
       "cloudy"
     ],
@@ -16384,7 +16360,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. Partly cloudy. Like your personality — half bright, half full of shit.",
+    "text": "[temp] degrees. Partly cloudy. Like your personality. Half bright, half full of shit.",
     "conditions": [
       "partly-cloudy"
     ],
@@ -20653,7 +20629,7 @@
     "nightOnly": false
   },
   {
-    "text": "Misty drizzle. The neighbor is still mowing because the neighbor is a goddamn psycho with principles.",
+    "text": "Misty drizzle. The neighbor is still mowing because the neighbor has goddamn principles and no off switch.",
     "conditions": [
       "drizzle"
     ],
@@ -23473,6 +23449,3062 @@
       45,
       65
     ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sun's out. Your excuses just died. Shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear as hell out. The sun won't beg you to enjoy it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky is spotless. Your car sure as shit isn't.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunshine everywhere. Even the potholes look good, damn it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Zero clouds. The sun is showing off, the smug bastard.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Perfect weather. Suspicious as hell, honestly.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun's blasting. Sunglasses on, regrets off. Hell yes.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Clear skies. The weather finally did its damn job.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gorgeous out. Staying inside should be a damn crime.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The forecast said clear and meant it. Miracles, no shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Stars for days. The sky finally cleaned the hell up.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear night. The moon is bright as shit and proud of it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloudless night. Every damn star clocked in.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The whole sky is out tonight. Zero clouds gave a damn.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear and quiet. The sky went full planetarium. Damn.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Stars everywhere. Make a wish or whatever the hell.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The moon is bright enough to judge you. It does.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Crisp, clear night. Cold as balls, pretty as hell.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": [
+      -50,
+      45
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Half sun, half clouds, all indecisive bullshit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The sun keeps ducking out like it owes money. Rude.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy. The sky is half-assing it today.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun's in and out like a flaky friend. Classic bullshit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Some clouds, some sun. Pick a side, damn it.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky is 60% committed. Story of every damn thing.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Patchy sun. The clouds keep photobombing, the pricks.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Partly cloudy, which means the forecast shrugged. Great.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun when you're inside, shade when you're out. Bullshit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The clouds are rationing your sunshine. Bastards.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The moon keeps hiding behind clouds. Diva-ass behavior.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Half the stars are out. The rest said screw it.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clouds drifting past the moon like slow-ass traffic.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The night sky is at half power. Lazy bastard.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Half-lit sky tonight. The clouds keep flipping the switch.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Patchy clouds. The stars are phoning it the hell in.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The night sky can't pick an outfit. Clouds on, clouds off.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Some stars, some clouds, zero damn commitment.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Gray from edge to edge. The sky gave up. Same, honestly.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast as hell. The sun is on strike.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky is one giant gray shrug. Fuck it.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloudy. The sun called in sick, the slacker.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Full gray lid today. Vitamin D can kiss your ass goodbye.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The clouds ate the sun. No ransom note, no shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wall-to-wall clouds. The sky is phoning it the hell in.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gray on gray on gray. The sky needs therapy, damn.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Overcast. The sun exists in theory, like your motivation.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky went gray and stayed there. Stubborn bastard.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "No moon, no stars, no shit to see up there.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The clouds blacked out the whole damn sky.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Overcast night. The stars got benched, poor bastards.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky closed early. Rude as hell.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Cloud blackout tonight. The moon never had a shot. Shit.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The night sky is sold out. Clouds bought every damn seat.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Gray lid, lights off. Night canceled itself. Fuck it.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "One big cloud from here to everywhere. Night, canceled.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog everywhere. The world is on airplane mode. Shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Can't see a damn thing past the mailbox.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The fog ate the neighborhood. No survivors, no shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Visibility is a rumor. Assume every car can't see you.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Pea soup out there. Headlights are decorative as hell.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog thick enough to chew. Gross as that sounds.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The street disappears after two houses. Spooky bullshit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Everything past your porch is a damn mystery.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The fog is doing horror movie shit out there.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "White-out lite. The fog means business, damn it.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog after dark. The streetlights look haunted as hell.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night fog. Every headlight is a damn ghost story.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The fog swallowed the whole damn block. Good luck.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Can't see shit past the porch light.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Fog and dark. The two worst coworkers in weather.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The night is 90% soup. Stay the hell home.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Foggy night. The moon quit trying, smart move honestly.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Every streetlight has a halo. None earned it, the frauds.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle. Not rain, not dry, just annoying as hell.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Too light for wipers, too wet to ignore. Damn drizzle.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky is spitting. Rude little clouds.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle all day. Death by a thousand damp little cuts.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Barely raining, fully irritating. Classic drizzle bullshit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The air is 90% wet. Your hair already knows. Shit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle again. The sky can't even commit to raining.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "A weak little rain with a big damn ego.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night drizzle. The pavement shines, your shoes suffer.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Soft rain in the dark. Cozy or creepy, dealer's damn choice.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle after dark. Barely rain, fully bullshit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Misting all night. The windshield loses either way.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The night air is leaking. Somebody call somebody, damn.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wet air, dark sky, mild bullshit all around.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Raining like the sky got bad news. Grab the damn umbrella.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Steady rain. The gutters are earning their keep for once.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain all day. Your shoes are about to learn some shit.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky is sobbing on everyone equally. No favorites, no shit.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain again. The lawn is thrilled. The lawn can shut up.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Real rain today. The kind that laughs at your damn hood.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Puddles forming everywhere. Your socks are on notice. Shit.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's raining sideways-adjacent. Umbrellas are a damn gamble.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain on the roof all night. Free white noise, damn right.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night rain. Great for sleeping, shit for everything else.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The rain waited for dark like a coward. Typical.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Raining hard out there. The streetlights are swimming. Damn.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Every passing car sounds like frying bacon. Weird as hell.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain past dark. The puddles are ambushing everyone. Shit.",
+    "conditions": [
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky is dumping rain on your sleep schedule. Rude.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "All-night rain. The gutters are on a double shift. Damn.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Absolutely dumping out there. The street is a damn river.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Biblical rain. The wipers are losing the fight. Shit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It's pouring like the sky got fired. Stay the hell in.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain hammering everything. The umbrella never had a chance.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The storm drain is gargling. That's never good, damn it.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Downpour. Ten feet of visibility and all of it wet. Hell.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky opened all the way up. Every plan is soaked. Shit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain so hard the puddles have puddles. Goddamn.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Pouring in the dark. The roof is earning its damn keep.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sheets of rain all night. Sleep through it if you can. Hell.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The downpour found your bedroom window. Front row, damn.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Torrential out there. The night is 100% soup. Shit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Rain slamming down after dark. The gutters are screaming.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Monsoon energy tonight. The streetlights are drowning.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain. The sidewalk is out for blood. Damn.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice falling from the sky. Walk like you trust nothing. Hell.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Everything's glazed like a donut. Way less delicious. Shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The car door is frozen shut. Fight it, champ.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The steps are a damn ice rink. Hold the rail, hero.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice on every surface. Gravity is undefeated as hell.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Mother Nature's pettiest bullshit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The windshield needs a chisel and a damn prayer.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain in the dark. Trust nothing shiny. Damn.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Black ice forming while you sleep. Sneaky bastard weather.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice glazing the streets overnight. Morning is screwed.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet tapping the window like it wants in. Hell no.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The roads are lying to you tonight. Every damn one.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing drizzle after dark. Peak sneaky bullshit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowing hard. The shovel is judging you from the garage.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow stacking up like unread emails. Damn it.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fat flakes, buried roads. Everyone drives like an idiot now.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The snow is winning. It was never a fair damn fight.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow again. Winter has zero chill, ironically. Shit.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Flakes by the billion. Your driveway already lost. Damn.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowing sideways today. Physics is off the clock. Shit.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow day energy. The couch wins by default, hell yes.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow falling in the dark. Quiet as hell, plotting louder.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night snow. The driveway is loading its damn ambush.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowflakes under the porch light. Pretty little bastards.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow while you sleep. Wake up to a whole new workload. Shit.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The town gets frosted overnight. Like a damn cake.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Silent night, heavy snow. The shovel knows what's coming.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Blizzard mode. The outdoors is canceled as hell.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow. The plows are losing on purpose, I swear. Shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Whiteout conditions. Everything is a rumor now. Damn.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow by the foot. The driveway is a lost damn cause.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Heavy snow all day. The couch has never looked this good.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky is emptying its whole damn attic on us.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Blizzard after dark. Stay in. This isn't a damn drill.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Heavy snow all night. Tomorrow is already buried. Shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The snow is pulling an all-nighter. Overachieving bastard.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Whiteout in the dark. Even the streetlights gave up. Damn.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snow hammering down all night. Set the alarm early, sucker.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The storm is working the night shift. Union rates, no shit.",
+    "conditions": [
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder overhead. The sky is throwing a whole-ass tantrum.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning nearby. Unplug the good stuff, damn it.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky has electricity and opinions. Loud ones. Shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storming like the sky pays rent here. It doesn't. Squatter.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Boom after boom. The dog has resigned. Fair as hell.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder cracking everywhere. Nature's loudest bullshit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning show today. Free admission, real damn stakes.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The storm brought bass. Your windows are the speakers. Hell.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The lightning is strobing your bedroom. Rude as hell.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder at bedtime. The sky has no damn manners.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The storm waited until you got cozy. Typical bullshit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Boom, flash, repeat. Nobody's sleeping through this shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder after dark. The dog is in your bed now. Deal.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky is doing demolition work overnight. No permit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind advisory. Everything not bolted down is leaving. Shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusts strong enough to edit your damn hairstyle.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The wind has somewhere to be and you're in the way. Hell.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Windy as hell. The trash cans are halfway to freedom.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The flags are horizontal. That's never good, damn it.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Gusting hard. Hold onto your hat and your damn dignity.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The wind is auditioning for a disaster movie. Shit.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Everything is sideways today. Blame the damn wind.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The wind is rattling the windows like it wants in. Hell no.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Something just blew off the porch. Morning's problem. Damn.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The wind is howling at the moon. Get in line, buddy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Gusty night. The house is creaking its damn complaints.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Wind screaming past the windows all night. Rude as hell.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The night wind found every gap in this house. Bastard.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The alarm won. The weather doesn't give a shit either way.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Rain with your coffee. The window seat earns its damn keep.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Gray morning. The sky hit snooze too, the lazy bastard.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Snow before breakfast. Scrape first, swear freely.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Morning fog. The block is rendering in low-res. Shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Sun's up and loud about it. Nobody asked, damn.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Windy morning. Your hair is officially freelance now.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Frozen morning. The car needs ten minutes. So do you, champ.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Rain on the drive home. Brake lights to the damn horizon.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Golden hour is going off. Look up from your phone, jackass.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "The day's done. The weather didn't get the damn memo.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Evening gusts. The trash cans are migrating again. Godspeed.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "The sun clocked out early behind the clouds. Same, honestly.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Snow at dusk. Gorgeous right up until you own a shovel.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "It's stupid late. The forecast says go the hell to bed.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Stars out, streets empty. The sky wins tonight, no shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Rain on the roof at this hour. Cozy as hell or a countdown.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "You, the fridge, and the damn forecast. Big night.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "No stars tonight. The clouds called it early. Assholes.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Fog at this hour. The streetlights look haunted as shit.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "New year, same damn weather. Consistency, at least.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "01-01"
+    ]
+  },
+  {
+    "text": "Freezing on day one. The year is testing you already. Shit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "01-01"
+    ]
+  },
+  {
+    "text": "The sky made zero resolutions. Respect, honestly.",
+    "conditions": [
+      "cloudy",
+      "rain",
+      "snow",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "01-01"
+    ]
+  },
+  {
+    "text": "Rain on Valentine's. The sky is single and bitter as hell.",
+    "conditions": [
+      "rain",
+      "drizzle",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "02-14"
+    ]
+  },
+  {
+    "text": "Clear skies for date night. The weather did its damn part.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "02-14"
+    ]
+  },
+  {
+    "text": "Valentine's Day. The forecast is the least of your problems.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "02-14"
+    ]
+  },
+  {
+    "text": "Fireworks weather. The sky finally gets competition.",
+    "conditions": [
+      "clear",
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "07-04"
+    ]
+  },
+  {
+    "text": "Rain on the Fourth. The finale is going to be soggy as hell.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "07-04"
+    ]
+  },
+  {
+    "text": "Hot Fourth. Hydrate between the damn hot dogs.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      130
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "07-04"
+    ]
+  },
+  {
+    "text": "Halloween. Every costume gets a coat over it. Bullshit.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "10-31"
+    ]
+  },
+  {
+    "text": "Rain on Halloween. Soggy costumes deserve full-size bars.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "10-31"
+    ]
+  },
+  {
+    "text": "Fog on Halloween. The weather is method acting. Hell yes.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "10-31"
+    ]
+  },
+  {
+    "text": "Snow on Christmas Eve. The weather read the damn script.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-24"
+    ]
+  },
+  {
+    "text": "Christmas Eve. Weather's the last damn thing on the list.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-24"
+    ]
+  },
+  {
+    "text": "Clear Christmas Eve. Sleigh traffic has perfect visibility.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-24"
+    ]
+  },
+  {
+    "text": "White Christmas, no shit. The cards were right.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-25"
+    ]
+  },
+  {
+    "text": "No snow for Christmas. No shoveling either. Even damn trade.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-25"
+    ]
+  },
+  {
+    "text": "Merry Christmas from the damn weather. It tried.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-25"
+    ]
+  },
+  {
+    "text": "Last damn forecast of the year. It's been real. And damp.",
+    "conditions": [
+      "rain",
+      "drizzle",
+      "snow",
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-31"
+    ]
+  },
+  {
+    "text": "Clear for the countdown. Midnight is a go, damn right.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-31"
+    ]
+  },
+  {
+    "text": "Freezing on New Year's Eve. Layer under the damn sparkle.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      35
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-31"
+    ]
+  },
+  {
+    "text": "The salt truck is a celebrity today. Wave, damn it.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice storm rules: shuffle, curse, repeat.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The gas pump handle is pure ice. Good luck, sucker.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Every parking lot is a skating rink with a grudge.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The mailbox froze shut. Nothing opens without a fight.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The power lines are sagging with ice. Not great, shit.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Bridges freeze first. Believe the damn signs.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Your car is a glazed donut with payments. Hell of a look.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The garage is the best seat for this show. Damn right.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder rattled the windows and your fillings. Rude shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning split the sky in half. Hell of a show.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The downspouts are firehosing. Impressive and bad as hell.",
+    "conditions": [
+      "thunderstorm",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm cell overhead. The radar looks like a damn bruise.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Count the seconds between flashes. Yeah, that close. Shit.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The doorbell camera just filmed a horror movie. Damn.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sideways rain, angry sky. The porch furniture is done. Hell.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The recycling bin made a break for it. Godspeed, bastard.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The storm door keeps slamming itself. Nobody's there. Damn.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The wind stole the receipt out of your hand. Petty as hell.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Whitecaps on the damn puddles. That kind of windy.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The garage door is groaning about it. Same, honestly.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The gusts keep shoving your car around. Ten and two, champ.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Every door in the house slams itself today. Ghost-ass wind.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Wipers on, off, on again. The drizzle is playing games.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The windshield is 40% speckle. Commit or quit, sky. Damn.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle fine enough to skip the radar. Sneaky bullshit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Damp everything. The doormat gave up first, poor bastard.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Mist on the glasses, fog on the windshield. Wet bullshit.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "It can't even rain right today. Weak-ass clouds.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The snowblower guy is out flexing. Let him have it, damn.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "First one to shovel loses. House rules, no shit.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The car needs an archaeology dig. Bring the damn brush.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The snow refilled what you shoveled an hour ago. Comedian.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "School's out, roads are trash, couch is undefeated. Hell yes.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Big lazy flakes with zero urgency and full damn commitment.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The night can't decide between stars and static. Damn mood.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sky's patchy tonight. Somebody keeps dimming the lights.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The constellations keep getting interrupted. Rude bastards.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Half a sky of stars. The budget ran out, apparently. Shit.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Broken clouds, decent night. Take the win, damn it.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The satellites are blinking between clouds. Say hi, weirdo.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sun is on a punch card today. In, out, in, out. Damn.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Cloud shadows racing across the yard. Free cable, damn near.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sunglasses on, sunglasses off. Make up your damn mind, sky.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sixty percent sun, forty percent shrug. Damn sky math.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The clouds are just wandering today. No plan, no damn map.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Zero clouds, full visibility. Go find the damn Big Dipper.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The porch is prime seating tonight. Bring a damn blanket.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clear night. Even the airplanes look good up there, no shit.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Not one cloud made the night shift. Slackers, all of them.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky is wide open tonight. Free show, no damn ads.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky is set to 'office ceiling.' Inspiring as hell.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "One gray blanket up there. The sun's under it, allegedly.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "No shadows today. The sun didn't clock in, the no-show.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Flat gray sky. Even the birds sound unenthused, damn.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The school bus emerged from the fog like a submarine. Damn.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "High beams make it worse. Ask anyone who tried, damn it.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The stop sign appears at the last second. Every damn time.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fog this thick should charge admission. It's doing bits.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Rain drumming the AC unit all night. Unpaid drummer, damn.",
+    "conditions": [
+      "heavy-rain",
+      "rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sump pump is the house MVP tonight. No shit.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Every gutter on the block is overflowing in the dark. Hell.",
+    "conditions": [
+      "heavy-rain"
+    ],
+    "tempRange": null,
     "priority": 1,
     "dayOnly": false,
     "nightOnly": true

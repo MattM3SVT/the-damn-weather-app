@@ -13225,7 +13225,7 @@
     "nightOnly": false
   },
   {
-    "text": "Cloudy and [temp]. No shadows today. You and the sun have that in common — invisible.",
+    "text": "Cloudy and [temp]. No shadows today. You and the sun have that in common. Invisible.",
     "conditions": [
       "cloudy"
     ],
@@ -13238,7 +13238,7 @@
     "nightOnly": false
   },
   {
-    "text": "Gray skies at [temp] degrees. The lighting outside is like a bad office — fluorescent and depressing.",
+    "text": "Gray skies at [temp] degrees. The lighting outside is like a bad office. Fluorescent and depressing.",
     "conditions": [
       "cloudy"
     ],
@@ -15338,19 +15338,6 @@
       "any"
     ],
     "tempRange": null,
-    "priority": 1,
-    "dayOnly": false,
-    "nightOnly": false
-  },
-  {
-    "text": "[temp] degrees. Not cold enough for sympathy. Not warm enough for gratitude.",
-    "conditions": [
-      "any"
-    ],
-    "tempRange": [
-      45,
-      58
-    ],
     "priority": 1,
     "dayOnly": false,
     "nightOnly": false
@@ -20490,16 +20477,6 @@
     "nightOnly": false
   },
   {
-    "text": "Drizzle. The grocery cart corral wheels are squeaking the song of their people.",
-    "conditions": [
-      "drizzle"
-    ],
-    "tempRange": null,
-    "priority": 1,
-    "dayOnly": true,
-    "nightOnly": false
-  },
-  {
     "text": "Drizzle. The 'umbrella required' debate is the most active group chat in the building.",
     "conditions": [
       "drizzle"
@@ -23125,5 +23102,1361 @@
     "priority": 1,
     "dayOnly": false,
     "nightOnly": true
+  },
+  {
+    "text": "The sun is in and out like it left the oven on.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Half sun, half clouds. The sky couldn't decide either.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun one minute, shade the next. Pick a lane, sky.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The clouds are just passing through. Allegedly.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky can't pick a mood. Join the club.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky is buffering.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun and clouds are splitting custody today.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Sun then shade then sun again. The sky is channel surfing.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "Patchy sun. The clouds are hogging it.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "The moon is playing peekaboo. Nobody asked.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Half the stars are out. The rest called in sick.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clouds drifting past the moon like slow traffic.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The moon keeps dipping behind clouds. Diva behavior.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Patchy clouds tonight. The stars are understaffed.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The night sky is at half capacity.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Low clouds drifting through like closing time.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The porch light is carrying the whole night shift.",
+    "conditions": [
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The clouds tucked the stars in early.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "No moon, no stars, no refunds.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky closed early tonight.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky went dark early and locked the door.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The clouds are hoarding the whole night sky.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The moon is back there somewhere. Probably.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Full cloud blackout. The stars never stood a chance.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The sky pulled the blinds on you tonight.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Clouds wall to wall. The night sky is sold out.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain. The sidewalk is a betrayal.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice from the sky. Walk like you don't trust anyone.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Every step is a leap of faith.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The rain freezes on contact. So does your mood.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Everything is glazed like a donut. Less delicious.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. The car door is sealed for your protection.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Ice on the wires, ice on the steps, ice on your plans.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The driveway is a rink now. You didn't sign up for this.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain. Nature's way of canceling everything.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The windshield needs a chisel, not a wiper.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Freezing rain in the dark. Trust nothing shiny.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Black ice season starts tonight. Walk scared.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Ice glazing the streets while you sleep. Rude.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Freezing rain tonight. The morning is already ruined.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The porch steps are icing over as we speak.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Sleet tapping the windows. The roads are lying to you.",
+    "conditions": [
+      "freezing-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Snowing. The shovel is waiting. It can keep waiting.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The snow is moving in. It didn't ask.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Fat flakes, slow roads, long day.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false
+  },
+  {
+    "text": "It's snowing on everyone's plans equally.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The snow is winning. It was never a fair fight.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snowflakes by the billion. Your driveway lost.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Snow again. The shovel has seniority now.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Thunder overhead. The sky is throwing a tantrum.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning nearby. The sky is showing off again.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm's here. Unplug the good stuff.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The thunder isn't asking. It's telling.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Boom season. Count the seconds, hug the dog.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "The sky has electricity and opinions.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm rolling through like it pays rent.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Lightning, thunder, drama. The sky needs a hobby.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Night storm. The lightning is doing free photography.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Thunder at bedtime. The sky has no manners.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The storm waited until you got comfortable. Typical.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Lightning flashes through the blinds. No sleep tonight.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The thunder just reset the dog's whole personality.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Storm after dark. The window rattle is free ambiance.",
+    "conditions": [
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle in the dark. Barely rain, fully annoying.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Night drizzle. The streetlights get halos, you get damp.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Soft rain all night. The gutters are whispering.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "Drizzle after dark. The pavement shines, you don't.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "A fine mist with a bad attitude.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false
+  },
+  {
+    "text": "Drizzle tonight. Not enough to matter, enough to bother.",
+    "conditions": [
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true
+  },
+  {
+    "text": "The alarm went off and the weather didn't care.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Clear morning. The sun is up and insufferable about it.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Rain with your coffee. The window seat earns its keep.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Gray morning. The sky hit snooze too.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Snow before breakfast. The kettle understands.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Morning fog. The neighborhood is loading in low res.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Frozen morning. The car needs ten minutes and so do you.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      32
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Windy morning. Your hair has plans of its own now.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "Whatever today needs, coffee first.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "morning"
+    ]
+  },
+  {
+    "text": "The day is wrapping up. The weather isn't.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Rain on the drive home. Everyone forgot how brakes work.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Golden hour is doing its thing. Go look. It's free.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "The sunset is putting on a show. Somebody had to.",
+    "conditions": [
+      "clear",
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "The sun is clocking out behind the clouds. Same.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": true,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Dinner hour. The weather is staying for it either way.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Evening gusts. The trash cans are migrating again.",
+    "conditions": [
+      "wind"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "Snow at dusk. Pretty now, work later.",
+    "conditions": [
+      "snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "timeBuckets": [
+      "evening"
+    ]
+  },
+  {
+    "text": "It's late. The weather is the least of your decisions.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Stars out, town quiet. The sky wins tonight.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Rain on the roof at this hour is either cozy or a countdown.",
+    "conditions": [
+      "rain",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Checking the weather at this hour? Go to bed.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "No stars tonight. The clouds called it early.",
+    "conditions": [
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Snow falling while the town sleeps. It's plotting.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Fog at this hour. The streetlights are haunted.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "Middle of the night. You, the fridge, and the forecast.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "timeBuckets": [
+      "lateNight"
+    ]
+  },
+  {
+    "text": "New year, same weather, same you. Happy January.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "01-01"
+    ]
+  },
+  {
+    "text": "Cold start to the year. The resolutions can wait inside.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      40
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "01-01"
+    ]
+  },
+  {
+    "text": "January 1st. The sky did not get the fresh start memo.",
+    "conditions": [
+      "cloudy",
+      "rain",
+      "snow",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "01-01"
+    ]
+  },
+  {
+    "text": "Rain on Valentine's. The sky is single and bitter too.",
+    "conditions": [
+      "rain",
+      "drizzle",
+      "heavy-rain"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "02-14"
+    ]
+  },
+  {
+    "text": "Clear skies for date night. The weather did its part.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "02-14"
+    ]
+  },
+  {
+    "text": "Valentine's Day. The forecast is the least of the pressure.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "02-14"
+    ]
+  },
+  {
+    "text": "Fireworks weather. The sky gets competition tonight.",
+    "conditions": [
+      "clear",
+      "partly-cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "07-04"
+    ]
+  },
+  {
+    "text": "Rain on the Fourth. The grand finale might be soggy.",
+    "conditions": [
+      "rain",
+      "heavy-rain",
+      "thunderstorm"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "07-04"
+    ]
+  },
+  {
+    "text": "Hot Fourth. Hydrate between hot dogs.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      85,
+      130
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "07-04"
+    ]
+  },
+  {
+    "text": "The Fourth of July: grill smoke first, fireworks later.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "07-04"
+    ]
+  },
+  {
+    "text": "Halloween forecast: costumes with coats over them.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      55
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "10-31"
+    ]
+  },
+  {
+    "text": "Rain on Halloween. Soggy costumes, full-size candy energy.",
+    "conditions": [
+      "rain",
+      "drizzle"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "10-31"
+    ]
+  },
+  {
+    "text": "Clear Halloween night. The moon is in costume as itself.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": true,
+    "dates": [
+      "10-31"
+    ]
+  },
+  {
+    "text": "Fog on Halloween. The weather is method acting.",
+    "conditions": [
+      "fog"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "10-31"
+    ]
+  },
+  {
+    "text": "Snow on Christmas Eve. The weather read the script.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-24"
+    ]
+  },
+  {
+    "text": "Christmas Eve. The weather is the last thing on the list.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-24"
+    ]
+  },
+  {
+    "text": "Clear Christmas Eve. Good visibility for sleigh traffic.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-24"
+    ]
+  },
+  {
+    "text": "White Christmas achieved. The cards were right.",
+    "conditions": [
+      "snow",
+      "heavy-snow"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-25"
+    ]
+  },
+  {
+    "text": "Clear Christmas. No white stuff, no shoveling. Even trade.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-25"
+    ]
+  },
+  {
+    "text": "Merry Christmas from the damn weather.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-25"
+    ]
+  },
+  {
+    "text": "Last forecast of the year. It's been real. It's been damp.",
+    "conditions": [
+      "rain",
+      "drizzle",
+      "snow",
+      "cloudy"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-31"
+    ]
+  },
+  {
+    "text": "Clear skies for the countdown. Midnight approved.",
+    "conditions": [
+      "clear"
+    ],
+    "tempRange": null,
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-31"
+    ]
+  },
+  {
+    "text": "Freezing on New Year's Eve. Layer under the sparkle.",
+    "conditions": [
+      "any"
+    ],
+    "tempRange": [
+      -50,
+      35
+    ],
+    "priority": 1,
+    "dayOnly": false,
+    "nightOnly": false,
+    "dates": [
+      "12-31"
+    ]
   }
 ]

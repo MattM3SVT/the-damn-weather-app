@@ -59,4 +59,14 @@ extension Date {
         calendar.timeZone = timezone
         return calendar.component(.hour, from: self)
     }
+
+    /// "MM-dd" in the given timezone. Used to gate date-anchored phrases
+    /// (holidays) to the location's calendar day.
+    public func localMonthDay(timezone: TimeZone = .current) -> String {
+        var calendar = Calendar.current
+        calendar.timeZone = timezone
+        let month = calendar.component(.month, from: self)
+        let day = calendar.component(.day, from: self)
+        return String(format: "%02d-%02d", month, day)
+    }
 }

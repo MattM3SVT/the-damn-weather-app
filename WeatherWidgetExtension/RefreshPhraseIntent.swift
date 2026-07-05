@@ -35,13 +35,15 @@ struct RefreshPhraseIntent: AppIntent {
             let temp = slot.map { Double($0.temp) } ?? cached.temperature
             let tz = cached.timezoneIdentifier.flatMap(TimeZone.init(identifier:)) ?? .current
             let localHour = now.localHour(timezone: tz)
+            let localMonthDay = now.localMonthDay(timezone: tz)
 
             let phrase = await engine.selectPhrase(
                 conditionTag: tag,
                 tempF: temp,
                 mode: mode,
                 isDay: isDay,
-                localHour: localHour
+                localHour: localHour,
+                localMonthDay: localMonthDay
             )
             let smallPhrase = await engine.selectPhrase(
                 conditionTag: tag,
@@ -49,6 +51,7 @@ struct RefreshPhraseIntent: AppIntent {
                 mode: mode,
                 isDay: isDay,
                 localHour: localHour,
+                localMonthDay: localMonthDay,
                 maxLength: 70,
                 trackAsSeen: false
             )
@@ -58,6 +61,7 @@ struct RefreshPhraseIntent: AppIntent {
                 mode: mode,
                 isDay: isDay,
                 localHour: localHour,
+                localMonthDay: localMonthDay,
                 maxLength: AppConstants.accessoryPhraseMaxLength,
                 trackAsSeen: false
             )

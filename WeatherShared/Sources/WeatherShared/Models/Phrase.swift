@@ -38,6 +38,14 @@ public struct Phrase: Codable, Identifiable, Sendable {
     /// phrase can't leak into an unknown-time context.
     public let timeBuckets: [TimeBucket]?
 
+    /// Optional calendar gate: "MM-dd" strings in the location's local date
+    /// (e.g. ["07-04"] or ["12-24", "12-25"]). A date-gated phrase fires only
+    /// on the listed days, and never when the caller can't supply the local
+    /// date. The engine boosts matched date phrases in the weighted pool so
+    /// a July 4th phrase actually shows up on July 4th without drowning out
+    /// everything else.
+    public let dates: [String]?
+
     /// Check if this phrase matches the given condition tag
     nonisolated public func matchesCondition(_ tag: WeatherConditionTag) -> Bool {
         conditions.contains(tag.rawValue)
@@ -60,6 +68,14 @@ public struct Phrase: Codable, Identifiable, Sendable {
             return buckets.contains(TimeBucket.from(hour: localHour))
         }
         return true
+    }
+
+    /// Check the optional calendar gate. Ungated phrases always pass;
+    /// date-gated phrases require a known local "MM-dd" that's listed.
+    nonisolated public func matchesDate(_ localMonthDay: String?) -> Bool {
+        guard let dates, !dates.isEmpty else { return true }
+        guard let localMonthDay else { return false }
+        return dates.contains(localMonthDay)
     }
 
     /// Render the phrase with the actual temperature substituted
