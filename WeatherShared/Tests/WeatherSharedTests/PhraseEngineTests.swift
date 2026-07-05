@@ -130,9 +130,27 @@ struct TimeBucketTests {
         #expect(TimeBucket.from(hour: 4) == .lateNight)
     }
 
-    private func phrase(dayOnly: Bool = false, nightOnly: Bool = false, buckets: [TimeBucket]? = nil, dates: [String]? = nil) -> Phrase {
+    private func phrase(dayOnly: Bool = false, nightOnly: Bool = false, buckets: [TimeBucket]? = nil, dates: [String]? = nil, weekdaysOnly: Bool? = nil, weekendsOnly: Bool? = nil) -> Phrase {
         Phrase(text: "t", conditions: ["any"], tempRange: nil, priority: 1,
-               dayOnly: dayOnly, nightOnly: nightOnly, timeBuckets: buckets, dates: dates)
+               dayOnly: dayOnly, nightOnly: nightOnly, timeBuckets: buckets, dates: dates,
+               weekdaysOnly: weekdaysOnly, weekendsOnly: weekendsOnly)
+    }
+
+    @Test("weekday/weekend gates require a known weekend signal")
+    func weekendGating() {
+        let officeJoke = phrase(weekdaysOnly: true)
+        #expect(officeJoke.matchesTime(isDay: true, localHour: 9, isWeekend: false))
+        #expect(!officeJoke.matchesTime(isDay: true, localHour: 9, isWeekend: true))
+        #expect(!officeJoke.matchesTime(isDay: true, localHour: 9, isWeekend: nil))
+
+        let brunchJoke = phrase(weekendsOnly: true)
+        #expect(brunchJoke.matchesTime(isDay: true, localHour: 10, isWeekend: true))
+        #expect(!brunchJoke.matchesTime(isDay: true, localHour: 10, isWeekend: false))
+        #expect(!brunchJoke.matchesTime(isDay: true, localHour: 10, isWeekend: nil))
+
+        let ungated = phrase()
+        #expect(ungated.matchesTime(isDay: true, localHour: 9, isWeekend: nil))
+        #expect(ungated.matchesTime(isDay: true, localHour: 9, isWeekend: true))
     }
 
     @Test("date gate requires a matching local month-day")

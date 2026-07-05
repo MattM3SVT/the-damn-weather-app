@@ -44,6 +44,7 @@ struct WhatsTheDamnWeatherIntent: AppIntent {
             isDay: isDay,
             localHour: now.localHour(timezone: tz),
             localMonthDay: now.localMonthDay(timezone: tz),
+            localIsWeekend: now.isWeekend(timezone: tz),
             trackAsSeen: false
         )
 

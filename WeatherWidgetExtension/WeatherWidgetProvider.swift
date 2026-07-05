@@ -387,6 +387,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                     isDay: derived.isDay,
                     localHour: entryDate.localHour(timezone: entryTZ),
                     localMonthDay: entryDate.localMonthDay(timezone: entryTZ),
+                    localIsWeekend: entryDate.isWeekend(timezone: entryTZ),
                     trackAsSeen: false
                 )
                 smallPhrase = await phraseEngine.selectPhrase(
@@ -396,6 +397,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                     isDay: derived.isDay,
                     localHour: entryDate.localHour(timezone: entryTZ),
                     localMonthDay: entryDate.localMonthDay(timezone: entryTZ),
+                    localIsWeekend: entryDate.isWeekend(timezone: entryTZ),
                     maxLength: 70,
                     trackAsSeen: false
                 )
@@ -406,6 +408,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
                     isDay: derived.isDay,
                     localHour: entryDate.localHour(timezone: entryTZ),
                     localMonthDay: entryDate.localMonthDay(timezone: entryTZ),
+                    localIsWeekend: entryDate.isWeekend(timezone: entryTZ),
                     maxLength: AppConstants.accessoryPhraseMaxLength,
                     trackAsSeen: false
                 )
@@ -599,7 +602,8 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             mode: mode,
             isDay: current.isDaylight,
             localHour: Date().localHour(timezone: locationTimezone),
-            localMonthDay: Date().localMonthDay(timezone: locationTimezone)
+            localMonthDay: Date().localMonthDay(timezone: locationTimezone),
+            localIsWeekend: Date().isWeekend(timezone: locationTimezone)
         )
 
         // Filter to current hour and forward — WeatherKit returns past hours too
@@ -635,6 +639,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             isDay: current.isDaylight,
             localHour: Date().localHour(timezone: locationTimezone),
             localMonthDay: Date().localMonthDay(timezone: locationTimezone),
+            localIsWeekend: Date().isWeekend(timezone: locationTimezone),
             maxLength: 70
         )
         let tinyPhrase = await phraseEngine.selectPhrase(
@@ -644,6 +649,7 @@ struct WeatherWidgetProvider: AppIntentTimelineProvider {
             isDay: current.isDaylight,
             localHour: Date().localHour(timezone: locationTimezone),
             localMonthDay: Date().localMonthDay(timezone: locationTimezone),
+            localIsWeekend: Date().isWeekend(timezone: locationTimezone),
             maxLength: AppConstants.accessoryPhraseMaxLength,
             trackAsSeen: false
         )

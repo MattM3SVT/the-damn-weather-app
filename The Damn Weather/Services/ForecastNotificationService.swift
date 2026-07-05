@@ -215,6 +215,7 @@ final class ForecastNotificationService {
             isDay: hourPoint?.isDay ?? true,
             localHour: deliveryHour,
             localMonthDay: delivery.localMonthDay(),
+            localIsWeekend: delivery.isWeekend(),
             maxLength: extras.isEmpty ? 100 : 80,
             trackAsSeen: false
         )
@@ -350,6 +351,7 @@ final class ForecastNotificationService {
             isDay: hourPoint?.isDay ?? false,
             localHour: eveningDeliveryHour,
             localMonthDay: delivery.localMonthDay(),
+            localIsWeekend: delivery.isWeekend(),
             maxLength: 80,
             trackAsSeen: false
         )

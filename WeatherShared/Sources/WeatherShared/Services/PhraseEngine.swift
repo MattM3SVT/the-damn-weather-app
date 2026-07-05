@@ -155,6 +155,7 @@ public actor PhraseEngine {
         isDay: Bool = true,
         localHour: Int? = nil,
         localMonthDay: String? = nil,
+        localIsWeekend: Bool? = nil,
         maxLength: Int? = nil,
         trackAsSeen: Bool = true
     ) -> String {
@@ -167,13 +168,13 @@ public actor PhraseEngine {
 
         // Step 1: Filter by condition AND temperature range AND day/night
         var matches = pool.filter { p in
-            p.matchesCondition(conditionTag) && p.matchesTemp(tempF) && p.matchesTime(isDay: isDay, localHour: localHour) && p.matchesDate(localMonthDay)
+            p.matchesCondition(conditionTag) && p.matchesTemp(tempF) && p.matchesTime(isDay: isDay, localHour: localHour, isWeekend: localIsWeekend) && p.matchesDate(localMonthDay)
         }
 
         // Step 2: If no matches, relax to condition-only (still respecting day/night)
         if matches.isEmpty {
             matches = pool.filter { p in
-                p.matchesCondition(conditionTag) && p.matchesTime(isDay: isDay, localHour: localHour) && p.matchesDate(localMonthDay)
+                p.matchesCondition(conditionTag) && p.matchesTime(isDay: isDay, localHour: localHour, isWeekend: localIsWeekend) && p.matchesDate(localMonthDay)
             }
         }
 
@@ -181,14 +182,14 @@ public actor PhraseEngine {
         if matches.isEmpty {
             matches = pool.filter { p in
                 guard p.tempRange != nil else { return false }
-                return p.matchesTemp(tempF) && p.matchesTime(isDay: isDay, localHour: localHour) && p.matchesDate(localMonthDay)
+                return p.matchesTemp(tempF) && p.matchesTime(isDay: isDay, localHour: localHour, isWeekend: localIsWeekend) && p.matchesDate(localMonthDay)
             }
         }
 
         // Step 4: If still nothing, use generic phrases (respecting day/night)
         if matches.isEmpty {
             matches = pool.filter { p in
-                p.conditions.contains("any") && p.matchesTime(isDay: isDay, localHour: localHour) && p.matchesDate(localMonthDay)
+                p.conditions.contains("any") && p.matchesTime(isDay: isDay, localHour: localHour, isWeekend: localIsWeekend) && p.matchesDate(localMonthDay)
             }
         }
 
@@ -200,7 +201,7 @@ public actor PhraseEngine {
         // takes over.
         if matches.isEmpty {
             matches = pool.filter { p in
-                p.matchesTime(isDay: isDay, localHour: localHour) && p.matchesDate(localMonthDay)
+                p.matchesTime(isDay: isDay, localHour: localHour, isWeekend: localIsWeekend) && p.matchesDate(localMonthDay)
             }
         }
 
@@ -286,7 +287,8 @@ public actor PhraseEngine {
         mode: PhraseMode = .clean,
         isDay: Bool = true,
         localHour: Int? = nil,
-        localMonthDay: String? = nil
+        localMonthDay: String? = nil,
+        localIsWeekend: Bool? = nil
     ) -> [String] {
         var phrases: [String] = []
         var seen = Set<String>()
@@ -303,6 +305,7 @@ public actor PhraseEngine {
                 isDay: isDay,
                 localHour: localHour,
                 localMonthDay: localMonthDay,
+                localIsWeekend: localIsWeekend,
                 trackAsSeen: false  // Only primary phrase selection tracks
             )
             if seen.insert(phrase).inserted {

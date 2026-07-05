@@ -60,6 +60,15 @@ extension Date {
         return calendar.component(.hour, from: self)
     }
 
+    /// Whether this date falls on a weekend in the given timezone. Used to
+    /// gate weekday-anchored phrases (commutes, offices, school runs) and
+    /// weekend-anchored ones (brunch waits) to the location's calendar.
+    public func isWeekend(timezone: TimeZone = .current) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = timezone
+        return calendar.isDateInWeekend(self)
+    }
+
     /// "MM-dd" in the given timezone. Used to gate date-anchored phrases
     /// (holidays) to the location's calendar day.
     public func localMonthDay(timezone: TimeZone = .current) -> String {

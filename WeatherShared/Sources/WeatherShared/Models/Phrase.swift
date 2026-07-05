@@ -46,6 +46,14 @@ public struct Phrase: Codable, Identifiable, Sendable {
     /// everything else.
     public let dates: [String]?
 
+    /// Optional weekday/weekend gates (location-local calendar). A phrase
+    /// about the office window taunting you has no business firing on a
+    /// Saturday; a 45-minute brunch wait has no business firing on a Tuesday.
+    /// Both nil for the vast majority of phrases. Gated phrases are excluded
+    /// when the caller can't supply the weekend signal.
+    public let weekdaysOnly: Bool?
+    public let weekendsOnly: Bool?
+
     /// Check if this phrase matches the given condition tag
     nonisolated public func matchesCondition(_ tag: WeatherConditionTag) -> Bool {
         conditions.contains(tag.rawValue)
@@ -58,11 +66,17 @@ public struct Phrase: Codable, Identifiable, Sendable {
     }
 
     /// Check if this phrase is appropriate for the current time: the
-    /// day/night booleans first, then the optional bucket gate when the
-    /// caller knows the location-local hour.
-    nonisolated public func matchesTime(isDay: Bool, localHour: Int?) -> Bool {
+    /// day/night booleans first, the optional weekday/weekend gate, then the
+    /// optional bucket gate when the caller knows the location-local hour.
+    nonisolated public func matchesTime(isDay: Bool, localHour: Int?, isWeekend: Bool? = nil) -> Bool {
         if isDay && nightOnly { return false }
         if !isDay && dayOnly { return false }
+        if weekdaysOnly == true {
+            guard let isWeekend, !isWeekend else { return false }
+        }
+        if weekendsOnly == true {
+            guard let isWeekend, isWeekend else { return false }
+        }
         if let buckets = timeBuckets, !buckets.isEmpty {
             guard let localHour else { return false }
             return buckets.contains(TimeBucket.from(hour: localHour))

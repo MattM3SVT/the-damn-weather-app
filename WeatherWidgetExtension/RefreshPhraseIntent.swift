@@ -36,6 +36,7 @@ struct RefreshPhraseIntent: AppIntent {
             let tz = cached.timezoneIdentifier.flatMap(TimeZone.init(identifier:)) ?? .current
             let localHour = now.localHour(timezone: tz)
             let localMonthDay = now.localMonthDay(timezone: tz)
+            let localIsWeekend = now.isWeekend(timezone: tz)
 
             let phrase = await engine.selectPhrase(
                 conditionTag: tag,
@@ -43,7 +44,8 @@ struct RefreshPhraseIntent: AppIntent {
                 mode: mode,
                 isDay: isDay,
                 localHour: localHour,
-                localMonthDay: localMonthDay
+                localMonthDay: localMonthDay,
+                localIsWeekend: localIsWeekend
             )
             let smallPhrase = await engine.selectPhrase(
                 conditionTag: tag,
@@ -52,6 +54,7 @@ struct RefreshPhraseIntent: AppIntent {
                 isDay: isDay,
                 localHour: localHour,
                 localMonthDay: localMonthDay,
+                localIsWeekend: localIsWeekend,
                 maxLength: 70,
                 trackAsSeen: false
             )
@@ -62,6 +65,7 @@ struct RefreshPhraseIntent: AppIntent {
                 isDay: isDay,
                 localHour: localHour,
                 localMonthDay: localMonthDay,
+                localIsWeekend: localIsWeekend,
                 maxLength: AppConstants.accessoryPhraseMaxLength,
                 trackAsSeen: false
             )

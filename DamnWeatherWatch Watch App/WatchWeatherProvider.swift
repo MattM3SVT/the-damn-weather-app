@@ -104,6 +104,7 @@ final class WatchWeatherProvider: NSObject, CLLocationManagerDelegate {
                 isDay: current.isDaylight,
                 localHour: Date().localHour(),
                 localMonthDay: Date().localMonthDay(),
+                localIsWeekend: Date().isWeekend(),
                 maxLength: 70,
                 trackAsSeen: false
             )
@@ -164,6 +165,7 @@ final class WatchWeatherProvider: NSObject, CLLocationManagerDelegate {
             isDay: current.isDay,
             localHour: Date().localHour(),
             localMonthDay: Date().localMonthDay(),
+            localIsWeekend: Date().isWeekend(),
             maxLength: 70
         )
         state?.phrase = phrase

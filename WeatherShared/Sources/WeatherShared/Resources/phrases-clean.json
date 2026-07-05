@@ -453,7 +453,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Currently [temp] degrees. The perfect temperature for complaining.",
@@ -541,7 +542,8 @@
     ],
     "priority": 2,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "[temp] degrees. That's a temperature that exists purely to inconvenience you.",
@@ -632,7 +634,8 @@
     ],
     "priority": 2,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "It's [temp] degrees. Not enough to cancel plans, just enough to resent them.",
@@ -788,7 +791,8 @@
     ],
     "priority": 2,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "It's [temp] degrees. That's a whole mood and it's not a good one.",
@@ -916,7 +920,8 @@
     "tempRange": null,
     "priority": 2,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Not a cloud in the sky. Sunglasses aren't optional, they're survival gear.",
@@ -1863,7 +1868,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Rain so steady it's basically a lifestyle at this point.",
@@ -2028,7 +2034,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "It's raining and your car windows are still down. Run.",
@@ -2065,7 +2072,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "A gentle drizzle that makes everything look cinematic but feel damp.",
@@ -2145,7 +2153,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Snowing like Mother Nature emptied a giant snow globe.",
@@ -2438,7 +2447,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snow. The kids are excited. The adults are doing math on the salt supply.",
@@ -3347,7 +3357,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Can't see a damn thing. The fog has entered the chat.",
@@ -3513,7 +3524,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "It's foggy and every approaching car looks like a ghost until the last second.",
@@ -3626,7 +3638,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "It's foggy and your glasses are foggier. Double fog.",
@@ -4040,7 +4053,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Every surface is now ice. Trust nothing. Suspect everything.",
@@ -4164,7 +4178,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Freezing rain. Your wipers are frozen to the windshield. Good morning.",
@@ -4754,7 +4769,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "[temp] degrees. Even the snowmen look cold.",
@@ -6417,7 +6433,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": true
+    "nightOnly": true,
+    "weekdaysOnly": true
   },
   {
     "text": "Snowing in the dark. The whole neighborhood is getting buried while it sleeps.",
@@ -8252,7 +8269,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Light snow that looks cute until it freezes into black ice overnight.",
@@ -8390,7 +8408,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snow on the ground, slush on the road, regret in the air.",
@@ -9478,7 +9497,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Fog that makes everything look like it was drawn with a soft pencil.",
@@ -9924,7 +9944,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Sleet pelting the windows like tiny angry hammers.",
@@ -10472,7 +10493,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Bitter cold at [temp] degrees. Your gloves have gloves.",
@@ -10989,7 +11011,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Fog at [temp] degrees. The air is thick, the visibility thin, and the coffee essential.",
@@ -11517,7 +11540,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": true
+    "nightOnly": true,
+    "weekdaysOnly": true
   },
   {
     "text": "Ice forming on everything tonight. Your front steps just became an Olympic luge track.",
@@ -11643,7 +11667,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": true
+    "nightOnly": true,
+    "weekdaysOnly": true
   },
   {
     "text": "Nighttime sleet and [temp] degrees. The roads are a suggestion at best.",
@@ -12019,7 +12044,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "It's [temp] outside and your phone battery is dying faster than your enthusiasm.",
@@ -12218,7 +12244,8 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "A solid [temp] degrees. The temperature equivalent of a firm handshake. Unremarkable but functional.",
@@ -12493,7 +12520,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Sunny. [temp] degrees. The ice cream truck is coming and you are an adult with a wallet.",
@@ -12558,7 +12586,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekendsOnly": true
   },
   {
     "text": "Clear at [temp] degrees. A perfect day ruined only by the existence of responsibilities.",
@@ -13890,7 +13919,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Rain at [temp]. Your umbrella is at home. You are not at home. This is a pattern.",
@@ -14461,7 +14491,8 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "[temp] degrees. Sleet. The weather is pelting you with tiny ice bullets and calling it precipitation.",
@@ -14685,7 +14716,8 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": true
+    "nightOnly": true,
+    "weekdaysOnly": true
   },
   {
     "text": "[temp] degrees. Snow coming down after dark. The plows will wake you at 4 AM.",
@@ -15376,7 +15408,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "It's [temp] outside and everyone has an uncle who could've predicted this.",
@@ -15613,7 +15646,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Dense fog at [temp]. Car headlights are just decorative at this point.",
@@ -15785,7 +15819,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snowing and [temp]. The shovel is cold. The snow is cold. You are cold. Everything is cold.",
@@ -16431,7 +16466,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Clear night at [temp] degrees. The quiet is so deep you can hear the stoplight change.",
@@ -16822,7 +16858,7 @@
     "nightOnly": false
   },
   {
-    "text": "[temp] degrees. The sky is blue, the grass is green, and someone just mowed at 7 AM on a Saturday.",
+    "text": "[temp] degrees. The sky is blue, the grass is green, and someone just mowed at 7 AM on a weekend.",
     "conditions": [
       "clear"
     ],
@@ -16832,7 +16868,8 @@
     ],
     "priority": 2,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekendsOnly": true
   },
   {
     "text": "[temp] degrees and raining. The only dry thing about today is your sense of humor.",
@@ -17192,7 +17229,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Snow at [temp]. The snow day hopefuls are refreshing the school website every three seconds.",
@@ -17205,7 +17243,8 @@
     ],
     "priority": 1,
     "dayOnly": false,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "[temp] degrees. Drizzle that can't decide if it's rain. Like a participation trophy from the sky.",
@@ -17407,7 +17446,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Lightning right when the WiFi was finally cooperating. The router had a moment of clarity and immediately died.",
@@ -17497,7 +17537,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Storm during the lunch run. Your sandwich is fine. Your shoes are not.",
@@ -17540,7 +17581,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Thunder right when you stepped onto the porch. Back inside it is.",
@@ -17640,7 +17682,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Lightning at the office window. The whole floor just stopped pretending to work.",
@@ -17650,7 +17693,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Storm during the patio brunch. Your eggs benedict are now eggs aquatic.",
@@ -17660,7 +17704,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekendsOnly": true
   },
   {
     "text": "Thunder while you were on the phone. The other end heard everything.",
@@ -18028,7 +18073,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Thunder while you were at the doctor's. The waiting room is suddenly the cozy spot.",
@@ -18081,7 +18127,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Storm during the lunch hour. Every restaurant patio is empty. Every interior is at war.",
@@ -18141,7 +18188,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Storm during the run to the car. The thirty feet just got really educational.",
@@ -18161,7 +18209,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Lightning right when you committed to the back patio. The patio said no.",
@@ -18357,7 +18406,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Gusty morning. The trash can lids are gone. The trash is also gone, in a different direction.",
@@ -18383,7 +18433,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekendsOnly": true
   },
   {
     "text": "Wind today. The bird feeder is empty. The seeds are next door. The birds are filing complaints.",
@@ -18443,7 +18494,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Wind today. The roof guy just rescheduled. Wisdom can be hourly.",
@@ -18483,7 +18535,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Gusts at the gas station. Every pump receipt is gone. Every tax preparer just felt a chill.",
@@ -18602,7 +18655,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Wind advisory. The scaffolding tarps downtown are putting on a free show.",
@@ -18765,7 +18819,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Gusty morning. The jogger's wireless earbud took a permanent vacation.",
@@ -18900,7 +18955,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Raining. Every coffee shop is at 200% capacity and the WiFi is filing for hospice.",
@@ -19053,7 +19109,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Rain at the airport curb. Every greeter is waving from inside the doors. Smart greeter.",
@@ -19212,7 +19269,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Raining. The kid's poster-board project is becoming a watercolor against its will.",
@@ -19333,7 +19391,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekendsOnly": true
   },
   {
     "text": "Raining. Your favorite outdoor café table is gone and so is your good mood.",
@@ -19374,7 +19433,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Rain today. Every gardener is celebrating quietly and you are not invited.",
@@ -19574,7 +19634,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Heavy rain. The roof gutters are overflowing in places gutters shouldn't even know about.",
@@ -19809,7 +19870,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Pouring. Every window in the office building has a person looking out with the same defeated face.",
@@ -19819,7 +19881,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Heavy rain at [temp]. The parking lot speed bump is now a small dam.",
@@ -20011,7 +20074,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Heavy rain. Every patio plant is overwatered for the next month and there's nothing to be done.",
@@ -20312,7 +20376,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Drizzle. The intermittent wipers were invented for this exact moment.",
@@ -20421,7 +20486,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Drizzling. The patio brunch is just barely happening and everyone's calling it romantic.",
@@ -20431,7 +20497,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekendsOnly": true
   },
   {
     "text": "Drizzle. Your shoes were a stylistic choice. They're a damp choice now.",
@@ -20451,7 +20518,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Drizzle. The 'I'll just take the dog out for a minute' is now a fifteen-minute event.",
@@ -20623,7 +20691,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Ice glaze. The trees are sparkling. The branches are negotiating with gravity.",
@@ -20676,7 +20745,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Sleet and freezing rain. The morning routine just gained forty minutes.",
@@ -20857,7 +20927,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Freezing rain advisory. Every parking lot is a bumper-car arena. Drive accordingly.",
@@ -20880,7 +20951,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Freezing rain. The neighbor's mail-day moment of joy just got iced over. Literally.",
@@ -20926,7 +20998,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Freezing rain. Every commute is a rolling negotiation between you, the road, and gravity.",
@@ -20940,7 +21013,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Sleet. The porch furniture is cemented in place. Forever, apparently.",
@@ -20983,7 +21057,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Ice on the back deck. Your barbecue is hibernating until further notice.",
@@ -21020,7 +21095,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Snow today. The kid is in five layers and still pretending it's not enough.",
@@ -21040,7 +21116,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snow at [temp]. The car is buried. The car alarm is unfazed by your existence.",
@@ -21075,7 +21152,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snow today at [temp]. The plow truck made one pass and left a wall at your driveway. Classic.",
@@ -21149,7 +21227,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Snow today. The mail carrier earned every dollar and a hot beverage you should've offered.",
@@ -21171,7 +21250,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snow falling. The dog is doing big bounces and you're impressed and slightly alarmed.",
@@ -21204,7 +21284,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snowing outside. The mid-morning Costco run is now a winter triumph story.",
@@ -21286,7 +21367,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snowing. Every coffee shop has a window full of people pretending to work.",
@@ -21346,7 +21428,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Snowing today. The kid's snow boots are still in last winter's bin. Today is a problem.",
@@ -21416,7 +21499,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snow this morning. The driveway has a one-foot-tall hat. Wear it well.",
@@ -21441,7 +21525,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Snow falling at the bus stop. Every parent is pretending to be a tree. The kids are not fooled.",
@@ -21693,7 +21778,8 @@
     ],
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "[temp] degrees. The construction crew is calling for water breaks every ten minutes.",
@@ -22692,7 +22778,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Foggy day. Every traffic light is a soft suggestion until you're right on top of it.",
@@ -22725,7 +22812,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Partly cloudy day. The shade and sun are trading shifts every six minutes.",
@@ -22749,7 +22837,8 @@
     "timeBuckets": [
       "morning",
       "evening"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Partly cloudy and [temp] today. The picnic plans are technically on. Bring a backup.",
@@ -22775,7 +22864,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Cloudy and breezy at [temp]. The kind of day where your morning walk feels like a small victory.",
@@ -22887,7 +22977,8 @@
     "tempRange": null,
     "priority": 1,
     "dayOnly": true,
-    "nightOnly": false
+    "nightOnly": false,
+    "weekdaysOnly": true
   },
   {
     "text": "Fog this morning. The morning commute is one long string of brake lights and faith.",
@@ -22900,7 +22991,8 @@
     "nightOnly": false,
     "timeBuckets": [
       "morning"
-    ]
+    ],
+    "weekdaysOnly": true
   },
   {
     "text": "Partly cloudy at [temp]. The sun visor is going up and down so much it's earning overtime.",

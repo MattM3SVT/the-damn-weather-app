@@ -85,6 +85,18 @@ def lint(path: Path) -> tuple[int, int]:
             m = re.fullmatch(r"(\d{2})-(\d{2})", str(d))
             if not m or not (1 <= int(m.group(1)) <= 12) or not (1 <= int(m.group(2)) <= 31):
                 errors.append(f"bad date '{d}' (want MM-dd): {label}")
+        if p.get("weekdaysOnly") and p.get("weekendsOnly"):
+            errors.append(f"weekdaysOnly AND weekendsOnly (never matches): {label}")
+        for key in ("weekdaysOnly", "weekendsOnly"):
+            if key in p and not isinstance(p[key], bool):
+                errors.append(f"{key} must be a boolean: {label}")
+        # Weekday-anchored language without the gate (heuristic; metaphors
+        # like "the fog and dark are coworkers" are legitimate exceptions).
+        if not p.get("weekdaysOnly") and re.search(
+            r"\bcommute\b|\brush hour\b|\bworkday\b|\bschool (bus|called|dismissal|pickup|carpool|drop-off)\b",
+            text, re.I,
+        ):
+            warnings.append(f"weekday-language but not weekdaysOnly: {label}")
         # "[temp" without the closing bracket renders literally in the UI.
         if "[temp" in text and "[temp]" not in text:
             errors.append(f"malformed [temp] token: {label}")
