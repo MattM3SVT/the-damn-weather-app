@@ -66,7 +66,7 @@ struct MainView: View {
                 if shouldUseIPadLayout(width: geometry.size.width) {
                     iPadLayout
                 } else {
-                    iPhoneLayout
+                    iPhoneLayout(topSafeArea: geometry.safeAreaInsets.top)
                 }
             }
         }
@@ -296,14 +296,24 @@ struct MainView: View {
         return weatherVM.displayName
     }
 
-    private var iPhoneLayout: some View {
+    /// `topSafeArea` compensates the pages' content inset: the TabView
+    /// ignores the top safe area so each page's gradient reaches the status
+    /// bar (and travels with the swipe), which removes the safe area from
+    /// the pages' layout context.
+    private func iPhoneLayout(topSafeArea: CGFloat) -> some View {
         ZStack {
             // Root background — covers the status bar area that per-page backgrounds
             // inside the TabView can't reach (TabView only ignores bottom safe area).
+            // Identity is keyed to the active page: swiping cities swaps this
+            // layer instantly (matching the per-page backgrounds, which move
+            // with the finger), instead of cross-fading 1.5s and leaving the
+            // status bar strip wearing the previous city's color. In-place
+            // weather changes on the same page still get the slow fade.
             DynamicBackground(
                 condition: weatherVM.pageStates[weatherVM.activePageKey]?.weather.current.conditionTag ?? .clear,
                 isDay: weatherVM.pageStates[weatherVM.activePageKey]?.weather.current.isDay ?? true
             )
+            .id(weatherVM.activePageKey)
 
             // TabView with per-page CityPageView — each page has its own background + data
             TabView(selection: $selectedPage) {
@@ -314,7 +324,7 @@ struct MainView: View {
                     error: weatherVM.error,
                     appState: appState,
                     onCollapseProgressChanged: { heroCollapseProgress = $0 },
-                    topInset: headerOverlayHeight,
+                    topInset: headerOverlayHeight + topSafeArea,
                     onRefreshPhrase: { Task { await weatherVM.refreshPhraseForPage(WeatherViewModel.currentLocationKey) } },
                     onRefresh: { await weatherVM.refresh() },
                     isCurrentLocationPage: true,
@@ -332,7 +342,7 @@ struct MainView: View {
                         error: nil,
                         appState: appState,
                         onCollapseProgressChanged: { heroCollapseProgress = $0 },
-                        topInset: headerOverlayHeight,
+                        topInset: headerOverlayHeight + topSafeArea,
                         onRefreshPhrase: { Task { await weatherVM.refreshPhraseForPage(weatherVM.pageKey(for: location)) } },
                         onRefresh: { await weatherVM.refreshPage(for: location) },
                         attribution: weatherVM.weatherAttribution
@@ -341,7 +351,7 @@ struct MainView: View {
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-            .ignoresSafeArea(edges: .bottom)
+            .ignoresSafeArea()
             // Sync active page state into the view model. Widgets no longer
             // follow the app's active page — each widget has its own
             // AppIntent-configured location — so this only updates in-app
