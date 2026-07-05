@@ -431,6 +431,7 @@ final class WeatherViewModel {
                 currentLocationState = displayState
                 Self.persistLastKnownLocation(location)
                 await ForecastNotificationService.shared.scheduleFromSnapshot(snapshot)
+                await RainActivityManager.shared.reconcile(with: snapshot, locationName: displayName)
             }
 
             // Generate phrase BEFORE storing into pageStates (fixes stale phrase flash).
@@ -622,6 +623,7 @@ final class WeatherViewModel {
             await updateWidget(for: Self.currentLocationKey)
             Self.persistLastKnownLocation(location)
             await ForecastNotificationService.shared.scheduleFromSnapshot(snapshot)
+            await RainActivityManager.shared.reconcile(with: snapshot, locationName: displayName)
         } catch {
             vmLog.error("silent device-location refresh failed: \(String(describing: error), privacy: .public)")
         }

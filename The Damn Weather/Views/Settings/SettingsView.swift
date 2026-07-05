@@ -249,6 +249,22 @@ struct WhatsNewView: View {
         List {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.5")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "applewatch", color: .accentRed, text: "Apple Watch app. The damn weather on your damn wrist. Turn the crown for the forecast, tap the phrase for a fresh one.")
+                        ChangelogItem(icon: "umbrella.fill", color: .cyan, text: "Rain countdown. When rain is minutes away, a live countdown lands on your lock screen and Dynamic Island. Watch it approach. Accept your fate.")
+                        ChangelogItem(icon: "square.and.arrow.up", color: .yellow, text: "Long-press any phrase to share it with someone who needs it.")
+                        ChangelogItem(icon: "mic.fill", color: .purple, text: "Siri got visuals. Ask for the damn weather and get a card, not just sass.")
+                        ChangelogItem(icon: "wrench.and.screwdriver.fill", color: .gray, text: "Bug fixes and polish. The details page even tells the truth about when it was updated.")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.4")
                         .font(.title2.bold())
 

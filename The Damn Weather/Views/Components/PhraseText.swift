@@ -1,7 +1,8 @@
 import SwiftUI
+import WeatherShared
 
 /// Animated phrase display with tap-to-refresh.
-/// The core personality of the app.
+/// The core personality of the app. Long-press to share.
 struct PhraseText: View {
     let phrase: String
     var size: CGFloat = DesignTokens.phraseSize
@@ -31,8 +32,13 @@ struct PhraseText: View {
                     }
                 }
             }
+            .contextMenu {
+                ShareLink(item: "\"\(phrase)\" (The Damn Weather)") {
+                    Label("Share Phrase", systemImage: "square.and.arrow.up")
+                }
+            }
             .padding(.horizontal, DesignTokens.spaceMD)
             .accessibilityLabel(phrase)
-            .accessibilityHint("Double tap for a new phrase")
+            .accessibilityHint("Double tap for a new phrase. Touch and hold to share.")
     }
 }
