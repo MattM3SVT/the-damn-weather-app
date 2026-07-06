@@ -20,6 +20,16 @@ enum ShareCardRenderer {
         return renderer.uiImage
     }
 
+    /// "Jul 5 12:10 PM" label for the card, in the location's timezone.
+    /// Shared by every surface that renders the card so they can't drift.
+    static func dateTimeLabel(timezone: TimeZone) -> String {
+        let f = DateFormatter()
+        f.timeZone = timezone
+        f.locale = .current
+        f.setLocalizedDateFormatFromTemplate("MMMd h:mm a")
+        return f.string(from: Date())
+    }
+
     /// Pre-resolves the Apple Weather attribution mark to a UIImage.
     /// AsyncImage does not render inside ImageRenderer, so the URL must be
     /// fetched upstream and passed in as a static image.

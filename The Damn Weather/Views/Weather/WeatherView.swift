@@ -56,7 +56,9 @@ struct WeatherView: View {
                     phraseTapEnabled: !sidebarOpen,
                     collapseProgress: collapseProgress,
                     airQuality: weather.airQuality,
-                    isPartial: weather.isPartial
+                    isPartial: weather.isPartial,
+                    shareTimezone: weather.timezone,
+                    shareAttribution: attribution
                 )
 
                 // "Starting soon" callout — only when dry now but precipitation

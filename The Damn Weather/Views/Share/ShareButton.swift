@@ -24,14 +24,6 @@ struct ShareButton: View {
     @State private var tapCount = 0
     @State private var presentedCount = 0
 
-    private var dateTimeLabel: String {
-        let f = DateFormatter()
-        f.timeZone = timezone
-        f.locale = .current
-        f.setLocalizedDateFormatFromTemplate("MMMd h:mm a")
-        return f.string(from: Date())
-    }
-
     private var identity: String {
         let markKey = attributionMark == nil ? "none" : "mark"
         return "\(weather.temperature)-\(weather.conditionTag.rawValue)-\(weather.isDay)-\(phrase)-\(locationName)-\(isExplicit)-\(unit.rawValue)-\(markKey)"
@@ -80,7 +72,7 @@ struct ShareButton: View {
             weather: weather,
             phrase: phrase,
             locationName: locationName,
-            dateTimeLabel: dateTimeLabel,
+            dateTimeLabel: ShareCardRenderer.dateTimeLabel(timezone: timezone),
             unit: unit,
             isExplicit: isExplicit,
             attributionMark: attributionMark

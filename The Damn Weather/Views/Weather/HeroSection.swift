@@ -1,4 +1,5 @@
 import SwiftUI
+import WeatherKit
 import WeatherShared
 
 /// Hero section — big temperature, sarcastic phrase, and quick stats.
@@ -21,6 +22,10 @@ struct HeroSection: View {
     /// When true, the snapshot was hydrated from the widget cache and has no
     /// real values for Wind or UV Index — hide those stats rather than show 0.
     var isPartial: Bool = false
+    /// Location timezone + Apple Weather attribution for the long-press
+    /// share card (must match the header share button's output exactly).
+    var shareTimezone: TimeZone = .current
+    var shareAttribution: WeatherAttribution? = nil
 
     @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(AppState.self) private var appState
@@ -59,7 +64,20 @@ struct HeroSection: View {
                 .opacity(1 - tempProgress)
 
             // Sarcastic phrase — the star of the show
-            PhraseText(phrase: phrase, size: phraseSize, isEnabled: phraseTapEnabled, onTap: onRefreshPhrase)
+            PhraseText(
+                phrase: phrase,
+                size: phraseSize,
+                isEnabled: phraseTapEnabled,
+                onTap: onRefreshPhrase,
+                shareContext: PhraseShareContext(
+                    weather: weather,
+                    locationName: locationName,
+                    timezone: shareTimezone,
+                    unit: unit,
+                    isExplicit: appState.phraseMode == .explicit,
+                    attribution: shareAttribution
+                )
+            )
                 .opacity(1 - phraseProgress)
 
             // Location name + time
