@@ -249,6 +249,18 @@ struct WhatsNewView: View {
         List {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
+                    Text("Version 1.5.1")
+                        .font(.title2.bold())
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        ChangelogItem(icon: "aqi.medium", color: .mint, text: "Air quality moved to the EPA's new data feed before they unplugged the old one. More places covered, and the reading time is finally right in Phoenix, Alaska, and Puerto Rico.")
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
                     Text("Version 1.5")
                         .font(.title2.bold())
 

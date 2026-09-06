@@ -24,6 +24,7 @@ public struct AirQualityCacheEntry: Codable, Sendable {
 public enum AirQualityCacheStore {
     private static let observationsFile = "air-quality-current.json"
     private static let noCoverageFile   = "air-quality-no-coverage.json"
+    private static let areaStatesFile   = "air-quality-area-states.json"
 
     private static func url(for fileName: String) -> URL? {
         guard let container = FileManager.default
@@ -75,5 +76,20 @@ public enum AirQualityCacheStore {
 
     public static func saveNoCoverage(_ dict: [String: Date]) {
         save(dict, to: noCoverageFile)
+    }
+
+    // MARK: - Reporting area -> state cache
+
+    /// Maps an AirNow reporting area name to its USPS state code, which the
+    /// daily historical service needs and the current-observation service
+    /// stopped returning in June 2026. Learning one costs an extra request, so
+    /// it's cached here; the mapping is a property of the area itself and
+    /// doesn't expire, so entries are kept without a TTL.
+    public static func loadAreaStates() -> [String: String] {
+        load(areaStatesFile, as: [String: String].self) ?? [:]
+    }
+
+    public static func saveAreaStates(_ dict: [String: String]) {
+        save(dict, to: areaStatesFile)
     }
 }

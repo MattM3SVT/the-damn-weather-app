@@ -20,6 +20,11 @@ public actor AirQualityService {
     private var observationCache: [String: AirQualityCacheEntry] = [:]
     private var noCoverageCache: [String: Date] = [:]
 
+    // Reporting area name -> USPS state code, needed by the daily historical
+    // service. Learned from one extra request the first time we see an area
+    // and kept indefinitely, since an area's state doesn't change.
+    private var areaStateCache: [String: String] = [:]
+
     // Request-spacing gate. Prefetching 7 saved locations × 2 requests
     // (current + historical) would fire 14 AirNow requests at once without
     // throttling. The gate serializes requests through the actor so each
@@ -34,6 +39,7 @@ public actor AirQualityService {
         self.client = AirNowClient()
         self.observationCache = AirQualityCacheStore.loadObservations()
         self.noCoverageCache  = AirQualityCacheStore.loadNoCoverage()
+        self.areaStateCache   = AirQualityCacheStore.loadAreaStates()
     }
 
     /// Public entry point. Never throws. Returns nil on permanent failures
@@ -70,9 +76,11 @@ public actor AirQualityService {
     public func clearCache() {
         observationCache.removeAll()
         noCoverageCache.removeAll()
+        areaStateCache.removeAll()
         hasLoggedUnauthorized = false
         AirQualityCacheStore.saveObservations(observationCache)
         AirQualityCacheStore.saveNoCoverage(noCoverageCache)
+        AirQualityCacheStore.saveAreaStates(areaStateCache)
     }
 
     // MARK: - Private
@@ -101,9 +109,11 @@ public actor AirQualityService {
             return nil
         }
 
-        // 3. Fetch current + historical sequentially (not `async let`) so both
-        // requests go through the same inter-request spacing gate. This keeps
-        // us well inside AirNow's rate limit even during a 7-location burst.
+        // 3. Fetch current, then historical, sequentially (not `async let`) so
+        // every request goes through the same inter-request spacing gate. This
+        // keeps us well inside AirNow's rate limit even during a 7-location
+        // burst. Historical is normally one request; it costs a second, once
+        // per reporting area ever, when the area's state isn't cached yet.
         let currentResult = await fetchCurrent(lat: location.coordinate.latitude,
                                                lon: location.coordinate.longitude,
                                                apiKey: apiKey)
@@ -129,7 +139,8 @@ public actor AirQualityService {
             let historicalReadings = await fetchHistorical(
                 lat: location.coordinate.latitude,
                 lon: location.coordinate.longitude,
-                apiKey: apiKey
+                apiKey: apiKey,
+                current: currentReadings
             )
             guard let aggregated = aggregate(
                 current: currentReadings,
@@ -181,21 +192,105 @@ public actor AirQualityService {
         }
     }
 
-    /// Best-effort fetch of yesterday's daily AQI (AirNow's free historical
-    /// endpoint is daily, not hourly). Returns an empty array on any failure
-    /// so the caller can still construct `AirQualityData` without the
-    /// "vs yesterday" comparison.
-    private func fetchHistorical(lat: Double, lon: Double, apiKey: String) async -> [AirNowReading] {
-        let yesterday = yesterdayInDeviceLocalTime()
+    /// Best-effort fetch of yesterday's daily AQI. Returns an empty array on
+    /// any failure so the caller can still construct `AirQualityData` without
+    /// the "vs yesterday" comparison.
+    ///
+    /// Since June 2026 there is no lat/long historical service, so this works
+    /// in three steps: resolve which state the current reading's reporting area
+    /// belongs to, pull that whole state's daily observations, then filter back
+    /// down to our area. `current` is the already-fetched current reading,
+    /// which supplies both the area name to match on and the monitor id used
+    /// as a fallback when resolving the state.
+    private func fetchHistorical(
+        lat: Double,
+        lon: Double,
+        apiKey: String,
+        current: [AirNowReading]
+    ) async -> [AirNowReading] {
+        guard let area = current.first?.reportingArea, !area.isEmpty else {
+            log.debug("AirNow historical skipped: current reading has no reporting area")
+            return []
+        }
+        guard let state = await resolveStateCode(
+            for: area, lat: lat, lon: lon, apiKey: apiKey, current: current
+        ) else {
+            log.debug("AirNow historical skipped: could not resolve state for \(area, privacy: .public)")
+            return []
+        }
+
         await waitForRequestSlot()
+        let rows: [AirNowReading]
         do {
-            return try await client.fetchHistoricalObservation(
-                lat: lat, lon: lon, date: yesterday, apiKey: apiKey
+            rows = try await client.fetchHistoricalDailyObservations(
+                stateCode: state, date: yesterdayInDeviceLocalTime(), apiKey: apiKey
             )
         } catch {
             log.debug("AirNow historical fetch failed (non-fatal): \(String(describing: error), privacy: .public)")
             return []
         }
+
+        let matched = rows.filter { Self.areaNamesMatch($0.reportingArea, area) }
+        if matched.isEmpty && !rows.isEmpty {
+            // The daily service uses a finer-grained set of reporting areas
+            // than the current/forecast services in some metros — "Central LA
+            // CO" and "Sacramento" have no daily counterpart, for instance. No
+            // safe way to substitute a neighbouring area, so we drop the
+            // comparison rather than show a number for somewhere else.
+            log.debug("AirNow historical has no area matching \(area, privacy: .public) in \(state, privacy: .public)")
+        }
+        return matched
+    }
+
+    /// Compares reporting area names across services. Exact match, ignoring
+    /// case and surrounding whitespace — deliberately not fuzzy, because the
+    /// near-misses are genuinely different areas ("Central LA CO" vs "S Central
+    /// LA CO") and matching them would report a neighbouring area's air as
+    /// yours.
+    private static func areaNamesMatch(_ lhs: String?, _ rhs: String) -> Bool {
+        guard let lhs else { return false }
+        return lhs.trimmingCharacters(in: .whitespaces)
+            .caseInsensitiveCompare(rhs.trimmingCharacters(in: .whitespaces)) == .orderedSame
+    }
+
+    /// The USPS state code owning `area`, needed by the daily historical
+    /// service. Tries, in order:
+    ///
+    /// 1. The persistent cache — an area's state never changes, so this is
+    ///    learned once and thereafter costs nothing.
+    /// 2. The current-forecast service, which is authoritative because it's
+    ///    AirNow's own area-to-state mapping.
+    /// 3. The monitor id from the current reading. Only reached when an area
+    ///    has no forecast (Anchorage and San Juan report observations but no
+    ///    forecast). Not used first: a monitor can sit in a different state
+    ///    than the area it feeds, which would send cross-border metros like
+    ///    Memphis to the wrong state.
+    private func resolveStateCode(
+        for area: String,
+        lat: Double,
+        lon: Double,
+        apiKey: String,
+        current: [AirNowReading]
+    ) async -> String? {
+        if let cached = areaStateCache[area] { return cached }
+
+        await waitForRequestSlot()
+        do {
+            if let resolved = try await client.fetchReportingAreaState(lat: lat, lon: lon, apiKey: apiKey),
+               Self.areaNamesMatch(resolved.reportingArea, area) {
+                setAreaState(area: area, state: resolved.stateCode)
+                return resolved.stateCode
+            }
+        } catch {
+            log.debug("AirNow forecast lookup failed (non-fatal): \(String(describing: error), privacy: .public)")
+        }
+
+        // Deliberately not cached. The forecast lookup is the authoritative
+        // answer and this one can be wrong for a cross-border metro, so
+        // persisting it would let a single transient forecast outage pin the
+        // wrong state for an area indefinitely. Re-deriving it costs nothing,
+        // and the areas that actually need it have no forecast to fall back to.
+        return current.compactMap { AirNowClient.stateCode(forSiteID: $0.siteID) }.first
     }
 
     /// Computes "yesterday" using the device's local calendar. AirNow interprets
@@ -284,10 +379,10 @@ public actor AirQualityService {
     }
 
     /// Parses the `DateObserved` + `HourObserved` + `LocalTimeZone` fields of
-    /// the first row into a real `Date`. AirNow abbreviations like "MST" are
-    /// ambiguous between Phoenix (no DST) and Denver-in-winter; we map the
-    /// common US abbreviations explicitly and fall back to device local for
-    /// the rest rather than relying on iOS's `TimeZone(abbreviation:)`.
+    /// the first row into a real `Date`. We map the abbreviations AirNow emits
+    /// explicitly, and fall back to device local for the rest, rather than
+    /// relying on iOS's `TimeZone(abbreviation:)` — which resolves "MST" to
+    /// Denver and so lands an hour off for Phoenix in summer.
     private func readingTimestamp(from rows: [AirNowReading]) -> Date? {
         guard let first = rows.first else { return nil }
         var calendar = Calendar(identifier: .gregorian)
@@ -304,18 +399,38 @@ public actor AirQualityService {
     /// Maps the timezone abbreviations AirNow actually emits (all US/territory
     /// zones) to IANA identifiers. Returns nil for anything outside this set
     /// so the caller falls back to device local.
-    private static func timezoneForAirNowAbbreviation(_ abbr: String) -> TimeZone? {
+    ///
+    /// The June 2026 services report the *observed* abbreviation rather than
+    /// always reporting standard time, which lets us resolve two cases the
+    /// legacy feed couldn't (verified live on 2026-09-06):
+    ///
+    ///   - Denver now reports MDT where Phoenix reports MST; the legacy feed
+    ///     said MST for both, so mapping MST to Denver put Phoenix an hour off
+    ///     in summer. Each abbreviation now picks a zone whose UTC offset is
+    ///     right year-round: MST -> Phoenix (-7 always), MDT -> Denver (-6).
+    ///   - Puerto Rico now reports AST (correct, it has no DST) where the
+    ///     legacy feed said ADT. Mapping AST to Halifax resolved to -3 in
+    ///     summer instead of PR's -4, so AST gets its own zone.
+    ///
+    /// Alaska reports KST/KDT here and AKT on the legacy feed; neither was
+    /// matched before, so Alaskan observations silently fell back to device
+    /// local. Both spellings are now mapped.
+    static func timezoneForAirNowAbbreviation(_ abbr: String) -> TimeZone? {
         switch abbr {
-        case "PST", "PDT":        return TimeZone(identifier: "America/Los_Angeles")
-        case "MST", "MDT":        return TimeZone(identifier: "America/Denver")
-        case "CST", "CDT":        return TimeZone(identifier: "America/Chicago")
-        case "EST", "EDT":        return TimeZone(identifier: "America/New_York")
-        case "AKST", "AKDT":      return TimeZone(identifier: "America/Anchorage")
-        case "HST", "HAST", "HADT": return TimeZone(identifier: "Pacific/Honolulu")
-        case "AST", "ADT":        return TimeZone(identifier: "America/Halifax")
-        case "ChST":              return TimeZone(identifier: "Pacific/Guam")
-        case "SST":               return TimeZone(identifier: "Pacific/Pago_Pago")
-        default:                  return nil
+        case "PST", "PDT":          return TimeZone(identifier: "America/Los_Angeles")
+        case "MST":                 return TimeZone(identifier: "America/Phoenix")
+        case "MDT":                 return TimeZone(identifier: "America/Denver")
+        case "CST", "CDT":          return TimeZone(identifier: "America/Chicago")
+        case "EST", "EDT":          return TimeZone(identifier: "America/New_York")
+        case "AKST", "AKDT",
+             "AKT", "KST", "KDT":   return TimeZone(identifier: "America/Anchorage")
+        case "HST", "HAST":         return TimeZone(identifier: "Pacific/Honolulu")
+        case "HADT":                return TimeZone(identifier: "America/Adak")
+        case "AST":                 return TimeZone(identifier: "America/Puerto_Rico")
+        case "ADT":                 return TimeZone(identifier: "America/Halifax")
+        case "ChST":                return TimeZone(identifier: "Pacific/Guam")
+        case "SST":                 return TimeZone(identifier: "Pacific/Pago_Pago")
+        default:                    return nil
         }
     }
 
@@ -336,6 +451,18 @@ public actor AirQualityService {
             observationCache.removeValue(forKey: oldestKey)
         }
         AirQualityCacheStore.saveObservations(observationCache)
+    }
+
+    private func setAreaState(area: String, state: String) {
+        areaStateCache[area] = state
+        if areaStateCache.count > AppConstants.airQualityCacheMaxEntries,
+           let anyKey = areaStateCache.keys.first {
+            // No timestamps here (the mapping never goes stale), so eviction is
+            // arbitrary. Reaching 200 distinct reporting areas would take a lot
+            // of travelling, and a re-learn is one request.
+            areaStateCache.removeValue(forKey: anyKey)
+        }
+        AirQualityCacheStore.saveAreaStates(areaStateCache)
     }
 
     private func setNoCoverage(coverageKey: String) {
